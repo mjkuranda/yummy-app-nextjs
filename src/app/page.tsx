@@ -1,7 +1,9 @@
-import styles from '@/src/styles/test.module.scss';
+import { WelcomeScreen } from '@/src/app/welcome-screen';
 
 export default function Home() {
     return (
-        <>Home page <div className={styles['test-class']}>Xxxxx</div><div className="y-class test-class">Y</div></>
+        <>
+            <WelcomeScreen />
+        </>
     );
 }
