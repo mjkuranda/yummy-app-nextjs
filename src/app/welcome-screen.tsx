@@ -1,16 +1,14 @@
 import styles from '@/styles/app/welcome-screen.module.scss';
 import { WelcomeScreenPanel } from '@/src/app/welcome-screen-panel';
-import { InformationScreen } from '@/src/app/information-screen';
-import { UserBar } from '@/src/app/user-bar';
+import { User } from '@/src/components/common/user';
 
 export function WelcomeScreen() {
     return (
         <main className={styles['welcome-screen']}>
             <WelcomeScreenPanel />
-            <InformationScreen title="Meals" description="Easy for users. Containing over X meals!" />
-            <InformationScreen title="Integrating" description="Creates cooking community." />
-            <InformationScreen title="Mealful" description="Integrate various recipesets." />
-            <UserBar />
+            <div className="position-absolute top-0 end-0 mt-3 me-5">
+                <User />
+            </div>
         </main>
     );
 }
