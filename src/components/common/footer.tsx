@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export function Footer() {
     return (
-        <footer className={styles['footer']}>
+        <footer className={styles['app-footer']}>
             <div>
                 <p>Wszelkie prawa zastrzeżone</p>
                 <div className={styles['author-information']}>

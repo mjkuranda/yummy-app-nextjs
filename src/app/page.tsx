@@ -6,9 +6,11 @@ export default function Home() {
     return (
         <>
             <WelcomeScreen />
-            <InformationScreen title="Meals" description="Easy for users. Containing over X meals!" />
-            <InformationScreen title="Integrating" description="Creates cooking community." />
-            <InformationScreen title="Mealful" description="Integrate various recipesets." />
+            <div id="description">
+                <InformationScreen title="Meals" description="Easy for users. Containing over X meals!" />
+                <InformationScreen title="Integrating" description="Creates cooking community." />
+                <InformationScreen title="Mealful" description="Integrate various recipesets." />
+            </div>
             <Footer />
         </>
     );

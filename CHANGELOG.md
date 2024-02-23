@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.0] - 2024-02-23
 ### Added
-- [Marek Kurańda](https://github.com/mjkuranda): Footer common component.
+- [Marek Kurańda](https://github.com/mjkuranda): Footer and Header common components.
 
 ## [1.4.0] - 2024-02-23
 ### Added

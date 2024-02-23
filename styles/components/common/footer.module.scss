@@ -1,5 +1,7 @@
-.footer {
-    background-color: var(--cooper);
+@import '../../globals-colors.scss';
+
+.app-footer {
+    background-color: $cooper;
 
     >div {
         padding: 2rem 0;

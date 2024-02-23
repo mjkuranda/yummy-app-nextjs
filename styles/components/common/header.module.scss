@@ -1,0 +1,34 @@
+@import '../../globals-colors.scss';
+
+$mh: 160px;
+$wh: calc(100vw - (4 * $mh));
+$hh: 6em;
+
+.app-header {
+    /* Header left */
+    $hl: calc($wh / $phi);
+    /* Header right */
+    $hr: calc($wh - $hl);
+
+    background-color: $cooper;
+    height: $hh;
+
+    >div {
+        // Left
+        >div {
+            width: $hl;
+            height: $hh;
+            background-color: transparent;
+        }
+
+        nav {
+            a+a {
+                margin-left: 16px;
+            }
+        }
+    }
+}
+
+#logo {
+    margin: 0 1em;
+}
