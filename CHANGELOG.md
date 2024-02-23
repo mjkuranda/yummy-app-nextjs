@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Bootstrap 5.
 - [Marek Kurańda](https://github.com/mjkuranda): Technology list in `README.md` file.
+- [Marek Kurańda](https://github.com/mjkuranda): Initial home page.
 
 ## [1.3.0] - 2024-02-22
 ### Added
