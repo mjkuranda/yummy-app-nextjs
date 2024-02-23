@@ -1,0 +1,35 @@
+.welcome-screen {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/soup_1920.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+
+    .panel {
+        width: 100%;
+        height: 100%;
+
+        .header-panel {
+            text-shadow:
+                    2px 2px 2px grey,
+                    -3px 6px 5px var(--blue-de-france);
+            color: var(--honey-yellow);
+            padding: 1em 2em;
+            border-radius: 1em;
+            background-color: var(--blue-de-france-alpha);
+        }
+
+        >div {
+            margin: 80px 0;
+
+            >button+button {
+                margin-left: 2rem;
+            }
+
+            >:nth-child(2) {
+                transform: scale(1.25);
+            }
+        }
+    }
+}

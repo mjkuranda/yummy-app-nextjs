@@ -2,6 +2,14 @@
 
 The client side application using [Yummy API](https://github.com/mjkuranda/yummy-app-nestjs/).
 
+## Technologies
+
+This application was built using:
+* NextJS 13
+* TypeScript
+* Bootstrap 5
+* SCSS
+
 ## Getting Started
 
 First, run the development server:

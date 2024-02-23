@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+    font-family: "Sacramento", sans-serif !important;
+    font-family: "Montserrat", sans-serif !important;
+}
+
+:root {
+    /* Web colors */
+    --cooper: #b1740f;
+    --orange-yellow-crayola: #ffd07b;
+    --honey-yellow: #fdb833;
+    --spanish-blue: #296eb4;
+    --blue-de-france: #1789fc;
+
+    --cooper-alpha: #b1740f77;
+    --orange-yellow-crayola-alpha: #ffd07b77;
+    --honey-yellow-alpha: #fdb83377;
+    --spanish-blue-alpha: #296eb477;
+    --blue-de-france-alpha: #1789fc77;
+
+    /* Constant variables */
+    --phi: 1.618;
+}
