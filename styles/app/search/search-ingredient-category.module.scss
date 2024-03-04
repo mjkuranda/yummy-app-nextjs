@@ -1,0 +1,14 @@
+.search-ingredient-category {
+    .search-ingredient-category__title {
+        font-weight: 800;
+    }
+
+    .search-ingredient-category__list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .search-ingredient-category__ingredient + .search-ingredient-category__ingredient {
+            margin-left: 8px;
+        }
+    }
+}
