@@ -1,6 +1,6 @@
 {
     "name": "yummy-app-nextjs",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -20,6 +20,7 @@
         "@types/react": "^18.2.57",
         "@typescript-eslint/eslint-plugin": "^7.0.2",
         "@typescript-eslint/parser": "^7.0.2",
+        "eslint-plugin-react": "^7.34.0",
         "sass": "^1.71.1"
     }
 }

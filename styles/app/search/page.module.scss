@@ -1,0 +1,16 @@
+@import '../../globals-colors.scss';
+
+#search-page {
+    background-color: $orange-yellow-crayola;
+    min-height: 100vh;
+
+    #search-query-part,
+    #meal-result-part {
+        margin: 0 10%;
+    }
+
+    #search-query-part {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
