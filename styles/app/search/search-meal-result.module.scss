@@ -1,0 +1,181 @@
+@import "@/styles/globals-constants";
+@import "@/styles/globals-colors";
+
+$spc: 8px;
+
+/* Below 1000px */
+@media all and (max-width: 700px) {
+    .result-box {
+        $in-row: 1;
+        $ratio: calc(
+                (100vw - $spc * calc($in-row - 1)) /
+                ($in-row * (1 + $phi))
+        );
+
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100vw - ($ratio * $in-row));
+        margin: $spc auto;
+    }
+    /*
+        Margin above elements, but starting with 3rd one (n+3)
+        n+4 means line with 3 elements
+    */
+    .result-container:nth-child(n + 1) {
+        margin-top: $spc;
+    }
+}
+/* 700px-1400px */
+@media all and (min-width: 700px) and (max-width: 1400px) {
+    .result-box {
+        $in-row: 2;
+        $ratio: calc(
+                (100vw - $spc * calc($in-row - 1)) /
+                ($in-row * (1 + $phi))
+        );
+
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100vw - ($ratio * $in-row));
+        margin: $spc auto;
+    }
+
+    /*
+        Margin between left and right element
+        2n*1 -> the first one in two elements line
+    */
+    .result-container:not(:nth-child(2n + 1)) {
+        margin-left: $spc;
+    }
+    /*
+        Margin above elements, but starting with 3rd one (n+3)
+        n+4 means line with 3 elements
+    */
+    .result-container:nth-child(n + 3) {
+        margin-top: $spc;
+    }
+}
+/* Upper than 1400px */
+@media all and (min-width: 1400px) {
+    .result-box {
+        $in-row: 3;
+        $ratio: calc(
+                (100vw - $spc * calc($in-row - 1)) /
+                ($in-row * (1 + $phi))
+        );
+
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100vw - ($ratio * $in-row));
+        margin: $spc auto;
+    }
+    .result-container:not(:nth-child(3n + 1)) {
+        margin-left: $spc;
+    }
+    .result-container:nth-child(n + 4) {
+        margin-top: $spc;
+    }
+}
+
+/*
+    Result found and defined by your query
+    inside search bar.
+
+    result-container
+        result-image
+        result-label
+            result-description
+            result-button
+*/
+.result-box {
+    $in-row: 3;
+    $ratio: calc(
+            (100vw - $spc * calc($in-row - 1)) /
+            ($in-row * (1 + $phi))
+    );
+
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100vw - ($ratio * $in-row));
+    margin: $spc auto;
+
+    .result-container {
+        $w: calc($ratio * $phi);
+        $h: calc($w / $phi);
+
+        width: $w;
+        height: $h;
+        background-color: $honey-yellow;
+        /* box-shadow: 0 0 2px 2px; */
+        display: flex;
+
+        transform: scale(1);
+        transition: 618ms;
+
+        .result-image {
+            width: $h;
+            height: $h;
+
+            img {
+                width: $h;
+                height: $h;
+                object-fit: cover;
+            }
+        }
+
+        .result-label {
+            .result-description {
+                $hd: calc($h / $phi);
+                width: $hd;
+                height: $hd;
+                background-color: $cooper;
+
+                .result-title {
+                    $htt: calc($hd - ($hd / $phi));
+
+                    width: $hd;
+                    height: $htt;
+                    padding: calc($spc / 2);
+
+                    white-space: break-spaces;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .result-text {
+                    $htx: calc($hd / $phi);
+
+                    width: $hd;
+                    height: $htx;
+                    font-size: calc(1em / $phi);
+                    /* font-weight: 700; */
+                    padding: calc($spc / 2);
+                }
+            }
+
+            .result-button {
+                $wb: calc($w - $h);
+                $hb: calc($h / $phi); /* hb = h - hd */
+
+                width: $wb;
+                height: calc($h - $hb);
+            }
+        }
+    }
+
+    .result-container:hover {
+        box-shadow: 0 0 $spc $spc $orange-yellow-crayola;
+
+        transform: scale($phi);
+        transition: 618ms;
+        z-index: 2;
+    }
+}
+
+#adder {
+    margin: 2em 0;
+}
+
+#adder > div:nth-child(1) {
+    margin-bottom: 0.5em;
+}
