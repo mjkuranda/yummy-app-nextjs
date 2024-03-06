@@ -5,6 +5,7 @@ import { Footer } from '@/src/components/common/footer';
 import SearchIngredientCategory from '@/src/app/search/search-ingredient-category';
 import { MealResult } from '@/src/types/api.types';
 import { SearchMealResult } from '@/src/app/search/search-meal-result';
+import { SearchForm } from '@/src/app/search/search-form';
 
 export default function Search() {
     const meals: MealResult[] = [
@@ -16,23 +17,18 @@ export default function Search() {
     return (
         <div id={styles['search-page']}>
             <Header />
-            <form>
-                <div id={styles['search-query-part']}>
-                    <SearchIngredientCategory category="breads" />
-                    <SearchIngredientCategory category="dairy-and-eggs" />
-                    <SearchIngredientCategory category="fish-and-seafood" />
-                    <SearchIngredientCategory category="fruits" />
-                    <SearchIngredientCategory category="meats" />
-                    <SearchIngredientCategory category="oils-and-fats" />
-                    <SearchIngredientCategory category="pasta" />
-                    <SearchIngredientCategory category="seeds-and-nuts" />
-                    <SearchIngredientCategory category="spices" />
-                    <SearchIngredientCategory category="vegetables" />
-                </div>
-                <div className="d-flex justify-content-center align-items-center mt-3 mb-5">
-                    <button type="submit">Szukaj</button>
-                </div>
-            </form>
+            <SearchForm>
+                <SearchIngredientCategory category="breads" />
+                <SearchIngredientCategory category="dairy-and-eggs" />
+                <SearchIngredientCategory category="fish-and-seafood" />
+                <SearchIngredientCategory category="fruits" />
+                <SearchIngredientCategory category="meats" />
+                <SearchIngredientCategory category="oils-and-fats" />
+                <SearchIngredientCategory category="pasta" />
+                <SearchIngredientCategory category="seeds-and-nuts" />
+                <SearchIngredientCategory category="spices" />
+                <SearchIngredientCategory category="vegetables" />
+            </SearchForm>
             <div id={styles['meal-result-part']}>
                 <section className={resultStyles['result-box']}>
                     {meals.map(meal => {
