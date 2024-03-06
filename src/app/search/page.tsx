@@ -6,6 +6,7 @@ import SearchIngredientCategory from '@/src/app/search/search-ingredient-categor
 import { MealResult } from '@/src/types/api.types';
 import { SearchMealResult } from '@/src/app/search/search-meal-result';
 import { SearchForm } from '@/src/app/search/search-form';
+import { Button } from '@/src/components/common/button';
 
 export default function Search() {
     const meals: MealResult[] = [
@@ -40,8 +41,7 @@ export default function Search() {
                         <p>Brakuje szukanego posiłku? Dodaj go!</p>
                     </div>
                     <div className="d-flex justify-content-center align-items-center">
-                        {/*<button onClick="move('/meals/add')">Dodaj</button>*/}
-                        <button>Dodaj</button>
+                        <Button label={'Dodaj'} link={'/meals/add'} />
                     </div>
                 </section>
             </div>
