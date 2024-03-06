@@ -45,7 +45,7 @@ export default function Result() {
                         <ul>
                             {meal.ingredients.map(ingredient => {
                                 return (
-                                    <li className="flex-center" key={ingredient}>
+                                    <li className="d-flex justify-content-center align-items-center" key={ingredient}>
                                         {/*<img*/}
                                         {/*    className="icon"*/}
                                         {/*    src="../{{ing.icon.src}}"*/}
