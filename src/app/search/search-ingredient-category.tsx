@@ -14,12 +14,12 @@ export default function SearchIngredientCategory({ category }: SearchIngredientC
             <span className={styles['search-ingredient-category__title']}>{category}</span>
             <ul className={styles['search-ingredient-category__list']}>
                 {data.map(ingredient => {
-                    const ingredientId = `ingredient:${ingredient}`;
+                    const ingredientId = `ingredient:${ingredient}:category:${category}`;
 
                     return (
-                        <li className={styles['search-ingredient-category__ingredient']} key={ingredient}>
+                        <li className={styles['search-ingredient-category__ingredient']} key={`${category}-${ingredient}`}>
+                            <input type="checkbox" name={ingredientId} id={ingredientId} className="d-none" />
                             <label htmlFor={ingredientId}>{ingredient}</label>
-                            <input type="checkbox" name={ingredientId} id={ingredientId} />
                         </li>
                     );
                 })}
