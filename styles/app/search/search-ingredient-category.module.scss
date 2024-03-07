@@ -1,5 +1,11 @@
+@import '@/styles/globals-colors';
+
 .search-ingredient-category {
-    width: 50%;
+    width: 40%;
+    background-color: $orange-yellow-crayola-alpha;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 5%;
 
     .search-ingredient-category__title {
         font-weight: 800;
@@ -8,14 +14,25 @@
     .search-ingredient-category__list {
         display: flex;
         flex-wrap: wrap;
+        margin-top: 25px;
 
         .search-ingredient-category__ingredient + .search-ingredient-category__ingredient {
             margin-left: 8px;
         }
 
         .search-ingredient-category__ingredient {
+            label {
+                cursor: pointer;
+                padding: 8px;
+                margin: 8px;
+                border: 1px solid $cooper-alpha;
+                border-radius: 16px;
+            }
+
             input:checked ~ label {
                 font-weight: 700;
+                color: white;
+                background-color: $cooper-alpha;
             }
         }
     }
