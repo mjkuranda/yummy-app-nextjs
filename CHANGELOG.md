@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.14.0] - 2024-03-11
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `/meal-proposal` page for proposals of the best meals.
+- [Marek Kurańda](https://github.com/mjkuranda): Initial code for user profile helper.
+
 ## [1.13.0] - 2024-03-07
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Folding and unfolding of search ingredients.

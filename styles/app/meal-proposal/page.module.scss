@@ -1,0 +1,64 @@
+@import '@/styles/globals-colors';
+
+$page-background-color: $orange-yellow-crayola;
+$proposal-max-line-count: 4;
+$container-horizontal-margin: 33;
+
+.meal-proposal-page {
+    min-height: 100vh;
+    background-color: $page-background-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .meal-proposal-container {
+        margin: 0 calc($container-horizontal-margin * 1%);
+
+        .meal-proposal-container__proposal {
+            .meal-proposal-container__proposal-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 360px;
+                }
+            }
+
+            .meal-proposal-container__proposal-header {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: calc(100vw - 2 * $container-horizontal-margin * 1vw);
+            }
+
+            p {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: $proposal-max-line-count;
+                line-clamp: $proposal-max-line-count;
+                -webkit-box-orient: vertical;
+
+                display: none;
+            }
+        }
+
+        .meal-proposal-container__navigator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5rem;
+
+            button + button {
+                margin-left: 1rem;
+            }
+        }
+
+        .meal-proposal-back-link {
+            position: absolute;
+            top: 32px;
+            left: 32px;
+        }
+    }
+}
