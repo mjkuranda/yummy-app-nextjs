@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.14.0] - 2024-03-11
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `/meal-proposal` page for proposals of the best meals.
+- [Marek Kurańda](https://github.com/mjkuranda): Initial code for user profile helper.
 
 ## [1.13.0] - 2024-03-07
 ### Added

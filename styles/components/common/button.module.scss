@@ -23,9 +23,10 @@
     transition: 300ms;
 }
 
-.button:disabled {
+.button:disabled,
+.button--disabled {
     opacity: 0.618;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
 }
 
 a.button {

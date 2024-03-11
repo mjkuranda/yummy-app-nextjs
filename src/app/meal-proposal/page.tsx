@@ -1,8 +1,14 @@
 import styles from '@/styles/app/meal-proposal/page.module.scss';
 import { MealProposalContainer } from '@/src/app/meal-proposal/meal-proposal-container';
 import { MealProposal } from '@/src/types/api.types';
+import { UserProfileHelper } from '@/src/helpers/user-profile.helper';
+import { redirect } from 'next/navigation';
 
 export default function MealProposal() {
+    if (!UserProfileHelper.isLoggedIn()) {
+        redirect('/');
+    }
+
     const proposals: MealProposal[] = [
         {
             _id: 'abc123',
