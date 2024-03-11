@@ -39,6 +39,8 @@ $container-horizontal-margin: 33;
                 -webkit-line-clamp: $proposal-max-line-count;
                 line-clamp: $proposal-max-line-count;
                 -webkit-box-orient: vertical;
+
+                display: none;
             }
         }
 
