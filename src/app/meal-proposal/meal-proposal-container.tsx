@@ -6,6 +6,7 @@ import { MealProposalItem } from '@/src/app/meal-proposal/meal-proposal-item';
 import { MealProposal } from '@/src/types/api.types';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface MealProposalContainerProps {
     proposals: MealProposal[];
@@ -29,6 +30,9 @@ export function MealProposalContainer({ proposals }: MealProposalContainerProps)
         <div className={styles['meal-proposal-container']}>
             <MealProposalItem proposal={proposals[currentProposal]} />
             <MealProposalNavigator onNext={onNext} onChoose={onChoose} />
+            <div className={styles['meal-proposal-back-link']}>
+                <Link href="/">Back</Link>
+            </div>
         </div>
     );
 }

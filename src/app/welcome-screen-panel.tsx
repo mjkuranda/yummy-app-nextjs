@@ -9,7 +9,7 @@ export function WelcomeScreenPanel() {
             <h1 className={styles['header-panel']}>Yummy</h1>
             <div>
                 <Button label={'Szukaj po składnikach'} link={'/search'} />
-                <Button label={'Propozycja dnia'} link={'/search'} />
+                <Button label={'Propozycja dnia'} link={'/meal-proposal'} />
             </div>
         </div>
     );
