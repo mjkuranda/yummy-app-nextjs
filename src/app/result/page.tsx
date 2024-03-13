@@ -2,6 +2,7 @@ import { Header } from '@/src/components/common/header';
 import { Footer } from '@/src/components/common/footer';
 import { Meal } from '@/src/types/api.types';
 import styles from '@/styles/app/result/page.module.scss';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 export default function Result() {
     const meal: Meal = {
@@ -18,7 +19,7 @@ export default function Result() {
             <Header />
             <div className={styles['result-page']}>
                 <div className={styles['result-nav']}>
-                    <a href="{{sourceUrl}}"><i className="fa fa-chevron-circle-left"></i>Wróć do wyszukiwania</a>
+                    <a href="{{sourceUrl}}"><ArrowCircleLeftIcon />Wróć do wyszukiwania</a>
                 </div>
                 <div className={styles['result-container']}>
                     <div className={styles['result-image']}>
