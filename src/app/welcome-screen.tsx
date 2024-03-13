@@ -6,7 +6,7 @@ export function WelcomeScreen() {
     return (
         <main className={styles['welcome-screen']}>
             <WelcomeScreenPanel />
-            <div className="position-absolute top-0 end-0 mt-3 me-5">
+            <div className="position-absolute top-0 end-0 mt-4 me-4">
                 <User />
             </div>
         </main>
