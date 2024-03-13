@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { ChangeEvent } from 'react';
 
@@ -18,27 +17,16 @@ export function InputAreaString({ label, maxRows = 4, placeholder, defaultValue,
     };
 
     return (
-        <Box
-            component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-        >
-            <div>
-                <TextField
-                    className="input-area-string"
-                    label={label}
-                    multiline
-                    maxRows={maxRows}
-                    placeholder={placeholder}
-                    defaultValue={defaultValue}
-                    variant={variant}
-                    value={value}
-                    onChange={onChange}
-                />
-            </div>
-        </Box>
+        <TextField
+            className="input-area-string"
+            label={label}
+            multiline
+            maxRows={maxRows}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            variant={variant}
+            value={value}
+            onChange={onChange}
+        />
     );
 }

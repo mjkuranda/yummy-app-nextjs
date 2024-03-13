@@ -1,6 +1,5 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { ChangeEvent } from 'react';
 
@@ -17,20 +16,11 @@ export function InputString({ label, variant = 'standard', value, setValue }: In
     };
 
     return (
-        <Box
-            component="form"
-            sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-        >
-            <TextField
-                label={label}
-                variant={variant}
-                value={value}
-                onChange={onChange}
-            />
-        </Box>
+        <TextField
+            label={label}
+            variant={variant}
+            value={value}
+            onChange={onChange}
+        />
     );
 }
