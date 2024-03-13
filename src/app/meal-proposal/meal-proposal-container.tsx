@@ -6,6 +6,7 @@ import { MealProposalItem } from '@/src/app/meal-proposal/meal-proposal-item';
 import { MealProposal } from '@/src/types/api.types';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
 
 interface MealProposalContainerProps {
@@ -31,7 +32,9 @@ export function MealProposalContainer({ proposals }: MealProposalContainerProps)
             <MealProposalItem proposal={proposals[currentProposal]} />
             <MealProposalNavigator onNext={onNext} onChoose={onChoose} />
             <div className={styles['meal-proposal-back-link']}>
-                <Link href="/">Back</Link>
+                <Link href="/">
+                    <ArrowCircleLeftIcon />Back to main page
+                </Link>
             </div>
         </div>
     );

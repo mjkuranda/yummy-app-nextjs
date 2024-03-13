@@ -1,6 +1,6 @@
 import styles from '@/styles/components/common/header.module.scss';
 import { User } from '@/src/components/common/user';
-import Link from 'next/link';
+import { Button } from '@/src/components/common/button';
 
 export function Header() {
     return (
@@ -19,8 +19,8 @@ export function Header() {
                 </div>
                 <div className="d-flex justify-content-around align-items-center">
                     <nav className="d-flex justify-content-between align-items-center">
-                        <Link href="/">Strona główna</Link>
-                        <Link href="/#description">O stronie</Link>
+                        <div><Button label={'Strona główna'} link="/" /></div>
+                        <div><Button label={'O stronie'} link="/#description" /></div>
                     </nav>
                     <User />
                 </div>

@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import { Button } from '@/src/components/common/button';
 
 export function User() {
     return (
         <div className="user">
-            <Link href="/login">Login</Link>
+            <Button label={'Login'} link="/login" />
         </div>
     );
 }
