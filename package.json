@@ -1,6 +1,6 @@
 {
     "name": "yummy-app-nextjs",
-    "version": "1.14.0",
+    "version": "1.15.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -10,6 +10,10 @@
         "lint:custom": "eslint . --ext .js,.jsx,.ts,.tsx --config .eslintrc.json"
     },
     "dependencies": {
+        "@emotion/cache": "^11.11.0",
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.0",
+        "@mui/material-nextjs": "^5.15.11",
         "bootstrap": "^5.3.3",
         "next": "14.1.0",
         "react": "^18",
