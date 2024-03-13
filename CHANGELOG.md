@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `Material UI` library.
-- [Marek Kurańda](https://github.com/mjkuranda): `InputString`, `InputAreaString` and `InputPassword` components.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputString`, `InputAreaString`, `InputPassword` and `InputNumber` components.
 
 ## [1.14.0] - 2024-03-11
 ### Added
