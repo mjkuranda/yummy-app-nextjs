@@ -11,7 +11,11 @@ export default function Result() {
         title: 'Test1',
         description: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.',
         author: 'Unknown',
-        ingredients: ['carrot', 'apple', 'fish']
+        ingredients: [
+            { name: 'carrot', image: 'https://spoonacular.com/cdn/ingredients_100x100/carrot.jpg', amount: 1.0, unit: 'piece of', originalName: '1 carrot' },
+            { name: 'apple', image: 'https://spoonacular.com/cdn/ingredients_100x100/apple.jpg', amount: 2.0, unit: 'large', originalName: '2 large apples' },
+            { name: 'fish', image: 'https://spoonacular.com/cdn/ingredients_100x100/fish.jpg', amount: 3.0, unit: 'pieces of', originalName: '3 fish' }
+        ]
     };
     const imgSrc = meal.imageUrl ? `/uploads/${meal.imageUrl}` : '/no-image.png';
 
@@ -49,14 +53,9 @@ export default function Result() {
                         <ul>
                             {meal.ingredients.map(ingredient => {
                                 return (
-                                    <li className="d-flex justify-content-center align-items-center" key={ingredient}>
-                                        {/*<img*/}
-                                        {/*    className="icon"*/}
-                                        {/*    src="../{{ing.icon.src}}"*/}
-                                        {/*    alt="'{{ing.icon.name}}' ingredient image"*/}
-                                        {/*    author="{{ing.icon.link}}"*/}
-                                        {/*></img>*/}
-                                        <span>{ingredient}</span>
+                                    <li className="d-flex justify-content-center align-items-center" key={ingredient.name}>
+                                        <span>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</span>
+                                        <img src={ingredient.image} alt={ingredient.name} />
                                     </li>
                                 );
                             })}
