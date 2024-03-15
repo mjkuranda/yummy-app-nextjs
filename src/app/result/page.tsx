@@ -54,9 +54,12 @@ export default function Result() {
                         <ul>
                             {meal.ingredients.map(ingredient => {
                                 return (
-                                    <li className={`d-flex justify-content-center align-items-center ${styles['result-ingredient']}`} key={ingredient.name}>
-                                        <span className={styles['result-ingredient__text']}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</span>
-                                        <img className={styles['result-ingredient__image']} src={ingredient.image} alt={ingredient.name} />
+                                    <li className={`d-flex justify-content-center align-items-center ${styles['result-ingredient']}`}
+                                        key={ingredient.name}>
+                                        <img className={styles['result-ingredient__image']} src={ingredient.image}
+                                            alt={ingredient.name} />
+                                        <span
+                                            className={styles['result-ingredient__text']}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</span>
                                     </li>
                                 );
                             })}
