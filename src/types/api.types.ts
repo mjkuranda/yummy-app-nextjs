@@ -12,8 +12,16 @@ export interface Meal {
     description: string;
     _id: string;
     imageUrl?: string;
-    ingredients: string[];
+    ingredients: Ingredient[];
     title: string;
+}
+
+export interface Ingredient {
+    name: string;
+    unit: string;
+    amount: number;
+    originalName: string;
+    image: string;
 }
 
 export interface MealProposal {

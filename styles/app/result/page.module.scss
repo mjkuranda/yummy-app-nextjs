@@ -65,12 +65,21 @@
                 display: flex;
                 flex-wrap: wrap;
 
-                > li {
+                > li.result-ingredient {
                     margin: 1em;
 
-                    > span {
+                    .result-ingredient__text {
                         margin-left: 0.618em;
                         cursor: default;
+                    }
+
+                    .result-ingredient__image {
+                        width: 2rem;
+                        height: 2rem;
+                        margin-left: 0.5rem;
+                        border-radius: 50%;
+                        border-collapse: separate;
+                        box-shadow: 0 0 0.25rem 0.25rem white;
                     }
                 }
             }
