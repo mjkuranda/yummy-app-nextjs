@@ -1,0 +1,27 @@
+@import '@/styles/globals-colors';
+
+.login-page {
+    width: 100vw;
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 222px);
+        background-color: $honey-yellow-alpha;
+
+        h3 {
+            text-align: center;
+        }
+
+        .form-control-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .form-control-container + .form-control-container {
+            margin-top: 1rem;
+        }
+    }
+}
