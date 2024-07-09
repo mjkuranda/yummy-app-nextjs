@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.0] - 2024-07-09
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): API integration.
+- [Marek Kurańda](https://github.com/mjkuranda): React Query library for caching requests and responses.
+- [Marek Kurańda](https://github.com/mjkuranda): Constant directory for all application constants.
+
 ## [1.18.0] - 2024-07-03
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Login page.
