@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { ReactQueryProvider } from '@/src/app/react-query-provider';
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,9 +20,11 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                 <link rel="icon" href="favicon.ico" />
             </head>
             <body className={inter.className}>
-                <AppRouterCacheProvider>
-                    {children}
-                </AppRouterCacheProvider>
+                <ReactQueryProvider>
+                    <AppRouterCacheProvider>
+                        {children}
+                    </AppRouterCacheProvider>
+                </ReactQueryProvider>
             </body>
         </html>
     );
