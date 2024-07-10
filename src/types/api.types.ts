@@ -14,6 +14,15 @@ export interface Meal {
     imgUrl?: string;
     ingredients: Ingredient[];
     title: string;
+    instruction: InstructionList[];
+}
+
+export interface InstructionList {
+    name: string;
+    steps: {
+        number: number;
+        step: string;
+    }[];
 }
 
 export interface Ingredient {
@@ -30,4 +39,9 @@ export interface MealProposal {
     ingredients: string[],
     recommendationPoints: number;
     title: string;
+}
+
+export interface ApiError {
+    statusCode: number;
+    message: string;
 }
