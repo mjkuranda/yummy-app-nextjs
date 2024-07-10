@@ -24,6 +24,22 @@ export function MealContainer({ meal }: MealContainerProps) {
                 </ul>
                 <div>
                     <p dangerouslySetInnerHTML={{ __html: meal.description }} />
+                    <div>
+                        {meal.instruction.map(el => {
+                            return (
+                                <div className={styles['instruction-section']}>
+                                    <h5>Przepis: {el.name || '-'}</h5>
+                                    <ol>
+                                        {el.steps.map(step => {
+                                            return (
+                                                <li>{step.step}</li>
+                                            );
+                                        })}
+                                    </ol>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
             <div className={styles['result-ingredients']}>
