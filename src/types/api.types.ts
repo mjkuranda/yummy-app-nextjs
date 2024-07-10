@@ -31,3 +31,8 @@ export interface MealProposal {
     recommendationPoints: number;
     title: string;
 }
+
+export interface ApiError {
+    statusCode: number;
+    message: string;
+}
