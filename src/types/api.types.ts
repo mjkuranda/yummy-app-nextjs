@@ -11,7 +11,7 @@ export interface Meal {
     author: string;
     description: string;
     _id: string;
-    imageUrl?: string;
+    imgUrl?: string;
     ingredients: Ingredient[];
     title: string;
 }
@@ -21,7 +21,7 @@ export interface Ingredient {
     unit: string;
     amount: number;
     originalName: string;
-    image: string;
+    imageUrl: string;
 }
 
 export interface MealProposal {
