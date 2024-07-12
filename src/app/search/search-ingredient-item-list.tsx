@@ -11,7 +11,7 @@ export function SearchIngredientItemList({ category, ingredients }: SearchIngred
         const ingredientId = `ingredient:${ingredient}:category:${category}`;
 
         return (
-            <li className={styles['search-ingredient-category__ingredient']} key={`${category}-${ingredient}`}>
+            <li className={styles['search-ingredient-category__ingredient']} key={`${category}-${ingredient}`} data-filter="ingredient">
                 <input type="checkbox" name={ingredientId} id={ingredientId} className="d-none" />
                 <label htmlFor={ingredientId}>{ingredient}</label>
             </li>
