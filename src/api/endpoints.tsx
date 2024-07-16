@@ -11,10 +11,10 @@ export function useGetMealById(id: string): UseQueryResult<Meal> {
     });
 }
 
-export function useGetMeals(ingredients: string): UseQueryResult<MealResult[]> {
+export function useGetMeals(ingredients: string[]): UseQueryResult<MealResult[]> {
     return useQuery({
         queryFn: async (): Promise<MealResult[]> => await getMeals(ingredients),
-        queryKey: ['meals'],
+        queryKey: ['meals', { ings: ingredients }],
         staleTime: DAY
     });
 }

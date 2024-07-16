@@ -6,6 +6,7 @@ import { Button } from '@/src/components/common/button';
 import { FormEvent, useState } from 'react';
 import { getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
 import { useRouter } from 'next/navigation';
+import { encodeIngredients } from '@/src/helpers/query.helper';
 
 export function SearchForm({ children }) {
     const router = useRouter();
@@ -20,7 +21,7 @@ export function SearchForm({ children }) {
             router.push('/search');
         }
 
-        router.push(`/search?ings=${ingredients.join(',')}`);
+        router.push(`/search?ings=${encodeIngredients(ingredients)}`);
     };
 
     const onClick = (): void => {

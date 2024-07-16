@@ -3,12 +3,11 @@
 import resultStyles from '@/styles/app/search/search-meal-result.module.scss';
 import { SearchMealResult } from '@/src/app/search/search-meal-result';
 import { useGetMeals } from '@/src/api/endpoints';
-import { useSearchParams } from 'next/navigation';
+import { useSearchFilters } from '@/src/hooks/use-search-filters';
 
 export function MealResultBox() {
-    const searchParams = useSearchParams();
-    const ingredients = searchParams.get('ings') ?? '';
-    const { data: meals, isLoading } = useGetMeals(ingredients);
+    const { originalQuery, ings } = useSearchFilters();
+    const { data: meals, isLoading } = useGetMeals(ings);
 
     if (!meals && isLoading) {
         return <>Loading...</>;
@@ -17,7 +16,7 @@ export function MealResultBox() {
     return (
         <section className={resultStyles['result-box']}>
             {meals?.map(meal => {
-                return <SearchMealResult meal={meal} key={meal.id} ingredientQuery={ingredients} />;
+                return <SearchMealResult meal={meal} key={meal.id} ingredientQuery={originalQuery} />;
             })}
         </section>
     );
