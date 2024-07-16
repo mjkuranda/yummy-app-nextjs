@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ReactQueryProvider } from '@/src/app/react-query-provider';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                     <AppRouterCacheProvider>
                         {children}
                     </AppRouterCacheProvider>
+                    <ReactQueryDevtools />
                 </ReactQueryProvider>
             </body>
         </html>

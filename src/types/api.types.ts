@@ -1,8 +1,9 @@
 export interface MealResult {
-    description: string;
-    _id: string;
-    imageUrl?: string;
+    id: string;
+    imgUrl?: string;
+    ingredients: string[];
     title: string;
+    relevance: number;
 }
 
 // TODO: Consider extension

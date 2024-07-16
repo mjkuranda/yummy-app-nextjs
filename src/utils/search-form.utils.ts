@@ -18,3 +18,9 @@ export function getSearchFormData(e: FormEvent<HTMLFormElement>): SearchFormData
 
     return query;
 }
+
+export function getSelectedIngredientNumber(ingredientClass: string): number {
+    const elements = document.querySelectorAll(`.${ingredientClass}[data-filter="ingredient"] input[type=checkbox]:checked`);
+
+    return elements.length;
+}

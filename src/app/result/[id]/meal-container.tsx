@@ -32,7 +32,7 @@ export function MealContainer({ meal }: MealContainerProps) {
                                     <ol>
                                         {el.steps.map(step => {
                                             return (
-                                                <li>{step.step}</li>
+                                                <li key={step.number}>{step.step}</li>
                                             );
                                         })}
                                     </ol>
