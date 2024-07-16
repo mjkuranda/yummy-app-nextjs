@@ -9,6 +9,6 @@ export function useSearchFilters(): SearchFilters {
 
     return {
         originalQuery: `ings=${searchParams.get('ings')}`,
-        ings: decodeIngredients(searchParams.get('ings') ?? '') ?? []
+        ings: decodeIngredients(searchParams.get('ings'))
     };
 }

@@ -7,10 +7,12 @@ import { FormEvent, useState } from 'react';
 import { getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
 import { useRouter } from 'next/navigation';
 import { encodeIngredients } from '@/src/helpers/query.helper';
+import { useSearchFilters } from '@/src/hooks/use-search-filters';
 
 export function SearchForm({ children }) {
     const router = useRouter();
-    const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(true);
+    const { ings } = useSearchFilters();
+    const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
 
     const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
