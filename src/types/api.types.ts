@@ -46,3 +46,17 @@ export interface ApiError {
     statusCode: number;
     message: string;
 }
+
+export interface LoginUserData {
+    login: string;
+    password: string;
+}
+
+export interface UserPermissions {
+    isAdmin?: boolean;
+    capabilities?: {
+        canAdd?: boolean;
+        canEdit?: boolean;
+        canDelete?: boolean;
+    }
+}

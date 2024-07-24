@@ -4,6 +4,8 @@ import { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ReactQueryProvider } from '@/src/app/react-query-provider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { UserProvider } from '@/src/contexts/user.context';
+
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,12 +23,14 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                 <link rel="icon" href="favicon.ico" />
             </head>
             <body className={inter.className}>
-                <ReactQueryProvider>
-                    <AppRouterCacheProvider>
-                        {children}
-                    </AppRouterCacheProvider>
-                    <ReactQueryDevtools />
-                </ReactQueryProvider>
+                <UserProvider>
+                    <ReactQueryProvider>
+                        <AppRouterCacheProvider>
+                            {children}
+                        </AppRouterCacheProvider>
+                        <ReactQueryDevtools />
+                    </ReactQueryProvider>
+                </UserProvider>
             </body>
         </html>
     );
