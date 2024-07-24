@@ -1,5 +1,5 @@
-import { apiGet } from '@/src/api/methods';
-import { Meal, MealResult } from '@/src/types/api.types';
+import { apiGet, apiPost } from '@/src/api/methods';
+import { LoginUserData, Meal, MealResult, UserPermissions } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 
 export async function getMeal(id: string): Promise<Meal> {
@@ -12,4 +12,14 @@ export async function getMeals(ingredients: string[]): Promise<MealResult[]> {
     }
 
     return apiGet<MealResult[]>(`meals?ings=${encodeIngredients(ingredients)}`);
+}
+
+export async function doUserLogin(login: string, password: string): Promise<UserPermissions> {
+    const res = await apiPost<LoginUserData>('users/login', { login, password });
+
+    return await res.json();
+}
+
+export async function refreshUserTokens() {
+    return apiPost<void>('users/refreshTokens');
 }
