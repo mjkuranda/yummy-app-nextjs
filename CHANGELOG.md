@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.23.0] - 2024-07-24
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Saving information about currently logged-in user.
+- [Marek Kurańda](https://github.com/mjkuranda): Logging in and out.
 
 ## [1.22.0] - 2024-07-12
 ### Added

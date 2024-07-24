@@ -29,11 +29,28 @@ export function UserProvider({ children }: { children: any }) {
         login: ''
     });
 
-    const loginUser = (login: string, permissions: UserPermissions): void => setUser({ login, ...permissions });
+    const loginUser = (login: string, permissions: UserPermissions): void => {
+        const user: CurrentUser = { login, ...permissions };
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+    };
 
-    const logoutUser = (): void => setUser({ login: '' });
+    const logoutUser = (): void => {
+        const user: CurrentUser = { login: '' };
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+    };
 
-    const isLoggedIn = (): boolean => Boolean(user.login !== '');
+    const isLoggedIn = (): boolean => {
+        if (!localStorage.getItem('user')) {
+            return false;
+        }
+
+        const stringifiedUser = localStorage.getItem('user') as string;
+        const user: CurrentUser = JSON.parse(stringifiedUser);
+
+        return Boolean(user.login !== '');
+    };
 
     const contextValue: UserContextValues = { user, loginUser, logoutUser, isLoggedIn };
 
