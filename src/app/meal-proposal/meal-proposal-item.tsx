@@ -6,6 +6,10 @@ interface MealProposalItemProps {
 }
 
 export function MealProposalItem({ proposal }: MealProposalItemProps) {
+    if (!proposal) {
+        return <div className={styles['meal-proposal-error']}>Unfortunately, no meal proposal for you.</div>;
+    }
+
     return (
         <div className={styles['meal-proposal-container__proposal']}>
             <div className={styles['meal-proposal-container__proposal-image']}>

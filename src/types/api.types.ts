@@ -60,3 +60,11 @@ export interface UserPermissions {
         canDelete?: boolean;
     }
 }
+
+export interface MealProposal {
+    id: string;
+    imgUrl?: string;
+    ingredients: string[];
+    recommendationPoints: number;
+    title: string;
+}

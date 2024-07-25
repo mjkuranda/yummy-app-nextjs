@@ -14,7 +14,11 @@ export function LoginForm() {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const router = useRouter();
-    const { loginUser } = useUserContext();
+    const { loginUser, isLoggedIn } = useUserContext();
+
+    if (isLoggedIn()) {
+        router.push('/');
+    }
 
     const onLogIn = async () => {
         try {
