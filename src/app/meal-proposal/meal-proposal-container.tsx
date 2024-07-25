@@ -3,33 +3,26 @@
 import styles from '@/styles/app/meal-proposal/page.module.scss';
 import { MealProposalNavigator } from '@/src/app/meal-proposal/meal-proposal-navigator';
 import { MealProposalItem } from '@/src/app/meal-proposal/meal-proposal-item';
-import { MealProposal } from '@/src/types/api.types';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
+import { useMealProposals } from '@/src/hooks/use-meal-proposals';
+import { MealProposal } from '@/src/types/api.types';
 
-interface MealProposalContainerProps {
-    proposals: MealProposal[];
-}
+export function MealProposalContainer() {
+    const { onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal } = useMealProposals();
+    const currentProposal = getCurrentProposal() as MealProposal;
 
-export function MealProposalContainer({ proposals }: MealProposalContainerProps) {
-    const [currentProposal, setCurrentProposal] = useState<number>(0);
-    const router = useRouter();
+    if (isErrorProposals) {
+        return <>Error occurred.</>;
+    }
 
-    const onNext = () => {
-        setCurrentProposal((currentProposal + 1) % proposals.length);
-        console.log('Next', currentProposal);
-    };
-
-    const onChoose = () => {
-        router.push(`/result/${proposals[currentProposal]._id}`);
-        console.log('Choose');
-    };
+    if (isLoadingProposals) {
+        return <>Loading...</>;
+    }
 
     return (
         <div className={styles['meal-proposal-container']}>
-            <MealProposalItem proposal={proposals[currentProposal]} />
+            <MealProposalItem proposal={currentProposal} />
             <MealProposalNavigator onNext={onNext} onChoose={onChoose} />
             <div className={styles['meal-proposal-back-link']}>
                 <Link href="/">

@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.0] - 2024-07-25
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Receiving meal proposals.
+- [Marek Kurańda](https://github.com/mjkuranda): Updating user preferences via sending search queries.
+
 ## [1.23.0] - 2024-07-24
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Saving information about currently logged-in user.

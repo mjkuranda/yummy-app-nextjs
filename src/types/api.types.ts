@@ -35,7 +35,7 @@ export interface Ingredient {
 }
 
 export interface MealProposal {
-    _id: string;
+    id: string;
     imgUrl?: string;
     ingredients: string[],
     recommendationPoints: number;
@@ -59,4 +59,8 @@ export interface UserPermissions {
         canEdit?: boolean;
         canDelete?: boolean;
     }
+}
+
+export interface MealProposalRequest {
+    ingredients: string[];
 }

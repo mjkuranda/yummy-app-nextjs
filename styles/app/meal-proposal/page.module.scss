@@ -12,6 +12,10 @@ $container-horizontal-margin: 33;
     justify-content: center;
     align-items: center;
 
+    .meal-proposal-error {
+        text-align: center;
+    }
+
     .meal-proposal-container {
         margin: 0 calc($container-horizontal-margin * 1%);
 
