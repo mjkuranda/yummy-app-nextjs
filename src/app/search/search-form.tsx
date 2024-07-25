@@ -21,7 +21,7 @@ export function SearchForm({ children }) {
         const { ingredients } = getSearchFormData(e);
 
         if (ingredients.length === 0) {
-            router.push('/search');
+            return router.push('/search');
         }
 
         try {

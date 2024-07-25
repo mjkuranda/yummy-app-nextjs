@@ -11,12 +11,12 @@ export function useMealProposals() {
     const router = useRouter();
 
     const onNext = () => {
-        setCurrentProposalIdx((currentProposalIdx + 1) % (proposals?.length ?? 0));
+        setCurrentProposalIdx((currentProposalIdx + 1) % (proposals?.length ?? 1));
     };
 
     const onChoose = () => {
         if (proposals) {
-            router.push(`/result/${proposals[currentProposalIdx]._id}`);
+            return router.push(`/result/${proposals[currentProposalIdx].id}`);
         }
 
         router.push('/');
