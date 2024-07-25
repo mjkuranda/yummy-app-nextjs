@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.24.0] - 2024-07-25
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Receiving meal proposals.
+- [Marek Kurańda](https://github.com/mjkuranda): Updating user preferences via sending search queries.
 
 ## [1.23.0] - 2024-07-24
 ### Added

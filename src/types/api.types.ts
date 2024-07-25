@@ -68,3 +68,7 @@ export interface MealProposal {
     recommendationPoints: number;
     title: string;
 }
+
+export interface MealProposalRequest {
+    ingredients: string[];
+}

@@ -8,19 +8,26 @@ import { getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/sear
 import { useRouter } from 'next/navigation';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
+import { addMealProposal } from '@/src/api/api';
 
 export function SearchForm({ children }) {
     const router = useRouter();
     const { ings } = useSearchFilters();
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
         const { ingredients } = getSearchFormData(e);
 
         if (ingredients.length === 0) {
             router.push('/search');
+        }
+
+        try {
+            await addMealProposal(ingredients);
+        } catch (err: any) {
+            console.error(`Error occurred while adding a new meal proposal: ${err.message}`);
         }
 
         router.push(`/search?ings=${encodeIngredients(ingredients)}`);
