@@ -64,3 +64,8 @@ export interface UserPermissions {
 export interface MealProposalRequest {
     ingredients: string[];
 }
+
+export interface NotActivatedUser {
+    email: string;
+    login: string;
+}

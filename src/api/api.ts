@@ -4,7 +4,7 @@ import {
     Meal,
     MealProposal,
     MealProposalRequest,
-    MealResult,
+    MealResult, NotActivatedUser,
     UserPermissions
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
@@ -39,4 +39,20 @@ export async function addMealProposal(ingredients: string[]): Promise<Response> 
     return apiPost<MealProposalRequest>('meals/proposal', {
         ingredients: ingredients.sort()
     });
+}
+
+export async function getSoftAddedMeals(): Promise<Meal[]> {
+    return apiGet<Meal[]>('meals/soft/added');
+}
+
+export async function getSoftEditedMeals(): Promise<Meal[]> {
+    return apiGet<Meal[]>('meals/soft/edited');
+}
+
+export async function getSoftDeletedMeals(): Promise<Meal[]> {
+    return apiGet<Meal[]>('meals/soft/deleted');
+}
+
+export async function getNotActivatedUsers(): Promise<NotActivatedUser[]> {
+    return apiGet<NotActivatedUser[]>('users/not-activated');
 }
