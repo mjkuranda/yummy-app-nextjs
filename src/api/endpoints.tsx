@@ -34,7 +34,14 @@ export function useGetMealProposals(): UseQueryResult<MealProposal[]> {
     });
 }
 
-export function useGetSoftAddedMeals(): UseQueryResult<Meal[]> {
+export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+    if (!isTriggered) {
+        return useQuery({
+            queryKey: ['meals', 'soft', 'added'],
+            staleTime: HOUR
+        });
+    }
+
     return useQuery({
         queryFn: async (): Promise<Meal[]> => await getSoftAddedMeals(),
         queryKey: ['meals', 'soft', 'added'],
@@ -42,7 +49,14 @@ export function useGetSoftAddedMeals(): UseQueryResult<Meal[]> {
     });
 }
 
-export function useGetSoftEditedMeals(): UseQueryResult<Meal[]> {
+export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+    if (!isTriggered) {
+        return useQuery({
+            queryKey: ['meals', 'soft', 'edited'],
+            staleTime: HOUR
+        });
+    }
+
     return useQuery({
         queryFn: async (): Promise<Meal[]> => await getSoftEditedMeals(),
         queryKey: ['meals', 'soft', 'edited'],
@@ -50,7 +64,14 @@ export function useGetSoftEditedMeals(): UseQueryResult<Meal[]> {
     });
 }
 
-export function useGetSoftDeletedMeals(): UseQueryResult<Meal[]> {
+export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+    if (!isTriggered) {
+        return useQuery({
+            queryKey: ['meals', 'soft', 'deleted'],
+            staleTime: HOUR
+        });
+    }
+
     return useQuery({
         queryFn: async (): Promise<Meal[]> => await getSoftDeletedMeals(),
         queryKey: ['meals', 'soft', 'deleted'],
@@ -58,7 +79,14 @@ export function useGetSoftDeletedMeals(): UseQueryResult<Meal[]> {
     });
 }
 
-export function useGetNotActivatedUsers(): UseQueryResult<NotActivatedUser[]> {
+export function useGetNotActivatedUsers(isTriggered: boolean = true): UseQueryResult<NotActivatedUser[]> {
+    if (!isTriggered) {
+        return useQuery({
+            queryKey: ['users', 'not-activated'],
+            staleTime: HOUR
+        });
+    }
+
     return useQuery({
         queryFn: async (): Promise<NotActivatedUser[]> => await getNotActivatedUsers(),
         queryKey: ['users', 'not-activated'],

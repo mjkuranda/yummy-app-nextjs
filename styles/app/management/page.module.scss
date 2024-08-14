@@ -8,3 +8,29 @@
         padding: 0;
     }
 }
+
+.object-container {
+    background-color: $orange-yellow-crayola;
+    padding: 16px 10%;
+
+    .back-link {
+        margin: 16px 0;
+    }
+
+    .object-table {
+        width: 100%;
+
+        tr {
+            border: 1px solid;
+        }
+
+        th, td {
+            padding: 4px;
+        }
+
+        .object-table__action {
+            width: 15%;
+            text-align: center;
+        }
+    }
+}
