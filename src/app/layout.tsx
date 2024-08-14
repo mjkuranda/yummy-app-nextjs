@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
             <head>
                 <link rel="icon" href="favicon.ico" />
             </head>
-            <body className={inter.className}>
+            <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <UserProvider>
                     <ReactQueryProvider>
                         <AppRouterCacheProvider>

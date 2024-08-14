@@ -34,6 +34,7 @@ export function useGetMealProposals(): UseQueryResult<MealProposal[]> {
     });
 }
 
+// TODO: Use to fetch data. Trigger hooks using boolean value
 export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
     if (!isTriggered) {
         return useQuery({
@@ -49,6 +50,7 @@ export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResul
     });
 }
 
+// TODO: Use to fetch data. Trigger hooks using boolean value
 export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
     if (!isTriggered) {
         return useQuery({
@@ -64,6 +66,7 @@ export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResu
     });
 }
 
+// TODO: Use to fetch data. Trigger hooks using boolean value
 export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
     if (!isTriggered) {
         return useQuery({
@@ -79,6 +82,7 @@ export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryRes
     });
 }
 
+// TODO: Use to fetch data. Trigger hooks using boolean value
 export function useGetNotActivatedUsers(isTriggered: boolean = true): UseQueryResult<NotActivatedUser[]> {
     if (!isTriggered) {
         return useQuery({

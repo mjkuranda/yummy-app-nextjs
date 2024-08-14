@@ -16,7 +16,7 @@ interface ObjectManagementParams extends Params {
 
 export function ObjectContainer() {
     const { objects, action } = useParams<ObjectManagementParams>();
-    const { objectList, isLoading } = useObjectManagement(objects, action);
+    const { objectList, isLoading, refetchObjects } = useObjectManagement(objects, action);
 
     return (
         <>
@@ -30,7 +30,7 @@ export function ObjectContainer() {
                     ? 'Loading...'
                     : objectList.length === 0
                         ? 'No objects.'
-                        : <ObjectList objects={objectList} objectType={objects} actionType={action} />
+                        : <ObjectList objects={objectList} objectType={objects} actionType={action} refetch={refetchObjects} />
                 }
             </div>
         </>

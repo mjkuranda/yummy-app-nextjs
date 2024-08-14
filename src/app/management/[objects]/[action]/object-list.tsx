@@ -1,15 +1,34 @@
-import { ObjectItem } from '@/src/hooks/use-object-management';
+'use client';
+
+import { ObjectItemStruct } from '@/src/hooks/use-object-management';
 import styles from '@/styles/app/management/page.module.scss';
-import { Button } from '@/src/components/common/button';
 import { ActionType, ObjectType } from '@/src/types/management.types';
+import { ObjectItem } from '@/src/app/management/[objects]/[action]/object-item';
+import { useState } from 'react';
 
 interface ObjectListProps {
-    objects: ObjectItem[];
+    objects: ObjectItemStruct[];
     objectType: ObjectType;
     actionType: ActionType;
+    refetch: () => void;
 }
 
-export function ObjectList({ objects, objectType, actionType }: ObjectListProps) {
+export function ObjectList({ objects, objectType, actionType, refetch }: ObjectListProps) {
+    const [isProceeding, setIsProceeding] = useState<boolean>(false);
+
+    const onClick = async (action: () => Promise<any>) => {
+        setIsProceeding(true);
+
+        try {
+            await action();
+            refetch();
+        } catch (err: any) {
+            console.error(err.message);
+        } finally {
+            setIsProceeding(false);
+        }
+    };
+
     return (
         <>
             <h3>{objectType === 'meals' ? 'Meal list' : 'User list'}</h3>
@@ -21,41 +40,10 @@ export function ObjectList({ objects, objectType, actionType }: ObjectListProps)
                     </tr>
                 </thead>
                 <tbody>
-                    {objects.map(object => {
-                        const actionLabel = getActionLabel(actionType);
-
-                        return (
-                            <tr key={object.id}>
-                                <td className={styles['object-table__label']}>{object.label}</td>
-                                <td className={styles['object-table__action']}>
-                                    <Button label={actionLabel} onClick={object.action} />
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {objects.map(object => <ObjectItem key={object.id} object={object} actionType={actionType} onClick={onClick} />)}
                 </tbody>
             </table>
+            {isProceeding && 'Proceeding...'}
         </>
     );
-}
-
-function getActionLabel(actionType: ActionType): string {
-    let action = 'Click';
-
-    switch (actionType) {
-    case 'added':
-        action = 'Add';
-        break;
-    case 'edited':
-        action = 'Edit';
-        break;
-    case 'deleted':
-        action = 'Delete';
-        break;
-    case 'not-activated':
-        action = 'Activate';
-        break;
-    }
-
-    return action;
 }

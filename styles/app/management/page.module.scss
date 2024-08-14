@@ -3,6 +3,7 @@
 .management-page {
     background-color: $orange-yellow-crayola;
     padding: 16px 10%;
+    flex: 1;
 
     .item-list {
         margin: 16px 0;
@@ -17,6 +18,7 @@
 .object-container {
     background-color: $orange-yellow-crayola;
     padding: 16px 10%;
+    flex: 1;
 
     .back-link {
         margin: 16px 0;

@@ -10,17 +10,22 @@ import {
 import { useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/management.types';
 
-export interface ObjectItem {
+export interface ObjectItemStruct {
     id: string;
     label: string;
     action: () => Promise<any>;
 }
 
 export function useObjectManagement(objects: ObjectType, action: ActionType) {
+    const [refetch, toggleRefetch] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [objectList, setObjectList] = useState<ObjectItem[]>([]);
+    const [objectList, setObjectList] = useState<ObjectItemStruct[]>([]);
+
+    const refetchObjects = () => toggleRefetch(!refetch);
 
     useEffect(() => {
+        setIsLoading(true);
+
         if (objects === 'users' && action === 'not-activated') {
             getNotActivatedUsers()
                 .then(users => {
@@ -61,7 +66,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 break;
             }
         }
-    }, []);
+    }, [refetch]);
 
-    return { isLoading, objectList };
+    return { isLoading, objectList, refetchObjects };
 }
