@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import styles from '@/styles/app/management/page.module.scss';
 
 export interface Item {
     link: string;
@@ -12,7 +13,7 @@ interface ItemListProps {
 
 export function ItemList({ list, header }: ItemListProps) {
     return (
-        <div>
+        <div className={styles['item-list']}>
             <h3>{header}</h3>
             <ul>
                 {list.map(item => {
