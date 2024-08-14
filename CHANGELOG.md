@@ -3,6 +3,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.0] - 2024-08-14
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `/management` and `/management/[object]/[action]` pages.
+- [Marek Kurańda](https://github.com/mjkuranda): Management panel allows to confirm adding, editing, deleting meals and activating not-activated users.
+- [Marek Kurańda](https://github.com/mjkuranda): `Manage` link at landing page and header to allow redirection to `/management` page.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): For default `apiPost` payload type is `undefined`.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Page height.
+
 ## [1.24.0] - 2024-07-25
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Receiving meal proposals.
