@@ -14,7 +14,7 @@ export async function apiGet<T>(endpointUrl: string): Promise<T> {
     return await res.json();
 }
 
-export async function apiPost<P>(endpointUrl: string, payload?: P): Promise<Response> {
+export async function apiPost<P = undefined>(endpointUrl: string, payload?: P): Promise<Response> {
     return await fetch(`${API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'POST',

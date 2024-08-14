@@ -1,12 +1,18 @@
 'use client';
 
-import { getNotActivatedUsers, getSoftAddedMeals, getSoftDeletedMeals, getSoftEditedMeals } from '@/src/api/api';
+import {
+    confirmMealAddition, confirmMealDeletion, confirmMealEdition, confirmUserActivation,
+    getNotActivatedUsers,
+    getSoftAddedMeals,
+    getSoftDeletedMeals,
+    getSoftEditedMeals
+} from '@/src/api/api';
 import { useEffect, useState } from 'react';
 
 export interface ObjectItem {
     id: string;
     label: string;
-    action: () => Promise<void>;
+    action: () => Promise<any>;
 }
 
 export function useObjectManagement(objects: string, action: string) {
@@ -17,7 +23,7 @@ export function useObjectManagement(objects: string, action: string) {
         if (objects === 'users' && action === 'not-activated') {
             getNotActivatedUsers()
                 .then(users => {
-                    const objects = users.map(user => ({ id: user.email, label: user.login, action: async () => {} }));
+                    const objects = users.map(user => ({ id: user.email, label: user.login, action: async () => confirmUserActivation(user.login) }));
                     setObjectList(objects);
                 })
                 .catch(() => console.error('Error while fetching...'))
@@ -28,7 +34,7 @@ export function useObjectManagement(objects: string, action: string) {
             case 'added':
                 getSoftAddedMeals()
                     .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => {} }));
+                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealAddition(meal._id) }));
                         setObjectList(objects);
                     })
                     .catch(() => console.error('Error while fetching...'))
@@ -37,7 +43,7 @@ export function useObjectManagement(objects: string, action: string) {
             case 'edited':
                 getSoftEditedMeals()
                     .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => {} }));
+                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealEdition(meal._id) }));
                         setObjectList(objects);
                     })
                     .catch(() => console.error('Error while fetching...'))
@@ -46,7 +52,7 @@ export function useObjectManagement(objects: string, action: string) {
             case 'deleted':
                 getSoftDeletedMeals()
                     .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => {} }));
+                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealDeletion(meal._id) }));
                         setObjectList(objects);
                     })
                     .catch(() => console.error('Error while fetching...'))

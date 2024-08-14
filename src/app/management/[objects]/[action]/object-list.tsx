@@ -21,7 +21,7 @@ export function ObjectList({ objects, objectType }: ObjectListProps) {
                 <tbody>
                     {objects.map(object => {
                         return (
-                            <tr>
+                            <tr key={object.id}>
                                 <td className={styles['object-table__label']}>{object.label}</td>
                                 <td className={styles['object-table__action']}>
                                     <Button label="Action" onClick={object.action} />

@@ -56,3 +56,25 @@ export async function getSoftDeletedMeals(): Promise<Meal[]> {
 export async function getNotActivatedUsers(): Promise<NotActivatedUser[]> {
     return apiGet<NotActivatedUser[]>('users/not-activated');
 }
+
+export async function confirmMealAddition(id: string): Promise<Meal> {
+    const res = await apiPost(`meals/${id}/create`);
+
+    return await res.json();
+}
+
+export async function confirmMealEdition(id: string): Promise<Meal> {
+    const res = await apiPost(`meals/${id}/create`);
+
+    return await res.json();
+}
+
+export async function confirmMealDeletion(id: string): Promise<Meal> {
+    const res = await apiPost(`meals/${id}/create`);
+
+    return await res.json();
+}
+
+export async function confirmUserActivation(login: string): Promise<void> {
+    await apiPost(`users/${login}/activate`);
+}
