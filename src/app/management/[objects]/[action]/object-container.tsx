@@ -7,10 +7,11 @@ import styles from '@/styles/app/management/page.module.scss';
 import { ObjectList } from '@/src/app/management/[objects]/[action]/object-list';
 import Link from 'next/link';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import { ActionType, ObjectType } from '@/src/types/management.types';
 
 interface ObjectManagementParams extends Params {
-    objects: string;
-    action: string;
+    objects: ObjectType;
+    action: ActionType;
 }
 
 export function ObjectContainer() {
@@ -29,7 +30,7 @@ export function ObjectContainer() {
                     ? 'Loading...'
                     : objectList.length === 0
                         ? 'No objects.'
-                        : <ObjectList objects={objectList} objectType={objects} />
+                        : <ObjectList objects={objectList} objectType={objects} actionType={action} />
                 }
             </div>
         </>

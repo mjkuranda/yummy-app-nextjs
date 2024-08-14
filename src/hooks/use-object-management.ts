@@ -8,6 +8,7 @@ import {
     getSoftEditedMeals
 } from '@/src/api/api';
 import { useEffect, useState } from 'react';
+import { ActionType, ObjectType } from '@/src/types/management.types';
 
 export interface ObjectItem {
     id: string;
@@ -15,7 +16,7 @@ export interface ObjectItem {
     action: () => Promise<any>;
 }
 
-export function useObjectManagement(objects: string, action: string) {
+export function useObjectManagement(objects: ObjectType, action: ActionType) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [objectList, setObjectList] = useState<ObjectItem[]>([]);
 
