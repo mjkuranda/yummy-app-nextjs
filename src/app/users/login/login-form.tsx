@@ -9,6 +9,7 @@ import { useUserContext } from '@/src/contexts/user.context';
 import { doUserLogin } from '@/src/api/api';
 
 import styles from '@/styles/app/users/login/page.module.scss';
+import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 
 export function LoginForm() {
     const [login, setLogin] = useState<string>('');
@@ -25,9 +26,10 @@ export function LoginForm() {
             const permissions = await doUserLogin(login, password);
             loginUser(login, permissions);
 
+            toastSuccess('Successfully logged in!');
             router.push('/');
-        } catch (error) {
-            console.error(error);
+        } catch (err: any) {
+            toastError(err.message);
         }
     };
 

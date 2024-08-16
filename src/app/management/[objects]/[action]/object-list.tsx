@@ -5,6 +5,7 @@ import styles from '@/styles/app/management/page.module.scss';
 import { ActionType, ObjectType } from '@/src/types/management.types';
 import { ObjectItem } from '@/src/app/management/[objects]/[action]/object-item';
 import { useState } from 'react';
+import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 
 interface ObjectListProps {
     objects: ObjectItemStruct[];
@@ -22,8 +23,9 @@ export function ObjectList({ objects, objectType, actionType, refetch }: ObjectL
         try {
             await action();
             refetch();
+            toastSuccess('Action performed successfully!');
         } catch (err: any) {
-            console.error(err.message);
+            toastError(err.message);
         } finally {
             setIsProceeding(false);
         }

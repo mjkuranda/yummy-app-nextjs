@@ -9,6 +9,7 @@ import { redirect, useParams, useSearchParams } from 'next/navigation';
 import { useGetMealById } from '@/src/api/endpoints';
 import { MealContainer } from '@/src/app/result/[id]/meal-container';
 import { Meal } from '@/src/types/api.types';
+import { toastError } from '@/src/utils/toast.utils';
 
 export default function ResultById() {
     const { id } = useParams();
@@ -16,10 +17,12 @@ export default function ResultById() {
     const { data: meal, isLoading, isError } = useGetMealById(id as string);
 
     if (isApiError(meal)) {
+        toastError('Error occurred while fetching this meal.');
         redirect('/search');
     }
 
     if (isError) {
+        toastError('Error occurred while fetching this meal.');
         redirect('/search');
     }
 
