@@ -2,6 +2,7 @@
 
 import styles from '@/styles/app/result/page.module.scss';
 import { useHasImage } from '@/src/hooks/useHasImage';
+import { Loader } from '@/src/components/common/loader';
 
 interface MealResultImageProps {
     imgUrl?: string;
@@ -12,7 +13,7 @@ export function MealResultImage({ imgUrl, title }: MealResultImageProps) {
     const { hasImage, isLoading }  = useHasImage(imgUrl);
 
     if (isLoading) {
-        return 'Loading image...';
+        return <Loader />;
     }
 
     return (

@@ -7,6 +7,7 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
 import { useMealProposals } from '@/src/hooks/use-meal-proposals';
 import { MealProposal } from '@/src/types/api.types';
+import { Loader } from '@/src/components/common/loader';
 
 export function MealProposalContainer() {
     const { onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal } = useMealProposals();
@@ -17,7 +18,7 @@ export function MealProposalContainer() {
     }
 
     if (isLoadingProposals) {
-        return <>Loading...</>;
+        return <Loader isAbsolute={true} />;
     }
 
     return (

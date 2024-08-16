@@ -8,6 +8,7 @@ import { ObjectList } from '@/src/app/management/[objects]/[action]/object-list'
 import Link from 'next/link';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { ActionType, ObjectType } from '@/src/types/management.types';
+import { Loader } from '@/src/components/common/loader';
 
 interface ObjectManagementParams extends Params {
     objects: ObjectType;
@@ -27,7 +28,7 @@ export function ObjectContainer() {
                     </Link>
                 </div>
                 {isLoading
-                    ? 'Loading...'
+                    ? <Loader isAbsolute={true} />
                     : objectList.length === 0
                         ? 'No objects.'
                         : <ObjectList objects={objectList} objectType={objects} actionType={action} refetch={refetchObjects} />
