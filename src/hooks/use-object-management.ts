@@ -9,6 +9,7 @@ import {
 } from '@/src/api/api';
 import { useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/management.types';
+import { toastError } from '@/src/utils/toast.utils';
 
 export interface ObjectItemStruct {
     id: string;
@@ -32,7 +33,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     const objects = users.map(user => ({ id: user.email, label: user.login, action: async () => confirmUserActivation(user.login) }));
                     setObjectList(objects);
                 })
-                .catch(() => console.error('Error while fetching...'))
+                .catch(() => toastError('Error while fetching...'))
                 .finally(() => setIsLoading(false));
         }
         else if (objects === 'meals') {
@@ -43,7 +44,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                         const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealAddition(meal._id) }));
                         setObjectList(objects);
                     })
-                    .catch(() => console.error('Error while fetching...'))
+                    .catch(() => toastError('Error while fetching...'))
                     .finally(() => setIsLoading(false));
                 break;
             case 'edited':
@@ -52,7 +53,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                         const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealEdition(meal._id) }));
                         setObjectList(objects);
                     })
-                    .catch(() => console.error('Error while fetching...'))
+                    .catch(() => toastError('Error while fetching...'))
                     .finally(() => setIsLoading(false));
                 break;
             case 'deleted':
@@ -61,7 +62,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                         const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealDeletion(meal._id) }));
                         setObjectList(objects);
                     })
-                    .catch(() => console.error('Error while fetching...'))
+                    .catch(() => toastError('Error while fetching...'))
                     .finally(() => setIsLoading(false));
                 break;
             }
