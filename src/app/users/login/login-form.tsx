@@ -10,10 +10,12 @@ import { doUserLogin } from '@/src/api/api';
 
 import styles from '@/styles/app/users/login/page.module.scss';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { Loader } from '@/src/components/common/loader';
 
 export function LoginForm() {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [isLogging, setIsLogging] = useState<boolean>(false);
     const router = useRouter();
     const { loginUser, isLoggedIn } = useUserContext();
 
@@ -22,6 +24,8 @@ export function LoginForm() {
     }
 
     const onLogIn = async () => {
+        setIsLogging(true);
+
         try {
             const permissions = await doUserLogin(login, password);
             loginUser(login, permissions);
@@ -30,6 +34,8 @@ export function LoginForm() {
             router.push('/');
         } catch (err: any) {
             toastError(err.message);
+        } finally {
+            setIsLogging(false);
         }
     };
 
@@ -40,6 +46,7 @@ export function LoginForm() {
 
     return (
         <form onSubmit={onSubmit}>
+            {isLogging && <Loader isAbsolute={true} />}
             <div>
                 <div>
                     <h3>Input your login and password</h3>
