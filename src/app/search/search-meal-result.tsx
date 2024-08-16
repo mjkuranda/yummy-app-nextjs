@@ -5,6 +5,7 @@ import { MealResult } from '@/src/types/api.types';
 import styles from '@/styles/app/search/search-meal-result.module.scss';
 import { Button } from '@/src/components/common/button';
 import { useHasImage } from '@/src/hooks/useHasImage';
+import { Loader } from '@/src/components/common/loader';
 
 interface SearchMealResultProps {
     meal: MealResult;
@@ -30,7 +31,7 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
         <div className={`${styles['result-container']} d-flex justify-content-center align-items-center`}>
             <div className={styles['result-image']}>
                 <Link className={styles['img-link']} href={`/result/${meal.id}?sourceUrl=${ingredientQuery}`} target="_blank">
-                    {isLoading ? 'Loading...' : <img src={imgSrc} alt={`Zdjęcie posiłku o nazwie ${meal.title}`} />}
+                    {isLoading ? <Loader /> : <img src={imgSrc} alt={`Zdjęcie posiłku o nazwie ${meal.title}`} />}
                 </Link>
             </div>
             <div className={styles['result-label']}>

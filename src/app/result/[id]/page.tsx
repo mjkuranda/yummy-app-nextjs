@@ -10,6 +10,7 @@ import { useGetMealById } from '@/src/api/endpoints';
 import { MealContainer } from '@/src/app/result/[id]/meal-container';
 import { Meal } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
+import { Loader } from '@/src/components/common/loader';
 
 export default function ResultById() {
     const { id } = useParams();
@@ -37,7 +38,7 @@ export default function ResultById() {
                 </div>
                 <div className={styles['result-container']}>
                     {isLoading
-                        ? 'Loading...'
+                        ? <Loader isAbsolute={true} />
                         : <MealContainer meal={meal as Meal} />
                     }
                     {!isLoading && !meal && <div>Meal has not been found.</div>}

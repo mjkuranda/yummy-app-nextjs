@@ -4,13 +4,14 @@ import resultStyles from '@/styles/app/search/search-meal-result.module.scss';
 import { SearchMealResult } from '@/src/app/search/search-meal-result';
 import { useGetMeals } from '@/src/api/endpoints';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
+import { Loader } from '@/src/components/common/loader';
 
 export function MealResultBox() {
     const { originalQuery, ings } = useSearchFilters();
     const { data: meals, isLoading } = useGetMeals(ings);
 
     if (!meals && isLoading) {
-        return <>Loading...</>;
+        return <Loader />;
     }
 
     return (
