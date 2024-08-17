@@ -25,6 +25,8 @@ export function InputString({ label, variant = 'standard', value, setValue, erro
             onChange={onChange}
             error={Boolean(error)}
             helperText={error?.message ?? ''}
+            autoComplete="new-password"
+            type="text"
         />
     );
 }

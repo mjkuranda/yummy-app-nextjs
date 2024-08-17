@@ -16,7 +16,7 @@ const defaultValues: UserData = {
 };
 
 export function RegistrationForm() {
-    const { handleSubmit, control, formState: { errors } } = useForm<UserData>({ defaultValues });
+    const { handleSubmit, control, formState: { errors } } = useForm<UserData>({ defaultValues, mode: 'onChange' });
 
     const onSubmit: SubmitHandler<UserData> = (data, e) => {
         e?.preventDefault();
