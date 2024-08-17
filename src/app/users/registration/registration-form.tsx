@@ -16,11 +16,17 @@ const defaultValues: UserData = {
 };
 
 export function RegistrationForm() {
-    const { handleSubmit, control, formState: { errors } } = useForm<UserData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, watch } = useForm<UserData>({ defaultValues, mode: 'onChange' });
 
     const onSubmit: SubmitHandler<UserData> = (data, e) => {
         e?.preventDefault();
         console.log(data);
+    };
+
+    const validatePasswordMatch = (value: string) => {
+        const password = watch('password');
+
+        return value === password ? true : 'Passwords do not match';
     };
 
     return (
@@ -60,7 +66,7 @@ export function RegistrationForm() {
             <Controller
                 name={'repeatedPassword'}
                 control={control}
-                rules={{ required: 'Repeated password is required' }}
+                rules={{ required: 'Repeated password is required', validate: validatePasswordMatch }}
                 render={({ field: { onChange, value } }) => (
                     <InputPassword label={'Type your repeated password'} value={value} setValue={onChange} error={errors.repeatedPassword} />
                 )}
