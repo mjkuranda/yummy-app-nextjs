@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `react-hook-form` library.
 - [Marek Kurańda](https://github.com/mjkuranda): error messaging in `InputString` and `InputPassword`.
+- [Marek Kurańda](https://github.com/mjkuranda): user registering capability at `users/registration`.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): toasts visibility.
 
 ## [1.27.0] - 2024-08-16
 ### Added

@@ -7,6 +7,10 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { BackLink } from '@/src/components/common/back-link';
+import { useEffect, useState } from 'react';
+import { createUserAccount } from '@/src/api/api';
+import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { Loader } from '@/src/components/common/loader';
 
 const defaultValues: UserData = {
     email: '',
@@ -16,14 +20,38 @@ const defaultValues: UserData = {
 };
 
 export function RegistrationForm() {
-    const { handleSubmit, control, formState: { errors }, watch } = useForm<UserData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, watch, reset, setValue, clearErrors } = useForm<UserData>({ defaultValues, mode: 'onChange' });
+    const [isRegistering, setIsRegistering] = useState<boolean>(false);
+    const [wasCreated, setWasCreated] = useState<boolean>(false);
 
-    const onSubmit: SubmitHandler<UserData> = (data, e) => {
+    useEffect(() => {
+        const repeatedPassword = watch('repeatedPassword');
+
+        if (repeatedPassword.length === 0) {
+            return;
+        }
+
+        clearErrors('repeatedPassword');
+        setValue('repeatedPassword', repeatedPassword, { shouldValidate: true });
+    }, [watch('password')]);
+
+    const onSubmit: SubmitHandler<UserData> = async (data, e) => {
         e?.preventDefault();
-        console.log(data);
+        setIsRegistering(true);
+
+        try {
+            await createUserAccount({ ...data });
+            toastSuccess('Successfully created new account!');
+            setWasCreated(true);
+            reset();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsRegistering(false);
+        }
     };
 
-    const validatePasswordMatch = (value: string) => {
+    const validateRepeatedPasswordMatch = (value: string) => {
         const password = watch('password');
 
         return value === password ? true : 'Passwords do not match';
@@ -31,6 +59,7 @@ export function RegistrationForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles['registration-form']}>
+            {isRegistering && <Loader isAbsolute={true} />}
             <BackLink link="/users/login" label={'Back to sign in'} isAttached={true} />
             <h2>Create a new user account</h2>
             <Controller
@@ -66,12 +95,13 @@ export function RegistrationForm() {
             <Controller
                 name={'repeatedPassword'}
                 control={control}
-                rules={{ required: 'Repeated password is required', validate: validatePasswordMatch }}
+                rules={{ required: 'Repeated password is required', validate: validateRepeatedPasswordMatch }}
                 render={({ field: { onChange, value } }) => (
                     <InputPassword label={'Type your repeated password'} value={value} setValue={onChange} error={errors.repeatedPassword} />
                 )}
             />
             <Button label={'Sign up'} type="submit" />
+            {wasCreated && 'User has been created. Check out your mail box to activate your account.'}
         </form>
     );
 }
