@@ -8,14 +8,17 @@ import IconButton from '@mui/material/IconButton';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import { ChangeEvent, MouseEvent, useState } from 'react';
+import { FieldError } from 'react-hook-form';
+import { FormHelperText } from '@mui/material';
 
 interface InputPasswordProps {
     label: string;
     value: string;
     setValue: (newValue: string) => void;
+    error?: FieldError;
 }
 
-export function InputPassword({ label, value, setValue }: InputPasswordProps) {
+export function InputPassword({ label, value, setValue, error }: InputPasswordProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -49,7 +52,9 @@ export function InputPassword({ label, value, setValue }: InputPasswordProps) {
                 label={label}
                 value={value}
                 onChange={onChange}
+                error={Boolean(error)}
             />
+            {error && <FormHelperText error>{error.message}</FormHelperText>}
         </FormControl>
     );
 }
