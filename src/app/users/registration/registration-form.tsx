@@ -6,6 +6,7 @@ import styles from '@/styles/app/users/registration/registration-form.module.scs
 import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
+import { BackLink } from '@/src/components/common/back-link';
 
 const defaultValues: UserData = {
     email: '',
@@ -24,6 +25,7 @@ export function RegistrationForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles['registration-form']}>
+            <BackLink link="/users/login" label={'Back to sign in'} isAttached={true} />
             <h2>Create a new user account</h2>
             <Controller
                 name={'email'}
@@ -63,7 +65,7 @@ export function RegistrationForm() {
                     <InputPassword label={'Type your repeated password'} value={value} setValue={onChange} error={errors.repeatedPassword} />
                 )}
             />
-            <Button label={'Create'} type="submit" />
+            <Button label={'Sign up'} type="submit" />
         </form>
     );
 }

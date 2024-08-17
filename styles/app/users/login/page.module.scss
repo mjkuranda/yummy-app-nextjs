@@ -18,6 +18,15 @@
             display: flex;
             justify-content: center;
             margin-top: 2rem;
+
+            .form-control-container-wrapper {
+                display: flex;
+                flex-direction: column;
+
+                > p {
+                    margin-top: .3rem;
+                }
+            }
         }
 
         .form-control-container + .form-control-container {
