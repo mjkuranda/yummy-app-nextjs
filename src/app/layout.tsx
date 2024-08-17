@@ -6,6 +6,9 @@ import { ReactQueryProvider } from '@/src/app/react-query-provider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { UserProvider } from '@/src/contexts/user.context';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                     <ReactQueryProvider>
                         <AppRouterCacheProvider>
                             {children}
+                            <ToastContainer />
                         </AppRouterCacheProvider>
                         <ReactQueryDevtools />
                     </ReactQueryProvider>

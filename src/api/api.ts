@@ -8,6 +8,8 @@ import {
     UserPermissions
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
+import { UserData } from '@/src/types/register.types';
+import { ApiError } from 'next/dist/server/api-utils';
 
 export async function getMeal(id: string): Promise<Meal> {
     return apiGet<Meal>(`meals/${id}/details`);
@@ -77,4 +79,14 @@ export async function confirmMealDeletion(id: string): Promise<Meal> {
 
 export async function confirmUserActivation(login: string): Promise<void> {
     await apiPost(`users/${login}/activate`);
+}
+
+export async function createUserAccount(data: UserData): Promise<void> {
+    const res = await apiPost<UserData>('users/create', data);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
 }

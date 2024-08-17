@@ -11,6 +11,8 @@ import { doUserLogin } from '@/src/api/api';
 import styles from '@/styles/app/users/login/page.module.scss';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
+import { BackLink } from '@/src/components/common/back-link';
+import Link from 'next/link';
 
 export function LoginForm() {
     const [login, setLogin] = useState<string>('');
@@ -47,6 +49,7 @@ export function LoginForm() {
     return (
         <form onSubmit={onSubmit}>
             {isLogging && <Loader isAbsolute={true} />}
+            <BackLink link="/" label={'Back to main page'} isAttached={true} />
             <div>
                 <div>
                     <h3>Input your login and password</h3>
@@ -58,7 +61,10 @@ export function LoginForm() {
                     <InputPassword label={'Input your password'} value={password} setValue={setPassword} />
                 </div>
                 <div className={styles['form-control-container']}>
-                    <Button label={'Log in'} type="submit" />
+                    <div className={styles['form-control-container-wrapper']}>
+                        <Button label={'Log in'} type="submit" />
+                        <p>Don't have an account? <Link href={'/users/registration'}>Sign up</Link></p>
+                    </div>
                 </div>
             </div>
         </form>
