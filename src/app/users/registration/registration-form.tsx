@@ -24,6 +24,7 @@ export function RegistrationForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles['registration-form']}>
+            <h2>Create a new user account</h2>
             <Controller
                 name={'email'}
                 control={control}
