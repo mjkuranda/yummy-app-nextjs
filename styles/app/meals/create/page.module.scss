@@ -4,4 +4,8 @@
     background-color: $orange-yellow-crayola;
     padding: 16px 10%;
     flex: 1;
+
+    > :first-child {
+        margin-bottom: .8rem;
+    }
 }

@@ -35,13 +35,16 @@ const defaultValues: MealFormData = {
     ingredients: {},
     type: 'main course',
     recipe: [],
-    hasImage: false
+    hasImage: false,
 };
 
 export function CreateMealForm() {
-    const { handleSubmit, control, formState: { errors }, reset } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+
+    const hasImageWatch = watch('hasImage');
+    const hasImageUrlWatch = watch('hasImageUrl');
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e) => {
         e?.preventDefault();
@@ -94,13 +97,33 @@ export function CreateMealForm() {
                     <InputCheckbox id={'has-image'} label={'Has an image'} isChecked={value} onChange={onChange} />
                 )}
             />
-            <Controller
-                name={'imageFile'}
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                    <InputImage id={'meal-image'} image={value} setImage={onChange} width="50%" />
-                )}
-            />
+            {hasImageWatch && (
+                <>
+                    <Controller
+                        name={'hasImageUrl'}
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputCheckbox id={'has-image-url'} label={'Has an image URL'} isChecked={value ?? false} onChange={onChange} />
+                        )}
+                    />
+                    {hasImageUrlWatch ?
+                        <Controller
+                            name={'imageUrl'}
+                            control={control}
+                            render={({ field: { onChange, value } }) => (
+                                <InputString label={'Type image URL'} value={value ?? ''} setValue={onChange} error={errors.imageUrl} />
+                            )}
+                        /> :
+                        <Controller
+                            name={'imageFile'}
+                            control={control}
+                            render={({ field: { onChange, value } }) => (
+                                <InputImage id={'meal-image'} image={value} setImage={onChange} width="50%" />
+                            )}
+                        />
+                    }
+                </>
+            )}
             <Controller
                 name={'type'}
                 control={control}

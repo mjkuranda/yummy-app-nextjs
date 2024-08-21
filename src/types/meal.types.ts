@@ -7,6 +7,7 @@ export interface MealFormData {
     type: MealType;
     recipe: MealRecipeSectionWithId[];
     hasImage: boolean;
+    hasImageUrl?: boolean;
     imageUrl?: string;
     imageFile?: File;
 }
