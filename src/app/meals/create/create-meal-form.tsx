@@ -9,6 +9,7 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputList } from '@/src/components/common/form/input-list';
 import { InputImage } from '@/src/components/common/form/input-image';
+import { InputSelect } from '@/src/components/common/form/input-select';
 
 const items = [
     { label: 'Apple', en: 'apple' },
@@ -16,6 +17,13 @@ const items = [
     { label: 'Orange', en: 'orange' },
     { label: 'Pineapple', en: 'pineapple' },
     { label: 'Strawberry', en: 'strawberry' }
+];
+
+const options = [
+    { en: 'soup', label: 'Soup' },
+    { en: 'main course', label: 'Main Course' },
+    { en: 'salad', label: 'Salad' },
+    { en: 'raw salad', label: 'Raw Salad' }
 ];
 
 const defaultValues: MealFormData = {
@@ -66,7 +74,10 @@ export function CreateMealForm() {
             <Controller
                 name={'ingredients'}
                 control={control}
-                rules={{ required: 'Ingredients are required' }}
+                rules={{
+                    required: 'Ingredients are required',
+                    validate: (value: Record<string, string>) => Object.keys(value).length > 0 ? true : 'Ingredients are required'
+                }}
                 render={({ field: { onChange, value } }) => (
                     <InputList items={items} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} />
                 )}
@@ -76,6 +87,14 @@ export function CreateMealForm() {
                 control={control}
                 render={({ field: { onChange, value } }) => (
                     <InputImage id={'meal-image'} image={value} setImage={onChange} width="50%" />
+                )}
+            />
+            <Controller
+                name={'type'}
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                    <InputSelect id={'meal-type'} options={options} label={'Select a type'} selectedValue={value} setSelectedValue={onChange} />
                 )}
             />
             {/*<Controller*/}
