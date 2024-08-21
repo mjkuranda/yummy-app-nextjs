@@ -5,8 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.30.0] - 2024-08-21
 ### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `/meals/create` page for creating new meals.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputList` component integrating `Autocomplete` from `MUI` library.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputImage` component for uploading images.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputSelect` component for selecting one of many options.
 
 ## [1.29.0] - 2024-08-21
 ### Added
