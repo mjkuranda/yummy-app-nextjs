@@ -8,7 +8,7 @@ interface InputImageProps {
     setImage: (file: File) => void;
 }
 
-export default function InputImage({ id, image, width = '100%', setImage }: InputImageProps) {
+export function InputImage({ id, image, width = '100%', setImage }: InputImageProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {

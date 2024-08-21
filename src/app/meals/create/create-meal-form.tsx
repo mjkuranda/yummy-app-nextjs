@@ -8,7 +8,7 @@ import { Loader } from '@/src/components/common/loader';
 import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputList } from '@/src/components/common/form/input-list';
-import InputImage from '@/src/components/common/form/input-image';
+import { InputImage } from '@/src/components/common/form/input-image';
 
 const items = [
     { label: 'Apple', en: 'apple' },
