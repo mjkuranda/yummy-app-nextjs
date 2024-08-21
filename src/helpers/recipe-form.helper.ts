@@ -53,7 +53,5 @@ export function updateSectionStep(id: string, step: MealRecipeStepWithId, sectio
         }
     }
 
-    console.log(modifiedSections);
-
     return modifiedSections;
 }

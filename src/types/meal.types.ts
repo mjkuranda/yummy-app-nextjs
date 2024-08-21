@@ -4,10 +4,11 @@ export interface MealFormData {
     title: string;
     description: string;
     ingredients: Items;
-    imageUrl?: string;
-    imageFile?: File;
     type: MealType;
     recipe: MealRecipeSectionWithId[];
+    hasImage: boolean;
+    imageUrl?: string;
+    imageFile?: File;
 }
 
 export type MealType = 'soup' | 'main course' | 'salad' | 'raw salad';

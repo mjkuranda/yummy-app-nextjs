@@ -12,6 +12,7 @@ import { InputImage } from '@/src/components/common/form/input-image';
 import { InputSelect } from '@/src/components/common/form/input-select';
 import { RecipeForm } from '@/src/app/meals/create/recipe-form';
 import { RecipeFormProvider } from '@/src/contexts/recipe-form.context';
+import { InputCheckbox } from '@/src/components/common/form/input-checkbox';
 
 const items = [
     { label: 'Apple', en: 'apple' },
@@ -33,7 +34,8 @@ const defaultValues: MealFormData = {
     description: '',
     ingredients: {},
     type: 'main course',
-    recipe: []
+    recipe: [],
+    hasImage: false
 };
 
 export function CreateMealForm() {
@@ -83,6 +85,13 @@ export function CreateMealForm() {
                 }}
                 render={({ field: { onChange, value } }) => (
                     <InputList items={items} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} />
+                )}
+            />
+            <Controller
+                name={'hasImage'}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                    <InputCheckbox id={'has-image'} label={'Has an image'} isChecked={value} onChange={onChange} />
                 )}
             />
             <Controller
