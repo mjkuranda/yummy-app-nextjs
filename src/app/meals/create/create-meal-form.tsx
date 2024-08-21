@@ -8,6 +8,7 @@ import { Loader } from '@/src/components/common/loader';
 import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputList } from '@/src/components/common/form/input-list';
+import InputImage from '@/src/components/common/form/input-image';
 
 const items = [
     { label: 'Apple', en: 'apple' },
@@ -68,6 +69,13 @@ export function CreateMealForm() {
                 rules={{ required: 'Ingredients are required' }}
                 render={({ field: { onChange, value } }) => (
                     <InputList items={items} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} />
+                )}
+            />
+            <Controller
+                name={'imageFile'}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                    <InputImage id={'meal-image'} image={value} setImage={onChange} width="50%" />
                 )}
             />
             {/*<Controller*/}

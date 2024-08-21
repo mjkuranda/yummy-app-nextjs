@@ -5,6 +5,7 @@ export interface MealFormData {
     description: string;
     ingredients: Items;
     imageUrl?: string;
+    imageFile?: File;
     type: MealType;
 }
 
