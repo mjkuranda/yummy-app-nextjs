@@ -1,0 +1,14 @@
+@import '@/styles/globals-colors.scss';
+
+.create-meal-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 222px);
+    background-color: $honey-yellow-alpha;
+
+    > * {
+        margin: 1rem 0 !important;
+    }
+}

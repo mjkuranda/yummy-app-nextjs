@@ -30,7 +30,7 @@ export default function Search() {
                         <p>Brakuje szukanego posiłku? Dodaj go!</p>
                     </div>
                     <div className="d-flex justify-content-center align-items-center">
-                        <Button label={'Dodaj'} link={'/meals/add'} />
+                        <Button label={'Dodaj'} link={'/meals/create'} />
                     </div>
                 </section>
             </div>

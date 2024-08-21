@@ -1,0 +1,14 @@
+.input-image {
+    .center-horizontally {
+        display: flex;
+        justify-content: center;
+    }
+
+    .input-file {
+        display: none;
+    }
+
+    .uploaded-image {
+        margin-bottom: 1rem;
+    }
+}
