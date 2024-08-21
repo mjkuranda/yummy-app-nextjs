@@ -6,32 +6,51 @@ export interface MealResult {
     relevance: number;
 }
 
-// TODO: Consider extension
+export type DetailedMeal = {
+    id: string,
+    imgUrl?: string,
+    ingredients: Ingredient[],
+    language: Language,
+    title: string,
+    description: string,
+    readyInMinutes: number,
+    sourceOrAuthor: string,
+    properties?: {
+        vegetarian?: boolean,
+        vegan?: boolean,
+        glutenFree?: boolean,
+        dairyFree?: boolean,
+        veryHealthy?: boolean
+    },
+    recipeSections: MealRecipeSection[]
+};
 
-export interface Meal {
-    author: string;
-    description: string;
-    _id: string;
-    imgUrl?: string;
-    ingredients: Ingredient[];
-    title: string;
-    instruction: InstructionList[];
+export interface TranslatedIngredient {
+    text: string;
+    imageUrl: string;
 }
 
-export interface InstructionList {
-    name: string;
-    steps: {
-        number: number;
-        step: string;
-    }[];
+export type MealRecipeStep = {
+    number: number,
+    step: string
+};
+
+export type MealRecipeSection = {
+    name?: string,
+    steps: MealRecipeStep[]
+};
+
+export interface DetailedMealWithTranslations {
+    meal: DetailedMeal;
+    ingredients?: TranslatedIngredient[];
+    recipe?: MealRecipeSection[];
 }
 
 export interface Ingredient {
+    amount: number;
+    imageUrl: string;
     name: string;
     unit: string;
-    amount: number;
-    originalName: string;
-    imageUrl: string;
 }
 
 export interface MealProposal {
@@ -69,3 +88,8 @@ export interface NotActivatedUser {
     email: string;
     login: string;
 }
+
+/**
+ * Language type
+ */
+export type Language = 'en' | 'en-US' | 'pl';

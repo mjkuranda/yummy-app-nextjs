@@ -6,6 +6,7 @@ export async function apiGet<T>(endpointUrl: string): Promise<T> {
         method: 'GET',
         headers: {
             'accept': '*/*',
+            'Accept-Language': 'pl', // TODO: from i18n
             'Content-Type': 'application/json'
         },
         credentials: 'include'
