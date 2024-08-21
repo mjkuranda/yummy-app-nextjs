@@ -30,10 +30,7 @@ export interface TranslatedIngredient {
     imageUrl: string;
 }
 
-export type MealRecipeStep = {
-    number: number,
-    step: string
-};
+export type MealRecipeStep = string;
 
 export type MealRecipeSection = {
     name?: string,

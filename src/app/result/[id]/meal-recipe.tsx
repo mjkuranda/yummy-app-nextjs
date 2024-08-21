@@ -17,9 +17,10 @@ export function MealRecipe({ meal }: MealRecipeProps) {
                         <div className={styles['instruction-section']}>
                             <h5>Przepis: {section.name || '-'}</h5>
                             <ol>
-                                {section.steps.map(step => {
+                                {section.steps.map((step, idx) => {
+                                    // NOTE: Index is okay, because it's a static list
                                     return (
-                                        <li key={step.number}>{step.step}</li>
+                                        <li key={idx}>{step}</li>
                                     );
                                 })}
                             </ol>
