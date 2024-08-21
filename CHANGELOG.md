@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `InputImage` component for uploading images.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputSelect` component for selecting one of many options.
 
+## [1.30.0] - 2024-08-21
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Simplified recipe step structure to `string`.
+
 ## [1.29.0] - 2024-08-21
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Info about no recipe from author.
