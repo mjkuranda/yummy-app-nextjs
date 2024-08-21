@@ -7,6 +7,18 @@ export interface MealFormData {
     imageUrl?: string;
     imageFile?: File;
     type: MealType;
+    recipe: MealRecipeSectionWithId[];
 }
 
 export type MealType = 'soup' | 'main course' | 'salad' | 'raw salad';
+
+export interface MealRecipeStepWithId {
+    id: string;
+    text: string;
+}
+
+export interface MealRecipeSectionWithId {
+    id: string;
+    steps: MealRecipeStepWithId[]
+    name?: string,
+}

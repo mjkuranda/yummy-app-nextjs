@@ -1,6 +1,6 @@
 'use client';
 
-import { MealFormData } from '@/src/types/meal.types';
+import { MealFormData, MealRecipeSectionWithId } from '@/src/types/meal.types';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import styles from '@/styles/app/meals/create/create-meal-form.module.scss';
@@ -10,6 +10,8 @@ import { Button } from '@/src/components/common/button';
 import { InputList } from '@/src/components/common/form/input-list';
 import { InputImage } from '@/src/components/common/form/input-image';
 import { InputSelect } from '@/src/components/common/form/input-select';
+import { RecipeForm } from '@/src/app/meals/create/recipe-form';
+import { RecipeFormProvider } from '@/src/contexts/recipe-form.context';
 
 const items = [
     { label: 'Apple', en: 'apple' },
@@ -30,7 +32,8 @@ const defaultValues: MealFormData = {
     title: '',
     description: '',
     ingredients: {},
-    type: 'main course'
+    type: 'main course',
+    recipe: []
 };
 
 export function CreateMealForm() {
@@ -97,14 +100,19 @@ export function CreateMealForm() {
                     <InputSelect id={'meal-type'} options={options} label={'Select a type'} selectedValue={value} setSelectedValue={onChange} />
                 )}
             />
-            {/*<Controller*/}
-            {/*    name={'repeatedPassword'}*/}
-            {/*    control={control}*/}
-            {/*    rules={{ required: 'Repeated password is required', validate: validateRepeatedPasswordMatch }}*/}
-            {/*    render={({ field: { onChange, value } }) => (*/}
-            {/*        <InputPassword label={'Type your repeated password'} value={value} setValue={onChange} error={errors.repeatedPassword} />*/}
-            {/*    )}*/}
-            {/*/>*/}
+            <Controller
+                name={'recipe'}
+                control={control}
+                rules={{
+                    required: 'Recipe is required',
+                    validate: (value: MealRecipeSectionWithId[]) => value.length > 0 ? true : 'Recipe is required'
+                }}
+                render={({ field: { onChange, value } }) => (
+                    <RecipeFormProvider sections={value} onChangeSections={onChange} error={errors.recipe}>
+                        <RecipeForm />
+                    </RecipeFormProvider>
+                )}
+            />
             <Button label={'Create'} onClick={handleSubmit(onSubmit)} />
             {wasCreated && 'User has been created. Check out your mail box to activate your account.'}
         </form>
