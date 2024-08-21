@@ -1,5 +1,6 @@
 import { Button } from '@/src/components/common/button';
 import { ChangeEvent, useRef } from 'react';
+import styles from '@/styles/components/common/inputs/input-image.module.scss';
 
 interface InputImageProps {
     id: string;
@@ -23,33 +24,27 @@ export function InputImage({ id, image, width = '100%', setImage }: InputImagePr
         }
     };
 
-    const centerContainer = {
-        display: 'flex',
-        justifyContent: 'center'
-    };
-
-    const inputStyle = {
-        display: 'none'
-    };
-
     return (
-        <div>
+        <div className={styles['input-image']}>
             {image && (
-                <div style={centerContainer}>
+                <div className={styles['center-horizontally']}>
                     <img
+                        className={styles['uploaded-image']}
                         src={URL.createObjectURL(image)}
                         alt="Wybrany obraz"
-                        style={{ width, margin: '1rem 0' }} />
+                        style={{ width }}
+                    />
                 </div>
             )}
-            <input style={inputStyle}
+            <input
+                className={styles['input-file']}
                 accept="image/jpg, image/jpeg, image/png"
                 onChange={onChange}
                 ref={fileInputRef}
                 type="file"
                 id={id}
             />
-            <div style={centerContainer}>
+            <div className={styles['center-horizontally']}>
                 <Button
                     label={'Upload'}
                     onClick={onUpload}
