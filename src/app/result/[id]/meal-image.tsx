@@ -4,12 +4,12 @@ import styles from '@/styles/app/result/page.module.scss';
 import { useHasImage } from '@/src/hooks/useHasImage';
 import { Loader } from '@/src/components/common/loader';
 
-interface MealResultImageProps {
+interface MealImageProps {
     imgUrl?: string;
     title?: string;
 }
 
-export function MealResultImage({ imgUrl, title }: MealResultImageProps) {
+export function MealImage({ imgUrl, title }: MealImageProps) {
     const { hasImage, isLoading }  = useHasImage(imgUrl);
 
     if (isLoading) {

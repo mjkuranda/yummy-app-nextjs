@@ -1,6 +1,6 @@
 import styles from '@/styles/app/meal-proposal/page.module.scss';
 import { MealProposal } from '@/src/types/api.types';
-import { MealResultImage } from '@/src/app/result/[id]/meal-result-image';
+import { MealImage } from '@/src/app/result/[id]/meal-image';
 
 interface MealProposalItemProps {
     proposal: MealProposal;
@@ -14,7 +14,7 @@ export function MealProposalItem({ proposal }: MealProposalItemProps) {
     return (
         <div className={styles['meal-proposal-container__proposal']}>
             <div className={styles['meal-proposal-container__proposal-image']}>
-                <MealResultImage title={proposal.title} imgUrl={proposal.imgUrl} />
+                <MealImage title={proposal.title} imgUrl={proposal.imgUrl} />
             </div>
             <h3 className={styles['meal-proposal-container__proposal-header']}>
                 {proposal.title} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

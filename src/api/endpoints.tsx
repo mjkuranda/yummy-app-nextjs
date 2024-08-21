@@ -1,5 +1,11 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { Meal, MealProposal, MealResult, NotActivatedUser } from '@/src/types/api.types';
+import {
+    DetailedMeal,
+    DetailedMealWithTranslations,
+    MealProposal,
+    MealResult,
+    NotActivatedUser
+} from '@/src/types/api.types';
 import {
     getMeal,
     getMealProposals,
@@ -10,9 +16,9 @@ import {
 } from '@/src/api/api';
 import { DAY, HOUR } from '@/src/constants/numbers';
 
-export function useGetMealById(id: string): UseQueryResult<Meal> {
+export function useGetMealById(id: string): UseQueryResult<DetailedMealWithTranslations> {
     return useQuery({
-        queryFn: async (): Promise<Meal> => await getMeal(id),
+        queryFn: async (): Promise<DetailedMealWithTranslations> => await getMeal(id),
         queryKey: ['meals', id],
         staleTime: HOUR
     });
@@ -35,7 +41,7 @@ export function useGetMealProposals(): UseQueryResult<MealProposal[]> {
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
     if (!isTriggered) {
         return useQuery({
             queryKey: ['meals', 'soft', 'added'],
@@ -44,14 +50,14 @@ export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResul
     }
 
     return useQuery({
-        queryFn: async (): Promise<Meal[]> => await getSoftAddedMeals(),
+        queryFn: async (): Promise<DetailedMeal[]> => await getSoftAddedMeals(),
         queryKey: ['meals', 'soft', 'added'],
         staleTime: HOUR
     });
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
     if (!isTriggered) {
         return useQuery({
             queryKey: ['meals', 'soft', 'edited'],
@@ -60,14 +66,14 @@ export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResu
     }
 
     return useQuery({
-        queryFn: async (): Promise<Meal[]> => await getSoftEditedMeals(),
+        queryFn: async (): Promise<DetailedMeal[]> => await getSoftEditedMeals(),
         queryKey: ['meals', 'soft', 'edited'],
         staleTime: HOUR
     });
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryResult<Meal[]> {
+export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
     if (!isTriggered) {
         return useQuery({
             queryKey: ['meals', 'soft', 'deleted'],
@@ -76,7 +82,7 @@ export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryRes
     }
 
     return useQuery({
-        queryFn: async (): Promise<Meal[]> => await getSoftDeletedMeals(),
+        queryFn: async (): Promise<DetailedMeal[]> => await getSoftDeletedMeals(),
         queryKey: ['meals', 'soft', 'deleted'],
         staleTime: HOUR
     });

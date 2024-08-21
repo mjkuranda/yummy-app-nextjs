@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { redirect, useParams, useSearchParams } from 'next/navigation';
 import { useGetMealById } from '@/src/api/endpoints';
 import { MealContainer } from '@/src/app/result/[id]/meal-container';
-import { Meal } from '@/src/types/api.types';
+import { DetailedMealWithTranslations } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
 
@@ -39,7 +39,7 @@ export default function ResultById() {
                 <div className={styles['result-container']}>
                     {isLoading
                         ? <Loader isAbsolute={true} />
-                        : <MealContainer meal={meal as Meal} />
+                        : <MealContainer complexMealObject={meal as DetailedMealWithTranslations} />
                     }
                     {!isLoading && !meal && <div>Meal has not been found.</div>}
                     {isError && <div>Error occurred.</div>}
@@ -50,6 +50,6 @@ export default function ResultById() {
     );
 }
 
-function isApiError(meal: Meal | undefined): boolean {
+function isApiError(meal: DetailedMealWithTranslations | undefined): boolean {
     return (meal as any)?.statusCode !== undefined;
 }

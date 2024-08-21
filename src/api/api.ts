@@ -1,18 +1,18 @@
 import { apiGet, apiPost } from '@/src/api/methods';
 import {
     LoginUserData,
-    Meal,
+    DetailedMeal,
     MealProposal,
     MealProposalRequest,
     MealResult, NotActivatedUser,
-    UserPermissions
+    UserPermissions, DetailedMealWithTranslations
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
 import { ApiError } from 'next/dist/server/api-utils';
 
-export async function getMeal(id: string): Promise<Meal> {
-    return apiGet<Meal>(`meals/${id}/details`);
+export async function getMeal(id: string): Promise<DetailedMealWithTranslations> {
+    return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
 }
 
 export async function getMeals(ingredients: string[]): Promise<MealResult[]> {
@@ -43,35 +43,35 @@ export async function addMealProposal(ingredients: string[]): Promise<Response> 
     });
 }
 
-export async function getSoftAddedMeals(): Promise<Meal[]> {
-    return apiGet<Meal[]>('meals/soft/added');
+export async function getSoftAddedMeals(): Promise<DetailedMeal[]> {
+    return apiGet<DetailedMeal[]>('meals/soft/added');
 }
 
-export async function getSoftEditedMeals(): Promise<Meal[]> {
-    return apiGet<Meal[]>('meals/soft/edited');
+export async function getSoftEditedMeals(): Promise<DetailedMeal[]> {
+    return apiGet<DetailedMeal[]>('meals/soft/edited');
 }
 
-export async function getSoftDeletedMeals(): Promise<Meal[]> {
-    return apiGet<Meal[]>('meals/soft/deleted');
+export async function getSoftDeletedMeals(): Promise<DetailedMeal[]> {
+    return apiGet<DetailedMeal[]>('meals/soft/deleted');
 }
 
 export async function getNotActivatedUsers(): Promise<NotActivatedUser[]> {
     return apiGet<NotActivatedUser[]>('users/not-activated');
 }
 
-export async function confirmMealAddition(id: string): Promise<Meal> {
+export async function confirmMealAddition(id: string): Promise<DetailedMeal> {
     const res = await apiPost(`meals/${id}/create`);
 
     return await res.json();
 }
 
-export async function confirmMealEdition(id: string): Promise<Meal> {
+export async function confirmMealEdition(id: string): Promise<DetailedMeal> {
     const res = await apiPost(`meals/${id}/create`);
 
     return await res.json();
 }
 
-export async function confirmMealDeletion(id: string): Promise<Meal> {
+export async function confirmMealDeletion(id: string): Promise<DetailedMeal> {
     const res = await apiPost(`meals/${id}/create`);
 
     return await res.json();
