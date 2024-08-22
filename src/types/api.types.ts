@@ -90,3 +90,31 @@ export interface NotActivatedUser {
  * Language type
  */
 export type Language = 'en' | 'en-US' | 'pl';
+
+export interface NewMealDto {
+    author: string;
+    description: string;
+    imageUrl?: string;
+    ingredients: string[];
+    language: Language;
+    posted: number;
+    recipeSections: MealRecipeSection[];
+    title: string;
+    type: string;
+}
+
+export interface MealDocument {
+    readonly author: string;
+    readonly description: string;
+    readonly imageUrl: string;
+    readonly ingredients: string[];
+    readonly language: Language;
+    readonly posted: number;
+    readonly title: string;
+    readonly type: string;
+    readonly softAdded?: boolean;
+    readonly softDeleted?: boolean;
+    readonly softEdited?: MealDocument;
+    readonly readyInMinutes: number;
+    readonly recipeSections: MealRecipeSection[];
+}

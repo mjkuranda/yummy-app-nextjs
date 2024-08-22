@@ -15,16 +15,16 @@ export async function apiGet<T>(endpointUrl: string): Promise<T> {
     return await res.json();
 }
 
-export async function apiPost<P = undefined>(endpointUrl: string, payload?: P): Promise<Response> {
+export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
     return await fetch(`${API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'POST',
         headers: {
             'accept': '*/*',
-            'Content-Type': 'application/json'
+            ...(!isFormData && { 'Content-Type': 'application/json' })
         },
         credentials: 'include',
-        body: typeof payload === 'string' ? payload : JSON.stringify(payload)
+        body: isFormData ? payload as FormData : typeof payload === 'string' ? payload : JSON.stringify(payload)
     });
 }
 

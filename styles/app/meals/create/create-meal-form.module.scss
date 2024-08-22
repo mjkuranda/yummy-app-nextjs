@@ -51,6 +51,12 @@
         .create-button-container {
             display: flex;
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            > :last-child {
+                margin-top: 1rem;
+            }
         }
     }
 }
