@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.32.0] - 2024-08-22
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `AddButton` component as combination of icon and text.
+- [Marek Kurańda](https://github.com/mjkuranda): `RemoveButton` component as combination of icon and text.
+// TODO: Removing buttons for sections and step
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Substituted adding button at meal creation page for `AddButton`.
