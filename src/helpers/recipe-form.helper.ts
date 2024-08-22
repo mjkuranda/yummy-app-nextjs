@@ -55,3 +55,20 @@ export function updateSectionStep(id: string, step: MealRecipeStepWithId, sectio
 
     return modifiedSections;
 }
+
+export function removeSection(sectionId: string, sections: MealRecipeSectionWithId[]): MealRecipeSectionWithId[] {
+    return sections.filter(section => section.id !== sectionId);
+}
+
+export function removeSectionStep(stepId: string, section: MealRecipeSectionWithId, sections: MealRecipeSectionWithId[]): MealRecipeSectionWithId[] {
+    return sections.map(sectionElement => {
+        if (sectionElement.id !== section.id) {
+            return sectionElement;
+        }
+
+        return {
+            ...section,
+            steps: section.steps.filter(step => step.id !== stepId)
+        };
+    });
+}

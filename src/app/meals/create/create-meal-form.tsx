@@ -150,7 +150,8 @@ export function CreateMealForm() {
                     required: 'Recipe is required',
                     validate: {
                         required: (value: MealRecipeSectionWithId[]) => value.length > 0 ? true : 'Recipe is required',
-                        stepRequired: (value: MealRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'At least 2 steps are required'
+                        stepRequired: (value: MealRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'At least 2 steps are required',
+                        minStepCount: (value: MealRecipeSectionWithId[]) => value.length > 0 && value.every(section => section.steps.length > 1) ? true : 'Every section should have at least 2 steps'
                     }
                 }}
                 render={({ field: { onChange, value } }) => (

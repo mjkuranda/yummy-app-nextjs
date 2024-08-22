@@ -8,4 +8,35 @@
         justify-content: center;
         margin-top: 1rem;
     }
+
+    .recipe-section {
+        padding: 0;
+
+        > li {
+            margin: 2.5rem 0;
+
+            .section-name-container {
+                display: flex;
+
+                > :last-child {
+                    margin-top: .8rem;
+                }
+            }
+
+            // Add a step
+            > :last-child {
+                margin: 1rem 0 .6rem .5rem;
+            }
+        }
+    }
+
+    .recipe-section-step {
+        .step-container {
+            display: flex;
+
+            > :last-child {
+                margin-top: .8rem;
+            }
+        }
+    }
 }

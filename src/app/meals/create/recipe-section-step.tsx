@@ -2,9 +2,11 @@
 
 import { MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
 import { InputString } from '@/src/components/common/form/input-string';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
-import { updateSectionStep } from '@/src/helpers/recipe-form.helper';
+import { removeSectionStep, updateSectionStep } from '@/src/helpers/recipe-form.helper';
+import styles from '@/styles/app/meals/create/recipe-form.module.scss';
+import { RemoveButton } from '@/src/components/common/remove-button';
 
 interface RecipeSectionStepProps {
     section: MealRecipeSectionWithId;
@@ -26,9 +28,18 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
         onChangeSections(modifiedSections);
     };
 
+    const onRemoveStep = () => {
+        const modifiedSections = removeSectionStep(step.id, section, sections);
+
+        onChangeSections(modifiedSections);
+    };
+
     return (
-        <li>
-            <InputString label={'Type step instruction'} value={instructionStep} setValue={onChangeStep} />
+        <li className={styles['recipe-section-step']}>
+            <div className={styles['step-container']}>
+                <InputString label={'Type step instruction'} value={instructionStep} setValue={onChangeStep} />
+                <RemoveButton label={'Remove'} onClick={onRemoveStep} />
+            </div>
         </li>
     );
 }
