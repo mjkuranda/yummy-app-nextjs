@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.31.1] - 2024-08-22
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): At least 2 steps for the first recipe section are required.
+- [Marek Kurańda](https://github.com/mjkuranda): When an error occurs, then create button is blocked.
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Rendering values between image URL and file.
