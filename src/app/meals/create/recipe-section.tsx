@@ -5,8 +5,8 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { useState } from 'react';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { createNewRecipeStep, updateSectionName, updateSectionStep } from '@/src/helpers/recipe-form.helper';
-import { Button } from '@/src/components/common/button';
 import { RecipeSectionStep } from '@/src/app/meals/create/recipe-section-step';
+import { AddButton } from '@/src/components/common/add-button';
 
 interface RecipeSectionProps {
     section: MealRecipeSectionWithId;
@@ -33,10 +33,10 @@ export function RecipeSection({ section }: RecipeSectionProps) {
     return (
         <li>
             <InputString label={'Section name'} value={name} setValue={setValue} />
-            <ul>
+            <ol>
                 {section.steps.map(step => <RecipeSectionStep key={step.id} step={step} section={section} />)}
-            </ul>
-            <Button label={'Add recipe step'} onClick={onAddStep} />
+            </ol>
+            <AddButton label={'Add recipe step'} onClick={onAddStep} />
         </li>
     );
 }

@@ -8,4 +8,24 @@
         justify-content: center;
         margin-top: 1rem;
     }
+
+    .recipe-section {
+        padding: 0;
+
+        > li {
+            margin: 1rem 0;
+
+            // Add a step
+            > :last-child {
+                margin: .6rem 0 .6rem .5rem;
+            }
+        }
+    }
+
+    .recipe-section-step {
+        // InputString
+        > div {
+            display: flex;
+        }
+    }
 }

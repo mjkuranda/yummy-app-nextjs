@@ -1,9 +1,9 @@
 import styles from '@/styles/app/meals/create/recipe-form.module.scss';
-import { Button } from '@/src/components/common/button';
 import { RecipeSection } from '@/src/app/meals/create/recipe-section';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { createNewSection } from '@/src/helpers/recipe-form.helper';
 import { ErrorMessage } from '@/src/components/common/error-message';
+import { AddButton } from '@/src/components/common/add-button';
 
 export function RecipeForm() {
     const { sections, onChangeSections, error } = useRecipeFormContext();
@@ -18,9 +18,9 @@ export function RecipeForm() {
             <h4>Recipe</h4>
             <ErrorMessage error={error} />
             <div className={styles['center-container']}>
-                <Button label={'Add a new recipe'} onClick={onAddRecipe} />
+                <AddButton label={'Add a new recipe'} onClick={onAddRecipe} />
             </div>
-            <ul>
+            <ul className={styles['recipe-section']}>
                 {sections.map(section =>
                     <RecipeSection
                         key={section.id}

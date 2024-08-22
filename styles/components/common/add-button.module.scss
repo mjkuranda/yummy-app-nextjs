@@ -1,0 +1,17 @@
+.add-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #3f51b5;
+    transition: 300ms;
+
+    &:hover {
+        color: white;
+        transition: 300ms;
+    }
+
+    .label-container {
+        display: flex;
+        margin-left: .5rem;
+    }
+}

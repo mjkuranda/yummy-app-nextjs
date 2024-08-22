@@ -2,9 +2,10 @@
 
 import { MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
 import { InputString } from '@/src/components/common/form/input-string';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { updateSectionStep } from '@/src/helpers/recipe-form.helper';
+import styles from '@/styles/app/meals/create/recipe-form.module.scss';
 
 interface RecipeSectionStepProps {
     section: MealRecipeSectionWithId;
@@ -27,7 +28,7 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
     };
 
     return (
-        <li>
+        <li className={styles['recipe-section-step']}>
             <InputString label={'Type step instruction'} value={instructionStep} setValue={onChangeStep} />
         </li>
     );
