@@ -1,4 +1,5 @@
-import { MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
+import { MealFormData, MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
+import { Language, MealRecipeSection, NewMealDto } from '@/src/types/api.types';
 
 export function createNewSection(): MealRecipeSectionWithId {
     return {
@@ -71,4 +72,26 @@ export function removeSectionStep(stepId: string, section: MealRecipeSectionWith
             steps: section.steps.filter(step => step.id !== stepId)
         };
     });
+}
+
+export function proceedFormToData(formData: MealFormData, author: string, language: Language, imgUrl?: string): NewMealDto {
+    const { title, description, ingredients, type, recipe, imageUrl } = formData;
+    const recipeSections: MealRecipeSection[] = recipe.map(section => {
+        return {
+            name: section.name,
+            steps: section.steps.map(step => step.text)
+        };
+    });
+
+    return {
+        title,
+        description,
+        author,
+        language,
+        type,
+        recipeSections,
+        ingredients: Object.keys(ingredients),
+        posted: Date.now(),
+        ...((imgUrl || imageUrl) && { imageUrl: imgUrl ?? imageUrl })
+    };
 }

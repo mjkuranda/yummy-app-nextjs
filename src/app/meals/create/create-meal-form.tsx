@@ -14,6 +14,10 @@ import { RecipeForm } from '@/src/app/meals/create/recipe-form';
 import { RecipeFormProvider } from '@/src/contexts/recipe-form.context';
 import { InputCheckbox } from '@/src/components/common/form/input-checkbox';
 import { InputAreaString } from '@/src/components/common/form/input-area-string';
+import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
+import { useUserContext } from '@/src/contexts/user.context';
+import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { createMeal, uploadImage } from '@/src/api/api';
 
 const items = [
     { label: 'Apple', en: 'apple' },
@@ -40,6 +44,7 @@ const defaultValues: MealFormData = {
 };
 
 export function CreateMealForm() {
+    const { user, isLoggedIn } = useUserContext();
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
@@ -50,9 +55,28 @@ export function CreateMealForm() {
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
 
-    const onSubmit: SubmitHandler<MealFormData> = async (data, e) => {
+    const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
-        console.log(data);
+        setIsCreating(true);
+
+        try {
+            let url;
+
+            if (data.imageFile) {
+                url = await uploadImage(data.imageFile);
+            }
+
+            const dto = proceedFormToData(data, user.login, 'pl', url);
+
+            await createMeal(dto);
+            toastSuccess('Successfully created a new meal');
+            setWasCreated(true);
+            reset();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsCreating(false);
+        }
     };
 
     return (
@@ -187,8 +211,12 @@ export function CreateMealForm() {
                     </div>
                 </div>
                 <div className={styles['create-button-container']}>
-                    <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
-                    {wasCreated && 'User has been created. Check out your mail box to activate your account.'}
+                    <div>
+                        <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                    </div>
+                    <div>
+                        {wasCreated && 'New meal has been created. Wait, until an administrator will confirm its.'}
+                    </div>
                 </div>
             </div>
         </form>

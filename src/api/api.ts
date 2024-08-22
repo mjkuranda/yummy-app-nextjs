@@ -5,7 +5,7 @@ import {
     MealProposal,
     MealProposalRequest,
     MealResult, NotActivatedUser,
-    UserPermissions, DetailedMealWithTranslations
+    UserPermissions, DetailedMealWithTranslations, NewMealDto, MealDocument
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
@@ -89,4 +89,31 @@ export async function createUserAccount(data: UserData): Promise<void> {
 
         throw new ApiError(res.status, json.message);
     }
+}
+
+export async function uploadImage(image: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const res = await apiPost<FormData>('images/upload', formData, true);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
+
+    return await res.text();
+}
+
+export async function createMeal(data: NewMealDto): Promise<MealDocument> {
+    const res = await apiPost<NewMealDto>('meals/create', data);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
+
+    return await res.json();
 }
