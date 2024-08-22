@@ -52,7 +52,7 @@ export function RecipeSection({ section }: RecipeSectionProps) {
             <ol>
                 {section.steps.map(step => <RecipeSectionStep key={step.id} step={step} section={section} />)}
             </ol>
-            <AddButton label={'Add recipe step'} onClick={onAddStep} />
+            <AddButton label={'Add the next step'} onClick={onAddStep} />
         </li>
     );
 }

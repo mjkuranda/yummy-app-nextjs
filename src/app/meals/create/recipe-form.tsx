@@ -8,7 +8,7 @@ import { AddButton } from '@/src/components/common/add-button';
 export function RecipeForm() {
     const { sections, onChangeSections, error } = useRecipeFormContext();
 
-    const onAddRecipe = () => {
+    const onAddSection = () => {
         const newSection = createNewSection();
         onChangeSections([...sections, newSection]);
     };
@@ -18,7 +18,7 @@ export function RecipeForm() {
             <h4>Recipe</h4>
             <ErrorMessage error={error} />
             <div className={styles['center-container']}>
-                <AddButton label={'Add a new recipe'} onClick={onAddRecipe} />
+                <AddButton label={'Add a new section'} onClick={onAddSection} />
             </div>
             <ul className={styles['recipe-section']}>
                 {sections.map(section =>
