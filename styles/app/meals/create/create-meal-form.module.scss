@@ -2,13 +2,55 @@
 
 .create-meal-form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     min-height: calc(100vh - 222px);
     background-color: $honey-yellow-alpha;
 
-    > * {
-        margin: 1rem 0 !important;
+    .form-content-container {
+        width: 100%;
+        margin: 1rem;
+
+        .form-top-container {
+            display: flex;
+            flex-direction: column;
+
+            .form-top-header {
+                text-align: center;
+            }
+
+            // title
+            > :last-child {
+                width: 30%;
+                margin: 0 auto;
+            }
+        }
+
+        .form-field-container {
+            display: flex;
+            margin: 2rem;
+
+            .form-left-side,
+            .form-right-side {
+                margin: 1rem 0 !important;
+                width: 100%;
+            }
+
+            .form-left-side {
+                margin: 1rem 0 !important;
+
+                > * {
+                    margin: 2rem auto;
+                    width: 80%;
+                }
+            }
+
+            .form-right-side {
+                margin: 1rem 0 !important;
+            }
+        }
+
+        .create-button-container {
+            display: flex;
+            justify-content: center;
+        }
     }
 }
