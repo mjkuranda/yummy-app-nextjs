@@ -10,9 +10,10 @@ interface InputStringProps {
     value: string;
     setValue: (newValue: string) => void;
     error?: FieldError;
+    width?: string;
 }
 
-export function InputString({ label, variant = 'standard', value, setValue, error }: InputStringProps) {
+export function InputString({ label, variant = 'standard', value, setValue, error, width = '100%' }: InputStringProps) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
     };
@@ -27,6 +28,7 @@ export function InputString({ label, variant = 'standard', value, setValue, erro
             helperText={error?.message ?? ''}
             autoComplete="new-password"
             type="text"
+            fullWidth={width === '100%'}
         />
     );
 }

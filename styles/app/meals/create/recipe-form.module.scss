@@ -15,8 +15,16 @@
         > li {
             margin: 2.5rem 0;
 
+            ol {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
             .section-name-container {
                 display: flex;
+                justify-content: center;
 
                 > :last-child {
                     margin-top: .8rem;
@@ -25,6 +33,8 @@
 
             // Add a step
             > :last-child {
+                display: flex;
+                justify-content: center;
                 margin: 1rem 0 .6rem .5rem;
             }
         }

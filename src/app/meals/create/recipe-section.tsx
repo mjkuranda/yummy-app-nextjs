@@ -46,7 +46,7 @@ export function RecipeSection({ section }: RecipeSectionProps) {
     return (
         <li>
             <div className={styles['section-name-container']}>
-                <InputString label={'Section name'} value={name} setValue={setValue} />
+                <InputString label={'Section name'} value={name} setValue={setValue} width="50%" />
                 <RemoveButton label={'Remove'} onClick={onRemoveSection} />
             </div>
             <ol>

@@ -18,14 +18,14 @@ interface InputSelectProps {
     shouldHaveNone?: boolean;
 }
 
-export function InputSelect({ label, id, width = '300px', options, selectedValue, setSelectedValue, shouldHaveNone }: InputSelectProps) {
+export function InputSelect({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone }: InputSelectProps) {
     const onChange = (event: SelectChangeEvent<string>): void => {
         setSelectedValue(event.target.value as string);
     };
 
     return (
         <div>
-            <FormControl sx={{ m: 1, width }}>
+            <FormControl sx={{ width }}>
                 <InputLabel id={id}>{label}</InputLabel>
                 <Select
                     labelId={id}

@@ -3,12 +3,11 @@ import {
     Autocomplete,
     TextField,
     List,
-    ListItem,
-    ListItemText,
     Box,
     AutocompleteInputChangeReason
 } from '@mui/material';
 import { FieldError, Merge } from 'react-hook-form';
+import { SelectedIngredient } from '@/src/app/meals/create/selected-ingredient';
 
 export type Items = Record<string, string>;
 
@@ -65,12 +64,16 @@ export function InputList({ items, label, selectedItems, setSelectedItems, error
                 }
             />
             <List>
-                {Object.entries(selectedItems).map((item, index) => (
-                    <ListItem key={index}>
-                        <ListItemText primary={item[1]} />
-                    </ListItem>
-                ))}
+                {Object.entries(selectedItems).map((item, index) =>
+                    <SelectedIngredient
+                        index={index}
+                        item={item}
+                        selectedItems={selectedItems}
+                        setSelectedItems={setSelectedItems}
+                    />
+                )}
             </List>
+            <p className={'text-center'}>Wybrano {Object.entries(selectedItems).length} składników.</p>
         </Box>
     );
 }
