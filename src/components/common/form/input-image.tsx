@@ -1,15 +1,18 @@
 import { Button } from '@/src/components/common/button';
 import { ChangeEvent, useRef } from 'react';
 import styles from '@/styles/components/common/inputs/input-image.module.scss';
+import { FieldError } from 'react-hook-form';
+import { ErrorMessage } from '@/src/components/common/error-message';
 
 interface InputImageProps {
     id: string;
-    width?: string;
-    image?: File;
     setImage: (file: File) => void;
+    image?: File;
+    width?: string;
+    error?: FieldError;
 }
 
-export function InputImage({ id, image, width = '100%', setImage }: InputImageProps) {
+export function InputImage({ id, image, width = '100%', setImage, error }: InputImageProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +33,7 @@ export function InputImage({ id, image, width = '100%', setImage }: InputImagePr
                 <div className={styles['center-horizontally']}>
                     <img
                         className={styles['uploaded-image']}
-                        src={URL.createObjectURL(image)}
+                        src={typeof image?.name === 'string' ? URL.createObjectURL(image) : '/no-image.png'}
                         alt="Wybrany obraz"
                         style={{ width }}
                     />
@@ -44,6 +47,7 @@ export function InputImage({ id, image, width = '100%', setImage }: InputImagePr
                 type="file"
                 id={id}
             />
+            <ErrorMessage error={error} />
             <div className={styles['center-horizontally']}>
                 <Button
                     label={'Upload'}
@@ -51,7 +55,5 @@ export function InputImage({ id, image, width = '100%', setImage }: InputImagePr
                 />
             </div>
         </div>
-
     );
-
 }
