@@ -46,6 +46,9 @@ export function CreateMealForm() {
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
 
+    const imageUrl = watch('imageUrl');
+    const imageFile = watch('imageFile');
+
     const onSubmit: SubmitHandler<MealFormData> = async (data, e) => {
         e?.preventDefault();
         console.log(data);
@@ -110,15 +113,23 @@ export function CreateMealForm() {
                         <Controller
                             name={'imageUrl'}
                             control={control}
-                            render={({ field: { onChange, value } }) => (
-                                <InputString label={'Type image URL'} value={value ?? ''} setValue={onChange} error={errors.imageUrl} />
+                            rules={{
+                                required: 'URL image is required',
+                                pattern: {
+                                    value: /^((http|https):\/\/)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+                                    message: 'String should be a correct URL'
+                                }
+                            }}
+                            render={({ field: { onChange } }) => (
+                                <InputString label={'Type image URL'} value={imageUrl ?? ''} setValue={onChange} error={errors.imageUrl} />
                             )}
                         /> :
                         <Controller
                             name={'imageFile'}
                             control={control}
-                            render={({ field: { onChange, value } }) => (
-                                <InputImage id={'meal-image'} image={value} setImage={onChange} width="50%" />
+                            rules={{ required: 'Image is missing' }}
+                            render={({ field: { onChange } }) => (
+                                <InputImage id={'meal-image'} image={imageFile} setImage={onChange} width="50%" error={errors.imageFile} />
                             )}
                         />
                     }
@@ -137,7 +148,10 @@ export function CreateMealForm() {
                 control={control}
                 rules={{
                     required: 'Recipe is required',
-                    validate: (value: MealRecipeSectionWithId[]) => value.length > 0 ? true : 'Recipe is required'
+                    validate: {
+                        required: (value: MealRecipeSectionWithId[]) => value.length > 0 ? true : 'Recipe is required',
+                        stepRequired: (value: MealRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'At least 2 steps are required'
+                    }
                 }}
                 render={({ field: { onChange, value } }) => (
                     <RecipeFormProvider sections={value} onChangeSections={onChange} error={errors.recipe}>
@@ -145,7 +159,7 @@ export function CreateMealForm() {
                     </RecipeFormProvider>
                 )}
             />
-            <Button label={'Create'} onClick={handleSubmit(onSubmit)} />
+            <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
             {wasCreated && 'User has been created. Check out your mail box to activate your account.'}
         </form>
     );

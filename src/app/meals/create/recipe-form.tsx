@@ -3,6 +3,7 @@ import { Button } from '@/src/components/common/button';
 import { RecipeSection } from '@/src/app/meals/create/recipe-section';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { createNewSection } from '@/src/helpers/recipe-form.helper';
+import { ErrorMessage } from '@/src/components/common/error-message';
 
 export function RecipeForm() {
     const { sections, onChangeSections, error } = useRecipeFormContext();
@@ -15,7 +16,7 @@ export function RecipeForm() {
     return (
         <div className={styles['recipe-form']}>
             <h4>Recipe</h4>
-            {error?.message && <p className={styles['error-container']}>{error.message}</p>}
+            <ErrorMessage error={error} />
             <div className={styles['center-container']}>
                 <Button label={'Add a new recipe'} onClick={onAddRecipe} />
             </div>
