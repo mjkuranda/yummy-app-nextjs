@@ -47,6 +47,18 @@ export class ForbiddenError extends ApiError {
     }
 }
 
+export class NotFoundError extends ApiError {
+    constructor(message: string) {
+        super(404, message);
+    }
+}
+
+export class NotFoundActivationForUser extends NotFoundError {
+    constructor() {
+        super('Not found any request for activation');
+    }
+}
+
 export function throwApiError(res: ApiErrorResponse): never {
     switch (res.statusCode) {
     case 400:
@@ -55,6 +67,10 @@ export function throwApiError(res: ApiErrorResponse): never {
         throw new UnauthorizedError(res.message);
     case 403:
         throw new ForbiddenError(res.message);
+    case 404:
+        if (res.message.includes('Not found any request for activation')) {
+            throw new NotFoundActivationForUser();
+        }
     }
 
     throw new Error('Unexpected error occurred.');
@@ -73,6 +89,7 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getBadRequestMessage(message: string, context: ApiErrorContext): string {
     if (message.startsWith('Incorrect credentials')) {
         return 'Incorrect credentials';
@@ -80,6 +97,10 @@ function getBadRequestMessage(message: string, context: ApiErrorContext): string
 
     if (message.includes('login has already exists')) {
         return 'Provided login has already exists';
+    }
+
+    if (message.includes('User') && message.includes('does not exist')) {
+        return 'User does not exist';
     }
 
     return 'Bad request message';
