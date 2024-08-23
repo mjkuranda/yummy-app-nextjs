@@ -1,7 +1,6 @@
 import { apiGet, apiPost } from '@/src/api/methods';
 import {
     LoginUserData,
-    DetailedMeal,
     MealProposal,
     MealProposalRequest,
     MealResult, NotActivatedUser,
@@ -24,7 +23,14 @@ export async function getMeals(ingredients: string[]): Promise<MealResult[]> {
 }
 
 export async function doUserLogin(login: string, password: string): Promise<UserPermissions> {
-    const res = await apiPost<LoginUserData>('users/login', { login, password });
+    let res: Response;
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost<LoginUserData>('users/login', { login, password });
+    } catch (err: unknown) {
+        throw err;
+    }
 
     return await res.json();
 }
@@ -43,52 +49,117 @@ export async function addMealProposal(ingredients: string[]): Promise<Response> 
     });
 }
 
-export async function getSoftAddedMeals(): Promise<DetailedMeal[]> {
-    return apiGet<DetailedMeal[]>('meals/soft/added');
+export async function getSoftAddedMeals(): Promise<MealDocument[]> {
+    let res: MealDocument[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<MealDocument[]>('meals/soft/added');
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }
 
-export async function getSoftEditedMeals(): Promise<DetailedMeal[]> {
-    return apiGet<DetailedMeal[]>('meals/soft/edited');
+export async function getSoftEditedMeals(): Promise<MealDocument[]> {
+    let res: MealDocument[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<MealDocument[]>('meals/soft/edited');
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }
 
-export async function getSoftDeletedMeals(): Promise<DetailedMeal[]> {
-    return apiGet<DetailedMeal[]>('meals/soft/deleted');
+export async function getSoftDeletedMeals(): Promise<MealDocument[]> {
+    let res: MealDocument[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<MealDocument[]>('meals/soft/deleted');
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }
 
 export async function getNotActivatedUsers(): Promise<NotActivatedUser[]> {
-    return apiGet<NotActivatedUser[]>('users/not-activated');
+    let res: NotActivatedUser[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<NotActivatedUser[]>('users/not-activated');
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }
 
-export async function confirmMealAddition(id: string): Promise<DetailedMeal> {
-    const res = await apiPost(`meals/${id}/create`);
+export async function confirmMealAddition(id: string): Promise<MealDocument> {
+    let res;
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost(`meals/${id}/create`);
+    } catch (err: unknown) {
+        throw err;
+    }
 
     return await res.json();
 }
 
-export async function confirmMealEdition(id: string): Promise<DetailedMeal> {
-    const res = await apiPost(`meals/${id}/create`);
+export async function confirmMealEdition(id: string): Promise<MealDocument> {
+    let res;
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost(`meals/${id}/edit`);
+    } catch (err: unknown) {
+        throw err;
+    }
 
     return await res.json();
 }
 
-export async function confirmMealDeletion(id: string): Promise<DetailedMeal> {
-    const res = await apiPost(`meals/${id}/create`);
+export async function confirmMealDeletion(id: string): Promise<MealDocument> {
+    let res;
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost(`meals/${id}/delete`);
+    } catch (err: unknown) {
+        throw err;
+    }
 
     return await res.json();
 }
 
 export async function confirmUserActivation(login: string): Promise<void> {
-    await apiPost(`users/${login}/activate`);
+    // eslint-disable-next-line no-useless-catch
+    try {
+        await apiPost(`users/${login}/activate`);
+    } catch (err: unknown) {
+        throw err;
+    }
 }
 
 export async function createUserAccount(data: UserData): Promise<void> {
-    const res = await apiPost<UserData>('users/create', data);
+    let res: Response;
 
-    if (res.status > 299) {
-        const json = await res.json();
-
-        throw new ApiError(res.status, json.message);
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost<UserData>('users/create', data);
+    } catch (err: unknown) {
+        throw err;
     }
+
+    return await res.json();
 }
 
 export async function uploadImage(image: File): Promise<string> {

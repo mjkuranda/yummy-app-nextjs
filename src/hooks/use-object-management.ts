@@ -9,7 +9,9 @@ import {
 } from '@/src/api/api';
 import { useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/management.types';
-import { toastError } from '@/src/utils/toast.utils';
+import { useRouter } from 'next/navigation';
+import { handleApiError } from '@/src/api/api-errors';
+import { useUserContext } from '@/src/contexts/user.context';
 
 export interface ObjectItemStruct {
     id: string;
@@ -18,52 +20,98 @@ export interface ObjectItemStruct {
 }
 
 export function useObjectManagement(objects: ObjectType, action: ActionType) {
+    const userContext = useUserContext();
+    const router = useRouter();
     const [refetch, toggleRefetch] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [objectList, setObjectList] = useState<ObjectItemStruct[]>([]);
 
     const refetchObjects = () => toggleRefetch(!refetch);
 
-    useEffect(() => {
-        setIsLoading(true);
+    const fetchObjects = <Object>(getFunction: () => Promise<Object[]>, mapFunction: (object: Object) => ObjectItemStruct): void => {
+        if (!isLoading) {
+            setIsLoading(true);
+        }
 
+        getFunction()
+            .then(fetchedObjects => {
+                const objects = fetchedObjects.map(mapFunction);
+                setObjectList(objects);
+            })
+            .catch(err => handleApiError(err, router, userContext))
+            .finally(() => setIsLoading(false));
+    };
+
+    useEffect(() => {
         if (objects === 'users' && action === 'not-activated') {
-            getNotActivatedUsers()
-                .then(users => {
-                    const objects = users.map(user => ({ id: user.email, label: user.login, action: async () => confirmUserActivation(user.login) }));
-                    setObjectList(objects);
+            fetchObjects(
+                getNotActivatedUsers,
+                user => ({
+                    id: user.email,
+                    label: user.login,
+                    action: async () => {
+                        // eslint-disable-next-line no-useless-catch
+                        try {
+                            await confirmUserActivation(user.login);
+                        } catch (err: unknown) {
+                            throw err;
+                        }
+                    }
                 })
-                .catch(() => toastError('Error while fetching...'))
-                .finally(() => setIsLoading(false));
+            );
         }
         else if (objects === 'meals') {
             switch (action) {
             case 'added':
-                getSoftAddedMeals()
-                    .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealAddition(meal._id) }));
-                        setObjectList(objects);
+                fetchObjects(
+                    getSoftAddedMeals,
+                    meal => ({
+                        id: meal._id,
+                        label: meal.title,
+                        action: async () => {
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                await confirmMealAddition(meal._id);
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        }
                     })
-                    .catch(() => toastError('Error while fetching...'))
-                    .finally(() => setIsLoading(false));
+                );
                 break;
             case 'edited':
-                getSoftEditedMeals()
-                    .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealEdition(meal._id) }));
-                        setObjectList(objects);
+                fetchObjects(
+                    getSoftEditedMeals,
+                    meal => ({
+                        id: meal._id,
+                        label: meal.title,
+                        action: async () => {
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                await confirmMealEdition(meal._id);
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        }
                     })
-                    .catch(() => toastError('Error while fetching...'))
-                    .finally(() => setIsLoading(false));
+                );
                 break;
             case 'deleted':
-                getSoftDeletedMeals()
-                    .then(meals => {
-                        const objects = meals.map(meal => ({ id: meal._id, label: meal.title, action: async () => confirmMealDeletion(meal._id) }));
-                        setObjectList(objects);
+                fetchObjects(
+                    getSoftDeletedMeals,
+                    meal => ({
+                        id: meal._id,
+                        label: meal.title,
+                        action: async () => {
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                await confirmMealDeletion(meal._id);
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        }
                     })
-                    .catch(() => toastError('Error while fetching...'))
-                    .finally(() => setIsLoading(false));
+                );
                 break;
             }
         }

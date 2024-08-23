@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from 'react';
 import { CurrentUser } from '@/src/types/user.types';
 import { UserPermissions } from '@/src/types/api.types';
 
-interface UserContextValues {
+export interface UserContextValues {
     user: CurrentUser;
     loginUser: (login: string, permissions: UserPermissions) => void;
     logoutUser: () => void;

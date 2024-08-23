@@ -5,7 +5,10 @@ import styles from '@/styles/app/management/page.module.scss';
 import { ActionType, ObjectType } from '@/src/types/management.types';
 import { ObjectItem } from '@/src/app/management/[objects]/[action]/object-item';
 import { useState } from 'react';
-import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { toastSuccess } from '@/src/utils/toast.utils';
+import { handleApiError } from '@/src/api/api-errors';
+import { useRouter } from 'next/navigation';
+import { useUserContext } from '@/src/contexts/user.context';
 
 interface ObjectListProps {
     objects: ObjectItemStruct[];
@@ -15,6 +18,8 @@ interface ObjectListProps {
 }
 
 export function ObjectList({ objects, objectType, actionType, refetch }: ObjectListProps) {
+    const userContext = useUserContext();
+    const router = useRouter();
     const [isProceeding, setIsProceeding] = useState<boolean>(false);
 
     const onClick = async (action: () => Promise<any>) => {
@@ -25,7 +30,7 @@ export function ObjectList({ objects, objectType, actionType, refetch }: ObjectL
             refetch();
             toastSuccess('Action performed successfully!');
         } catch (err: any) {
-            toastError(err.message);
+            handleApiError(err, router, userContext);
         } finally {
             setIsProceeding(false);
         }
