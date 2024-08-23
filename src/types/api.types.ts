@@ -82,7 +82,7 @@ export interface MealProposalRequest {
 }
 
 export interface NotActivatedUser {
-    email: string;
+    _id: string;
     login: string;
 }
 

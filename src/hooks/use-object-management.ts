@@ -28,7 +28,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
 
     const refetchObjects = () => toggleRefetch(!refetch);
 
-    const fetchObjects = <Object>(getFunction: () => Promise<Object[]>, mapFunction: (object: Object) => ObjectItemStruct): void => {
+    const fetchObjects = <FetchObject>(getFunction: () => Promise<FetchObject[]>, mapFunction: (object: FetchObject) => ObjectItemStruct): void => {
         if (!isLoading) {
             setIsLoading(true);
         }
@@ -47,12 +47,12 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
             fetchObjects(
                 getNotActivatedUsers,
                 user => ({
-                    id: user.email,
+                    id: user._id,
                     label: user.login,
                     action: async () => {
                         // eslint-disable-next-line no-useless-catch
                         try {
-                            await confirmUserActivation(user.login);
+                            await confirmUserActivation(user._id);
                         } catch (err: unknown) {
                             throw err;
                         }

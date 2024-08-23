@@ -140,10 +140,10 @@ export async function confirmMealDeletion(id: string): Promise<MealDocument> {
     return await res.json();
 }
 
-export async function confirmUserActivation(login: string): Promise<void> {
+export async function confirmUserActivation(id: string): Promise<void> {
     // eslint-disable-next-line no-useless-catch
     try {
-        await apiPost(`users/${login}/activate`);
+        await apiPost(`users/${id}/activate`);
     } catch (err: unknown) {
         throw err;
     }
