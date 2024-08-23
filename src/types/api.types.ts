@@ -104,6 +104,7 @@ export interface NewMealDto {
 }
 
 export interface MealDocument {
+    readonly _id: string;
     readonly author: string;
     readonly description: string;
     readonly imageUrl: string;
