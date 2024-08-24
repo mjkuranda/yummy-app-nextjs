@@ -18,7 +18,11 @@ export function MealImage({ imgUrl, title }: MealImageProps) {
 
     return (
         <div className={styles['result-image']}>
-            <img src={hasImage ? imgUrl : '/no-image.png'} alt={`Zdjęcie posiłku o nazwie ${title}`} />
+            <img src={hasImage ? imgUrl : '/no-image.png'} alt={`Zdjęcie posiłku o nazwie ${title}`} onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/no-image.png';
+                target.alt = 'Brak dostępnego zdjęcia';
+            }} />
         </div>
     );
 }

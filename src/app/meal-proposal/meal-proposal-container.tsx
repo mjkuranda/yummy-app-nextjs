@@ -10,7 +10,7 @@ import { MealProposal } from '@/src/types/api.types';
 import { Loader } from '@/src/components/common/loader';
 
 export function MealProposalContainer() {
-    const { onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal } = useMealProposals();
+    const { onNext, onPrevious, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal } = useMealProposals();
     const currentProposal = getCurrentProposal() as MealProposal;
 
     if (isErrorProposals) {
@@ -24,7 +24,7 @@ export function MealProposalContainer() {
     return (
         <div className={styles['meal-proposal-container']}>
             <MealProposalItem proposal={currentProposal} />
-            <MealProposalNavigator onNext={onNext} onChoose={onChoose} />
+            <MealProposalNavigator onPrevious={onPrevious} onNext={onNext} onChoose={onChoose} />
             <div className={styles['meal-proposal-back-link']}>
                 <Link href="/">
                     <ArrowCircleLeftIcon />Back to main page

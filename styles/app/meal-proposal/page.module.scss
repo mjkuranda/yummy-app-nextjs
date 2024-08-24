@@ -26,7 +26,8 @@ $container-horizontal-margin: 33;
                 align-items: center;
 
                 img {
-                    width: 360px;
+                    height: calc(231px * 2);
+                    //box-shadow: 0 0 4px 4px black;
                 }
             }
 
@@ -34,7 +35,9 @@ $container-horizontal-margin: 33;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 overflow: hidden;
-                width: calc(100vw - 2 * $container-horizontal-margin * 1vw);
+                width: 50vw;
+                text-align: center;
+                margin-top: 1rem;
             }
 
             p {
