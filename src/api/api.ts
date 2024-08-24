@@ -40,13 +40,32 @@ export async function refreshUserTokens() {
 }
 
 export async function getMealProposals(): Promise<MealProposal[]> {
-    return apiGet<MealProposal[]>('meals/proposal/all');
+    let res: MealProposal[] = [];
+    //
+    // // eslint-disable-next-line no-useless-catch
+    // try {
+    //     console.log('xxx');
+    res = await apiGet<MealProposal[]>('meals/proposal/all');
+    // } catch (err: unknown) {
+    //     throw err;
+    // }
+    //
+    return res;
 }
 
 export async function addMealProposal(ingredients: string[]): Promise<Response> {
-    return apiPost<MealProposalRequest>('meals/proposal', {
-        ingredients: ingredients.sort()
-    });
+    let res;
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiPost<MealProposalRequest>('meals/proposal', {
+            ingredients: ingredients.sort()
+        });
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }
 
 export async function getSoftAddedMeals(): Promise<MealDocument[]> {
