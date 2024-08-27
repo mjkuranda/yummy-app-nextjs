@@ -11,6 +11,11 @@
         transition: 300ms;
     }
 
+    &[data-disabled=true] {
+        opacity: 0.618;
+        cursor: not-allowed !important;
+    }
+
     .label-container {
         display: flex;
         margin-left: .5rem;

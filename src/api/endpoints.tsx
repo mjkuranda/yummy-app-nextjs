@@ -7,14 +7,15 @@ import {
     NotActivatedUser
 } from '@/src/types/api.types';
 import {
-    getMeal,
+    getMeal, getMealComments,
     getMealProposals,
     getMeals, getNotActivatedUsers,
     getSoftAddedMeals,
     getSoftDeletedMeals,
     getSoftEditedMeals
 } from '@/src/api/api';
-import { DAY, HOUR } from '@/src/constants/numbers';
+import { DAY, HOUR, MINUTE } from '@/src/constants/numbers';
+import { MealComment } from '@/src/types/meal.types';
 
 export function useGetMealById(id: string): UseQueryResult<DetailedMealWithTranslations> {
     return useQuery({
@@ -101,5 +102,14 @@ export function useGetNotActivatedUsers(isTriggered: boolean = true): UseQueryRe
         queryFn: async (): Promise<NotActivatedUser[]> => await getNotActivatedUsers(),
         queryKey: ['users', 'not-activated'],
         staleTime: HOUR
+    });
+}
+
+export function useGetMealComments(mealId: string): UseQueryResult<MealComment[]> {
+    return useQuery({
+        queryFn: async (): Promise<MealComment[]> => await getMealComments(mealId),
+        queryKey: ['meals', 'comments', mealId],
+        staleTime: 5 * MINUTE,
+        refetchInterval: MINUTE
     });
 }
