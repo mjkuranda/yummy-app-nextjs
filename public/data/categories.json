@@ -1,0 +1,42 @@
+{
+    "breads": {
+        "en": "breads",
+        "pl": "pieczywa"
+    },
+    "dairy-and-eggs": {
+        "en": "dairy and eggs",
+        "pl": "nabiał i jajka"
+    },
+    "fish-and-seafood": {
+        "en": "fish and seafoods",
+        "pl": "ryby i owoce morza"
+    },
+    "fruits": {
+        "en": "fruits",
+        "pl": "owoce"
+    },
+    "meats": {
+        "en": "meats",
+        "pl": "mięsa"
+    },
+    "oils-and-fats": {
+        "en": "oils and fats",
+        "pl": "oleje i tłuszcze"
+    },
+    "pasta": {
+        "en": "pasta",
+        "pl": "makarony"
+    },
+    "seeds-and-nuts": {
+        "en": "seeds and nuts",
+        "pl": "nasiona i orzechy"
+    },
+    "spices": {
+        "en": "spices",
+        "pl": "przyprawy"
+    },
+    "vegetables": {
+        "en": "vegetables",
+        "pl": "warzywa"
+    }
+}

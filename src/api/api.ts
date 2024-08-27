@@ -41,15 +41,14 @@ export async function refreshUserTokens() {
 
 export async function getMealProposals(): Promise<MealProposal[]> {
     let res: MealProposal[] = [];
-    //
-    // // eslint-disable-next-line no-useless-catch
-    // try {
-    //     console.log('xxx');
-    res = await apiGet<MealProposal[]>('meals/proposal/all');
-    // } catch (err: unknown) {
-    //     throw err;
-    // }
-    //
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<MealProposal[]>('meals/proposal/all');
+    } catch (err: unknown) {
+        throw err;
+    }
+
     return res;
 }
 

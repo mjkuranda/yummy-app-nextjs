@@ -1,55 +1,182 @@
 {
-  "category": "vegetables",
-  "data": [
-    "carrot",
-    "potato",
-    "tomato",
-    "onion",
-    "cucumber",
-    "lettuce",
-    "bell pepper",
-    "broccoli",
-    "spinach",
-    "zucchini",
-    "cabbage",
-    "cauliflower",
-    "garlic",
-    "celery",
-    "mushroom",
-    "green bean",
-    "asparagus",
-    "sweet potato",
-    "radish",
-    "corn",
-    "eggplant",
-    "pea",
-    "kale",
-    "brussels sprout",
-    "artichoke",
-    "beet",
-    "pumpkin",
-    "butternut squash",
-    "fennel",
-    "leek",
-    "turnip",
-    "rhubarb",
-    "chili pepper",
-    "okra",
-    "squash",
-    "chard",
-    "arugula",
-    "endive",
-    "watercress",
-    "bok choy",
-    "kohlrabi",
-    "collard greens",
-    "broccoli rabe",
-    "chicory",
-    "snow pea",
-    "daikon",
-    "jicama",
-    "chayote",
-    "rutabaga",
-    "lotus root"
-  ]
+    "carrot": {
+        "en": "carrot",
+        "pl": "marchewka"
+    },
+    "potato": {
+        "en": "potato",
+        "pl": "ziemniak"
+    },
+    "tomato": {
+        "en": "tomato",
+        "pl": "pomidor"
+    },
+    "onion": {
+        "en": "onion",
+        "pl": "cebula"
+    },
+    "cucumber": {
+        "en": "cucumber",
+        "pl": "ogórek"
+    },
+    "lettuce": {
+        "en": "lettuce",
+        "pl": "sałata"
+    },
+    "bell pepper": {
+        "en": "bell pepper",
+        "pl": "papryka"
+    },
+    "broccoli": {
+        "en": "broccoli",
+        "pl": "brokułą"
+    },
+    "spinach": {
+        "en": "spinach",
+        "pl": "szpinak"
+    },
+    "zucchini": {
+        "en": "zucchini",
+        "pl": "cukinia"
+    },
+    "cabbage": {
+        "en": "cabbage",
+        "pl": "kapusta"
+    },
+    "cauliflower": {
+        "en": "cauliflower",
+        "pl": "kalafior"
+    },
+    "garlic": {
+        "en": "garlic",
+        "pl": "czosnek"
+    },
+    "celery": {
+        "en": "celery",
+        "pl": "seler"
+    },
+    "mushroom": {
+        "en": "mushroom",
+        "pl": "grzyb"
+    },
+    "green bean": {
+        "en": "green bean",
+        "pl": "zielona fasolka"
+    },
+    "asparagus": {
+        "en": "asparagus",
+        "pl": "szparag"
+    },
+    "sweet potato": {
+        "en": "sweet potato",
+        "pl": "batat"
+    },
+    "radish": {
+        "en": "radish",
+        "pl": "rzodkiewka"
+    },
+    "corn": {
+        "en": "corn",
+        "pl": "kukurydza"
+    },
+    "eggplant": {
+        "en": "eggplant",
+        "pl": "bakłażan"
+    },
+    "pea": {
+        "en": "pea",
+        "pl": "groch"
+    },
+    "kale": {
+        "en": "kale",
+        "pl": "kapusta włoska"
+    },
+    "brussels sprout": {
+        "en": "brussels sprout",
+        "pl": "brukselka"
+    },
+    "artichoke": {
+        "en": "artichoke",
+        "pl": "karczoch"
+    },
+    "beet": {
+        "en": "beet",
+        "pl": "buraczany"
+    },
+    "pumpkin": {
+        "en": "pumpkin",
+        "pl": "dynia"
+    },
+    "butternut squash": {
+        "en": "butternut squash",
+        "pl": "dynia zwyczajna"
+    },
+    "fennel": {
+        "en": "fennel",
+        "pl": "koper włoski"
+    },
+    "leek": {
+        "en": "leek",
+        "pl": "por"
+    },
+    "turnip": {
+        "en": "turnip",
+        "pl": "rzepa"
+    },
+    "rhubarb": {
+        "en": "rhubarb",
+        "pl": "rabarbar"
+    },
+    "chili pepper": {
+        "en": "chili pepper",
+        "pl": "papryczka chili"
+    },
+    "okra": {
+        "en": "okra",
+        "pl": "piżmian jadalny"
+    },
+    "chard": {
+        "en": "chard",
+        "pl": "boćwina"
+    },
+    "arugula": {
+        "en": "arugula",
+        "pl": "rukola"
+    },
+    "endive": {
+        "en": "endive",
+        "pl": "endywia"
+    },
+    "watercress": {
+        "en": "watercress",
+        "pl": "watercress"
+    },
+    "kohlrabi": {
+        "en": "kohlrabi",
+        "pl": "kalarepa"
+    },
+    "collard greens": {
+        "en": "collard greens",
+        "pl": "jarmuż"
+    },
+    "chicory": {
+        "en": "chicory",
+        "pl": "cykoria"
+    },
+    "snow pea": {
+        "en": "snow pea",
+        "pl": "groszek cukrowy"
+    },
+    "chayote": {
+        "en": "chayote",
+        "pl": "kolczoch"
+    },
+    "rutabaga": {
+        "en": "rutabaga",
+        "pl": "brukiew"
+    },
+    "lotus root": {
+        "en": "lotus root",
+        "pl": "korzeń lotosu"
+    }
 }
