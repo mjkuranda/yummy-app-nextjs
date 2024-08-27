@@ -12,8 +12,8 @@ import { SelectedIngredient } from '@/src/app/meals/create/selected-ingredient';
 export type Items = Record<string, string>;
 
 interface InputListItem {
-    label: string;
     en: string;
+    pl: string;
 }
 
 interface InputListProps {
@@ -22,14 +22,15 @@ interface InputListProps {
     selectedItems: Items;
     setSelectedItems: (items: Items) => void;
     error?: Merge<FieldError, (FieldError | undefined)[]> | undefined;
+    onFilter?: (match: string) => InputListItem[];
 }
 
-export function InputList({ items, label, selectedItems, setSelectedItems, error }: InputListProps) {
+export function InputList({ label, selectedItems, setSelectedItems, error, onFilter }: InputListProps) {
     const [inputValue, setInputValue] = useState('');
 
     const onChange = (event: SyntheticEvent<Element>, newValue: InputListItem | null): void => {
         if (newValue && !selectedItems[newValue.en]) {
-            setSelectedItems({ ...selectedItems, [newValue.en]: newValue.label });
+            setSelectedItems({ ...selectedItems, [newValue.en]: newValue.pl });
         }
     };
 
@@ -45,8 +46,9 @@ export function InputList({ items, label, selectedItems, setSelectedItems, error
     return (
         <Box sx={{ width: 300 }}>
             <Autocomplete<InputListItem>
-                options={items}
-                getOptionLabel={option => option.label}
+                options={onFilter ? onFilter(inputValue) : []}
+                getOptionLabel={option => option.pl.charAt(0).toUpperCase() + option.pl.substring(1)}
+                getOptionKey={option => option.en}
                 onChange={onChange}
                 inputValue={inputValue}
                 clearOnBlur={false}

@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.37.0] - 2024-08-27
 ### Changed
-- [Marek Kurańda](https://github.com/mjkuranda): Rendering Polish translations of ingredients at search page.
+- [Marek Kurańda](https://github.com/mjkuranda): Rendering Polish translations of ingredients at search and create page.
 
 ## [1.36.1] - 2024-08-24
 ### Fixed
