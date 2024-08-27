@@ -1,6 +1,7 @@
 import styles from '@/styles/app/result/page.module.scss';
 import { MealRecipe } from '@/src/app/result/[id]/meal-recipe';
 import { DetailedMeal } from '@/src/types/api.types';
+import { MealRating } from '@/src/app/result/[id]/meal-rating';
 
 interface MealGeneralProps {
     meal: DetailedMeal;
@@ -14,10 +15,7 @@ export function MealGeneral({ meal }: MealGeneralProps) {
                     <h3>{meal.title}</h3>
                 </li>
                 <li>
-                    <h4>Wyświetlono X razy</h4>
-                </li>
-                <li>
-                    <h4>Wybrano X razy</h4>
+                    <MealRating />
                 </li>
             </ul>
             <div>
