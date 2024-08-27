@@ -9,6 +9,7 @@ import {
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
 import { ApiError } from 'next/dist/server/api-utils';
+import { MealComment } from '@/src/types/meal.types';
 
 export async function getMeal(id: string): Promise<DetailedMealWithTranslations> {
     return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
@@ -205,4 +206,17 @@ export async function createMeal(data: NewMealDto): Promise<MealDocument> {
     }
 
     return await res.json();
+}
+
+export async function getMealComments(mealId: string): Promise<MealComment[]> {
+    let res: MealComment[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<MealComment[]>(`meals/${mealId}/comments`);
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
 }

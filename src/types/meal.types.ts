@@ -24,3 +24,10 @@ export interface MealRecipeSectionWithId {
     steps: MealRecipeStepWithId[]
     name?: string,
 }
+
+export interface MealComment {
+    readonly mealId: string;
+    readonly user: string;
+    readonly text: string;
+    readonly posted: number;
+}

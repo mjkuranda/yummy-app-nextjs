@@ -1,0 +1,20 @@
+.meal-comment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 3/1/span 1/span 2;
+    min-height: 64px;
+    margin: 2rem 0;
+
+    .meal-comment-header {
+        margin-bottom: 1em;
+        text-shadow: 1px 1px 2px;
+        text-align: center;
+    }
+
+    .meal-comment-add-section {
+        .meal-comment-add-section__input {
+            margin-bottom: .5rem;
+        }
+    }
+}
