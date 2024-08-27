@@ -35,7 +35,5 @@ export interface MealComment {
 
 export interface NewMealCommentDto {
     mealId: string;
-    user: string;
     text: string;
-    posted: number;
 }

@@ -109,6 +109,7 @@ export function useGetMealComments(mealId: string): UseQueryResult<MealComment[]
     return useQuery({
         queryFn: async (): Promise<MealComment[]> => await getMealComments(mealId),
         queryKey: ['meals', 'comments', mealId],
-        staleTime: MINUTE
+        staleTime: 5 * MINUTE,
+        refetchInterval: MINUTE
     });
 }

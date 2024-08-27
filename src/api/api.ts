@@ -9,7 +9,7 @@ import {
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
 import { ApiError } from 'next/dist/server/api-utils';
-import { MealComment } from '@/src/types/meal.types';
+import { MealComment, NewMealCommentDto } from '@/src/types/meal.types';
 
 export async function getMeal(id: string): Promise<DetailedMealWithTranslations> {
     return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
@@ -219,4 +219,14 @@ export async function getMealComments(mealId: string): Promise<MealComment[]> {
     }
 
     return res;
+}
+
+export async function postNewComment(data: NewMealCommentDto): Promise<void> {
+    const res = await apiPost<NewMealCommentDto>(`meals/${data.mealId}/comment`, data);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
 }

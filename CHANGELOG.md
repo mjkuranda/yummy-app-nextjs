@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.38.0] - 2024-08-27
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Capability to add the comments for the meals.
+- [Marek Kurańda](https://github.com/mjkuranda): Rendering all comments of a specific meal.
+- [Marek Kurańda](https://github.com/mjkuranda): Refreshing comments one every minute.
 
 ## [1.37.0] - 2024-08-27
 ### Changed

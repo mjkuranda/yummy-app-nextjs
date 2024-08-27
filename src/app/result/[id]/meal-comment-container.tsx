@@ -6,20 +6,13 @@ import { useGetMealComments } from '@/src/api/endpoints';
 import { Loader } from '@/src/components/common/loader';
 import { MealCommentContent } from '@/src/app/result/[id]/meal-comment-content';
 import { MealCommentAddSection } from '@/src/app/result/[id]/meal-comment-add-section';
-import { MealComment } from '@/src/types/meal.types';
+import Link from 'next/link';
+import { useUserContext } from '@/src/contexts/user.context';
 
 export function MealCommentContainer() {
     const { id } = useParams<{ id: string }>();
-    const { data, isLoading, isFetching, refetch } = useGetMealComments(id);
-
-    const mock: MealComment[] = [
-        { _id: '123', mealId: '123', user: 'Xywfnjn', text: 'Lorem ipsum dolor sit amet.', posted: Date.now() },
-        { _id: '123', mealId: '123', user: 'Xywfnjn', text: 'Lorem ipsum dolor sit amet.', posted: Date.now() },
-        { _id: '123', mealId: '123', user: 'Xywfnjn', text: 'Lorem ipsum dolor sit amet.', posted: Date.now() }
-    ];
-
-    // fetching
-    console.log(isLoading, isFetching);
+    const { isLoggedIn } = useUserContext();
+    const { data, isLoading, refetch } = useGetMealComments(id);
 
     return (
         <div className={styles['meal-comment-container']}>
@@ -27,8 +20,11 @@ export function MealCommentContainer() {
                 ? (
                     <div className={styles['meal-comment-content']}>
                         <h3 className={styles['meal-comment-header']}>Comments</h3>
-                        <MealCommentAddSection />
-                        <MealCommentContent data={mock} />
+                        {isLoggedIn()
+                            ? <MealCommentAddSection refetch={refetch} />
+                            : <p className="text-center"><Link href={'/users/login'}>Zaloguj się</Link>, aby dodać komentarz.</p>
+                        }
+                        <MealCommentContent data={data} />
                     </div>
                 )
                 : <Loader />

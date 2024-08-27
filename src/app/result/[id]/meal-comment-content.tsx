@@ -32,7 +32,7 @@ export function MealCommentContent({ data }: MealCommentContentProps) {
 
     return (
         <ul>
-            {data.map(comment => {
+            {data.sort((a, b) => b.posted - a.posted).map(comment => {
                 return (
                     <li key={comment._id} className={styles['meal-comment-item']}>
                         <div className={styles['meal-comment-item__header']}>
