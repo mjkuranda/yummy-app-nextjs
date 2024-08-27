@@ -10,6 +10,7 @@ import { encodeIngredients } from '@/src/helpers/query.helper';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
 import { addMealProposal } from '@/src/api/api';
 import { toastError } from '@/src/utils/toast.utils';
+import { UnauthorizedError } from '@/src/api/api-errors';
 
 export function SearchForm({ children }) {
     const router = useRouter();
@@ -28,7 +29,9 @@ export function SearchForm({ children }) {
         try {
             await addMealProposal(ingredients);
         } catch (err: any) {
-            toastError(`Error occurred while adding a new meal proposal: ${err.message}`);
+            if (!(err instanceof UnauthorizedError)) {
+                toastError(`Error occurred while adding a new meal proposal: ${err.message}`);
+            }
         }
 
         router.push(`/search?ings=${encodeIngredients(ingredients)}`);

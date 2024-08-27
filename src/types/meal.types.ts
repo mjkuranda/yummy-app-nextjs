@@ -12,7 +12,7 @@ export interface MealFormData {
     imageFile?: File;
 }
 
-export type MealType = 'soup' | 'main course' | 'salad' | 'raw salad';
+export type MealType = 'soup' | 'main course' | 'salad';
 
 export interface MealRecipeStepWithId {
     id: string;

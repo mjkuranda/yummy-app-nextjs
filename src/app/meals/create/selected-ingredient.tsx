@@ -20,7 +20,7 @@ export function SelectedIngredient({ index, item, selectedItems, setSelectedItem
 
     return (
         <ListItem key={index}>
-            <ListItemText primary={item[1]} />
+            <ListItemText primary={item[1]} className="text-capitalize" />
             <RemoveButton label={'Remove'} onClick={onRemoveIngredient} />
         </ListItem>
     );

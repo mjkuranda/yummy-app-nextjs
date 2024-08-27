@@ -16,9 +16,12 @@ export function MealResultBox() {
 
     return (
         <section className={resultStyles['result-box']}>
-            {meals?.map(meal => {
-                return <SearchMealResult meal={meal} key={meal.id} ingredientQuery={originalQuery} />;
-            })}
+            {meals && meals?.length > 0
+                ? meals.map(meal => {
+                    return <SearchMealResult meal={meal} key={meal.id} ingredientQuery={originalQuery} />;
+                })
+                : <div className="w-100 text-center">Found 0 results.</div>
+            }
         </section>
     );
 }

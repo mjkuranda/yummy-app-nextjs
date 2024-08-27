@@ -18,20 +18,12 @@ import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
-
-const items = [
-    { label: 'Apple', en: 'apple' },
-    { label: 'Banana', en: 'banana' },
-    { label: 'Orange', en: 'orange' },
-    { label: 'Pineapple', en: 'pineapple' },
-    { label: 'Strawberry', en: 'strawberry' }
-];
+import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
 
 const options = [
     { en: 'soup', label: 'Soup' },
     { en: 'main course', label: 'Main Course' },
-    { en: 'salad', label: 'Salad' },
-    { en: 'raw salad', label: 'Raw Salad' }
+    { en: 'salad', label: 'Salad' }
 ];
 
 const defaultValues: MealFormData = {
@@ -44,10 +36,11 @@ const defaultValues: MealFormData = {
 };
 
 export function CreateMealForm() {
-    const { user, isLoggedIn } = useUserContext();
+    const { user } = useUserContext();
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+    const { labels, filterIngredients } = useIngredientManager();
 
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
@@ -136,7 +129,7 @@ export function CreateMealForm() {
                                 validate: (value: Record<string, string>) => Object.keys(value).length > 0 ? true : 'Ingredients are required'
                             }}
                             render={({ field: { onChange, value } }) => (
-                                <InputList items={items} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} />
+                                <InputList items={labels} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} onFilter={filterIngredients} />
                             )}
                         />
                         <Controller
