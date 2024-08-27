@@ -6,15 +6,49 @@
     min-height: 64px;
     margin: 2rem 0;
 
-    .meal-comment-header {
-        margin-bottom: 1em;
-        text-shadow: 1px 1px 2px;
-        text-align: center;
+    .meal-comment-content {
+        width: 35vw;
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .meal-comment-header {
+            margin-bottom: 1em;
+            text-shadow: 1px 1px 2px;
+            text-align: center;
+        }
+
+        .meal-comment-item {
+            .meal-comment-item__header {
+                display: flex;
+            }
+
+            .meal-comment-item__posted {
+                margin-left: 1rem;
+                color: grey;
+                font-style: italic;
+                font-size: .618rem;
+            }
+        }
+
+        .meal-comment-item + .meal-comment-item {
+            margin-top: 2rem;
+        }
     }
 
     .meal-comment-add-section {
+        margin: 1rem 0 1.5rem 0;
+
         .meal-comment-add-section__input {
             margin-bottom: .5rem;
+            display: flex;
+
+            .meal-comment-add-section__send-icon {
+                display: flex;
+                align-items: center;
+            }
         }
     }
 }
