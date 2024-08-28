@@ -1,0 +1,21 @@
+.meal-rating {
+    .meal-rating-stars {
+        color: #f9f900;
+    }
+
+    .meal-rating__rating {
+        display: flex;
+
+        .rate-count {
+            margin: .1rem .3rem 0 .1rem;
+        }
+
+        :last-child {
+            margin-top: .1rem;
+        }
+    }
+
+    .meal-rating-user {
+        margin: 1rem 0;
+    }
+}
