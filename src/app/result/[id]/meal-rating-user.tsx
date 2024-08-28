@@ -18,7 +18,7 @@ const ratingSettings = {
 };
 
 interface MealRatingUserProps {
-    onToggleRate: () => void;
+    onToggleRate: (newRating: boolean) => void;
 }
 
 export function MealRatingUser({ onToggleRate }: MealRatingUserProps) {
@@ -46,7 +46,7 @@ export function MealRatingUser({ onToggleRate }: MealRatingUserProps) {
                 handleApiError(err, router, userContext);
             }
         } finally {
-            onToggleRate();
+            onToggleRate(true);
             setIsRating(false);
         }
     };
