@@ -19,6 +19,8 @@ import { useUserContext } from '@/src/contexts/user.context';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
 import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
+import { DetailedMealWithTranslations } from '@/src/types/api.types';
+import { getDefaultValues } from '@/src/helpers/meal.helper';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -26,18 +28,13 @@ const options = [
     { en: 'salad', label: 'Salad' }
 ];
 
-const defaultValues: MealFormData = {
-    title: '',
-    description: '',
-    ingredients: {},
-    type: 'main course',
-    recipe: [],
-    hasImage: false,
-};
+interface CreateMealFormProps {
+    meal: DetailedMealWithTranslations;
+}
 
-export function CreateMealForm() {
+export function CreateMealForm({ meal }: CreateMealFormProps) {
     const { user } = useUserContext();
-    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues: getDefaultValues(meal), mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
     const { labels, filterIngredients } = useIngredientManager();
@@ -47,6 +44,8 @@ export function CreateMealForm() {
 
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
+
+    console.log(meal);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
