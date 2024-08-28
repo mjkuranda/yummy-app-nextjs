@@ -11,21 +11,24 @@ import { MealContainer } from '@/src/app/result/[id]/meal-container';
 import { DetailedMealWithTranslations } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
+import { useEffect } from 'react';
 
 export default function ResultById() {
     const { id } = useParams();
     const searchParams = useSearchParams();
     const { data: meal, isLoading, isError } = useGetMealById(id as string);
 
-    if (isApiError(meal)) {
-        toastError('Error occurred while fetching this meal.');
-        redirect('/search');
-    }
+    useEffect(() => {
+        if (isApiError(meal)) {
+            toastError('Error occurred while fetching this meal.');
+            redirect('/search');
+        }
 
-    if (isError) {
-        toastError('Error occurred while fetching this meal.');
-        redirect('/search');
-    }
+        if (isError) {
+            toastError('Error occurred while fetching this meal.');
+            redirect('/search');
+        }
+    }, [meal, isError]);
 
     return (
         <>
