@@ -37,3 +37,14 @@ export interface NewMealCommentDto {
     mealId: string;
     text: string;
 }
+
+export interface MealRating {
+    mealId: string;
+    rating: number;
+    count: number;
+}
+
+export interface NewMealRatingDto {
+    mealId: string;
+    rating: number;
+}

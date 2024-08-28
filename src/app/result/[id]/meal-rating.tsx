@@ -23,7 +23,7 @@ export function MealRating({ rating, count }: MealRatingProps) {
                 <div className={styles['rate-count']}>({count > 0 ? `${count} ocen${count === 1 ? 'a' : ''}` : 'Brak ocen'})</div>
                 <TextButton label={'Oceń'} onClick={onToggleRate} />
             </div>
-            {toggleRate && <MealRatingUser />}
+            {toggleRate && <MealRatingUser onToggleRate={onToggleRate} />}
         </div>
     );
 }
