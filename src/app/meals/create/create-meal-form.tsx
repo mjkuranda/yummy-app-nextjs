@@ -22,6 +22,9 @@ import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';
+import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
+import { DetailedMealWithTranslations } from '@/src/types/api.types';
+import { getDefaultValues } from '@/src/helpers/meal.helper';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -29,6 +32,9 @@ const options = [
     { en: 'salad', label: 'Salad' }
 ];
 
+interface CreateMealFormProps {
+    meal: DetailedMealWithTranslations;
+}
 const defaultValues: MealFormData = {
     title: '',
     description: '',
@@ -38,18 +44,21 @@ const defaultValues: MealFormData = {
     hasImage: false,
 };
 
-export function CreateMealForm() {
+export function CreateMealForm({ meal }: CreateMealFormProps) {
     const router = useRouter();
     const userContext = useUserContext();
-    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues: getDefaultValues(meal), mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+    const { labels, filterIngredients } = useIngredientManager();
 
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
 
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
+
+    console.log(meal);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
