@@ -1,9 +1,9 @@
-import { Items } from '@/src/components/common/form/input-list';
+import { IngredientWithId } from '@/src/types/ingredient.types';
 
 export interface MealFormData {
     title: string;
     description: string;
-    ingredients: Items;
+    ingredients: IngredientWithId[];
     type: MealType;
     recipe: MealRecipeSectionWithId[];
     hasImage: boolean;
