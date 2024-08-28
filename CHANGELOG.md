@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.39.0] - 2024-08-28
 ### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to add the ratings for the meals. 
+- [Marek Kurańda](https://github.com/mjkuranda): `TextButton` component.
 
 ## [1.38.0] - 2024-08-27
 ### Added

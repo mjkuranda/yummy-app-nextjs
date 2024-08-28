@@ -24,8 +24,8 @@ export function MealRatingStars({ rating }: MealRatingStarsProps) {
     });
 
     useEffect(() => {
-        const solid = Math.floor(rating);
-        const half = rating - solid > 0.2 ? 1 : 0;
+        const solid = Math.floor(rating) + (rating - Math.floor(rating) >= 0.85 ? 1 : 0);
+        const half = rating - solid > 0.25 && rating - solid < 0.85 ? 1 : 0;
         const rest = 5 - solid - half;
 
         setStarState({ solid, half, rest });

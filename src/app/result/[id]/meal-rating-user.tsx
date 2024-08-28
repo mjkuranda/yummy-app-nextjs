@@ -1,6 +1,8 @@
+import styles from '@/styles/app/result/meal-rating.module.scss';
 import { MealRatingStars } from '@/src/app/result/[id]/meal-rating-stars';
 import { ChangeEvent, useState } from 'react';
 import { InputRange } from '@/src/components/common/form/input-range';
+import { Button } from '@/src/components/common/button';
 
 const ratingSettings = {
     min: 0,
@@ -18,10 +20,13 @@ export function MealRatingUser() {
         setUserRating(newValue);
     };
 
+    const onRate = () => {};
+
     return (
-        <div>
-            <InputRange id={'rating'} name={'rating'} label={'rating'} settings={{ ...ratingSettings, value: userRating }} onChange={onChange} />
+        <div className={styles['meal-rating-user']}>
             <MealRatingStars rating={userRating} />
+            <InputRange id={'rating'} name={'rating'} label={''} settings={{ ...ratingSettings, value: userRating }} onChange={onChange} />
+            <Button label={'Oceń'} onClick={onRate} />
         </div>
     );
 }
