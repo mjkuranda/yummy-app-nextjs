@@ -1,9 +1,10 @@
 'use client';
 
+import styles from '@/styles/app/meals/create/ingredient-form.module.scss';
 import { IngredientWithId } from '@/src/types/ingredient.types';
 import { InputNumber } from '@/src/components/common/form/input-number';
 import { InputSelect } from '@/src/components/common/form/input-select';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RemoveButton } from '@/src/components/common/remove-button';
 import { useIngredientFormContext } from '@/src/contexts/ingredient-form.context';
 import { removeIngredient } from '@/src/helpers/ingredient-form.helper';
@@ -56,9 +57,9 @@ export function MealIngredient({ ingredient }: MealIngredientProps) {
 
     return (
         <li>
-            <InputNumber label={'Amount'} value={amount} setValue={setAmountValue} />
-            <InputSelect id={`${ingredient.id}-unit`} label={'Unit'} options={unitOptions} selectedValue={unit} setSelectedValue={setUnitValue} />
-            <p>{ingredient.labels.pl}</p>
+            <InputNumber label={'Amount'} value={amount} setValue={setAmountValue} width={'150px'} />
+            <InputSelect id={`${ingredient.id}-unit`} label={'Unit'} options={unitOptions} selectedValue={unit} setSelectedValue={setUnitValue} width={'150px'} />
+            <div className={styles['ingredient-name']}>{ingredient.labels.pl}</div>
             <RemoveButton label={'Remove'} onClick={onRemoveIngredient} />
         </li>
     );

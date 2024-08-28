@@ -49,7 +49,7 @@ export function InputIngredientList({ label, selectedItems, setSelectedItems, er
     const onClose = () => setInputValue('');
 
     return (
-        <Box sx={{ width: 300 }}>
+        <Box sx={{ width: '100%' }}>
             <Autocomplete<InputListItem>
                 options={onFilter ? onFilter(inputValue) : []}
                 getOptionLabel={option => option.pl.charAt(0).toUpperCase() + option.pl.substring(1)}
@@ -76,12 +76,6 @@ export function InputIngredientList({ label, selectedItems, setSelectedItems, er
                         key={ingredient.id}
                         ingredient={ingredient}
                     />
-                    // <SelectedIngredient
-                    //     index={index}
-                    //     item={item}
-                    //     selectedItems={selectedItems}
-                    //     setSelectedItems={setSelectedItems}
-                    // />
                 )}
             </List>
             <p className={'text-center'}>Wybrano {Object.entries(selectedItems).length} składników.</p>

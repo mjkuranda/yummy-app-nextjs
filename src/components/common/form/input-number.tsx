@@ -6,10 +6,11 @@ interface InputNumberProps {
     label: string;
     value: string;
     setValue: (newValue: string) => void;
-    unit?: string; // TODO: UnitType
+    unit?: string; // TODO: UnitType;
+    width?: string;
 }
 
-export function InputNumber({ label, value, setValue, unit }: InputNumberProps) {
+export function InputNumber({ label, value, setValue, unit, width = '25ch' }: InputNumberProps) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value.trim());
     };
@@ -24,7 +25,7 @@ export function InputNumber({ label, value, setValue, unit }: InputNumberProps) 
         <TextField
             label={label}
             className="input-number"
-            sx={{ m: 1, width: '25ch' }}
+            sx={{ m: 1, width }}
             InputProps={unit ? inputProps : {}}
             value={value}
             onChange={onChange}
