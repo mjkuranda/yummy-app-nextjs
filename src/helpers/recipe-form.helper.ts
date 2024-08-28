@@ -92,6 +92,7 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
         recipeSections,
         ingredients: Object.keys(ingredients),
         posted: Date.now(),
+        provider: 'yummy',
         ...((imgUrl || imageUrl) && { imageUrl: imgUrl ?? imageUrl })
     };
 }

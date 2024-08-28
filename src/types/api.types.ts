@@ -1,7 +1,10 @@
+type MealProvider = 'yummy' | 'spoonacular';
+
 export interface MealResult {
     id: string;
     imgUrl?: string;
     ingredients: string[];
+    provider: MealProvider;
     title: string;
     relevance: number;
 }
@@ -15,6 +18,7 @@ export type DetailedMeal = {
     description: string,
     readyInMinutes: number,
     sourceOrAuthor: string,
+    provider: MealProvider,
     properties?: {
         vegetarian?: boolean,
         vegan?: boolean,
@@ -56,6 +60,7 @@ export interface MealProposal {
     ingredients: string[],
     recommendationPoints: number;
     title: string;
+    provider: MealProvider;
 }
 
 export interface ApiError {
@@ -98,6 +103,7 @@ export interface NewMealDto {
     ingredients: string[];
     language: Language;
     posted: number;
+    provider: MealProvider;
     recipeSections: MealRecipeSection[];
     title: string;
     type: string;
@@ -111,6 +117,7 @@ export interface MealDocument {
     readonly ingredients: string[];
     readonly language: Language;
     readonly posted: number;
+    readonly provider: MealProvider;
     readonly title: string;
     readonly type: string;
     readonly softAdded?: boolean;
