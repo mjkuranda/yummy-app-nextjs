@@ -28,11 +28,27 @@ export function MealRating() {
         }
     };
 
+    const renderRatingCountText = (count: number): string => {
+        if (count === 0) {
+            return 'Brak ocen';
+        }
+
+        if (count === 1) {
+            return '1 ocena';
+        }
+
+        if (count < 5) {
+            return `${count} oceny`;
+        }
+
+        return `${count} ocen`;
+    };
+
     return (
         <div className={styles['meal-rating']}>
             <div className={styles['meal-rating__rating']}>
                 <MealRatingStars rating={rating.rating} />
-                <div className={styles['rate-count']}>({rating.count > 0 ? `${rating.count} ocen${rating.count === 1 ? 'a' : ''}` : 'Brak ocen'})</div>
+                <div className={styles['rate-count']}>({renderRatingCountText(rating.count)})</div>
                 <TextButton label={'Oceń'} onClick={onToggleRate} />
             </div>
             {toggleRate && <MealRatingUser onToggleRate={onToggleRate} />}

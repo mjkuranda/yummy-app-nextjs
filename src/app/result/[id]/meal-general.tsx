@@ -2,6 +2,7 @@ import styles from '@/styles/app/result/page.module.scss';
 import { MealRecipe } from '@/src/app/result/[id]/meal-recipe';
 import { DetailedMeal } from '@/src/types/api.types';
 import { MealRating } from '@/src/app/result/[id]/meal-rating';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 interface MealGeneralProps {
     meal: DetailedMeal;
@@ -13,6 +14,12 @@ export function MealGeneral({ meal }: MealGeneralProps) {
             <ul>
                 <li>
                     <h3>{meal.title}</h3>
+                    <div className={styles['preparation-time-container']}>
+                        <span>Czas wykonania:</span>
+                        <span><AccessTimeIcon /></span>
+                        <span>{meal.readyInMinutes}</span>
+                        <span>minut</span>
+                    </div>
                 </li>
                 <li>
                     <MealRating />
