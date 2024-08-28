@@ -1,5 +1,6 @@
 import styles from '@/styles/app/result/meal-rating.module.scss';
 import { MealRatingStars } from '@/src/app/result/[id]/meal-rating-stars';
+import { MealRatingUser } from '@/src/app/result/[id]/meal-rating-user';
 
 interface MealRatingProps {
     rating?: number;
@@ -12,6 +13,7 @@ export function MealRating({ rating, count = 50 }: MealRatingProps) {
         <div className={styles['meal-rating']}>
             <MealRatingStars rating={4.2} />
             <div className={styles['rate-count']}>({count > 0 ? `${count} ocen${count === 1 ? 'a' : ''}` : 'Brak ocen'})</div>
+            <MealRatingUser />
         </div>
     );
 }
