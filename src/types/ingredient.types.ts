@@ -9,3 +9,10 @@ export interface IngredientManager {
     labels: IngredientDataLabels[];
     filterIngredients: (match: string) => IngredientDataLabels[];
 }
+
+export interface IngredientWithId {
+    id: string;
+    data: IngredientDataLabels & { id: number };
+    unit: string;
+    amount: string;
+}

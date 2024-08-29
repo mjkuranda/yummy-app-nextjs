@@ -7,7 +7,6 @@ import styles from '@/styles/app/meals/create/create-meal-form.module.scss';
 import { Loader } from '@/src/components/common/loader';
 import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
-import { InputList } from '@/src/components/common/form/input-list';
 import { InputImage } from '@/src/components/common/form/input-image';
 import { InputSelect } from '@/src/components/common/form/input-select';
 import { RecipeForm } from '@/src/app/meals/create/recipe-form';
@@ -18,7 +17,9 @@ import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
-import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
+import { IngredientWithId } from '@/src/types/ingredient.types';
+import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
+import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -29,7 +30,7 @@ const options = [
 const defaultValues: MealFormData = {
     title: '',
     description: '',
-    ingredients: {},
+    ingredients: [],
     type: 'main course',
     recipe: [],
     hasImage: false,
@@ -40,7 +41,6 @@ export function CreateMealForm() {
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
-    const { labels, filterIngredients } = useIngredientManager();
 
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
@@ -126,10 +126,16 @@ export function CreateMealForm() {
                             control={control}
                             rules={{
                                 required: 'Ingredients are required',
-                                validate: (value: Record<string, string>) => Object.keys(value).length > 0 ? true : 'Ingredients are required'
+                                validate: {
+                                    ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required',
+                                    eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Every ingredient must have defined unit',
+                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount))) ? true : 'Every amount should be number value'
+                                }
                             }}
                             render={({ field: { onChange, value } }) => (
-                                <InputList items={labels} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} onFilter={filterIngredients} />
+                                <IngredientFormProvider ingredients={value} onChangeIngredients={onChange} error={errors.ingredients}>
+                                    <IngredientForm />
+                                </IngredientFormProvider>
                             )}
                         />
                         <Controller

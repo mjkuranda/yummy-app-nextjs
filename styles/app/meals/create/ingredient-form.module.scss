@@ -1,0 +1,17 @@
+.ingredient-form {
+    h4 {
+        text-align: center;
+    }
+
+    li {
+        display: flex;
+
+        .ingredient-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem;
+            width: 150px;
+        }
+    }
+}

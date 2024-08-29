@@ -25,7 +25,7 @@ export function InputSelect({ label, id, width = '100%', options, selectedValue,
 
     return (
         <div>
-            <FormControl sx={{ width }}>
+            <FormControl sx={{ m: 1, width }}>
                 <InputLabel id={id}>{label}</InputLabel>
                 <Select
                     labelId={id}
