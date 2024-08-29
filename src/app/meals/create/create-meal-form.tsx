@@ -15,11 +15,13 @@ import { InputCheckbox } from '@/src/components/common/form/input-checkbox';
 import { InputAreaString } from '@/src/components/common/form/input-area-string';
 import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
-import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
 import { IngredientWithId } from '@/src/types/ingredient.types';
 import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
+import { ApiError, handleApiError } from '@/src/api/api-errors';
+import { useRouter } from 'next/navigation';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -37,7 +39,8 @@ const defaultValues: MealFormData = {
 };
 
 export function CreateMealForm() {
-    const { user } = useUserContext();
+    const router = useRouter();
+    const userContext = useUserContext();
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
@@ -59,14 +62,17 @@ export function CreateMealForm() {
                 url = await uploadImage(data.imageFile);
             }
 
+            const { user } = userContext;
             const dto = proceedFormToData(data, user.login, 'pl', url);
 
             await createMeal(dto);
             toastSuccess('Successfully created a new meal');
             setWasCreated(true);
             reset();
-        } catch (err: any) {
-            toastError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof ApiError) {
+                handleApiError(err, router, userContext);
+            }
         } finally {
             setIsCreating(false);
         }
@@ -129,7 +135,7 @@ export function CreateMealForm() {
                                 validate: {
                                     ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required',
                                     eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Every ingredient must have defined unit',
-                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount))) ? true : 'Every amount should be number value'
+                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount)) && Number(el.amount) > 0) ? true : 'Every amount should be number value greater than 0'
                                 }
                             }}
                             render={({ field: { onChange, value } }) => (
