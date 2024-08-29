@@ -93,6 +93,9 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
 
         try {
             await editMeal(meal!.meal.id, differences);
+
+            toastSuccess('Successfully edited this meal.');
+            router.push(`/result/${meal!.meal.id}`);
         } catch (err: unknown) {
             if (err instanceof ApiError) {
                 handleApiError(err, router, userContext);
