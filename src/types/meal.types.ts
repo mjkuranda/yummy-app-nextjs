@@ -15,6 +15,25 @@ export interface MealFormData {
 
 export type MealType = 'any' | 'soup' | 'main course' | 'salad';
 
+export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
+    'any': {
+        en: 'any',
+        pl: 'nieokreślony'
+    },
+    'soup': {
+        en: 'soup',
+        pl: 'zupa'
+    },
+    'main course': {
+        en: 'main course',
+        pl: 'danie główne'
+    },
+    'salad': {
+        en: 'salad',
+        pl: 'sałatka'
+    }
+};
+
 export interface MealRecipeStepWithId {
     id: string;
     text: string;
