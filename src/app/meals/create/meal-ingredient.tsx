@@ -7,7 +7,7 @@ import { InputSelect } from '@/src/components/common/form/input-select';
 import { useState } from 'react';
 import { RemoveButton } from '@/src/components/common/remove-button';
 import { useIngredientFormContext } from '@/src/contexts/ingredient-form.context';
-import { removeIngredient } from '@/src/helpers/ingredient-form.helper';
+import { removeIngredient, setIngredientAmount, setIngredientUnit } from '@/src/helpers/ingredient-form.helper';
 
 const unitOptions = [
     { en: 'g', label: 'g' },
@@ -45,9 +45,19 @@ export function MealIngredient({ ingredient }: MealIngredientProps) {
     const [amount, setAmount] = useState<string>('0');
     const [unit, setUnit] = useState<string>(ingredient.unit);
 
-    const setAmountValue = (newValue: string) => setAmount(newValue);
+    const setAmountValue = (newValue: string) => {
+        const modifiedIngredients = setIngredientAmount(newValue, ingredient, ingredients);
 
-    const setUnitValue = (newValue: string) => setUnit(newValue);
+        setAmount(newValue);
+        onChangeIngredients(modifiedIngredients);
+    };
+
+    const setUnitValue = (newValue: string) => {
+        const modifiedIngredients = setIngredientUnit(newValue, ingredient, ingredients);
+
+        setUnit(newValue);
+        onChangeIngredients(modifiedIngredients);
+    };
 
     const onRemoveIngredient = () => {
         const modifiedItems = removeIngredient(ingredient, ingredients);
@@ -59,7 +69,7 @@ export function MealIngredient({ ingredient }: MealIngredientProps) {
         <li>
             <InputNumber label={'Amount'} value={amount} setValue={setAmountValue} width={'150px'} />
             <InputSelect id={`${ingredient.id}-unit`} label={'Unit'} options={unitOptions} selectedValue={unit} setSelectedValue={setUnitValue} width={'150px'} />
-            <div className={styles['ingredient-name']}>{ingredient.labels.pl}</div>
+            <div className={styles['ingredient-name']}>{ingredient.data.pl}</div>
             <RemoveButton label={'Remove'} onClick={onRemoveIngredient} />
         </li>
     );

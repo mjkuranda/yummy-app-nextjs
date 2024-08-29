@@ -12,7 +12,7 @@ export interface IngredientManager {
 
 export interface IngredientWithId {
     id: string;
-    labels: IngredientDataLabels;
+    data: IngredientDataLabels & { id: number };
     unit: string;
-    amount: number;
+    amount: string;
 }

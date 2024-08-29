@@ -30,7 +30,7 @@ export function InputIngredientList({ label, selectedItems, setSelectedItems, er
 
     const onChange = (event: SyntheticEvent<Element>, newValue: InputListItem | null): void => {
         if (newValue) {
-            const hasThisIngredient = selectedItems.some(item => item.labels.en === newValue.en);
+            const hasThisIngredient = selectedItems.some(item => item.data.en === newValue.en);
 
             if (!hasThisIngredient) {
                 const newItem = addIngredient(newValue);
@@ -71,14 +71,14 @@ export function InputIngredientList({ label, selectedItems, setSelectedItems, er
                 }
             />
             <List>
-                {Object.entries(selectedItems).map(([, ingredient]) =>
+                {selectedItems.map(ingredient =>
                     <MealIngredient
                         key={ingredient.id}
                         ingredient={ingredient}
                     />
                 )}
             </List>
-            <p className={'text-center'}>Wybrano {Object.entries(selectedItems).length} składników.</p>
+            <p className={'text-center'}>Wybrano {selectedItems.length} składników.</p>
         </Box>
     );
 }

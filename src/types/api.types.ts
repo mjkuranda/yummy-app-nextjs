@@ -53,6 +53,7 @@ export interface Ingredient {
     name: string;
     unit: string;
 }
+export type IngredientWithoutImage = Omit<Ingredient, 'imageUrl'>;
 
 export interface MealProposal {
     id: string;
@@ -100,7 +101,7 @@ export interface NewMealDto {
     author: string;
     description: string;
     imageUrl?: string;
-    ingredients: string[];
+    ingredients: IngredientWithoutImage[];
     language: Language;
     posted: number;
     provider: MealProvider;

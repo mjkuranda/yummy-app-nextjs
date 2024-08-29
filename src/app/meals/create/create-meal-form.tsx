@@ -126,7 +126,11 @@ export function CreateMealForm() {
                             control={control}
                             rules={{
                                 required: 'Ingredients are required',
-                                validate: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required'
+                                validate: {
+                                    ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required',
+                                    eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Every ingredient must have defined unit',
+                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount))) ? true : 'Every amount should be number value'
+                                }
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <IngredientFormProvider ingredients={value} onChangeIngredients={onChange} error={errors.ingredients}>

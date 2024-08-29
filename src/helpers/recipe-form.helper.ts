@@ -1,5 +1,5 @@
 import { MealFormData, MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
-import { Language, MealRecipeSection, NewMealDto } from '@/src/types/api.types';
+import { IngredientWithoutImage, Language, MealRecipeSection, NewMealDto } from '@/src/types/api.types';
 
 export function createNewSection(): MealRecipeSectionWithId {
     return {
@@ -76,6 +76,14 @@ export function removeSectionStep(stepId: string, section: MealRecipeSectionWith
 
 export function proceedFormToData(formData: MealFormData, author: string, language: Language, imgUrl?: string): NewMealDto {
     const { title, description, ingredients, type, recipe, imageUrl } = formData;
+    const mealIngredients: IngredientWithoutImage[] = ingredients.map(ingredient => {
+        return {
+            id: ingredient.data.id,
+            name: ingredient.data.en,
+            amount: Number(ingredient.amount),
+            unit: ingredient.unit
+        };
+    });
     const recipeSections: MealRecipeSection[] = recipe.map(section => {
         return {
             name: section.name,
@@ -90,7 +98,7 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
         language,
         type,
         recipeSections,
-        ingredients: Object.keys(ingredients),
+        ingredients: mealIngredients,
         posted: Date.now(),
         provider: 'yummy',
         ...((imgUrl || imageUrl) && { imageUrl: imgUrl ?? imageUrl })
