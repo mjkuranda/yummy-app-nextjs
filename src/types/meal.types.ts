@@ -1,4 +1,5 @@
 import { IngredientWithId } from '@/src/types/ingredient.types';
+import { IngredientWithoutImage, MealRecipeSection } from '@/src/types/api.types';
 
 export interface MealFormData {
     title: string;
@@ -12,7 +13,26 @@ export interface MealFormData {
     imageFile?: File;
 }
 
-export type MealType = 'soup' | 'main course' | 'salad';
+export type MealType = 'any' | 'soup' | 'main course' | 'salad';
+
+export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
+    'any': {
+        en: 'any',
+        pl: 'nieokreślony'
+    },
+    'soup': {
+        en: 'soup',
+        pl: 'zupa'
+    },
+    'main course': {
+        en: 'main course',
+        pl: 'danie główne'
+    },
+    'salad': {
+        en: 'salad',
+        pl: 'sałatka'
+    }
+};
 
 export interface MealRecipeStepWithId {
     id: string;
@@ -47,4 +67,13 @@ export interface MealRating {
 export interface NewMealRatingDto {
     mealId: string;
     rating: number;
+}
+
+export interface MealDifferenceDto {
+    title?: string;
+    description?: string;
+    type?: MealType;
+    ingredients?: IngredientWithoutImage[];
+    recipeSections?: MealRecipeSection[];
+    imgUrl?: string;
 }

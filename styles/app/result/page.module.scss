@@ -38,7 +38,12 @@
                     text-shadow: 1px 1px 2px;
                 }
 
-                .preparation-time-container {
+                .result-rating {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .information-container {
                     text-shadow: initial;
 
                     span + span {

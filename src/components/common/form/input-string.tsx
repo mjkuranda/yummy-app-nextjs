@@ -1,7 +1,7 @@
 'use client';
 
 import TextField from '@mui/material/TextField';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, KeyboardEventHandler } from 'react';
 import { FieldError } from 'react-hook-form';
 
 interface InputStringProps {
@@ -11,9 +11,10 @@ interface InputStringProps {
     setValue: (newValue: string) => void;
     error?: FieldError;
     width?: string;
+    onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
 }
 
-export function InputString({ label, variant = 'standard', value, setValue, error, width = '100%' }: InputStringProps) {
+export function InputString({ label, variant = 'standard', value, setValue, error, width = '100%', onKeyDown }: InputStringProps) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
     };
@@ -24,6 +25,7 @@ export function InputString({ label, variant = 'standard', value, setValue, erro
             variant={variant}
             value={value}
             onChange={onChange}
+            onKeyDown={onKeyDown}
             error={Boolean(error)}
             helperText={error?.message ?? ''}
             autoComplete="new-password"

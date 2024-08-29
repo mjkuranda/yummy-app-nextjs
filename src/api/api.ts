@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from '@/src/api/methods';
+import { apiGet, apiPost, apiPut } from '@/src/api/methods';
 import {
     LoginUserData,
     MealProposal,
@@ -9,7 +9,13 @@ import {
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
 import { ApiError } from 'next/dist/server/api-utils';
-import { MealComment, MealRating, NewMealCommentDto, NewMealRatingDto } from '@/src/types/meal.types';
+import {
+    MealComment,
+    MealDifferenceDto,
+    MealRating,
+    NewMealCommentDto,
+    NewMealRatingDto
+} from '@/src/types/meal.types';
 
 export async function getMeal(id: string): Promise<DetailedMealWithTranslations> {
     return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
@@ -250,6 +256,16 @@ export async function getMealRating(mealId: string): Promise<MealRating> {
 
 export async function rateMeal(data: NewMealRatingDto): Promise<void> {
     const res = await apiPost<NewMealRatingDto>(`meals/${data.mealId}/rating`, data);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
+}
+
+export async function editMeal(mealId: string, editMealDto: MealDifferenceDto): Promise<void> {
+    const res = await apiPut<MealDifferenceDto>(`meals/${mealId}`, editMealDto);
 
     if (res.status > 299) {
         const json = await res.json();

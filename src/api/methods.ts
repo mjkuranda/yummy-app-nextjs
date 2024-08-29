@@ -44,3 +44,23 @@ export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, i
     return res;
 }
 
+export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
+    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+        mode: 'cors',
+        method: 'PUT',
+        headers: {
+            'accept': '*/*',
+            ...(!isFormData && { 'Content-Type': 'application/json' })
+        },
+        credentials: 'include',
+        body: isFormData ? payload as FormData : typeof payload === 'string' ? payload : JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+        const errorResponse = await res.json() as ApiErrorResponse;
+
+        return throwApiError(errorResponse);
+    }
+
+    return res;
+}

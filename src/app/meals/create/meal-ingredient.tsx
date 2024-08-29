@@ -33,7 +33,11 @@ const unitOptions = [
     { en: 'pack', label: 'opakowanie' },
     { en: 'jar', label: 'słoik' },
     { en: 'serving', label: 'porcja' },
-    { en: 'servings', label: 'porcje' }
+    { en: 'servings', label: 'porcje' },
+    { en: 'tablespoon', label: 'łyżka' },
+    { en: 'tablespoons', label: 'łyżki' },
+    { en: 'clove', label: 'ząbek' },
+    { en: 'cloves', label: 'ząbki' }
 ];
 
 interface MealIngredientProps {
@@ -42,7 +46,7 @@ interface MealIngredientProps {
 
 export function MealIngredient({ ingredient }: MealIngredientProps) {
     const { ingredients, onChangeIngredients } = useIngredientFormContext();
-    const [amount, setAmount] = useState<string>('0');
+    const [amount, setAmount] = useState<string>(ingredient.amount ?? '0');
     const [unit, setUnit] = useState<string>(ingredient.unit);
 
     const setAmountValue = (newValue: string) => {

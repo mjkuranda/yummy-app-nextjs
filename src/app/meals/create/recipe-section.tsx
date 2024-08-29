@@ -21,7 +21,7 @@ interface RecipeSectionProps {
 
 export function RecipeSection({ section }: RecipeSectionProps) {
     const { sections, onChangeSections } = useRecipeFormContext();
-    const [name, setName] = useState<string>('');
+    const [name, setName] = useState<string>(section.name ?? '');
 
     const setValue = (newValue: string): void => {
         const modifiedSections = updateSectionName(section.id, newValue, sections);

@@ -2,7 +2,7 @@
 
 import { MealFormData, MealRecipeSectionWithId } from '@/src/types/meal.types';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@/styles/app/meals/create/create-meal-form.module.scss';
 import { Loader } from '@/src/components/common/loader';
 import { InputString } from '@/src/components/common/form/input-string';
@@ -15,13 +15,15 @@ import { InputCheckbox } from '@/src/components/common/form/input-checkbox';
 import { InputAreaString } from '@/src/components/common/form/input-area-string';
 import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
-import { toastSuccess } from '@/src/utils/toast.utils';
-import { createMeal, uploadImage } from '@/src/api/api';
-import { IngredientWithId } from '@/src/types/ingredient.types';
+import { toastInfo, toastSuccess } from '@/src/utils/toast.utils';
+import { createMeal, editMeal, uploadImage } from '@/src/api/api';
+import { useRouter } from 'next/navigation';
+import { DetailedMealWithTranslations } from '@/src/types/api.types';
+import { getDefaultValues, getMealDifferences } from '@/src/helpers/meal.helper';
+import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
-import { useRouter } from 'next/navigation';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -29,6 +31,10 @@ const options = [
     { en: 'salad', label: 'Salad' }
 ];
 
+interface CreateMealFormProps {
+    meal?: DetailedMealWithTranslations;
+    ingredients: IngredientDataValue[];
+}
 const defaultValues: MealFormData = {
     title: '',
     description: '',
@@ -38,10 +44,10 @@ const defaultValues: MealFormData = {
     hasImage: false,
 };
 
-export function CreateMealForm() {
+export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const router = useRouter();
     const userContext = useUserContext();
-    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues: meal ? getDefaultValues(meal, ingredients) : defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
 
@@ -50,6 +56,22 @@ export function CreateMealForm() {
 
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
+
+    useEffect(() => {
+        if (meal) {
+            if (!userContext.user.isAdmin && !userContext.user.capabilities?.canEdit) {
+                toastInfo('Aby edytować posiłki, potrzebujesz uprawnień admina, badź możliwości edycji.');
+
+                return router.push(`/result/${meal?.meal.id}`);
+            }
+        } else {
+            if (!userContext.user.isAdmin && !userContext.user.capabilities?.canAdd) {
+                toastInfo('Aby dodawać nowe posiłki, potrzebujesz uprawnień admina, badź możliwości dodawania.');
+
+                return router.push('/search');
+            }
+        }
+    }, []);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
@@ -78,19 +100,40 @@ export function CreateMealForm() {
         }
     };
 
+    const onEdit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
+        const { user } = userContext;
+        const proceededData = proceedFormToData(data, user.login, 'pl', data.imageUrl);
+        const differences = getMealDifferences(meal!.meal, proceededData);
+
+        setIsCreating(true);
+
+        try {
+            await editMeal(meal!.meal.id, differences);
+
+            toastSuccess('Successfully edited this meal.');
+            router.push(`/result/${meal!.meal.id}`);
+        } catch (err: unknown) {
+            if (err instanceof ApiError) {
+                handleApiError(err, router, userContext);
+            }
+        } finally {
+            setIsCreating(false);
+        }
+    };
+
     return (
         <form className={styles['create-meal-form']}>
             {isCreating && <Loader isAbsolute={true} />}
             <div className={styles['form-content-container']}>
                 <div className={styles['form-top-container']}>
-                    <h2 className={styles['form-top-header']}>Create a new meal</h2>
+                    <h2 className={styles['form-top-header']}>{meal ? 'Edit a meal' : 'Create a new meal'}</h2>
                     <Controller
                         name={'title'}
                         control={control}
                         rules={{
                             required: 'Title is required',
                             minLength: 4,
-                            maxLength: 32
+                            maxLength: 64
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputString label={'Type title'} value={value} setValue={onChange} error={errors.title} />
@@ -105,7 +148,7 @@ export function CreateMealForm() {
                             rules={{
                                 required: 'Description is required',
                                 minLength: 8,
-                                maxLength: 1024
+                                maxLength: 1280
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <div>
@@ -140,7 +183,7 @@ export function CreateMealForm() {
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <IngredientFormProvider ingredients={value} onChangeIngredients={onChange} error={errors.ingredients}>
-                                    <IngredientForm />
+                                    <IngredientForm ingredientDataValues={ingredients} />
                                 </IngredientFormProvider>
                             )}
                         />
@@ -217,7 +260,10 @@ export function CreateMealForm() {
                 </div>
                 <div className={styles['create-button-container']}>
                     <div>
-                        <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                        {meal
+                            ? <Button label={'Edit'} onClick={handleSubmit(onEdit)} disabled={Object.keys(errors).length > 0} />
+                            : <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                        }
                     </div>
                     <div>
                         {wasCreated && 'New meal has been created. Wait, until an administrator will confirm its.'}

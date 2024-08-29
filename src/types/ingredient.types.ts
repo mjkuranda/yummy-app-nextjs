@@ -1,4 +1,10 @@
-export type IngredientData = Record<string, IngredientDataLabels>;
+export type IngredientData = Record<string, IngredientDataValue>;
+
+export interface IngredientDataValue {
+    id: number;
+    en: string;
+    pl: string;
+}
 
 export interface IngredientDataLabels {
     en: string;
@@ -6,13 +12,14 @@ export interface IngredientDataLabels {
 }
 
 export interface IngredientManager {
-    labels: IngredientDataLabels[];
-    filterIngredients: (match: string) => IngredientDataLabels[];
+    isFetching: boolean;
+    labels: IngredientDataValue[];
+    filterIngredients: (match: string) => IngredientDataValue[];
 }
 
 export interface IngredientWithId {
     id: string;
-    data: IngredientDataLabels & { id: number };
+    data: IngredientDataValue;
     unit: string;
     amount: string;
 }

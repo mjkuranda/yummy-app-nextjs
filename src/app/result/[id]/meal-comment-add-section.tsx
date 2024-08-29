@@ -29,6 +29,12 @@ export function MealCommentAddSection({ refetch }: MealCommentAddSectionProps) {
         }
     }, [isPosting]);
 
+    const onKeyDown = (e: KeyboardEvent): void => {
+        if (e.key === 'Enter') {
+            onAddComment();
+        }
+    };
+
     const onAddComment = async () => {
         setIsPosting(true);
 
@@ -51,7 +57,7 @@ export function MealCommentAddSection({ refetch }: MealCommentAddSectionProps) {
     return (
         <div className={styles['meal-comment-add-section']}>
             <div className={styles['meal-comment-add-section__input']}>
-                <InputString label={'Nowy komentarz'} value={commentValue} setValue={setCommentValue} />
+                <InputString label={'Nowy komentarz'} value={commentValue} setValue={setCommentValue} onKeyDown={onKeyDown} />
                 <div className={styles['meal-comment-add-section__send-icon']}>
                     {isPosting ? <Loader /> : <SendIconButton onClick={onAddComment} disabled={commentValue.length === 0} />}
                 </div>
