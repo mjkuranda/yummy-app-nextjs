@@ -16,10 +16,10 @@ import { InputAreaString } from '@/src/components/common/form/input-area-string'
 import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
 import { toastSuccess } from '@/src/utils/toast.utils';
-import { createMeal, uploadImage } from '@/src/api/api';
+import { createMeal, editMeal, uploadImage } from '@/src/api/api';
 import { useRouter } from 'next/navigation';
 import { DetailedMealWithTranslations } from '@/src/types/api.types';
-import { getDefaultValues } from '@/src/helpers/meal.helper';
+import { getDefaultValues, getMealDifferences } from '@/src/helpers/meal.helper';
 import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
@@ -57,8 +57,6 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
 
-    console.log(imageUrl);
-
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
         setIsCreating(true);
@@ -89,9 +87,19 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const onEdit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         const { user } = userContext;
         const proceededData = proceedFormToData(data, user.login, 'pl', data.imageUrl);
+        const differences = getMealDifferences(meal!.meal, proceededData);
 
-        console.log('MEAL', meal);
-        console.log('PROC', proceededData);
+        setIsCreating(true);
+
+        try {
+            await editMeal(meal!.meal.id, differences);
+        } catch (err: unknown) {
+            if (err instanceof ApiError) {
+                handleApiError(err, router, userContext);
+            }
+        } finally {
+            setIsCreating(false);
+        }
     };
 
     return (

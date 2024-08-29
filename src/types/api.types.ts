@@ -1,3 +1,5 @@
+import { MealType } from '@/src/types/meal.types';
+
 type MealProvider = 'yummy' | 'spoonacular';
 
 export interface MealResult {
@@ -7,6 +9,7 @@ export interface MealResult {
     provider: MealProvider;
     title: string;
     relevance: number;
+    type: MealType;
 }
 
 export type DetailedMeal = {
@@ -26,7 +29,8 @@ export type DetailedMeal = {
         dairyFree?: boolean,
         veryHealthy?: boolean
     },
-    recipeSections: MealRecipeSection[]
+    recipeSections: MealRecipeSection[],
+    type: MealType
 };
 
 export interface TranslatedIngredient {
@@ -62,6 +66,7 @@ export interface MealProposal {
     recommendationPoints: number;
     title: string;
     provider: MealProvider;
+    type: MealType;
 }
 
 export interface ApiError {
@@ -107,7 +112,7 @@ export interface NewMealDto {
     provider: MealProvider;
     recipeSections: MealRecipeSection[];
     title: string;
-    type: string;
+    type: MealType;
 }
 
 export interface MealDocument {
@@ -120,7 +125,7 @@ export interface MealDocument {
     readonly posted: number;
     readonly provider: MealProvider;
     readonly title: string;
-    readonly type: string;
+    readonly type: MealType;
     readonly softAdded?: boolean;
     readonly softDeleted?: boolean;
     readonly softEdited?: MealDocument;
