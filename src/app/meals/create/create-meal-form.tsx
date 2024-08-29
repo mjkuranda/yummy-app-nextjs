@@ -17,10 +17,6 @@ import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
 import { toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
-import { IngredientWithId } from '@/src/types/ingredient.types';
-import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
-import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
-import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';
 import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
 import { DetailedMealWithTranslations } from '@/src/types/api.types';
@@ -141,16 +137,10 @@ export function CreateMealForm({ meal }: CreateMealFormProps) {
                             control={control}
                             rules={{
                                 required: 'Ingredients are required',
-                                validate: {
-                                    ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required',
-                                    eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Every ingredient must have defined unit',
-                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount)) && Number(el.amount) > 0) ? true : 'Every amount should be number value greater than 0'
-                                }
+                                validate: (value: Record<string, string>) => Object.keys(value).length > 0 ? true : 'Ingredients are required'
                             }}
                             render={({ field: { onChange, value } }) => (
-                                <IngredientFormProvider ingredients={value} onChangeIngredients={onChange} error={errors.ingredients}>
-                                    <IngredientForm />
-                                </IngredientFormProvider>
+                                <InputList items={labels} label={'Select ingredients'} selectedItems={value} setSelectedItems={onChange} error={errors.ingredients} onFilter={filterIngredients} />
                             )}
                         />
                         <Controller
