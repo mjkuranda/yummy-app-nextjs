@@ -9,9 +9,11 @@ export function getDefaultValues(mealWithTranslations: DetailedMealWithTranslati
         title: meal.title,
         description: meal.description,
         ingredients: mapIngredients(meal.ingredients, ingredients),
+        imageUrl: meal.imgUrl,
         type: 'main course', // TODO: type is missing
         recipe: mapRecipe(meal),
         hasImage: Boolean(meal.imgUrl),
+        hasImageUrl: Boolean(meal.imgUrl)
     };
 }
 

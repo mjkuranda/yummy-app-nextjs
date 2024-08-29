@@ -57,6 +57,8 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
 
+    console.log(imageUrl);
+
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
         setIsCreating(true);
@@ -84,7 +86,13 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
         }
     };
 
-    const onEdit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {};
+    const onEdit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
+        const { user } = userContext;
+        const proceededData = proceedFormToData(data, user.login, 'pl', data.imageUrl);
+
+        console.log('MEAL', meal);
+        console.log('PROC', proceededData);
+    };
 
     return (
         <form className={styles['create-meal-form']}>
@@ -98,7 +106,7 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                         rules={{
                             required: 'Title is required',
                             minLength: 4,
-                            maxLength: 32
+                            maxLength: 64
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputString label={'Type title'} value={value} setValue={onChange} error={errors.title} />
@@ -113,7 +121,7 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                             rules={{
                                 required: 'Description is required',
                                 minLength: 8,
-                                maxLength: 1024
+                                maxLength: 1280
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <div>
