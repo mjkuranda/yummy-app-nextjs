@@ -3,6 +3,7 @@ import { MealRecipe } from '@/src/app/result/[id]/meal-recipe';
 import { DetailedMeal } from '@/src/types/api.types';
 import { MealRating } from '@/src/app/result/[id]/meal-rating';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { EditLink } from '@/src/components/common/edit-link';
 
 interface MealGeneralProps {
     meal: DetailedMeal;
@@ -21,8 +22,9 @@ export function MealGeneral({ meal }: MealGeneralProps) {
                         <span>minut</span>
                     </div>
                 </li>
-                <li>
+                <li className={styles['result-rating']}>
                     <MealRating />
+                    <EditLink label={'Edytuj'} link={`/meals/create/${meal.id}`} />
                 </li>
             </ul>
             <div>

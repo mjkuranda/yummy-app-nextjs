@@ -26,7 +26,7 @@ export default async function EditMealPage({ params: { id } }: EditMealPageProps
         <>
             <Header />
             <div className={styles['create-meal-page']}>
-                <BackLink link="/search" label={'Back to search'} />
+                <BackLink link={`/result/${id}`} label={'Back to meal'} />
                 <CreateMealForm meal={mealWithTranslations} ingredients={ingredients} />
             </div>
             <Footer />
