@@ -2,7 +2,7 @@
 
 import { MealFormData, MealRecipeSectionWithId } from '@/src/types/meal.types';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@/styles/app/meals/create/create-meal-form.module.scss';
 import { Loader } from '@/src/components/common/loader';
 import { InputString } from '@/src/components/common/form/input-string';
@@ -15,7 +15,7 @@ import { InputCheckbox } from '@/src/components/common/form/input-checkbox';
 import { InputAreaString } from '@/src/components/common/form/input-area-string';
 import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { useUserContext } from '@/src/contexts/user.context';
-import { toastSuccess } from '@/src/utils/toast.utils';
+import { toastInfo, toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, editMeal, uploadImage } from '@/src/api/api';
 import { useRouter } from 'next/navigation';
 import { DetailedMealWithTranslations } from '@/src/types/api.types';
@@ -56,6 +56,22 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
 
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
+
+    useEffect(() => {
+        if (meal) {
+            if (!userContext.user.isAdmin && !userContext.user.capabilities?.canEdit) {
+                toastInfo('Aby edytować posiłki, potrzebujesz uprawnień admina, badź możliwości edycji.');
+
+                return router.push(`/result/${meal?.meal.id}`);
+            }
+        } else {
+            if (!userContext.user.isAdmin && !userContext.user.capabilities?.canAdd) {
+                toastInfo('Aby dodawać nowe posiłki, potrzebujesz uprawnień admina, badź możliwości dodawania.');
+
+                return router.push('/search');
+            }
+        }
+    }, []);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();

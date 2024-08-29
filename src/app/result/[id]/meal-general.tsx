@@ -24,7 +24,7 @@ export function MealGeneral({ meal }: MealGeneralProps) {
                 </li>
                 <li className={styles['result-rating']}>
                     <MealRating />
-                    <EditLink label={'Edytuj'} link={`/meals/create/${meal.id}`} />
+                    {meal.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/meals/create/${meal.id}`} />}
                 </li>
             </ul>
             <div>

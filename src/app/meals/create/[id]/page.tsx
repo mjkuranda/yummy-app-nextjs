@@ -7,6 +7,7 @@ import { getMeal } from '@/src/api/api';
 import fs from 'fs';
 import { IngredientData, IngredientDataValue } from '@/src/types/ingredient.types';
 import path from 'path';
+import { redirect } from 'next/navigation';
 
 interface EditMealPageProps {
     params: {
@@ -16,6 +17,10 @@ interface EditMealPageProps {
 
 export default async function EditMealPage({ params: { id } }: EditMealPageProps) {
     const mealWithTranslations = await getMeal(id);
+
+    if (mealWithTranslations.meal.provider !== 'yummy') {
+        return redirect(`/result/${id}`);
+    }
 
     const filePath = path.join(process.cwd(), 'public/data/ingredients/ingredients.json');
     const ingredientsData = fs.readFileSync(filePath, 'utf-8');
