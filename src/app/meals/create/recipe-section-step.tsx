@@ -15,7 +15,7 @@ interface RecipeSectionStepProps {
 
 export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
     const { sections, onChangeSections } = useRecipeFormContext();
-    const [instructionStep, setInstructionStep] = useState<string>('');
+    const [instructionStep, setInstructionStep] = useState<string>(step.text ?? '');
 
     const onChangeStep = (newValue: string): void => {
         const newStep: MealRecipeStepWithId = {

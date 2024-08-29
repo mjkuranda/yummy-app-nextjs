@@ -8,13 +8,14 @@ export function getDefaultValues(mealWithTranslations: DetailedMealWithTranslati
     return {
         title: meal.title,
         description: meal.description,
-        ingredients: {}, // TODO: Ingredients mapping
+        ingredients: [], // TODO: Ingredients mapping
         type: 'main course', // TODO: type is missing
         recipe: mapRecipe(meal),
         hasImage: Boolean(meal.imgUrl),
     };
 }
 
+// TODO: Continue writing
 export function mapIngredients(meal: DetailedMeal, ): Items {
     return {};
 }

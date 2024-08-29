@@ -104,3 +104,18 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
         ...((imgUrl || imageUrl) && { imageUrl: imgUrl ?? imageUrl })
     };
 }
+
+export function loadRecipeSections(sections: MealRecipeSection[]): MealRecipeSectionWithId[] {
+    return sections.map(section => {
+        return {
+            ...section,
+            id: crypto.randomUUID(),
+            steps: section.steps.map(step => {
+                return {
+                    id: crypto.randomUUID(),
+                    text: step
+                };
+            })
+        };
+    });
+}
