@@ -7,28 +7,23 @@ import {
     AutocompleteInputChangeReason
 } from '@mui/material';
 import { FieldError, Merge } from 'react-hook-form';
-import { IngredientWithId } from '@/src/types/ingredient.types';
+import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 import { MealIngredient } from '@/src/app/meals/create/meal-ingredient';
 import { addIngredient } from '@/src/helpers/ingredient-form.helper';
 
-export interface InputListItem {
-    en: string;
-    pl: string;
-}
-
 interface InputListProps {
-    items: InputListItem[];
+    items: IngredientDataValue[];
     label: string;
     selectedItems: IngredientWithId[];
     setSelectedItems: (items: IngredientWithId[]) => void;
     error?: Merge<FieldError, (FieldError | undefined)[]> | undefined;
-    onFilter?: (match: string) => InputListItem[];
+    onFilter?: (ingredients: IngredientDataValue[], match: string) => IngredientDataValue[];
 }
 
-export function InputIngredientList({ label, selectedItems, setSelectedItems, error, onFilter }: InputListProps) {
+export function InputIngredientList({ items, label, selectedItems, setSelectedItems, error, onFilter }: InputListProps) {
     const [inputValue, setInputValue] = useState('');
 
-    const onChange = (event: SyntheticEvent<Element>, newValue: InputListItem | null): void => {
+    const onChange = (event: SyntheticEvent<Element>, newValue: IngredientDataValue | null): void => {
         if (newValue) {
             const hasThisIngredient = selectedItems.some(item => item.data.en === newValue.en);
 
@@ -50,8 +45,8 @@ export function InputIngredientList({ label, selectedItems, setSelectedItems, er
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Autocomplete<InputListItem>
-                options={onFilter ? onFilter(inputValue) : []}
+            <Autocomplete<IngredientDataValue>
+                options={onFilter ? onFilter(items, inputValue) : []}
                 getOptionLabel={option => option.pl.charAt(0).toUpperCase() + option.pl.substring(1)}
                 getOptionKey={option => option.en}
                 onChange={onChange}

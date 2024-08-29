@@ -1,7 +1,6 @@
-import { IngredientWithId } from '@/src/types/ingredient.types';
-import { InputListItem } from '@/src/components/common/form/input-ingredient-list';
+import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 
-export function addIngredient(item: InputListItem): IngredientWithId {
+export function addIngredient(item: IngredientDataValue): IngredientWithId {
     return {
         id: crypto.randomUUID(),
         data: { ...item },
@@ -38,4 +37,13 @@ export function setIngredientUnit(unit: string, ingredient: IngredientWithId, in
             unit
         };
     });
+}
+
+export function filterIngredients(ingredients: IngredientDataValue[], match: string): IngredientDataValue[] {
+    if (match.length === 0) {
+        return [];
+    }
+
+    // It depends on the language, but let's say, it's Polish.
+    return ingredients.filter(label => label.pl.startsWith(match));
 }

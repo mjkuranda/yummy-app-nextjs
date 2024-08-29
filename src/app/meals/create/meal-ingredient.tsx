@@ -33,7 +33,11 @@ const unitOptions = [
     { en: 'pack', label: 'opakowanie' },
     { en: 'jar', label: 'słoik' },
     { en: 'serving', label: 'porcja' },
-    { en: 'servings', label: 'porcje' }
+    { en: 'servings', label: 'porcje' },
+    { en: 'tablespoon', label: 'łyżka' },
+    { en: 'tablespoons', label: 'łyżki' },
+    { en: 'clove', label: 'ząbek' },
+    { en: 'cloves', label: 'ząbki' }
 ];
 
 interface MealIngredientProps {

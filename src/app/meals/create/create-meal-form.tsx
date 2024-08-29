@@ -18,10 +18,9 @@ import { useUserContext } from '@/src/contexts/user.context';
 import { toastSuccess } from '@/src/utils/toast.utils';
 import { createMeal, uploadImage } from '@/src/api/api';
 import { useRouter } from 'next/navigation';
-import { useIngredientManager } from '@/src/hooks/use-ingredient-manager';
 import { DetailedMealWithTranslations } from '@/src/types/api.types';
 import { getDefaultValues } from '@/src/helpers/meal.helper';
-import { IngredientWithId } from '@/src/types/ingredient.types';
+import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
@@ -33,7 +32,8 @@ const options = [
 ];
 
 interface CreateMealFormProps {
-    meal: DetailedMealWithTranslations;
+    meal?: DetailedMealWithTranslations;
+    ingredients: IngredientDataValue[];
 }
 const defaultValues: MealFormData = {
     title: '',
@@ -44,21 +44,18 @@ const defaultValues: MealFormData = {
     hasImage: false,
 };
 
-export function CreateMealForm({ meal }: CreateMealFormProps) {
+export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const router = useRouter();
     const userContext = useUserContext();
-    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues: meal ? getDefaultValues(meal) : defaultValues, mode: 'onChange' });
+    const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<MealFormData>({ defaultValues: meal ? getDefaultValues(meal, ingredients) : defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
-    const { labels, filterIngredients } = useIngredientManager();
 
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
 
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
-
-    console.log(meal);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();
@@ -149,7 +146,7 @@ export function CreateMealForm({ meal }: CreateMealFormProps) {
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <IngredientFormProvider ingredients={value} onChangeIngredients={onChange} error={errors.ingredients}>
-                                    <IngredientForm />
+                                    <IngredientForm ingredientDataValues={ingredients} />
                                 </IngredientFormProvider>
                             )}
                         />
