@@ -84,12 +84,14 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
         }
     };
 
+    const onEdit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {};
+
     return (
         <form className={styles['create-meal-form']}>
             {isCreating && <Loader isAbsolute={true} />}
             <div className={styles['form-content-container']}>
                 <div className={styles['form-top-container']}>
-                    <h2 className={styles['form-top-header']}>Create a new meal</h2>
+                    <h2 className={styles['form-top-header']}>{meal ? 'Edit a meal' : 'Create a new meal'}</h2>
                     <Controller
                         name={'title'}
                         control={control}
@@ -223,7 +225,10 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                 </div>
                 <div className={styles['create-button-container']}>
                     <div>
-                        <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                        {meal
+                            ? <Button label={'Edit'} onClick={handleSubmit(onEdit)} disabled={Object.keys(errors).length > 0} />
+                            : <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                        }
                     </div>
                     <div>
                         {wasCreated && 'New meal has been created. Wait, until an administrator will confirm its.'}

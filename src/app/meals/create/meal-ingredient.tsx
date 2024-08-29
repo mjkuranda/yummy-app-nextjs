@@ -46,7 +46,7 @@ interface MealIngredientProps {
 
 export function MealIngredient({ ingredient }: MealIngredientProps) {
     const { ingredients, onChangeIngredients } = useIngredientFormContext();
-    const [amount, setAmount] = useState<string>('0');
+    const [amount, setAmount] = useState<string>(ingredient.amount ?? '0');
     const [unit, setUnit] = useState<string>(ingredient.unit);
 
     const setAmountValue = (newValue: string) => {
