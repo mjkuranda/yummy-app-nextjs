@@ -45,6 +45,18 @@ export function MealRatingStars({ rating }: MealRatingStarsProps) {
         ));
     };
 
+    if (rating >= 4.85) {
+        return (
+            <div className={styles['meal-rating-stars']}>
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+            </div>
+        );
+    }
+
     return (
         <div className={styles['meal-rating-stars']}>
             {renderSolid(starState)}

@@ -56,7 +56,7 @@ export function MealRatingUser({ onToggleRate }: MealRatingUserProps) {
             <MealRatingStars rating={userRating} />
             <InputRange id={'rating'} name={'rating'} label={''} settings={{ ...ratingSettings, value: userRating }} onChange={onChange} />
             <div className={'d-flex justify-content-start'}>
-                {isRating ? <Loader /> : <Button label={'Oceń'} onClick={onRate} />}
+                {userContext.isLoggedIn() && isRating ? <Loader /> : <Button label={'Oceń'} onClick={onRate} />}
             </div>
         </div>
     );

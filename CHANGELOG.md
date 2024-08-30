@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): User context fetching a current user information.
+- [Marek Kurańda](https://github.com/mjkuranda): Meal rating stars count.
 
 ## [1.43.2] - 2024-08-30
 ### Fixed
