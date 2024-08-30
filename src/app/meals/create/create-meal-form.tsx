@@ -58,6 +58,10 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
     const imageFile = watch('imageFile');
 
     useEffect(() => {
+        if (userContext.isFetching) {
+            return;
+        }
+
         if (meal) {
             if (!userContext.user.isAdmin && !userContext.user.capabilities?.canEdit) {
                 toastInfo('Aby edytować posiłki, potrzebujesz uprawnień admina, badź możliwości edycji.');
@@ -71,7 +75,7 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                 return router.push('/search');
             }
         }
-    }, []);
+    }, [userContext.isFetching]);
 
     const onSubmit: SubmitHandler<MealFormData> = async (data, e): Promise<void> => {
         e?.preventDefault();

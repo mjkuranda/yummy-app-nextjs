@@ -43,7 +43,12 @@ export async function doUserLogin(login: string, password: string): Promise<User
 }
 
 export async function refreshUserTokens() {
-    return apiPost<void>('users/refreshTokens');
+    // eslint-disable-next-line no-useless-catch
+    try {
+        return apiPost<void>('users/refreshTokens');
+    } catch (err: unknown) {
+        throw err;
+    }
 }
 
 export async function getMealProposals(): Promise<MealProposal[]> {

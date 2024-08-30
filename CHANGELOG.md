@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.43.3]
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Refreshing access token every 1 minute.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): User context fetching a current user information.
+
 ## [1.43.2] - 2024-08-30
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Loading meal details from Yummy local database.

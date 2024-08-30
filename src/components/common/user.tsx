@@ -4,15 +4,24 @@ import { Button } from '@/src/components/common/button';
 import { useUserContext } from '@/src/contexts/user.context';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Loader } from '@/src/components/common/loader';
 
 export function User() {
-    const { isLoggedIn, logoutUser } = useUserContext();
+    const { isLoggedIn, logoutUser, isFetching } = useUserContext();
     const router = useRouter();
 
     const onLogout = () => {
         router.push('/users/login');
         logoutUser();
     };
+
+    if (isFetching) {
+        return (
+            <div className="user">
+                <Loader />
+            </div>
+        );
+    }
 
     return (
         <div className="user">
