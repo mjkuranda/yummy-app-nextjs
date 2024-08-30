@@ -22,6 +22,7 @@ interface InputListProps {
 
 export function InputIngredientList({ items, label, selectedItems, setSelectedItems, error, onFilter }: InputListProps) {
     const [inputValue, setInputValue] = useState('');
+    const [value, setValue] = useState(null);
 
     const onChange = (event: SyntheticEvent<Element>, newValue: IngredientDataValue | null): void => {
         if (newValue) {
@@ -30,6 +31,7 @@ export function InputIngredientList({ items, label, selectedItems, setSelectedIt
             if (!hasThisIngredient) {
                 const newItem = addIngredient(newValue);
                 setSelectedItems([...selectedItems, newItem]);
+                setValue(null);
             }
         }
     };
@@ -51,6 +53,7 @@ export function InputIngredientList({ items, label, selectedItems, setSelectedIt
                 getOptionKey={option => option.en}
                 onChange={onChange}
                 inputValue={inputValue}
+                value={value}
                 clearOnBlur={false}
                 selectOnFocus={false}
                 onOpen={onOpen}

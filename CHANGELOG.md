@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.43.1] - 2024-08-30
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Fetching ingredients at meal creator.
+- [Marek Kurańda](https://github.com/mjkuranda): Resetting meal form after creation.
 
 ## [1.43.0] - 2024-08-29
 ### Added
