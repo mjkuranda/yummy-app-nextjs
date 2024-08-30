@@ -75,7 +75,7 @@ export function removeSectionStep(stepId: string, section: MealRecipeSectionWith
 }
 
 export function proceedFormToData(formData: MealFormData, author: string, language: Language, imgUrl?: string): NewMealDto {
-    const { title, description, ingredients, type, recipe, imageUrl } = formData;
+    const { title, description, readyInMinutes, ingredients, type, recipe, imageUrl } = formData;
     const mealIngredients: IngredientWithoutImage[] = ingredients.map(ingredient => {
         return {
             id: ingredient.data.id,
@@ -97,6 +97,7 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
         author,
         language,
         type,
+        readyInMinutes: Number(readyInMinutes),
         recipeSections,
         ingredients: mealIngredients,
         posted: Date.now(),

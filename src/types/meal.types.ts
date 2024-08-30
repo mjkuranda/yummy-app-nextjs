@@ -4,8 +4,9 @@ import { IngredientWithoutImage, MealRecipeSection } from '@/src/types/api.types
 export interface MealFormData {
     title: string;
     description: string;
-    ingredients: IngredientWithId[];
+    readyInMinutes: string;
     type: MealType;
+    ingredients: IngredientWithId[];
     recipe: MealRecipeSectionWithId[];
     hasImage: boolean;
     hasImageUrl?: boolean;
@@ -72,6 +73,7 @@ export interface NewMealRatingDto {
 export interface MealDifferenceDto {
     title?: string;
     description?: string;
+    readyInMinutes?: number;
     type?: MealType;
     ingredients?: IngredientWithoutImage[];
     recipeSections?: MealRecipeSection[];
