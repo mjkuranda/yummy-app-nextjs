@@ -14,7 +14,7 @@ export function MealProposalItem({ proposal }: MealProposalItemProps) {
     return (
         <div className={styles['meal-proposal-container__proposal']}>
             <div className={styles['meal-proposal-container__proposal-image']}>
-                <MealImage title={proposal.title} imgUrl={proposal.imgUrl} />
+                <MealImage title={proposal.title} imgUrl={proposal.imgUrl} provider={proposal.provider} />
             </div>
             <h3 className={styles['meal-proposal-container__proposal-header']}>
                 {proposal.title}

@@ -13,7 +13,7 @@ export function MealContainer({ complexMealObject }: MealContainerProps) {
 
     return (
         <>
-            <MealImage imgUrl={meal.imgUrl} title={meal.title} />
+            <MealImage imgUrl={meal.imgUrl} title={meal.title} provider={meal.provider} />
             <MealGeneral meal={meal} />
             <MealIngredientContainer complexMealObject={complexMealObject} />
             <MealCommentContainer />

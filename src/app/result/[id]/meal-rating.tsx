@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react';
 import { MealRating as MealRatingType } from '@/src/types/meal.types';
 import { getMealRating } from '@/src/api/api';
 import { useParams } from 'next/navigation';
+import { useUserContext } from '@/src/contexts/user.context';
 
 export function MealRating() {
     const { id } = useParams<{ id: string }>();
+    const { isLoggedIn } = useUserContext();
     const [toggleRate, setToggleRate] = useState<boolean>(false);
     const [rating, setRating] = useState<MealRatingType>({ mealId: id, rating: 0, count: 0 });
 
@@ -49,7 +51,7 @@ export function MealRating() {
             <div className={styles['meal-rating__rating']}>
                 <MealRatingStars rating={rating.rating} />
                 <div className={styles['rate-count']}>({renderRatingCountText(rating.count)})</div>
-                <TextButton label={'Oceń'} onClick={onToggleRate} />
+                {isLoggedIn() && <TextButton label={'Oceń'} onClick={onToggleRate} />}
             </div>
             {toggleRate && <MealRatingUser onToggleRate={onToggleRate} />}
         </div>

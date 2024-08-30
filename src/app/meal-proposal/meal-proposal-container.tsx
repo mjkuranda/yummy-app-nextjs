@@ -24,7 +24,7 @@ export function MealProposalContainer() {
     return (
         <div className={styles['meal-proposal-container']}>
             <MealProposalItem proposal={currentProposal} />
-            <MealProposalNavigator onPrevious={onPrevious} onNext={onNext} onChoose={onChoose} />
+            {currentProposal && <MealProposalNavigator onPrevious={onPrevious} onNext={onNext} onChoose={onChoose} />}
             <div className={styles['meal-proposal-back-link']}>
                 <Link href="/">
                     <ArrowCircleLeftIcon />Back to main page
