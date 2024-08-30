@@ -75,5 +75,5 @@ export interface MealDifferenceDto {
     type?: MealType;
     ingredients?: IngredientWithoutImage[];
     recipeSections?: MealRecipeSection[];
-    imgUrl?: string;
+    imageUrl?: string;
 }
