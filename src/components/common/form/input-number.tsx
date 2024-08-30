@@ -1,6 +1,7 @@
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { ChangeEvent } from 'react';
+import { FieldError } from 'react-hook-form';
 
 interface InputNumberProps {
     label: string;
@@ -8,9 +9,10 @@ interface InputNumberProps {
     setValue: (newValue: string) => void;
     unit?: string; // TODO: UnitType;
     width?: string;
+    error?: FieldError;
 }
 
-export function InputNumber({ label, value, setValue, unit, width = '25ch' }: InputNumberProps) {
+export function InputNumber({ label, value, setValue, unit, width = '25ch', error }: InputNumberProps) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value.trim());
     };
@@ -29,7 +31,8 @@ export function InputNumber({ label, value, setValue, unit, width = '25ch' }: In
             InputProps={unit ? inputProps : {}}
             value={value}
             onChange={onChange}
-            error={!isFloat(Number(value)) && !Number.isInteger(Number(value))}
+            error={Boolean(error)}
+            helperText={error?.message ?? ''}
         />
     );
 }

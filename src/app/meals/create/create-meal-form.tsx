@@ -24,6 +24,7 @@ import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.ty
 import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
+import { InputNumber } from '@/src/components/common/form/input-number';
 
 const options = [
     { en: 'soup', label: 'Soup' },
@@ -38,10 +39,11 @@ interface CreateMealFormProps {
 const defaultValues: MealFormData = {
     title: '',
     description: '',
-    ingredients: [],
+    readyInMinutes: '0',
     type: 'main course',
+    ingredients: [],
     recipe: [],
-    hasImage: false,
+    hasImage: false
 };
 
 export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
@@ -167,9 +169,25 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                             )}
                         />
                         <Controller
+                            name={'readyInMinutes'}
+                            control={control}
+                            rules={{
+                                required: 'Time preparation must be defined',
+                                validate: {
+                                    readyInMinutesRequired: (value: string) => value?.length > 0 ? true : 'Time preparation must be defined',
+                                    mustBeNumber: (value: string) => !isNaN(Number(value)) ? true : 'Time preparation must be a number'
+                                }
+                            }}
+                            render={({ field: { onChange, value } }) => (
+                                <div>
+                                    <InputNumber label={'Time preparation'} setValue={onChange} value={value ?? '0'} error={errors.readyInMinutes} width={'100%'} />
+                                </div>
+                            )}
+                        />
+                        <Controller
                             name={'type'}
                             control={control}
-                            rules={{ required: true }}
+                            rules={{ required: 'Type is required' }}
                             render={({ field: { onChange, value } }) => (
                                 <InputSelect id={'meal-type'} options={options} label={'Select a type'} selectedValue={value} setSelectedValue={onChange} />
                             )}
