@@ -1,6 +1,6 @@
 import { MealType } from '@/src/types/meal.types';
 
-type MealProvider = 'yummy' | 'spoonacular';
+export type MealProvider = 'yummy' | 'spoonacular';
 
 export interface MealResult {
     id: string;
