@@ -1,6 +1,6 @@
 import { ApiErrorResponse, throwApiError } from '@/src/api/api-errors';
 
-const API_URL = 'http://localhost:3001';
+export const API_URL = 'http://localhost:3001';
 
 export async function apiGet<T>(endpointUrl: string): Promise<T> {
     const res = await fetch(`${API_URL}/${endpointUrl}`, {

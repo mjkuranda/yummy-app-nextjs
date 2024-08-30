@@ -3,14 +3,16 @@
 import styles from '@/styles/app/result/page.module.scss';
 import { useHasImage } from '@/src/hooks/useHasImage';
 import { Loader } from '@/src/components/common/loader';
+import { getImageUrlForYummyMeals } from '@/src/helpers/result.helper';
 
 interface MealImageProps {
+    title: string;
     imgUrl?: string;
-    title?: string;
 }
 
 export function MealImage({ imgUrl, title }: MealImageProps) {
-    const { hasImage, isLoading }  = useHasImage(imgUrl);
+    const imageUrl = getImageUrlForYummyMeals(imgUrl);
+    const { hasImage, isLoading }  = useHasImage(imageUrl);
 
     if (isLoading) {
         return <Loader />;
@@ -18,7 +20,7 @@ export function MealImage({ imgUrl, title }: MealImageProps) {
 
     return (
         <div className={styles['result-image']}>
-            <img src={hasImage ? imgUrl : '/no-image.png'} alt={`Zdjęcie posiłku o nazwie ${title}`} onError={(e) => {
+            <img src={hasImage ? imageUrl : '/no-image.png'} alt={`Zdjęcie posiłku o nazwie ${title}`} onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = '/no-image.png';
                 target.alt = 'Brak dostępnego zdjęcia';

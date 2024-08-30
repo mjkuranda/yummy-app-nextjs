@@ -1,26 +1,24 @@
 import styles from '@/styles/app/result/page.module.scss';
-import { Ingredient } from '@/src/types/api.types';
+import { DetailedMealWithTranslations } from '@/src/types/api.types';
+import { MealIngredientElement } from '@/src/app/result/[id]/meal-ingredient-element';
 
 interface MealIngredientContainerProps {
-    ingredients: Ingredient[];
+    complexMealObject: DetailedMealWithTranslations;
 }
 
-export function MealIngredientContainer({ ingredients }: MealIngredientContainerProps) {
+export function MealIngredientContainer({ complexMealObject }: MealIngredientContainerProps) {
+    const { meal, ingredients } = complexMealObject;
+
     return (
         <div className={styles['result-ingredients']}>
             <h3>Składniki</h3>
             <ul>
-                {ingredients.map(ingredient => {
-                    return (
-                        <li className={`d-flex justify-content-center align-items-center ${styles['result-ingredient']}`}
-                            key={ingredient.name}>
-                            <img className={styles['result-ingredient__image']} src={ingredient.imageUrl}
-                                alt={ingredient.name} />
-                            <span
-                                className={styles['result-ingredient__text']}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</span>
-                        </li>
-                    );
-                })}
+                {meal.ingredients.map(ingredient => <MealIngredientElement text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} />)}
+                {/* FIXME: i18n will be the best option */}
+                {/*{ingredients*/}
+                {/*    ? ingredients.map(ingredient => <MealIngredientElement text={ingredient.text} imageUrl={ingredient.imageUrl} />)*/}
+                {/*    : meal.ingredients.map(ingredient => <MealIngredientElement text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} />)*/}
+                {/*}*/}
             </ul>
         </div>
     );
