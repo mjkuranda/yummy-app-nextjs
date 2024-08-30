@@ -5,7 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.44.0] - 2024-08-31
 ### Added
-- [Marek Kurańda](https://github.com/mjkuranda): Capability to define a time preparation for meal.
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to define and edit a time preparation for meal.
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to edit a meal through author itself.
 
 ## [1.43.3]
 ### Added

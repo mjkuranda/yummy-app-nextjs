@@ -73,6 +73,7 @@ export interface NewMealRatingDto {
 export interface MealDifferenceDto {
     title?: string;
     description?: string;
+    readyInMinutes?: number;
     type?: MealType;
     ingredients?: IngredientWithoutImage[];
     recipeSections?: MealRecipeSection[];

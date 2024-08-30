@@ -110,6 +110,7 @@ export interface NewMealDto {
     language: Language;
     posted: number;
     provider: MealProvider;
+    readyInMinutes: number;
     recipeSections: MealRecipeSection[];
     title: string;
     type: MealType;

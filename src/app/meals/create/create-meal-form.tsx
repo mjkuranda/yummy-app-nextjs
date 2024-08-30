@@ -65,6 +65,10 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
         }
 
         if (meal) {
+            if (userContext.user.login === meal.meal.sourceOrAuthor) {
+                return;
+            }
+
             if (!userContext.user.isAdmin && !userContext.user.capabilities?.canEdit) {
                 toastInfo('Aby edytować posiłki, potrzebujesz uprawnień admina, badź możliwości edycji.');
 
