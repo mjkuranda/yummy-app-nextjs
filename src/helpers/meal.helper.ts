@@ -1,6 +1,8 @@
 import { DetailedMeal, DetailedMealWithTranslations, Ingredient, NewMealDto } from '@/src/types/api.types';
 import { MealDifferenceDto, MealFormData, MealRecipeSectionWithId } from '@/src/types/meal.types';
-import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
+import { IngredientData, IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
+import path from 'path';
+import fs from 'fs';
 
 export function getDefaultValues(mealWithTranslations: DetailedMealWithTranslations, ingredients: IngredientDataValue[]): MealFormData {
     const { meal } = mealWithTranslations;
@@ -103,7 +105,7 @@ export function getMealDifferences(meal: DetailedMeal, proceededData: NewMealDto
     }
 
     if (meal.imgUrl !== proceededData.imageUrl) {
-        result.imgUrl = proceededData.imageUrl;
+        result.imageUrl = proceededData.imageUrl;
     }
 
     return result;
