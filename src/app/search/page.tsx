@@ -28,7 +28,11 @@ export default function Search() {
                 <MealResultBox />
                 <section id={resultStyles['adder']}>
                     <div className="d-flex justify-content-center align-items-center">
-                        <p className="text-center">Możesz również <Link href={'/meals/create'}>utworzyć</Link> nowy posiłek,<br />dodając do bazy posiłków, by inni mogli go wyszukać w przyszłości.</p>
+                        <p className="text-center">
+                            Możesz również <Link href={'/meals/create'}>utworzyć</Link> całkiem nowy posiłek,<br />
+                            niezwiązany z obecnym wyszukiwaniem,<br />
+                            dodając do bazy posiłków, by inni mogli go wyszukać w przyszłości.
+                        </p>
                     </div>
                 </section>
             </div>
