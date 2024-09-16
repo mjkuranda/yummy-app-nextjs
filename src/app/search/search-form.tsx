@@ -49,7 +49,7 @@ export function SearchForm({ children }) {
             <div id={styles['search-query-part']}>
                 {children}
             </div>
-            <div className="d-flex justify-content-center align-items-center mt-3 mb-5">
+            <div className="d-flex justify-content-center align-items-center m-3">
                 <Button label={'Szukaj'} type="submit" disabled={isSearchDisabled} />
             </div>
         </form>
