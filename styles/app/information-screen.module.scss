@@ -1,8 +1,30 @@
+@import '@/styles/globals-colors.scss';
+
 .information-screen {
     width: 100vw;
     height: 100vh;
 
-    h3, p {
-        text-align: center;
+    &[data-image-name="insane-easy"] {
+        background: url('/fridge_1920.jpg') fixed;
+    }
+
+    &[data-image-name="meals"] {
+        background: url('/meals_1920.jpg') fixed;
+    }
+
+    &[data-image-name="community"] {
+        background: url('/integrate_1920.jpg') fixed;
+    }
+
+    .information-screen-box {
+        background-color: $blue-de-france-alpha;
+        text-shadow: 2px 2px 2px grey, -3px 6px 5px $blue-de-france;
+        color: $honey-yellow;
+        padding: 1em 2em;
+        border-radius: 1em;
+
+        h3, p {
+            text-align: center;
+        }
     }
 }

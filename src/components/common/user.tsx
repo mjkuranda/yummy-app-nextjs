@@ -33,7 +33,7 @@ export function User() {
                         <Button label={'Logout'} onClick={onLogout} />
                     </>
                 )
-                : <Button label={'Login'} link="/users/login" />
+                : <Button label="Zaloguj się" link="/users/login" />
             }
         </div>
     );
