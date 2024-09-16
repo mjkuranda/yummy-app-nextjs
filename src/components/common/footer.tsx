@@ -12,7 +12,7 @@ export function Footer() {
                 </div>
                 <h5>
                     <Link href="https://icons8.com/icon/RxvLC54xtSnZ/yummy" rel="noopener noreferrer" target="_blank">Yummy</Link>
-                    &nbsp;icon by&nbsp;
+                    &nbsp;ikona pochodzi z&nbsp;
                     <Link href="https://icons8.com" rel="noopener noreferrer" target="_blank">Icons8</Link>
                 </h5>
             </div>
