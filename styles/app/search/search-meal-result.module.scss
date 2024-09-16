@@ -156,12 +156,11 @@ $spc: 8px;
                     }
 
                     span:first-child {
-                        color: crimson;
+                        color: green;
                     }
 
                     span + span {
-                        margin-left: 0.3em;
-                        color: green;
+                        color: crimson;
                     }
                 }
             }
@@ -187,8 +186,12 @@ $spc: 8px;
 
 #adder {
     margin: 2em 0;
-}
 
-#adder > div:nth-child(1) {
-    margin-bottom: 0.5em;
+    > div:nth-child(1) {
+        margin-bottom: 0.5em;
+
+        p {
+            margin: 0 !important;
+        }
+    }
 }

@@ -6,6 +6,7 @@ import styles from '@/styles/app/search/search-meal-result.module.scss';
 import { Button } from '@/src/components/common/button';
 import { useHasImage } from '@/src/hooks/useHasImage';
 import { Loader } from '@/src/components/common/loader';
+import { ReactElement } from 'react';
 
 interface SearchMealResultProps {
     meal: MealResult;
@@ -17,9 +18,9 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
     const imgSrc = hasImage ? meal.imgUrl : '/no-image.png';
     const encodedUri = encodeURI(`/search?${ingredientQuery}`);
 
-    const renderMissing = (missingCount: number): string => {
+    const renderMissing = (missingCount: number): ReactElement | string => {
         if (missingCount === 0) {
-            return 'Idealnie pasujące';
+            return <b style={{ color: 'green' }}>Idealnie pasujące</b>;
         }
 
         if (missingCount === 1) {
@@ -33,8 +34,8 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
         return `${missingCount} brakujących składników`;
     };
 
-    const renderRelevance = (relevance: number): string => {
-        return `${Math.ceil(relevance * 100)}% dopasowania`;
+    const renderRelevance = (relevance: number): ReactElement => {
+        return <>Zgodność z Twoim wyszukiwaniem: <b>{Math.ceil(relevance * 100)}%</b></>;
     };
 
     return (
@@ -48,8 +49,8 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
                 <div className={styles['result-description']}>
                     <div className={styles['result-title']}>{meal.title}</div>
                     <div className={styles['result-text']}>
-                        <span>{renderMissing(meal.missingCount)}</span>
                         <span>{renderRelevance(meal.relevance)}</span>
+                        <span>{renderMissing(meal.missingCount)}</span>
                     </div>
                 </div>
                 <div className={`${styles['result-button']} d-flex justify-content-center align-items-center`}>
