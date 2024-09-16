@@ -17,14 +17,24 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
     const imgSrc = hasImage ? meal.imgUrl : '/no-image.png';
     const encodedUri = encodeURI(`/search?${ingredientQuery}`);
 
-    const renderDescription = (relevance: number): string => {
-        if (relevance === 1.0) return 'Perfectly matched.';
-        if (relevance >= 0.8) return 'Highly matched.';
-        if (relevance >= 0.6) return 'Above half matched.';
-        if (relevance >= 0.4) return 'Below half matched.';
-        if (relevance >= 0.2) return 'Weak matched.';
+    const renderMissing = (missingCount: number): string => {
+        if (missingCount === 0) {
+            return 'Idealnie pasujące';
+        }
 
-        return 'Completely different.';
+        if (missingCount === 1) {
+            return '1 brakujący składnik';
+        }
+
+        if (missingCount < 5) {
+            return `${missingCount} brakujące składniki`;
+        }
+
+        return `${missingCount} brakujących składników`;
+    };
+
+    const renderRelevance = (relevance: number): string => {
+        return `${Math.ceil(relevance * 100)}% dopasowania`;
     };
 
     return (
@@ -37,7 +47,10 @@ export function SearchMealResult({ meal, ingredientQuery }: SearchMealResultProp
             <div className={styles['result-label']}>
                 <div className={styles['result-description']}>
                     <div className={styles['result-title']}>{meal.title}</div>
-                    <div className={styles['result-text']}>{renderDescription(meal.relevance)}</div>
+                    <div className={styles['result-text']}>
+                        <span>{renderMissing(meal.missingCount)}</span>
+                        <span>{renderRelevance(meal.relevance)}</span>
+                    </div>
                 </div>
                 <div className={`${styles['result-button']} d-flex justify-content-center align-items-center`}>
                     <Button label={'Zobacz'} link={`/result/${meal.id}?sourceUrl=${encodedUri}`} />

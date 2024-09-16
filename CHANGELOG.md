@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Mushroom ingredient set as category.
 - [Marek Kurańda](https://github.com/mjkuranda): Scrolling at search page when results are received.
+- [Marek Kurańda](https://github.com/mjkuranda): Information about missing ingredients.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Simplified and sorted ingredient set at search page.
