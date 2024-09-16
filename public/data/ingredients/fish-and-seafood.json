@@ -3,45 +3,13 @@
         "en": "cod",
         "pl": "dorsz"
     },
-    "haddock": {
-        "en": "haddock",
-        "pl": "plamiak"
-    },
-    "halibut": {
-        "en": "halibut",
-        "pl": "halibut"
-    },
     "trout": {
         "en": "trout",
         "pl": "pstrąg"
     },
-    "sole": {
-        "en": "sole",
-        "pl": "sola"
-    },
     "catfish": {
         "en": "catfish",
         "pl": "sum"
-    },
-    "tilapia": {
-        "en": "tilapia",
-        "pl": "tilapia"
-    },
-    "snapper": {
-        "en": "snapper",
-        "pl": "lucjan"
-    },
-    "barramundi": {
-        "en": "barramundi",
-        "pl": "barramundi"
-    },
-    "grouper": {
-        "en": "grouper",
-        "pl": "gruper"
-    },
-    "mahi mahi": {
-        "en": "mahi mahi",
-        "pl": "mahi mahi"
     },
     "swordfish": {
         "en": "swordfish",
@@ -50,14 +18,6 @@
     "marlin": {
         "en": "marlin",
         "pl": "marlin"
-    },
-    "wahoo": {
-        "en": "wahoo",
-        "pl": "wahoo"
-    },
-    "amberjack": {
-        "en": "amberjack",
-        "pl": "amberjack"
     },
     "mackerel": {
         "en": "mackerel",
@@ -75,17 +35,13 @@
         "en": "anchovy",
         "pl": "sardela"
     },
-    "smelt": {
-        "en": "smelt",
-        "pl": "stynka"
-    },
     "hake": {
         "en": "hake",
         "pl": "morszczuk"
     },
     "pollock": {
         "en": "pollock",
-        "pl": "minta"
+        "pl": "mintaj"
     },
     "bluefish": {
         "en": "bluefish",
@@ -95,18 +51,6 @@
         "en": "tilefish",
         "pl": "ryba kafelkowa"
     },
-    "cobia": {
-        "en": "cobia",
-        "pl": "cobia"
-    },
-    "wolffish": {
-        "en": "wolffish",
-        "pl": "wilk"
-    },
-    "pompano": {
-        "en": "pompano",
-        "pl": "pompano"
-    },
     "ribbonfish": {
         "en": "ribbonfish",
         "pl": "ryba wstęgowata"
@@ -115,17 +59,9 @@
         "en": "rockfish",
         "pl": "ryba skalna"
     },
-    "sheepshead": {
-        "en": "sheepshead",
-        "pl": "owcowata"
-    },
     "sturgeon": {
         "en": "sturgeon",
         "pl": "jesiotr"
-    },
-    "turbot": {
-        "en": "turbot",
-        "pl": "turbot"
     },
     "monkfish": {
         "en": "monkfish",
@@ -139,10 +75,6 @@
         "en": "pickerel",
         "pl": "szczupak"
     },
-    "pike": {
-        "en": "pike",
-        "pl": ""
-    },
     "walleye": {
         "en": "walleye",
         "pl": "sandacz"
@@ -151,48 +83,32 @@
         "en": "whitefish",
         "pl": "biała ryba"
     },
-    "cuttlefish": {
-        "en": "cuttlefish",
-        "pl": "mątwa"
-    },
-    "octopus": {
-        "en": "octopus",
-        "pl": "ośmiornica"
-    },
-    "abalone": {
-        "en": "abalone",
-        "pl": "abalon"
-    },
-    "scallop": {
-        "en": "scallop",
-        "pl": "przegrzebek"
-    },
-    "clam": {
-        "en": "clam",
-        "pl": "małż"
-    },
     "oyster": {
         "en": "oyster",
         "pl": "ostryga"
-    },
-    "mussel": {
-        "en": "mussel",
-        "pl": "małż"
     },
     "crab": {
         "en": "crab",
         "pl": "krab"
     },
+    "salmon": {
+        "en": "salmon",
+        "pl": "łosoś"
+    },
+    "shrimp": {
+        "en": "shrimp",
+        "pl": "krewetka"
+    },
     "lobster": {
         "en": "lobster",
         "pl": "homar"
     },
-    "shrimp": {
-        "en": "shrimp",
-        "pl": "krewetka (shrimp)"
+    "crawfish": {
+        "en": "crawfish",
+        "pl": "rak"
     },
-    "prawn": {
-        "en": "prawn",
-        "pl": "krewetka (prawn)"
+    "clams": {
+        "en": "clams",
+        "pl": "małże"
     }
 }

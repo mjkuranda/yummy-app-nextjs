@@ -39,10 +39,6 @@
         "en": "whipped cream",
         "pl": "śmietana bita"
     },
-    "half and half": {
-        "en": "half and half",
-        "pl": "pół na pół"
-    },
     "heavy cream": {
         "en": "heavy cream",
         "pl": "śmietana kremówka"
@@ -71,10 +67,6 @@
         "en": "ricotta cheese",
         "pl": "ser ricotta"
     },
-    "brie cheese": {
-        "en": "brie cheese",
-        "pl": "ser brie"
-    },
     "gouda cheese": {
         "en": "gouda cheese",
         "pl": "ser gouda"
@@ -82,10 +74,6 @@
     "swiss cheese": {
         "en": "swiss cheese",
         "pl": "ser szwajcarski"
-    },
-    "provolone cheese": {
-        "en": "provolone cheese",
-        "pl": "ser provolone"
     },
     "blue cheese": {
         "en": "blue cheese",
@@ -95,41 +83,13 @@
         "en": "american cheese",
         "pl": "ser amerykański"
     },
-    "monterey jack cheese": {
-        "en": "monterey jack cheese",
-        "pl": "ser monterey jack"
-    },
     "burrata cheese": {
         "en": "burrata cheese",
         "pl": "ser burrata"
     },
-    "camembert cheese": {
-        "en": "camembert cheese",
-        "pl": "ser camembert"
-    },
     "mascarpone cheese": {
         "en": "mascarpone cheese",
         "pl": "ser mascarpone"
-    },
-    "queso fresco": {
-        "en": "queso fresco",
-        "pl": "queso fresco"
-    },
-    "queso blanco": {
-        "en": "queso blanco",
-        "pl": "queso blanco"
-    },
-    "havarti cheese": {
-        "en": "havarti cheese",
-        "pl": "ser havarti"
-    },
-    "asiago cheese": {
-        "en": "asiago cheese",
-        "pl": "ser asiago"
-    },
-    "halloumi cheese": {
-        "en": "halloumi cheese",
-        "pl": "ser halloumi"
     },
     "fontina cheese": {
         "en": "fontina cheese",
@@ -161,23 +121,11 @@
     },
     "fromage blanc": {
         "en": "fromage blanc",
-        "pl": "fromage blanc"
-    },
-    "clotted cream": {
-        "en": "clotted cream",
-        "pl": "śmietana kremówka"
+        "pl": "biały ser"
     },
     "condensed milk": {
         "en": "condensed milk",
         "pl": "mleko skondensowane"
-    },
-    "evaporated milk": {
-        "en": "evaporated milk",
-        "pl": "mleko odparowane"
-    },
-    "powdered milk": {
-        "en": "powdered milk",
-        "pl": "mleko w proszku"
     },
     "soy milk": {
         "en": "soy milk",
@@ -198,9 +146,5 @@
     "oat milk": {
         "en": "oat milk",
         "pl": "mleko owsiane"
-    },
-    "cashew milk": {
-        "en": "cashew milk",
-        "pl": "mleko z nerkowców"
     }
 }

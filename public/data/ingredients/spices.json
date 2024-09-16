@@ -15,10 +15,6 @@
         "en": "onion powder",
         "pl": "cebula w proszku"
     },
-    "paprika": {
-        "en": "paprika",
-        "pl": "papryka"
-    },
     "cumin": {
         "en": "cumin",
         "pl": "kminek"
@@ -131,18 +127,6 @@
         "en": "vanilla bean",
         "pl": "laski wanilii"
     },
-    "saffron": {
-        "en": "saffron",
-        "pl": "szafran"
-    },
-    "star anise": {
-        "en": "star anise",
-        "pl": "anyż gwiaździsty"
-    },
-    "sumac": {
-        "en": "sumac",
-        "pl": "sumak"
-    },
     "fenugreek": {
         "en": "fenugreek",
         "pl": "kozieradka"
@@ -150,10 +134,6 @@
     "caraway seeds": {
         "en": "caraway seeds",
         "pl": "kminek"
-    },
-    "chia seeds": {
-        "en": "chia seeds",
-        "pl": "nasiona chia"
     },
     "wasabi": {
         "en": "wasabi",
@@ -167,14 +147,6 @@
         "en": "ground cloves",
         "pl": "mielone goździki"
     },
-    "anise": {
-        "en": "anise",
-        "pl": "anyż"
-    },
-    "pink peppercorns": {
-        "en": "pink peppercorns",
-        "pl": "różowy pieprz w ziarnach"
-    },
     "juniper berries": {
         "en": "juniper berries",
         "pl": "jagody jałowca"
@@ -186,13 +158,5 @@
     "lemon pepper": {
         "en": "lemon pepper",
         "pl": "pieprz cytrynowy"
-    },
-    "garam masala": {
-        "en": "garam masala",
-        "pl": "garam masala"
-    },
-    "curry powder": {
-        "en": "curry powder",
-        "pl": "proszek curry"
     }
 }

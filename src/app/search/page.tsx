@@ -17,6 +17,7 @@ export default function Search() {
                 <SearchIngredientCategory category="fish-and-seafood" />
                 <SearchIngredientCategory category="fruits" />
                 <SearchIngredientCategory category="meats" />
+                <SearchIngredientCategory category="mushrooms" />
                 <SearchIngredientCategory category="oils-and-fats" />
                 <SearchIngredientCategory category="pasta" />
                 <SearchIngredientCategory category="seeds-and-nuts" />
