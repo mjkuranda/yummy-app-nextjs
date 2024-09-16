@@ -14,7 +14,7 @@ interface SearchIngredientListProps {
 
 export function SearchIngredientList({ category, data }: SearchIngredientListProps) {
     const [folded, setFolded] = useState<boolean>(true);
-    const labels = useMemo(() => Object.entries(data).map(el => el[1]), [data]);
+    const labels = useMemo(() => Object.entries(data).map(el => el[1]).sort((a, b) => a.pl.localeCompare(b.pl)), [data]);
     const ingredients = folded ? labels.filter((el, idx) => idx < 10) : [...labels];
     const { ings: queryIngredients } = useSearchFilters();
 
@@ -23,7 +23,7 @@ export function SearchIngredientList({ category, data }: SearchIngredientListPro
     return (
         <ul className={styles['search-ingredient-category__list']}>
             <SearchIngredientItemList category={category} ingredients={ingredients} queryIngredients={queryIngredients} />
-            <SearchIngredientFolder category={category} onChange={onChange} />
+            {labels.length > 10 && <SearchIngredientFolder category={category} onChange={onChange} />}
         </ul>
     );
 }

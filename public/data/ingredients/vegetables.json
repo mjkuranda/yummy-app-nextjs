@@ -29,7 +29,7 @@
     },
     "broccoli": {
         "en": "broccoli",
-        "pl": "brokułą"
+        "pl": "brokuła"
     },
     "spinach": {
         "en": "spinach",
@@ -54,10 +54,6 @@
     "celery": {
         "en": "celery",
         "pl": "seler"
-    },
-    "mushroom": {
-        "en": "mushroom",
-        "pl": "grzyb"
     },
     "green bean": {
         "en": "green bean",
@@ -101,7 +97,7 @@
     },
     "beet": {
         "en": "beet",
-        "pl": "buraczany"
+        "pl": "burak czerwony"
     },
     "pumpkin": {
         "en": "pumpkin",
@@ -127,13 +123,17 @@
         "en": "rhubarb",
         "pl": "rabarbar"
     },
+    "paprika": {
+        "en": "paprika",
+        "pl": "papryka"
+    },
+    "sweet paprika": {
+        "en": "sweet paprika",
+        "pl": "słodka papryka"
+    },
     "chili pepper": {
         "en": "chili pepper",
         "pl": "papryczka chili"
-    },
-    "okra": {
-        "en": "okra",
-        "pl": "piżmian jadalny"
     },
     "chard": {
         "en": "chard",
@@ -142,14 +142,6 @@
     "arugula": {
         "en": "arugula",
         "pl": "rukola"
-    },
-    "endive": {
-        "en": "endive",
-        "pl": "endywia"
-    },
-    "watercress": {
-        "en": "watercress",
-        "pl": "watercress"
     },
     "kohlrabi": {
         "en": "kohlrabi",
@@ -167,16 +159,8 @@
         "en": "snow pea",
         "pl": "groszek cukrowy"
     },
-    "chayote": {
-        "en": "chayote",
-        "pl": "kolczoch"
-    },
     "rutabaga": {
         "en": "rutabaga",
         "pl": "brukiew"
-    },
-    "lotus root": {
-        "en": "lotus root",
-        "pl": "korzeń lotosu"
     }
 }

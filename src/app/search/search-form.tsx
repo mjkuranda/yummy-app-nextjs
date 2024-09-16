@@ -3,7 +3,7 @@
 import styles from '@/styles/app/search/page.module.scss';
 import ingredientStyles from '@/styles/app/search/search-ingredient-category.module.scss';
 import { Button } from '@/src/components/common/button';
-import { FormEvent, useState } from 'react';
+import { FormEvent, ReactElement, useState } from 'react';
 import { getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
 import { useRouter } from 'next/navigation';
 import { encodeIngredients } from '@/src/helpers/query.helper';
@@ -12,7 +12,11 @@ import { addMealProposal } from '@/src/api/api';
 import { toastError } from '@/src/utils/toast.utils';
 import { UnauthorizedError } from '@/src/api/api-errors';
 
-export function SearchForm({ children }) {
+interface SearchFormProps {
+    children: ReactElement[];
+}
+
+export function SearchForm({ children }: SearchFormProps) {
     const router = useRouter();
     const { ings } = useSearchFilters();
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
@@ -49,7 +53,7 @@ export function SearchForm({ children }) {
             <div id={styles['search-query-part']}>
                 {children}
             </div>
-            <div className="d-flex justify-content-center align-items-center mt-3 mb-5">
+            <div className="d-flex justify-content-center align-items-center mt-5 mb-4">
                 <Button label={'Szukaj'} type="submit" disabled={isSearchDisabled} />
             </div>
         </form>

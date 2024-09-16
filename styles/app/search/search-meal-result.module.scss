@@ -150,6 +150,18 @@ $spc: 8px;
                     font-size: calc(1em / $phi);
                     /* font-weight: 700; */
                     padding: calc($spc / 2);
+
+                    span {
+                        display: block;
+                    }
+
+                    span:first-child {
+                        color: green;
+                    }
+
+                    span + span {
+                        color: crimson;
+                    }
                 }
             }
 
@@ -174,8 +186,12 @@ $spc: 8px;
 
 #adder {
     margin: 2em 0;
-}
 
-#adder > div:nth-child(1) {
-    margin-bottom: 0.5em;
+    > div:nth-child(1) {
+        margin-bottom: 0.5em;
+
+        p {
+            margin: 0 !important;
+        }
+    }
 }

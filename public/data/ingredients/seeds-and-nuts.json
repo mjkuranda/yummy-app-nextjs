@@ -19,10 +19,6 @@
         "en": "cashews",
         "pl": "nerkowce"
     },
-    "macadamia nuts": {
-        "en": "macadamia nuts",
-        "pl": "orzechy makadamia"
-    },
     "peanuts": {
         "en": "peanuts",
         "pl": "orzeszki ziemne"
@@ -42,10 +38,6 @@
     "sesame seeds": {
         "en": "sesame seeds",
         "pl": "nasiona sezamu"
-    },
-    "chia seeds": {
-        "en": "chia seeds",
-        "pl": "nasiona chia"
     },
     "flaxseeds": {
         "en": "flaxseeds",
@@ -70,10 +62,6 @@
     "quinoa": {
         "en": "quinoa",
         "pl": "komosa ryżowa"
-    },
-    "amaranth": {
-        "en": "amaranth",
-        "pl": "amarantus"
     },
     "buckwheat": {
         "en": "buckwheat",

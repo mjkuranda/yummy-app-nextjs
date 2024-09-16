@@ -4,8 +4,8 @@ import resultStyles from '@/styles/app/search/search-meal-result.module.scss';
 import { Footer } from '@/src/components/common/footer';
 import SearchIngredientCategory from '@/src/app/search/search-ingredient-category';
 import { SearchForm } from '@/src/app/search/search-form';
-import { Button } from '@/src/components/common/button';
 import { MealResultBox } from '@/src/app/search/meal-result-box';
+import Link from 'next/link';
 
 export default function Search() {
     return (
@@ -17,6 +17,7 @@ export default function Search() {
                 <SearchIngredientCategory category="fish-and-seafood" />
                 <SearchIngredientCategory category="fruits" />
                 <SearchIngredientCategory category="meats" />
+                <SearchIngredientCategory category="mushrooms" />
                 <SearchIngredientCategory category="oils-and-fats" />
                 <SearchIngredientCategory category="pasta" />
                 <SearchIngredientCategory category="seeds-and-nuts" />
@@ -27,10 +28,11 @@ export default function Search() {
                 <MealResultBox />
                 <section id={resultStyles['adder']}>
                     <div className="d-flex justify-content-center align-items-center">
-                        <p>Brakuje szukanego posiłku? Dodaj go!</p>
-                    </div>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <Button label={'Dodaj'} link={'/meals/create'} />
+                        <p className="text-center">
+                            Możesz również <Link href={'/meals/create'}>utworzyć</Link> całkiem nowy posiłek,<br />
+                            niezwiązany z obecnym wyszukiwaniem,<br />
+                            dodając do bazy posiłków, by inni mogli go wyszukać w przyszłości.
+                        </p>
                     </div>
                 </section>
             </div>

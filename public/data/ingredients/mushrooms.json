@@ -1,0 +1,30 @@
+{
+    "mushroom": {
+        "en": "mushroom",
+        "pl": "grzyb"
+    },
+    "mixed mushrooms": {
+        "en": "mixed mushrooms",
+        "pl": "mieszane grzyby"
+    },
+    "white mushrooms": {
+        "en": "white mushrooms",
+        "pl": "białe pieczarki"
+    },
+    "chanterelle mushrooms": {
+        "en": "chanterelle mushrooms",
+        "pl": "kurki"
+    },
+    "morel mushrooms": {
+        "en": "morel mushrooms",
+        "pl": "smardze"
+    },
+    "button mushrooms": {
+        "en": "button mushrooms",
+        "pl": "pieczarki"
+    },
+    "dried porcini mushrooms": {
+        "en": "dried porcini mushrooms",
+        "pl": "suszone borowiki"
+    }
+}

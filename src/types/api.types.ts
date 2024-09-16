@@ -6,6 +6,7 @@ export interface MealResult {
     id: string;
     imgUrl?: string;
     ingredients: string[];
+    missingCount: number;
     provider: MealProvider;
     title: string;
     relevance: number;
