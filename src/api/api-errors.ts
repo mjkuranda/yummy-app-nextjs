@@ -78,13 +78,13 @@ export function throwApiError(res: ApiErrorResponse): never {
 
 export function handleApiError(err: ApiError, router: AppRouterInstance, userContext: UserContextValues): void {
     if (err instanceof UnauthorizedError) {
-        toastInfo('Your session has expired. You need to sign in again.');
+        toastInfo('Twoja sesja wygasła. Zaloguj się ponownie.');
         router.push('/users/login');
         userContext.logoutUser();
     }
 
     if (err instanceof ForbiddenError) {
-        toastError('You are not authorized to perform admin actions.');
+        toastError('Nie jesteś uprawniony do wykonywania akcji admina.');
         router.push('/');
     }
 }

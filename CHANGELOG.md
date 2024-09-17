@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): User saving information in user context.
 - [Marek Kurańda](https://github.com/mjkuranda): Redirecting at `/management/[objects]/[action]` when you don't have any required capability.
+- [Marek Kurańda](https://github.com/mjkuranda): Link to `/manage` is not visible for users who have no capabilities.
 
 ## [1.46.0] - 2024-09-16
 ### Added

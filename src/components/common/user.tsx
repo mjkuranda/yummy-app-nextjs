@@ -7,12 +7,24 @@ import Link from 'next/link';
 import { Loader } from '@/src/components/common/loader';
 
 export function User() {
-    const { isLoggedIn, logoutUser, isFetching } = useUserContext();
+    const { isLoggedIn, logoutUser, isFetching, user } = useUserContext();
     const router = useRouter();
 
     const onLogout = () => {
         router.push('/users/login');
         logoutUser();
+    };
+
+    const hasCapability = () => {
+        if (user.isAdmin) {
+            return true;
+        }
+
+        if (user.capabilities?.canAdd || user.capabilities?.canEdit || user.capabilities?.canDelete) {
+            return true;
+        }
+
+        return false;
     };
 
     if (isFetching) {
@@ -28,7 +40,7 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        <Link href={'/manage'}>Manage</Link>
+                        {hasCapability() && <Link href={'/manage'}>Manage</Link>}
                         &nbsp;&nbsp;&nbsp;
                         <Button label={'Logout'} onClick={onLogout} />
                     </>
