@@ -1,7 +1,7 @@
 import { Header } from '@/src/components/common/header';
 import { Footer } from '@/src/components/common/footer';
-import { Item, ItemList } from '@/src/app/management/item-list';
-import styles from '@/styles/app/management/page.module.scss';
+import { Item, ItemList } from '@/src/app/manage/item-list';
+import styles from '@/styles/app/manage/page.module.scss';
 
 export default function ManagementPage() {
     const userItems: Item[] = [
@@ -17,7 +17,7 @@ export default function ManagementPage() {
     return (
         <>
             <Header />
-            <div className={styles['management-page']}>
+            <div className={styles['manage-page']}>
                 <ItemList list={userItems} header='Users' />
                 <ItemList list={mealItems} header='Meals' />
             </div>

@@ -1,9 +1,9 @@
 'use client';
 
 import { ObjectItemStruct } from '@/src/hooks/use-object-management';
-import styles from '@/styles/app/management/page.module.scss';
-import { ActionType, ObjectType } from '@/src/types/management.types';
-import { ObjectItem } from '@/src/app/management/[objects]/[action]/object-item';
+import styles from '@/styles/app/manage/page.module.scss';
+import { ActionType, ObjectType } from '@/src/types/manage.types';
+import { ObjectItem } from '@/src/app/manage/[objects]/[action]/object-item';
 import { useState } from 'react';
 import { toastSuccess } from '@/src/utils/toast.utils';
 import { handleApiError } from '@/src/api/api-errors';

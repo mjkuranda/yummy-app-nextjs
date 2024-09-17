@@ -8,7 +8,7 @@ import {
     getSoftEditedMeals
 } from '@/src/api/api';
 import { useCallback, useEffect, useState } from 'react';
-import { ActionType, ObjectType } from '@/src/types/management.types';
+import { ActionType, ObjectType } from '@/src/types/manage.types';
 import { useRouter } from 'next/navigation';
 import { handleApiError } from '@/src/api/api-errors';
 import { useUserContext } from '@/src/contexts/user.context';

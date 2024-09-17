@@ -28,7 +28,7 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        <Link href={'/management'}>Manage</Link>
+                        <Link href={'/manage'}>Manage</Link>
                         &nbsp;&nbsp;&nbsp;
                         <Button label={'Logout'} onClick={onLogout} />
                     </>

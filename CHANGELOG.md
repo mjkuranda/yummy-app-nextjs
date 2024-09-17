@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.46.1] - 2024-09-17
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): React Strict Mode to `false` as default to prevent double renders the components on the first time.
+- [Marek Kurańda](https://github.com/mjkuranda): `/management` page to `/manage` page.
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): User saving information in user context.

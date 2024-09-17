@@ -3,11 +3,11 @@
 import { useParams, useRouter } from 'next/navigation';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { useObjectManagement } from '@/src/hooks/use-object-management';
-import styles from '@/styles/app/management/page.module.scss';
-import { ObjectList } from '@/src/app/management/[objects]/[action]/object-list';
+import styles from '@/styles/app/manage/page.module.scss';
+import { ObjectList } from '@/src/app/manage/[objects]/[action]/object-list';
 import Link from 'next/link';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import { ActionType, ObjectType } from '@/src/types/management.types';
+import { ActionType, ObjectType } from '@/src/types/manage.types';
 import { Loader } from '@/src/components/common/loader';
 import { useEffect } from 'react';
 import { toastInfo } from '@/src/utils/toast.utils';
@@ -56,7 +56,7 @@ export function ObjectContainer() {
         <>
             <div className={styles['object-container']}>
                 <div className={styles['back-link']}>
-                    <Link href="/management">
+                    <Link href="/manage">
                         <ArrowCircleLeftIcon />Back to management
                     </Link>
                 </div>
