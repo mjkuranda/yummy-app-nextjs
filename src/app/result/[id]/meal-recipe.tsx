@@ -1,11 +1,12 @@
 import styles from '@/styles/app/result/page.module.scss';
-import { DetailedMeal } from '@/src/types/api.types';
+import { DetailedMeal, MealRecipeSection } from '@/src/types/api.types';
 
 interface MealRecipeProps {
     meal: DetailedMeal;
+    recipe?: MealRecipeSection[];
 }
 
-export function MealRecipe({ meal }: MealRecipeProps) {
+export function MealRecipe({ meal, recipe }: MealRecipeProps) {
     const { recipeSections } = meal;
 
     return (
@@ -15,7 +16,7 @@ export function MealRecipe({ meal }: MealRecipeProps) {
                 : recipeSections.map(section => {
                     return (
                         <div className={styles['instruction-section']}>
-                            <h5>Przepis: {section.name || '-'}</h5>
+                            <h5>Przepis{section.name ? `na ${section.name}` : ''}:</h5>
                             <ol>
                                 {section.steps.map((step, idx) => {
                                     // NOTE: Index is okay, because it's a static list
