@@ -7,8 +7,8 @@ import {
     getSoftDeletedMeals,
     getSoftEditedMeals
 } from '@/src/api/api';
-import { useEffect, useState } from 'react';
-import { ActionType, ObjectType } from '@/src/types/management.types';
+import { useCallback, useEffect, useState } from 'react';
+import { ActionType, ObjectType } from '@/src/types/manage.types';
 import { useRouter } from 'next/navigation';
 import { handleApiError } from '@/src/api/api-errors';
 import { useUserContext } from '@/src/contexts/user.context';
@@ -26,13 +26,9 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [objectList, setObjectList] = useState<ObjectItemStruct[]>([]);
 
-    const refetchObjects = () => toggleRefetch(!refetch);
+    const refetchObjects = useCallback(() => toggleRefetch(!refetch), []);
 
-    const fetchObjects = <FetchObject>(getFunction: () => Promise<FetchObject[]>, mapFunction: (object: FetchObject) => ObjectItemStruct): void => {
-        if (!isLoading) {
-            setIsLoading(true);
-        }
-
+    const fetchObjects = useCallback(<FetchObject>(getFunction: () => Promise<FetchObject[]>, mapFunction: (object: FetchObject) => ObjectItemStruct): void => {
         getFunction()
             .then(fetchedObjects => {
                 const objects = fetchedObjects.map(mapFunction);
@@ -40,7 +36,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
             })
             .catch(err => handleApiError(err, router, userContext))
             .finally(() => setIsLoading(false));
-    };
+    }, []);
 
     useEffect(() => {
         if (objects === 'users' && action === 'not-activated') {

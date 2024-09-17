@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { CurrentUser } from '@/src/types/user.types';
 import { UserPermissions } from '@/src/types/api.types';
 import { MINUTE } from '@/src/constants/numbers';
@@ -32,11 +32,24 @@ export const useUserContext = () => useContext(UserContext);
 
 export function UserProvider({ children }: { children: any }) {
     const router = useRouter();
-    const [, setUser] = useState<CurrentUser>({
+    const [user, setUser] = useState<CurrentUser>({
         login: ''
     });
     const [contextValue, setContextValue] = useState<UserContextValues>(defaultValue);
     const [isFetching, setIsFetching] = useState<boolean>(true);
+
+    const intervalHandler = useCallback(() => {
+        if (user.login === '') {
+            return;
+        }
+
+        refreshUserTokens()
+            .catch(err => {
+                if (err instanceof ApiError) {
+                    handleApiError(err, router, contextValue);
+                }
+            });
+    }, [user.login]);
 
     useEffect(() => {
         const loginUser = (login: string, permissions: UserPermissions): void => {
@@ -72,25 +85,13 @@ export function UserProvider({ children }: { children: any }) {
         };
 
         fetchUser();
+    }, []);
 
-        let wasMessageSent = false;
-
-        const interval = setInterval(
-            () =>
-                refreshUserTokens()
-                    .then(() => {
-                        wasMessageSent = false;
-                    })
-                    .catch(err => {
-                        if (err instanceof ApiError && !wasMessageSent) {
-                            wasMessageSent = true;
-                            handleApiError(err, router, contextValue);
-                        }
-                    })
-            , MINUTE);
+    useEffect(() => {
+        const interval = setInterval(intervalHandler, 5 * MINUTE);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [user.login]);
 
     if (isFetching) {
         return children;

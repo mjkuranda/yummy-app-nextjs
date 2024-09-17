@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.46.1] - 2024-09-17
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): React Strict Mode to `false` as default to prevent double renders the components on the first time.
+- [Marek Kurańda](https://github.com/mjkuranda): `/management` page to `/manage` page.
+- [Marek Kurańda](https://github.com/mjkuranda): Refreshing token every 5 minutes.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): User saving information in user context.
+- [Marek Kurańda](https://github.com/mjkuranda): Redirecting at `/management/[objects]/[action]` when you don't have any required capability.
+- [Marek Kurańda](https://github.com/mjkuranda): Link to `/manage` is not visible for users who have no capabilities.
+
 ## [1.46.0] - 2024-09-16
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Mushroom ingredient set as category.

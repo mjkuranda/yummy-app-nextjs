@@ -1,8 +1,8 @@
 'use client';
 
-import styles from '@/styles/app/management/page.module.scss';
+import styles from '@/styles/app/manage/page.module.scss';
 import { Button } from '@/src/components/common/button';
-import { ActionType } from '@/src/types/management.types';
+import { ActionType } from '@/src/types/manage.types';
 import { ObjectItemStruct } from '@/src/hooks/use-object-management';
 
 interface ObjectItemProps {
