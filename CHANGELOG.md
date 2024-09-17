@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.47.0] - 2024-09-17
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Translated description and recipe of meal at result page.
+- [Marek Kurańda](https://github.com/mjkuranda): UK flag indicating that meal was translated into Polish.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredients are rendered between meal description and recipe.

@@ -36,6 +36,16 @@
                 > li:first-child {
                     margin-bottom: 1em;
                     text-shadow: 1px 1px 2px;
+
+                    .result-meal-title {
+                        display: flex;
+                        align-items: center;
+
+                        > img {
+                            margin-left: 0.618rem;
+                            margin-bottom: 0.3rem;
+                        }
+                    }
                 }
 
                 .result-rating {

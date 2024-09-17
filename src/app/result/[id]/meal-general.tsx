@@ -22,7 +22,22 @@ export function MealGeneral({ meal, description, ingredients, recipe }: MealGene
         <div className={styles['result-details']}>
             <ul>
                 <li>
-                    <h3>{meal.title}</h3>
+                    <div className={styles['result-meal-title']}>
+                        <h3>{meal.title}</h3>
+                        {meal.language !== 'pl' &&
+                            <img
+                                src="/uk.png"
+                                alt="Flaga UK"
+                                width={48}
+                                title="Posiłek został przetłumaczony. Może zawierać błędy w tłumaczeniu."
+                                data-author={
+                                    <a href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">
+                                        Uk flag icons created by IconsBox - Flaticon
+                                    </a>
+                                }
+                            />
+                        }
+                    </div>
                     <div className={styles['information-container']}>
                         <span>Czas wykonania:</span>
                         <span><AccessTimeIcon /></span>
