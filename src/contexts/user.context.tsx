@@ -77,7 +77,13 @@ export function UserProvider({ children }: { children: any }) {
 
         const fetchUser = (): void => {
             const stringifiedUser = localStorage.getItem('user') as string;
-            const user: CurrentUser = JSON.parse(stringifiedUser);
+            let user: CurrentUser = {
+                login: ''
+            };
+
+            if (stringifiedUser !== null) {
+                user = JSON.parse(stringifiedUser);
+            }
 
             setUser(user);
             setContextValue({ user, loginUser, logoutUser, isLoggedIn, isFetching: false });

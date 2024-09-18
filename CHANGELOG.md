@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.47.1] - 2024-09-18
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Null value from local storage when you enter first time at the page.
+
 ## [1.47.0] - 2024-09-17
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Translated description and recipe of meal at result page.
