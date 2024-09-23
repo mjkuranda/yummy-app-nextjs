@@ -16,9 +16,14 @@ import { useEffect } from 'react';
 export default function ResultById() {
     const { id } = useParams();
     const searchParams = useSearchParams();
-    const { data: meal, isLoading, isError } = useGetMealById(id as string);
+    const { data: meal, isLoading, isError, error } = useGetMealById(id as string);
 
     useEffect(() => {
+        if (isError && error.message.includes('was not confirmed by admin')) {
+            toastError('Ten posiłek nie został jeszcze zatwierdzony przez administrację.');
+            redirect('/search');
+        }
+
         if (isApiError(meal)) {
             toastError('Error occurred while fetching this meal.');
             redirect('/search');
@@ -40,7 +45,7 @@ export default function ResultById() {
                     </Link>
                 </div>
                 <div className={styles['result-container']}>
-                    {isLoading
+                    {isLoading || isError
                         ? <Loader isAbsolute={true} />
                         : <MealContainer complexMealObject={meal as DetailedMealWithTranslations} />
                     }
