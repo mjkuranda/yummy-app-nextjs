@@ -17,8 +17,13 @@ import {
     NewMealRatingDto
 } from '@/src/types/meal.types';
 
-export async function getMeal(id: string): Promise<DetailedMealWithTranslations> {
-    return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
+export async function getMeal(id: string): Promise<DetailedMealWithTranslations | never> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
+    } catch (err) {
+        throw err;
+    }
 }
 
 export async function getMeals(ingredients: string[]): Promise<MealResult[]> {

@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.47.3] - 2024-09-23
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Error when you tried to get meal details that was not confirmed by admin.
+
 ## [1.47.2] - 2024-09-23
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Extra info about provider when comes from Spoonacular.
