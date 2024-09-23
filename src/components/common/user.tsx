@@ -5,6 +5,7 @@ import { useUserContext } from '@/src/contexts/user.context';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Loader } from '@/src/components/common/loader';
+import { toastSuccess } from '@/src/utils/toast.utils';
 
 export function User() {
     const { isLoggedIn, logoutUser, isFetching, user } = useUserContext();
@@ -13,6 +14,7 @@ export function User() {
     const onLogout = () => {
         router.push('/users/login');
         logoutUser();
+        toastSuccess('Pomyślnie wylogowano');
     };
 
     const hasCapability = () => {
@@ -42,7 +44,7 @@ export function User() {
                     <>
                         {hasCapability() && <Link href={'/manage'}>Manage</Link>}
                         &nbsp;&nbsp;&nbsp;
-                        <Button label={'Logout'} onClick={onLogout} />
+                        <Button label={'Wyloguj się'} onClick={onLogout} />
                     </>
                 )
                 : <Button label="Zaloguj się" link="/users/login" />

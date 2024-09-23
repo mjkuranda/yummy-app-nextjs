@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.47.2] - 2024-09-23
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Extra info about provider when comes from Spoonacular.
+- [Marek Kurańda](https://github.com/mjkuranda): Toast when you log out.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Translated login and register account page.
