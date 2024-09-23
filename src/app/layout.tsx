@@ -16,13 +16,14 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'Yummy',
-    description: 'Find out what to cook today'
+    description: 'Dowiedz się, co dziś ugotować'
 };
 
 export default function RootLayout({ children }: Readonly<{children: ReactNode;}>) {
     return (
-        <html lang="en">
+        <html lang="pl">
             <head>
+                <title>{metadata.title as string}</title>
                 <link rel="icon" href="favicon.ico" />
             </head>
             <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
