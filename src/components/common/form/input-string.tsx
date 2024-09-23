@@ -31,6 +31,7 @@ export function InputString({ label, variant = 'standard', value, setValue, erro
             autoComplete="new-password"
             type="text"
             fullWidth={width === '100%'}
+            style={width === '100%' ? {} : { width }}
         />
     );
 }

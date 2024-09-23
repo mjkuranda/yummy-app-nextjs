@@ -52,7 +52,7 @@ export function MealGeneral({ meal, description, ingredients, recipe }: MealGene
                     <div className={styles['information-container']}>
                         <span>Autor:</span>
                         <span><PersonAddIcon /></span>
-                        <span>{meal.sourceOrAuthor}</span>
+                        <span>{meal.sourceOrAuthor} {meal.provider === 'spoonacular' ? '(poprzez Spoonacular)' : ''}</span>
                     </div>
                 </li>
                 <li className={styles['result-rating']}>

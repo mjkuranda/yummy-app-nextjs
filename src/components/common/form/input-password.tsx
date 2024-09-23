@@ -16,9 +16,10 @@ interface InputPasswordProps {
     value: string;
     setValue: (newValue: string) => void;
     error?: FieldError;
+    width?: string;
 }
 
-export function InputPassword({ label, value, setValue, error }: InputPasswordProps) {
+export function InputPassword({ label, value, setValue, error, width }: InputPasswordProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -32,7 +33,7 @@ export function InputPassword({ label, value, setValue, error }: InputPasswordPr
     };
 
     return (
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <FormControl sx={{ m: 1, width: width ?? '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
             <OutlinedInput
                 id="outlined-adornment-password"

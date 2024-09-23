@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.47.2] - 2024-09-23
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Extra info about provider when comes from Spoonacular.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Translated login and register account page.
+- [Marek Kurańda](https://github.com/mjkuranda): Global language of the page to Polish.
+
 ## [1.47.1] - 2024-09-18
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Null value from local storage when you enter first time at the page.

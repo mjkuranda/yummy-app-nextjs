@@ -32,7 +32,7 @@ export function LoginForm() {
             const permissions = await doUserLogin(login, password);
             loginUser(login, permissions);
 
-            toastSuccess('Successfully logged in!');
+            toastSuccess('Pomyślnie zalogowano');
             router.push('/');
         } catch (err: any) {
             toastError(err.message);
@@ -49,21 +49,21 @@ export function LoginForm() {
     return (
         <form onSubmit={onSubmit}>
             {isLogging && <Loader isAbsolute={true} />}
-            <BackLink link="/" label={'Back to main page'} isAttached={true} />
+            <BackLink link="/" label={'Powrót do strony głównej'} isAttached={true} />
             <div>
                 <div>
-                    <h3>Input your login and password</h3>
+                    <h3>Zaloguj się</h3>
                 </div>
                 <div className={styles['form-control-container']}>
-                    <InputString label={'Input your login'} value={login} setValue={setLogin} />
+                    <InputString label={'Login'} value={login} setValue={setLogin} variant="outlined" width="95%" />
                 </div>
                 <div className={styles['form-control-container']}>
-                    <InputPassword label={'Input your password'} value={password} setValue={setPassword} />
+                    <InputPassword label={'Hasło'} value={password} setValue={setPassword} width="100%" />
                 </div>
                 <div className={styles['form-control-container']}>
                     <div className={styles['form-control-container-wrapper']}>
-                        <Button label={'Log in'} type="submit" />
-                        <p>Don't have an account? <Link href={'/users/registration'}>Sign up</Link></p>
+                        <Button label={'Zaloguj się'} type="submit" />
+                        <p className="mt-3">Nie masz konta? <Link href={'/users/registration'}>Zarejestruj się</Link></p>
                     </div>
                 </div>
             </div>

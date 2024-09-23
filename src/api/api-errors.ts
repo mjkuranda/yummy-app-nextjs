@@ -73,7 +73,7 @@ export function throwApiError(res: ApiErrorResponse): never {
         }
     }
 
-    throw new Error('Unexpected error occurred.');
+    throw new Error('Wystąpił nieoczekiwany błąd.');
 }
 
 export function handleApiError(err: ApiError, router: AppRouterInstance, userContext: UserContextValues): void {
@@ -92,16 +92,16 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getBadRequestMessage(message: string, context: ApiErrorContext): string {
     if (message.startsWith('Incorrect credentials')) {
-        return 'Incorrect credentials';
+        return 'Niepoprawne dane logowania';
     }
 
     if (message.includes('login has already exists')) {
-        return 'Provided login has already exists';
+        return 'Wprowadzony login już istnieje';
     }
 
     if (message.includes('User') && message.includes('does not exist')) {
-        return 'User does not exist';
+        return 'Użytkownik o podanym loginie nie istnieje';
     }
 
-    return 'Bad request message';
+    return 'Wystąpił błąd';
 }
