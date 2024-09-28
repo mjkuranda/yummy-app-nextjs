@@ -14,4 +14,17 @@
         flex-wrap: wrap;
         background-color: $honey-yellow;
     }
+
+    #search-meal-type {
+        margin: 0 10%;
+        padding: 1rem 0;
+        background-color: $honey-yellow;
+        border-radius: 0 0 20px 20px;
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }

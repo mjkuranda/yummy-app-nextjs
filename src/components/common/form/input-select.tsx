@@ -33,7 +33,6 @@ export function InputSelect({ label, id, width = '100%', options, selectedValue,
                     value={selectedValue}
                     onChange={onChange}
                     label={label}
-                    sx={{ width }}
                 >
                     {shouldHaveNone &&
                         <MenuItem value="">
