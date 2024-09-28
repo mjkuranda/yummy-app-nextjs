@@ -39,6 +39,11 @@ export function SearchForm({ children }: SearchFormProps) {
 
     const onSelectedMealType = (mealType: string) => setSelectedMealType(mealType);
 
+    const onClear = () => {
+        router.push('/search');
+        window.location.reload();
+    };
+
     const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
@@ -83,7 +88,8 @@ export function SearchForm({ children }: SearchFormProps) {
                     setSelectedValue={onSelectedMealType}
                 />
             </div>
-            <div className="d-flex justify-content-center align-items-center mt-5 mb-4">
+            <div className={`${styles['search-controls']} d-flex justify-content-center align-items-center mt-5 mb-4`}>
+                <Button label={'Wyczyść'} type={'button'} disabled={isSearchDisabled} onClick={onClear} />
                 <Button label={'Szukaj'} type="submit" disabled={isSearchDisabled} />
             </div>
         </form>
