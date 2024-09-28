@@ -4,7 +4,7 @@ import styles from '@/styles/app/search/page.module.scss';
 import ingredientStyles from '@/styles/app/search/search-ingredient-category.module.scss';
 import { Button } from '@/src/components/common/button';
 import { FormEvent, ReactElement, useMemo, useState } from 'react';
-import { getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
+import { clearSearchIngredients, getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
 import { useRouter } from 'next/navigation';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
@@ -35,13 +35,14 @@ export function SearchForm({ children }: SearchFormProps) {
     },
     []);
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
-    const [selectedMealType, setSelectedMealType] = useState<string>(type);
+    const [selectedMealType, setSelectedMealType] = useState<string>(type ?? 'any');
 
     const onSelectedMealType = (mealType: string) => setSelectedMealType(mealType);
 
     const onClear = () => {
+        clearSearchIngredients();
+        setSelectedMealType('any');
         router.push('/search');
-        window.location.reload();
     };
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
