@@ -10,16 +10,20 @@
     }
 
     #search-query-part {
-        display: flex;
-        flex-wrap: wrap;
         background-color: $honey-yellow;
+        padding-top: 5rem;
+
+        > div {
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 0 0 20px 20px;
+        }
     }
 
     #search-meal-type {
         margin: 0 10%;
         padding: 1rem 0;
         background-color: $honey-yellow;
-        border-radius: 0 0 20px 20px;
 
         > div {
             display: flex;

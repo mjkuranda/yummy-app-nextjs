@@ -12,8 +12,9 @@ import { addMealProposal } from '@/src/api/api';
 import { toastError } from '@/src/utils/toast.utils';
 import { UnauthorizedError } from '@/src/api/api-errors';
 import { InputSelect } from '@/src/components/common/form/input-select';
-import { MealTypeText } from '@/src/types/meal.types';
+import { MealType, MealTypeText } from '@/src/types/meal.types';
 import { useUserContext } from '@/src/contexts/user.context';
+import { getDishTypes, inferMealTypeBasingOnTime } from '@/src/helpers/search.helper';
 
 interface SearchFormProps {
     children: ReactElement[];
@@ -21,27 +22,40 @@ interface SearchFormProps {
 
 export function SearchForm({ children }: SearchFormProps) {
     const router = useRouter();
-    const { ings, type } = useSearchFilters();
+    const { ings, type, dish } = useSearchFilters();
     const { isLoggedIn } = useUserContext();
+    const inferredType = inferMealTypeBasingOnTime();
+    const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
+    const [selectedMealType, setSelectedMealType] = useState<string>(type ?? inferredType);
+    const [selectedDishType, setSelectedDishType] = useState<string>(dish ?? 'any');
     const mealTypeOptions = useMemo(() => {
-        const object = { ...MealTypeText, 'any': { en: 'any', pl: 'każdy' } };
-
         return Object
-            .entries(object)
+            .entries(MealTypeText)
             .map(entry => ({
                 en: entry[1].en,
                 label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1)
             }));
     },
     []);
-    const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
-    const [selectedMealType, setSelectedMealType] = useState<string>(type ?? 'any');
+    const dishTypeOptions = useMemo(() => {
+        const dishes = getDishTypes(selectedMealType as MealType);
+
+        return Object
+            .entries(dishes)
+            .map(entry => ({
+                en: entry[1].en,
+                label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1)
+            }));
+    }, [selectedMealType]);
 
     const onSelectedMealType = (mealType: string) => setSelectedMealType(mealType);
+
+    const onSelectedDishType = (dishType: string) => setSelectedDishType(dishType);
 
     const onClear = () => {
         clearSearchIngredients();
         setSelectedMealType('any');
+        setSelectedDishType('any');
         router.push('/search');
     };
 
@@ -64,7 +78,7 @@ export function SearchForm({ children }: SearchFormProps) {
             }
         }
 
-        router.push(`/search?ings=${encodeIngredients(ingredients)}&type=${selectedMealType}`);
+        router.push(`/search?ings=${encodeIngredients(ingredients)}&type=${selectedMealType}&dish=${selectedDishType}`);
     };
 
     const onClick = (): void => {
@@ -76,18 +90,30 @@ export function SearchForm({ children }: SearchFormProps) {
 
     return (
         <form onSubmit={onSubmit} onClick={onClick}>
-            <div id={styles['search-query-part']}>
-                {children}
-            </div>
             <div id={styles['search-meal-type']}>
-                <InputSelect
-                    width={'33%'}
-                    id={'meal-type'}
-                    label={'Typ posiłku'}
-                    options={mealTypeOptions}
-                    selectedValue={selectedMealType}
-                    setSelectedValue={onSelectedMealType}
-                />
+                <h3 className="text-center m-4">Wybierz typ posiłku:</h3>
+                <div>
+                    <InputSelect
+                        width={'200px'}
+                        id={'meal-type'}
+                        label={'Typ posiłku'}
+                        options={mealTypeOptions}
+                        selectedValue={selectedMealType}
+                        setSelectedValue={onSelectedMealType}
+                    />
+                    <InputSelect
+                        width={'200px'}
+                        id={'dish-type'}
+                        label={'Typ dania'}
+                        options={dishTypeOptions}
+                        selectedValue={selectedDishType}
+                        setSelectedValue={onSelectedDishType}
+                    />
+                </div>
+            </div>
+            <div id={styles['search-query-part']}>
+                <h3 className="text-center">Wybierz składniki:</h3>
+                <div>{children}</div>
             </div>
             <div className={`${styles['search-controls']} d-flex justify-content-center align-items-center mt-5 mb-4`}>
                 <Button label={'Wyczyść'} type={'button'} disabled={isSearchDisabled} onClick={onClear} />

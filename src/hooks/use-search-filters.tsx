@@ -3,14 +3,15 @@
 import { SearchFilters } from '@/src/types/search.types';
 import { useSearchParams } from 'next/navigation';
 import { decodeIngredients } from '@/src/helpers/query.helper';
-import { MealType } from '@/src/types/meal.types';
+import { DishType, MealType } from '@/src/types/meal.types';
 
 export function useSearchFilters(): SearchFilters {
     const searchParams = useSearchParams();
 
     return {
-        originalQuery: `ings=${searchParams.get('ings')}&type=${searchParams.get('type')}`,
+        originalQuery: `ings=${searchParams.get('ings')}&type=${searchParams.get('type')}&dish=${searchParams.get('dish')}`,
         ings: decodeIngredients(searchParams.get('ings')),
-        type: searchParams.get('type') as MealType
+        type: (searchParams.get('type') ?? 'any') as MealType,
+        dish: (searchParams.get('dish') ?? 'any') as DishType
     };
 }

@@ -26,6 +26,12 @@ import { IngredientForm } from '@/src/app/meals/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { InputNumber } from '@/src/components/common/form/input-number';
 
+const mealOptions = [
+    { en: 'breakfast', label: 'Breakfast' },
+    { en: 'launch', label: 'Launch' },
+    { en: 'dinner', label: 'Dinner' }
+];
+
 const options = [
     { en: 'soup', label: 'Soup' },
     { en: 'main course', label: 'Main Course' },
@@ -40,7 +46,8 @@ const defaultValues: MealFormData = {
     title: '',
     description: '',
     readyInMinutes: '0',
-    type: 'main course',
+    type: 'launch',
+    dishType: 'main course',
     ingredients: [],
     recipe: [],
     hasImage: false
@@ -193,7 +200,15 @@ export function CreateMealForm({ meal, ingredients }: CreateMealFormProps) {
                             control={control}
                             rules={{ required: 'Type is required' }}
                             render={({ field: { onChange, value } }) => (
-                                <InputSelect id={'meal-type'} options={options} label={'Select a type'} selectedValue={value} setSelectedValue={onChange} />
+                                <InputSelect id={'meal-type'} options={mealOptions} label={'Select a type'} selectedValue={value} setSelectedValue={onChange} />
+                            )}
+                        />
+                        <Controller
+                            name={'dishType'}
+                            control={control}
+                            rules={{ required: 'Dish type is required' }}
+                            render={({ field: { onChange, value } }) => (
+                                <InputSelect id={'dish-type'} options={options} label={'Select a dish type'} selectedValue={value} setSelectedValue={onChange} />
                             )}
                         />
                         <Controller

@@ -6,6 +6,7 @@ export interface MealFormData {
     description: string;
     readyInMinutes: string;
     type: MealType;
+    dishType: DishType;
     ingredients: IngredientWithId[];
     recipe: MealRecipeSectionWithId[];
     hasImage: boolean;
@@ -14,25 +15,51 @@ export interface MealFormData {
     imageFile?: File;
 }
 
-export type MealType = 'any' | 'soup' | 'main course' | 'salad';
+export type MealType = 'any' | 'breakfast' | 'launch' | 'dinner';
 
 export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
-    'any': {
+    any: {
         en: 'any',
-        pl: 'nieokreślony'
+        pl: 'każdy'
     },
-    'soup': {
-        en: 'soup',
-        pl: 'zupa'
+    breakfast: {
+        en: 'breakfast',
+        pl: 'śniadanie'
     },
-    'main course': {
-        en: 'main course',
-        pl: 'danie główne'
+    launch: {
+        en: 'launch',
+        pl: 'obiad'
     },
-    'salad': {
-        en: 'salad',
-        pl: 'sałatka'
+    dinner: {
+        en: 'dinner',
+        pl: 'kolacja'
     }
+};
+
+export type DishType = 'any' | 'soup' | 'main course' | 'salad';
+
+export const DishTypeText: Record<MealType, Record<string, { en: string, pl: string }>> = {
+    any: {},
+    breakfast: {},
+    launch: {
+        'any': {
+            en: 'any',
+            pl: 'każdy'
+        },
+        'soup': {
+            en: 'soup',
+            pl: 'zupa'
+        },
+        'main course': {
+            en: 'main course',
+            pl: 'danie główne'
+        },
+        'salad': {
+            en: 'salad',
+            pl: 'sałatka'
+        }
+    },
+    dinner: {}
 };
 
 export interface MealRecipeStepWithId {

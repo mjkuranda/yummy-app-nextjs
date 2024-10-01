@@ -1,4 +1,4 @@
-import { MealType } from '@/src/types/meal.types';
+import { DishType, MealType } from '@/src/types/meal.types';
 
 export type MealProvider = 'yummy' | 'spoonacular';
 
@@ -11,6 +11,7 @@ export interface MealResult {
     title: string;
     relevance: number;
     type: MealType;
+    dishType: DishType;
 }
 
 export type DetailedMeal = {
@@ -31,7 +32,8 @@ export type DetailedMeal = {
         veryHealthy?: boolean
     },
     recipeSections: MealRecipeSection[],
-    type: MealType
+    type: MealType,
+    dishType: DishType
 };
 
 export interface TranslatedIngredient {
@@ -69,6 +71,7 @@ export interface MealProposal {
     title: string;
     provider: MealProvider;
     type: MealType;
+    dishType: DishType;
 }
 
 export interface ApiError {
@@ -116,12 +119,14 @@ export interface NewMealDto {
     recipeSections: MealRecipeSection[];
     title: string;
     type: MealType;
+    dishType: DishType;
 }
 
 export interface MealDocument {
     readonly _id: string;
     readonly author: string;
     readonly description: string;
+    readonly dishType: DishType;
     readonly imageUrl: string;
     readonly ingredients: string[];
     readonly language: Language;
