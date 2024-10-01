@@ -11,18 +11,18 @@ import { MealResult } from '@/src/types/api.types';
 
 export function MealResultBox() {
     const boxRef = useRef<HTMLElement>(null);
-    const { originalQuery, ings, type } = useSearchFilters();
+    const { originalQuery, ings, type, dish } = useSearchFilters();
     const { data: meals, isLoading } = useGetMeals(ings);
     const [filteredMeals, setFilteredMeals] = useState<MealResult[]>([]);
 
     useEffect(() => {
         if (!isLoading && ings.length > 0) {
-            const filtered = filterMealByType(meals ?? [], type);
+            const filtered = filterMealByType(meals ?? [], type, dish);
 
             setFilteredMeals(filtered);
             boxRef?.current?.scrollIntoView();
         }
-    }, [meals, type]);
+    }, [meals, type, dish]);
 
     if (!meals && isLoading) {
         return <Loader />;
