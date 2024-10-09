@@ -18,11 +18,18 @@ export function User() {
     };
 
     const hasCapability = () => {
-        if (user.isAdmin) {
+        const parsedUser = JSON.parse(localStorage.getItem('user') ?? '');
+        let _user = { ...user };
+
+        if (parsedUser?.user?.login !== user.login) {
+            _user = { ...parsedUser };
+        }
+
+        if (_user.isAdmin) {
             return true;
         }
 
-        if (user.capabilities?.canAdd || user.capabilities?.canEdit || user.capabilities?.canDelete) {
+        if (_user.capabilities?.canAdd || _user.capabilities?.canEdit || _user.capabilities?.canDelete) {
             return true;
         }
 
@@ -42,7 +49,7 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        {hasCapability() && <Link href={'/manage'}>Manage</Link>}
+                        {hasCapability() && <Link href={'/manage'}>Zarządzaj</Link>}
                         &nbsp;&nbsp;&nbsp;
                         <Button label={'Wyloguj się'} onClick={onLogout} />
                     </>

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Meal` to `Dish`.
 
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Invisible `Manage` text button after first logging in.
+
 ## [1.50.0] - 2024-10-01
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Meal and dish type filtering.

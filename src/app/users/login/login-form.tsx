@@ -4,7 +4,6 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { FormEvent, useState } from 'react';
 import { Button } from '@/src/components/common/button';
-import { useRouter } from 'next/navigation';
 import { useUserContext } from '@/src/contexts/user.context';
 import { doUserLogin } from '@/src/api/api';
 
@@ -18,12 +17,7 @@ export function LoginForm() {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isLogging, setIsLogging] = useState<boolean>(false);
-    const router = useRouter();
-    const { loginUser, isLoggedIn } = useUserContext();
-
-    if (isLoggedIn()) {
-        router.push('/');
-    }
+    const { loginUser } = useUserContext();
 
     const onLogIn = async () => {
         setIsLogging(true);
@@ -33,7 +27,6 @@ export function LoginForm() {
             loginUser(login, permissions);
 
             toastSuccess('Pomyślnie zalogowano');
-            router.push('/');
         } catch (err: any) {
             toastError(err.message);
         } finally {

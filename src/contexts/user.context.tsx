@@ -1,12 +1,13 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { CurrentUser } from '@/src/types/user.types';
 import { UserPermissions } from '@/src/types/api.types';
 import { MINUTE } from '@/src/constants/numbers';
 import { refreshUserTokens } from '@/src/api/api';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@/src/components/common/loader';
 
 export interface UserContextValues {
     user: CurrentUser;
@@ -30,11 +31,12 @@ const UserContext = createContext<UserContextValues>(defaultValue);
 
 export const useUserContext = () => useContext(UserContext);
 
-export function UserProvider({ children }: { children: any }) {
+export function UserProvider({ children }: { children: ReactNode }) {
     const router = useRouter();
     const [user, setUser] = useState<CurrentUser>({
         login: ''
     });
+    const [isLogging, setIsLogging] = useState<boolean>(false);
     const [contextValue, setContextValue] = useState<UserContextValues>(defaultValue);
     const [isFetching, setIsFetching] = useState<boolean>(true);
 
@@ -52,10 +54,20 @@ export function UserProvider({ children }: { children: any }) {
     }, [user.login]);
 
     useEffect(() => {
+        const pathname = location.pathname;
+
+        if (pathname === '/users/login' && user.login !== '') {
+            router.push('/');
+        }
+    }, [isLogging, user]);
+
+    useEffect(() => {
         const loginUser = (login: string, permissions: UserPermissions): void => {
+            setIsLogging(true);
             const user: CurrentUser = { login, ...permissions };
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
+            setIsLogging(false);
         };
 
         const logoutUser = (): void => {
@@ -105,6 +117,7 @@ export function UserProvider({ children }: { children: any }) {
 
     return (
         <UserContext.Provider value={contextValue ?? defaultValue}>
+            {isLogging || isFetching && <Loader isAbsolute={true} />}
             {children}
         </UserContext.Provider>
     );
