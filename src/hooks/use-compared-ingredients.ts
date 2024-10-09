@@ -1,9 +1,9 @@
 'use client';
 
 import { ReadonlyURLSearchParams } from 'next/navigation';
-import { DetailedMeal } from '@/src/types/api.types';
+import { DetailedDish } from '@/src/types/api.types';
 
-export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, meal: DetailedMeal): boolean[] | null {
+export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, meal: DetailedDish): boolean[] | null {
     const sourceUrl = searchParams.get('sourceUrl');
 
     if (!sourceUrl) {

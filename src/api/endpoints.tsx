@@ -1,90 +1,90 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import {
-    DetailedMeal,
-    DetailedMealWithTranslations,
-    MealProposal,
-    MealResult,
+    DetailedDish,
+    DetailedDishWithTranslations,
+    DishProposal,
+    DishResult,
     NotActivatedUser
 } from '@/src/types/api.types';
 import {
-    getMeal, getMealComments,
-    getMealProposals,
-    getMeals, getNotActivatedUsers,
-    getSoftAddedMeals,
-    getSoftDeletedMeals,
-    getSoftEditedMeals
+    getDish, getDishComments,
+    getDishProposals,
+    getDishes, getNotActivatedUsers,
+    getSoftAddedDishes,
+    getSoftDeletedDishes,
+    getSoftEditedDishes
 } from '@/src/api/api';
 import { DAY, HOUR, MINUTE } from '@/src/constants/numbers';
-import { MealComment } from '@/src/types/meal.types';
+import { DishComment } from '@/src/types/dish.types';
 
-export function useGetMealById(id: string): UseQueryResult<DetailedMealWithTranslations> {
+export function useGetDishById(id: string): UseQueryResult<DetailedDishWithTranslations> {
     return useQuery({
-        queryFn: async (): Promise<DetailedMealWithTranslations> => await getMeal(id),
-        queryKey: ['meals', id],
+        queryFn: async (): Promise<DetailedDishWithTranslations> => await getDish(id),
+        queryKey: ['dishes', id],
         staleTime: HOUR
     });
 }
 
-export function useGetMeals(ingredients: string[]): UseQueryResult<MealResult[]> {
+export function useGetDishes(ingredients: string[]): UseQueryResult<DishResult[]> {
     return useQuery({
-        queryFn: async (): Promise<MealResult[]> => await getMeals(ingredients),
-        queryKey: ['meals', { ings: ingredients }],
+        queryFn: async (): Promise<DishResult[]> => await getDishes(ingredients),
+        queryKey: ['dishes', { ings: ingredients }],
         staleTime: DAY
     });
 }
 
-export function useGetMealProposals(): UseQueryResult<MealProposal[]> {
+export function useGetDishProposals(): UseQueryResult<DishProposal[]> {
     return useQuery({
-        queryFn: async (): Promise<MealProposal[]> => await getMealProposals(),
+        queryFn: async (): Promise<DishProposal[]> => await getDishProposals(),
         queryKey: ['proposals'],
         staleTime: DAY
     });
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftAddedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
+export function useGetSoftAddedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
     if (!isTriggered) {
         return useQuery({
-            queryKey: ['meals', 'soft', 'added'],
+            queryKey: ['dishes', 'soft', 'added'],
             staleTime: HOUR
         });
     }
 
     return useQuery({
-        queryFn: async (): Promise<DetailedMeal[]> => await getSoftAddedMeals(),
-        queryKey: ['meals', 'soft', 'added'],
+        queryFn: async (): Promise<DetailedDish[]> => await getSoftAddedDishes(),
+        queryKey: ['dishes', 'soft', 'added'],
         staleTime: HOUR
     });
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftEditedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
+export function useGetSoftEditedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
     if (!isTriggered) {
         return useQuery({
-            queryKey: ['meals', 'soft', 'edited'],
+            queryKey: ['dishes', 'soft', 'edited'],
             staleTime: HOUR
         });
     }
 
     return useQuery({
-        queryFn: async (): Promise<DetailedMeal[]> => await getSoftEditedMeals(),
-        queryKey: ['meals', 'soft', 'edited'],
+        queryFn: async (): Promise<DetailedDish[]> => await getSoftEditedDishes(),
+        queryKey: ['dishes', 'soft', 'edited'],
         staleTime: HOUR
     });
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftDeletedMeals(isTriggered: boolean = true): UseQueryResult<DetailedMeal[]> {
+export function useGetSoftDeletedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
     if (!isTriggered) {
         return useQuery({
-            queryKey: ['meals', 'soft', 'deleted'],
+            queryKey: ['dishes', 'soft', 'deleted'],
             staleTime: HOUR
         });
     }
 
     return useQuery({
-        queryFn: async (): Promise<DetailedMeal[]> => await getSoftDeletedMeals(),
-        queryKey: ['meals', 'soft', 'deleted'],
+        queryFn: async (): Promise<DetailedDish[]> => await getSoftDeletedDishes(),
+        queryKey: ['dishes', 'soft', 'deleted'],
         staleTime: HOUR
     });
 }
@@ -105,10 +105,10 @@ export function useGetNotActivatedUsers(isTriggered: boolean = true): UseQueryRe
     });
 }
 
-export function useGetMealComments(mealId: string): UseQueryResult<MealComment[]> {
+export function useGetDishComments(dishId: string): UseQueryResult<DishComment[]> {
     return useQuery({
-        queryFn: async (): Promise<MealComment[]> => await getMealComments(mealId),
-        queryKey: ['meals', 'comments', mealId],
+        queryFn: async (): Promise<DishComment[]> => await getDishComments(dishId),
+        queryKey: ['dishes', 'comments', dishId],
         staleTime: 5 * MINUTE,
         refetchInterval: MINUTE
     });

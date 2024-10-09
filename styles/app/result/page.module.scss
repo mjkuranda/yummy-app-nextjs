@@ -37,7 +37,7 @@
                     margin-bottom: 1em;
                     text-shadow: 1px 1px 2px;
 
-                    .result-meal-title {
+                    .result-dish-title {
                         display: flex;
                         align-items: center;
 
@@ -62,12 +62,12 @@
                 }
             }
 
-            .meal-details-sections {
+            .dish-details-sections {
                 > div + div {
                     margin-top: 2rem;
                 }
 
-                .meal-description {
+                .dish-description {
                     margin-top: 1em;
 
                     > p {
@@ -88,7 +88,7 @@
             }
         }
 
-        .meal-ingredients {
+        .dish-ingredients {
             > ul {
                 list-style: none;
                 padding: 0;

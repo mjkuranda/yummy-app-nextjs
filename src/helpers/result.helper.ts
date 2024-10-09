@@ -1,7 +1,7 @@
 import { API_URL } from '@/src/api/methods';
-import { MealProvider } from '@/src/types/api.types';
+import { DishProvider } from '@/src/types/api.types';
 
-export function getImageUrlForYummyMeals(provider: MealProvider, imgUrl?: string): string | undefined {
+export function getImageUrlForYummyDishes(provider: DishProvider, imgUrl?: string): string | undefined {
     if (provider === 'spoonacular') {
         return imgUrl;
     }

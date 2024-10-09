@@ -8,11 +8,11 @@ import { clearSearchIngredients, getSearchFormData, getSelectedIngredientNumber 
 import { useRouter } from 'next/navigation';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
-import { addMealProposal } from '@/src/api/api';
+import { addDishProposal } from '@/src/api/api';
 import { toastError } from '@/src/utils/toast.utils';
 import { UnauthorizedError } from '@/src/api/api-errors';
 import { InputSelect } from '@/src/components/common/form/input-select';
-import { MealType, MealTypeText } from '@/src/types/meal.types';
+import { MealType, MealTypeText } from '@/src/types/dish.types';
 import { useUserContext } from '@/src/contexts/user.context';
 import { getDishTypes, inferMealTypeBasingOnTime } from '@/src/helpers/search.helper';
 
@@ -70,10 +70,10 @@ export function SearchForm({ children }: SearchFormProps) {
 
         if (isLoggedIn()) {
             try {
-                await addMealProposal(ingredients);
+                await addDishProposal(ingredients);
             } catch (err: any) {
                 if (!(err instanceof UnauthorizedError)) {
-                    toastError(`Error occurred while adding a new meal proposal: ${err.message}`);
+                    toastError(`Wystąpił błąd podczas dodawania nowej propozycji dania: ${err.message}`);
                 }
             }
         }

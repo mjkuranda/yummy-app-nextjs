@@ -57,13 +57,13 @@ export function ObjectContainer() {
             <div className={styles['object-container']}>
                 <div className={styles['back-link']}>
                     <Link href="/manage">
-                        <ArrowCircleLeftIcon />Back to management
+                        <ArrowCircleLeftIcon />Powrót do zarządzania
                     </Link>
                 </div>
                 {isLoading
                     ? <Loader isAbsolute={true} />
                     : objectList.length === 0
-                        ? 'No objects.'
+                        ? 'Brak obiektów.'
                         : <ObjectList objects={objectList} objectType={objects} actionType={action} refetch={refetchObjects} />
                 }
             </div>

@@ -3,7 +3,7 @@
 import { SearchFilters } from '@/src/types/search.types';
 import { useSearchParams } from 'next/navigation';
 import { decodeIngredients } from '@/src/helpers/query.helper';
-import { DishType, MealType } from '@/src/types/meal.types';
+import { DishType, MealType } from '@/src/types/dish.types';
 
 export function useSearchFilters(): SearchFilters {
     const searchParams = useSearchParams();

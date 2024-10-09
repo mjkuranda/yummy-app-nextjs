@@ -1,9 +1,9 @@
 import { FormHelperText } from '@mui/material';
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
-import { MealRecipeSectionWithId } from '@/src/types/meal.types';
+import { DishRecipeSectionWithId } from '@/src/types/dish.types';
 
 interface ErrorMessageProps {
-    error?: FieldError | Merge<FieldError, (Merge<FieldError, FieldErrorsImpl<MealRecipeSectionWithId>> | undefined)[]>;
+    error?: FieldError | Merge<FieldError, (Merge<FieldError, FieldErrorsImpl<DishRecipeSectionWithId>> | undefined)[]>;
 }
 
 export function ErrorMessage({ error }: ErrorMessageProps) {

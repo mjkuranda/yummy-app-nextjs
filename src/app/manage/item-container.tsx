@@ -22,20 +22,20 @@ export function ItemContainer() {
         if (user.isAdmin) {
             userItemsTemp.push({ link: 'users/not-activated', text: 'Nieaktywowani użytkownicy' });
 
-            mealItemsTemp.push({ link: 'meals/added', text: 'Dodane posiłki' });
-            mealItemsTemp.push({ link: 'meals/edited', text: 'Edytowane posiłki' });
-            mealItemsTemp.push({ link: 'meals/deleted', text: 'Usunięte posiłki' });
+            mealItemsTemp.push({ link: 'dishes/added', text: 'Dodane posiłki' });
+            mealItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane posiłki' });
+            mealItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte posiłki' });
         } else {
             if (user.capabilities?.canAdd) {
-                mealItemsTemp.push({ link: 'meals/added', text: 'Dodane posiłki' });
+                mealItemsTemp.push({ link: 'dishes/added', text: 'Dodane posiłki' });
             }
 
             if (user.capabilities?.canEdit) {
-                mealItemsTemp.push({ link: 'meals/edited', text: 'Edytowane posiłki' });
+                mealItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane posiłki' });
             }
 
             if (user.capabilities?.canDelete) {
-                mealItemsTemp.push({ link: 'meals/deleted', text: 'Usunięte posiłki' });
+                mealItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte posiłki' });
             }
 
             if (userItemsTemp.length === 0 && mealItemsTemp.length === 0) {

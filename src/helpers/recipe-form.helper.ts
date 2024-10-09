@@ -1,7 +1,7 @@
-import { MealFormData, MealRecipeSectionWithId, MealRecipeStepWithId } from '@/src/types/meal.types';
-import { IngredientWithoutImage, Language, MealRecipeSection, NewMealDto } from '@/src/types/api.types';
+import { DishFormData, DishRecipeSectionWithId, DishRecipeStepWithId } from '@/src/types/dish.types';
+import { IngredientWithoutImage, Language, DishRecipeSection, NewDishDto } from '@/src/types/api.types';
 
-export function createNewSection(): MealRecipeSectionWithId {
+export function createNewSection(): DishRecipeSectionWithId {
     return {
         id: crypto.randomUUID(),
         name: '',
@@ -9,7 +9,7 @@ export function createNewSection(): MealRecipeSectionWithId {
     };
 }
 
-export function updateSectionName(id: string, newName: string, sections: MealRecipeSectionWithId[]): MealRecipeSectionWithId[] {
+export function updateSectionName(id: string, newName: string, sections: DishRecipeSectionWithId[]): DishRecipeSectionWithId[] {
     const modifiedSections = [...sections];
 
     for (const section of modifiedSections) {
@@ -23,14 +23,14 @@ export function updateSectionName(id: string, newName: string, sections: MealRec
     return modifiedSections;
 }
 
-export function createNewRecipeStep(): MealRecipeStepWithId {
+export function createNewRecipeStep(): DishRecipeStepWithId {
     return {
         id: crypto.randomUUID(),
         text: ''
     };
 }
 
-export function updateSectionStep(id: string, step: MealRecipeStepWithId, sections: MealRecipeSectionWithId[], isNew?: boolean): MealRecipeSectionWithId[] {
+export function updateSectionStep(id: string, step: DishRecipeStepWithId, sections: DishRecipeSectionWithId[], isNew?: boolean): DishRecipeSectionWithId[] {
     const modifiedSections = [...sections];
 
     for (const section of modifiedSections) {
@@ -57,11 +57,11 @@ export function updateSectionStep(id: string, step: MealRecipeStepWithId, sectio
     return modifiedSections;
 }
 
-export function removeSection(sectionId: string, sections: MealRecipeSectionWithId[]): MealRecipeSectionWithId[] {
+export function removeSection(sectionId: string, sections: DishRecipeSectionWithId[]): DishRecipeSectionWithId[] {
     return sections.filter(section => section.id !== sectionId);
 }
 
-export function removeSectionStep(stepId: string, section: MealRecipeSectionWithId, sections: MealRecipeSectionWithId[]): MealRecipeSectionWithId[] {
+export function removeSectionStep(stepId: string, section: DishRecipeSectionWithId, sections: DishRecipeSectionWithId[]): DishRecipeSectionWithId[] {
     return sections.map(sectionElement => {
         if (sectionElement.id !== section.id) {
             return sectionElement;
@@ -74,8 +74,8 @@ export function removeSectionStep(stepId: string, section: MealRecipeSectionWith
     });
 }
 
-export function proceedFormToData(formData: MealFormData, author: string, language: Language, imgUrl?: string): NewMealDto {
-    const { title, description, dishType, readyInMinutes, ingredients, type, recipe, imageUrl } = formData;
+export function proceedFormToData(formData: DishFormData, author: string, language: Language, imgUrl?: string): NewDishDto {
+    const { title, description, mealType, readyInMinutes, ingredients, type, recipe, imageUrl } = formData;
     const mealIngredients: IngredientWithoutImage[] = ingredients.map(ingredient => {
         return {
             id: ingredient.data.id,
@@ -84,7 +84,7 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
             unit: ingredient.unit
         };
     });
-    const recipeSections: MealRecipeSection[] = recipe.map(section => {
+    const recipeSections: DishRecipeSection[] = recipe.map(section => {
         return {
             name: section.name,
             steps: section.steps.map(step => step.text)
@@ -94,10 +94,10 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
     return {
         title,
         description,
-        dishType,
         author,
         language,
         type,
+        mealType,
         readyInMinutes: Number(readyInMinutes),
         recipeSections,
         ingredients: mealIngredients,
@@ -107,7 +107,7 @@ export function proceedFormToData(formData: MealFormData, author: string, langua
     };
 }
 
-export function loadRecipeSections(sections: MealRecipeSection[]): MealRecipeSectionWithId[] {
+export function loadRecipeSections(sections: DishRecipeSection[]): DishRecipeSectionWithId[] {
     return sections.map(section => {
         return {
             ...section,

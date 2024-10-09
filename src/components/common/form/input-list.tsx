@@ -7,7 +7,7 @@ import {
     AutocompleteInputChangeReason
 } from '@mui/material';
 import { FieldError, Merge } from 'react-hook-form';
-import { SelectedIngredient } from '@/src/app/meals/create/selected-ingredient';
+import { SelectedIngredient } from '@/src/app/dishes/create/selected-ingredient';
 
 export type Items = Record<string, string>;
 

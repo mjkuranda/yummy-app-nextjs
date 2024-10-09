@@ -6,9 +6,9 @@ import styles from '@/styles/app/result/page.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
 import { redirect, useParams, useSearchParams } from 'next/navigation';
-import { useGetMealById } from '@/src/api/endpoints';
-import { MealContainer } from '@/src/app/result/[id]/meal-container';
-import { DetailedMealWithTranslations } from '@/src/types/api.types';
+import { useGetDishById } from '@/src/api/endpoints';
+import { DishContainer } from '@/src/app/result/[id]/dish-container';
+import { DetailedDishWithTranslations } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
 import { useEffect } from 'react';
@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 export default function ResultById() {
     const { id } = useParams();
     const searchParams = useSearchParams();
-    const { data: meal, isLoading, isError, error } = useGetMealById(id as string);
+    const { data: dish, isLoading, isError, error } = useGetDishById(id as string);
 
     useEffect(() => {
         if (isError && error.message.includes('was not confirmed by admin')) {
@@ -24,16 +24,16 @@ export default function ResultById() {
             redirect('/search');
         }
 
-        if (isApiError(meal)) {
-            toastError('Error occurred while fetching this meal.');
+        if (isApiError(dish)) {
+            toastError('Wystąpił błąd podczas pobierania danych.');
             redirect('/search');
         }
 
         if (isError) {
-            toastError('Error occurred while fetching this meal.');
+            toastError('Wystąpił błąd podczas pobierania danych.');
             redirect('/search');
         }
-    }, [meal, isError]);
+    }, [dish, isError]);
 
     return (
         <>
@@ -47,10 +47,10 @@ export default function ResultById() {
                 <div className={styles['result-container']}>
                     {isLoading || isError
                         ? <Loader isAbsolute={true} />
-                        : <MealContainer complexMealObject={meal as DetailedMealWithTranslations} />
+                        : <DishContainer complexDishObject={dish as DetailedDishWithTranslations} />
                     }
-                    {!isLoading && !meal && <div>Meal has not been found.</div>}
-                    {isError && <div>Error occurred.</div>}
+                    {!isLoading && !dish && <div>Danie nie zostało znalezione.</div>}
+                    {isError && <div>Wystąpił błąd.</div>}
                 </div>
             </div>
             <Footer />
@@ -58,6 +58,6 @@ export default function ResultById() {
     );
 }
 
-function isApiError(meal: DetailedMealWithTranslations | undefined): boolean {
-    return (meal as any)?.statusCode !== undefined;
+function isApiError(dish: DetailedDishWithTranslations | undefined): boolean {
+    return (dish as any)?.statusCode !== undefined;
 }
