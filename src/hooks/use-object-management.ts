@@ -1,11 +1,11 @@
 'use client';
 
 import {
-    confirmMealAddition, confirmMealDeletion, confirmMealEdition, confirmUserActivation,
+    confirmDishAddition, confirmDishDeletion, confirmDishEdition, confirmUserActivation,
     getNotActivatedUsers,
-    getSoftAddedMeals,
-    getSoftDeletedMeals,
-    getSoftEditedMeals
+    getSoftAddedDishes,
+    getSoftDeletedDishes,
+    getSoftEditedDishes
 } from '@/src/api/api';
 import { useCallback, useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/manage.types';
@@ -56,18 +56,18 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 })
             );
         }
-        else if (objects === 'meals') {
+        else if (objects === 'dishes') {
             switch (action) {
             case 'added':
                 fetchObjects(
-                    getSoftAddedMeals,
-                    meal => ({
-                        id: meal._id,
-                        label: meal.title,
+                    getSoftAddedDishes,
+                    dish => ({
+                        id: dish._id,
+                        label: dish.title,
                         action: async () => {
                             // eslint-disable-next-line no-useless-catch
                             try {
-                                await confirmMealAddition(meal._id);
+                                await confirmDishAddition(dish._id);
                             } catch (err: unknown) {
                                 throw err;
                             }
@@ -77,14 +77,14 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 break;
             case 'edited':
                 fetchObjects(
-                    getSoftEditedMeals,
-                    meal => ({
-                        id: meal._id,
-                        label: meal.title,
+                    getSoftEditedDishes,
+                    dish => ({
+                        id: dish._id,
+                        label: dish.title,
                         action: async () => {
                             // eslint-disable-next-line no-useless-catch
                             try {
-                                await confirmMealEdition(meal._id);
+                                await confirmDishEdition(dish._id);
                             } catch (err: unknown) {
                                 throw err;
                             }
@@ -94,14 +94,14 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 break;
             case 'deleted':
                 fetchObjects(
-                    getSoftDeletedMeals,
-                    meal => ({
-                        id: meal._id,
-                        label: meal.title,
+                    getSoftDeletedDishes,
+                    dish => ({
+                        id: dish._id,
+                        label: dish.title,
                         action: async () => {
                             // eslint-disable-next-line no-useless-catch
                             try {
-                                await confirmMealDeletion(meal._id);
+                                await confirmDishDeletion(dish._id);
                             } catch (err: unknown) {
                                 throw err;
                             }

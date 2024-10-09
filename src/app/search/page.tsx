@@ -1,10 +1,10 @@
 import { Header } from '@/src/components/common/header';
 import styles from '@/styles/app/search/page.module.scss';
-import resultStyles from '@/styles/app/search/search-meal-result.module.scss';
+import resultStyles from '@/styles/app/search/search-dish-result.module.scss';
 import { Footer } from '@/src/components/common/footer';
 import SearchIngredientCategory from '@/src/app/search/search-ingredient-category';
 import { SearchForm } from '@/src/app/search/search-form';
-import { MealResultBox } from '@/src/app/search/meal-result-box';
+import { DishResultBox } from '@/src/app/search/dish-result-box';
 import Link from 'next/link';
 
 export default function Search() {
@@ -24,12 +24,12 @@ export default function Search() {
                 <SearchIngredientCategory category="spices" />
                 <SearchIngredientCategory category="vegetables" />
             </SearchForm>
-            <div id={styles['meal-result-part']}>
-                <MealResultBox />
+            <div id={styles['dish-result-part']}>
+                <DishResultBox />
                 <section id={resultStyles['adder']}>
                     <div className="d-flex justify-content-center align-items-center">
                         <p className="text-center">
-                            Możesz również <Link href={'/meals/create'}>utworzyć</Link> całkiem nowy posiłek,<br />
+                            Możesz również <Link href={'/dishes/create'}>utworzyć</Link> całkiem nowy posiłek,<br />
                             niezwiązany z obecnym wyszukiwaniem,<br />
                             dodając do bazy posiłków, by inni mogli go wyszukać w przyszłości.
                         </p>

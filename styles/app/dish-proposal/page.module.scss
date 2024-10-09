@@ -1,0 +1,71 @@
+@import '@/styles/globals-colors';
+
+$page-background-color: $orange-yellow-crayola;
+$proposal-max-line-count: 4;
+$container-horizontal-margin: 33;
+
+.dish-proposal-page {
+    min-height: 100vh;
+    background-color: $page-background-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dish-proposal-error {
+        text-align: center;
+    }
+
+    .dish-proposal-container {
+        margin: 0 calc($container-horizontal-margin * 1%);
+
+        .dish-proposal-container__proposal {
+            .dish-proposal-container__proposal-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    height: calc(231px * 2);
+                    //box-shadow: 0 0 4px 4px black;
+                }
+            }
+
+            .dish-proposal-container__proposal-header {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 50vw;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            p {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: $proposal-max-line-count;
+                line-clamp: $proposal-max-line-count;
+                -webkit-box-orient: vertical;
+
+                display: none;
+            }
+        }
+
+        .dish-proposal-container__navigator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5rem;
+
+            button + button {
+                margin-left: 1rem;
+            }
+        }
+
+        .dish-proposal-back-link {
+            position: absolute;
+            top: 32px;
+            left: 32px;
+        }
+    }
+}

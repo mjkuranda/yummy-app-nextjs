@@ -1,4 +1,4 @@
-import { DishType, MealType } from '@/src/types/meal.types';
+import { DishType, MealType } from '@/src/types/dish.types';
 
 export interface SearchFormData {
     ingredients: string[];

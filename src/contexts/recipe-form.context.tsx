@@ -1,14 +1,14 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import { MealRecipeSectionWithId } from '@/src/types/meal.types';
+import { DishRecipeSectionWithId } from '@/src/types/dish.types';
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 
 interface RecipeFormProviderProps {
     children: any;
-    sections: MealRecipeSectionWithId[];
-    onChangeSections: (sections: MealRecipeSectionWithId[]) => void;
-    error?: Merge<FieldError, (Merge<FieldError, FieldErrorsImpl<MealRecipeSectionWithId>> | undefined)[]>;
+    sections: DishRecipeSectionWithId[];
+    onChangeSections: (sections: DishRecipeSectionWithId[]) => void;
+    error?: Merge<FieldError, (Merge<FieldError, FieldErrorsImpl<DishRecipeSectionWithId>> | undefined)[]>;
 }
 
 type RecipeFormContextValues = Omit<RecipeFormProviderProps, 'children'>;
@@ -16,7 +16,7 @@ type RecipeFormContextValues = Omit<RecipeFormProviderProps, 'children'>;
 const defaultValue: RecipeFormContextValues = {
     sections: [],
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onChangeSections: (sections: MealRecipeSectionWithId[]): void => {}
+    onChangeSections: (sections: DishRecipeSectionWithId[]): void => {}
 };
 
 const RecipeFormContext = createContext<RecipeFormContextValues>(defaultValue);

@@ -1,0 +1,54 @@
+.dish-comment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 3/1/span 1/span 2;
+    min-height: 64px;
+    margin: 2rem 0;
+
+    .dish-comment-content {
+        width: 35vw;
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dish-comment-header {
+            margin-bottom: 1em;
+            text-shadow: 1px 1px 2px;
+            text-align: center;
+        }
+
+        .dish-comment-item {
+            .dish-comment-item__header {
+                display: flex;
+            }
+
+            .dish-comment-item__posted {
+                margin-left: 1rem;
+                color: grey;
+                font-style: italic;
+                font-size: .618rem;
+            }
+        }
+
+        .dish-comment-item + .dish-comment-item {
+            margin-top: 2rem;
+        }
+    }
+
+    .dish-comment-add-section {
+        margin: 1rem 0 1.5rem 0;
+
+        .dish-comment-add-section__input {
+            margin-bottom: .5rem;
+            display: flex;
+
+            .dish-comment-add-section__send-icon {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

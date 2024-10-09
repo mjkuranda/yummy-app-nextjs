@@ -14,9 +14,9 @@ export default function Home() {
                     authorInfo={'Image by <a href="https://pixabay.com/users/rperucho-7689351/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7251301">Ramon Perucho</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7251301">Pixabay</a>'}
                 />
                 <InformationScreen
-                    title="Posiłki"
+                    title="Dania"
                     description="Zawiera ponad 100 000 posiłków, integrując posiłki z innych serwisów!"
-                    imageName="meals"
+                    imageName="dishes"
                     authorInfo={'Image by <a href="https://pixabay.com/users/buffetcrush-4147660/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2009590">지원 이</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2009590">Pixabay</a>'}
                 />
                 <InformationScreen

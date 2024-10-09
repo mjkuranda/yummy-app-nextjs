@@ -1,20 +1,20 @@
-import { MealResult } from '@/src/types/api.types';
-import { DishType, DishTypeText, MealType } from '@/src/types/meal.types';
+import { DishResult } from '@/src/types/api.types';
+import { DishType, DishTypeText, MealType } from '@/src/types/dish.types';
 
-export function filterMealByType(meals: MealResult[], type: MealType, dish: DishType): MealResult[] {
-    const filtered = meals.filter(meal => {
-        if (meal.provider !== 'yummy') {
+export function filterDishByType(dishes: DishResult[], type: MealType, dishType: DishType): DishResult[] {
+    const filtered = dishes.filter(dish => {
+        if (dish.provider !== 'yummy') {
             return true;
         }
 
-        return meal.type === type;
+        return dish.type === type;
     });
 
-    if (dish === 'any') {
+    if (dishType === 'any') {
         return filtered;
     }
 
-    return filtered.filter(meal => meal.dishType === dish);
+    return filtered.filter(dish => dish.type === dishType);
 }
 
 export function inferMealTypeBasingOnTime(): MealType {
@@ -24,15 +24,15 @@ export function inferMealTypeBasingOnTime(): MealType {
         return 'any';
     }
 
-    if (hour >= 6 && hour < 11) {
+    if (hour < 11) {
         return 'breakfast';
     }
 
-    if (hour >= 11 && hour < 16) {
+    if (hour < 16) {
         return 'launch';
     }
 
-    if (hour >= 16 && hour < 20) {
+    if (hour < 20) {
         return 'dinner';
     }
 

@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { FieldError, Merge } from 'react-hook-form';
 import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
-import { MealIngredient } from '@/src/app/meals/create/meal-ingredient';
+import { MealIngredient } from '@/src/app/dishes/create/meal-ingredient';
 import { addIngredient } from '@/src/helpers/ingredient-form.helper';
 
 interface InputListProps {

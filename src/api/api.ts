@@ -1,37 +1,37 @@
 import { apiGet, apiPost, apiPut } from '@/src/api/methods';
 import {
     LoginUserData,
-    MealProposal,
-    MealProposalRequest,
-    MealResult, NotActivatedUser,
-    UserPermissions, DetailedMealWithTranslations, NewMealDto, MealDocument
+    DishProposal,
+    DishProposalRequest,
+    DishResult, NotActivatedUser,
+    UserPermissions, DetailedDishWithTranslations, NewDishDto, DishDocument
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
 import { ApiError } from 'next/dist/server/api-utils';
 import {
-    MealComment,
-    MealDifferenceDto,
-    MealRating,
-    NewMealCommentDto,
-    NewMealRatingDto
-} from '@/src/types/meal.types';
+    DishComment,
+    DishDifferenceDto,
+    DishRating,
+    NewDishCommentDto,
+    NewDishRatingDto
+} from '@/src/types/dish.types';
 
-export async function getMeal(id: string): Promise<DetailedMealWithTranslations | never> {
+export async function getDish(id: string): Promise<DetailedDishWithTranslations | never> {
     // eslint-disable-next-line no-useless-catch
     try {
-        return apiGet<DetailedMealWithTranslations>(`meals/${id}/details`);
+        return apiGet<DetailedDishWithTranslations>(`dishes/${id}/details`);
     } catch (err) {
         throw err;
     }
 }
 
-export async function getMeals(ingredients: string[]): Promise<MealResult[]> {
+export async function getDishes(ingredients: string[]): Promise<DishResult[]> {
     if (!ingredients.length) {
         return [];
     }
 
-    return apiGet<MealResult[]>(`meals?ings=${encodeIngredients(ingredients)}`);
+    return apiGet<DishResult[]>(`dishes?ings=${encodeIngredients(ingredients)}`);
 }
 
 export async function doUserLogin(login: string, password: string): Promise<UserPermissions> {
@@ -56,12 +56,12 @@ export async function refreshUserTokens() {
     }
 }
 
-export async function getMealProposals(): Promise<MealProposal[]> {
-    let res: MealProposal[] = [];
+export async function getDishProposals(): Promise<DishProposal[]> {
+    let res: DishProposal[] = [];
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealProposal[]>('meals/proposal/all');
+        res = await apiGet<DishProposal[]>('dishes/proposal/all');
     } catch (err: unknown) {
         throw err;
     }
@@ -69,12 +69,12 @@ export async function getMealProposals(): Promise<MealProposal[]> {
     return res;
 }
 
-export async function addMealProposal(ingredients: string[]): Promise<Response> {
+export async function addDishProposal(ingredients: string[]): Promise<Response> {
     let res;
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost<MealProposalRequest>('meals/proposal', {
+        res = await apiPost<DishProposalRequest>('dishes/proposal', {
             ingredients: ingredients.sort()
         });
     } catch (err: unknown) {
@@ -84,12 +84,12 @@ export async function addMealProposal(ingredients: string[]): Promise<Response> 
     return res;
 }
 
-export async function getSoftAddedMeals(): Promise<MealDocument[]> {
-    let res: MealDocument[] = [];
+export async function getSoftAddedDishes(): Promise<DishDocument[]> {
+    let res: DishDocument[] = [];
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealDocument[]>('meals/soft/added');
+        res = await apiGet<DishDocument[]>('dishes/soft/added');
     } catch (err: unknown) {
         throw err;
     }
@@ -97,12 +97,12 @@ export async function getSoftAddedMeals(): Promise<MealDocument[]> {
     return res;
 }
 
-export async function getSoftEditedMeals(): Promise<MealDocument[]> {
-    let res: MealDocument[] = [];
+export async function getSoftEditedDishes(): Promise<DishDocument[]> {
+    let res: DishDocument[] = [];
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealDocument[]>('meals/soft/edited');
+        res = await apiGet<DishDocument[]>('dishes/soft/edited');
     } catch (err: unknown) {
         throw err;
     }
@@ -110,12 +110,12 @@ export async function getSoftEditedMeals(): Promise<MealDocument[]> {
     return res;
 }
 
-export async function getSoftDeletedMeals(): Promise<MealDocument[]> {
-    let res: MealDocument[] = [];
+export async function getSoftDeletedDishes(): Promise<DishDocument[]> {
+    let res: DishDocument[] = [];
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealDocument[]>('meals/soft/deleted');
+        res = await apiGet<DishDocument[]>('dishes/soft/deleted');
     } catch (err: unknown) {
         throw err;
     }
@@ -136,12 +136,12 @@ export async function getNotActivatedUsers(): Promise<NotActivatedUser[]> {
     return res;
 }
 
-export async function confirmMealAddition(id: string): Promise<MealDocument> {
+export async function confirmDishAddition(id: string): Promise<DishDocument> {
     let res;
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost(`meals/${id}/create`);
+        res = await apiPost(`dishes/${id}/create`);
     } catch (err: unknown) {
         throw err;
     }
@@ -149,12 +149,12 @@ export async function confirmMealAddition(id: string): Promise<MealDocument> {
     return await res.json();
 }
 
-export async function confirmMealEdition(id: string): Promise<MealDocument> {
+export async function confirmDishEdition(id: string): Promise<DishDocument> {
     let res;
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost(`meals/${id}/edit`);
+        res = await apiPost(`dishes/${id}/edit`);
     } catch (err: unknown) {
         throw err;
     }
@@ -162,12 +162,12 @@ export async function confirmMealEdition(id: string): Promise<MealDocument> {
     return await res.json();
 }
 
-export async function confirmMealDeletion(id: string): Promise<MealDocument> {
+export async function confirmDishDeletion(id: string): Promise<DishDocument> {
     let res;
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost(`meals/${id}/delete`);
+        res = await apiPost(`dishes/${id}/delete`);
     } catch (err: unknown) {
         throw err;
     }
@@ -212,8 +212,8 @@ export async function uploadImage(image: File): Promise<string> {
     return await res.text();
 }
 
-export async function createMeal(data: NewMealDto): Promise<MealDocument> {
-    const res = await apiPost<NewMealDto>('meals/create', data);
+export async function createDish(data: NewDishDto): Promise<DishDocument> {
+    const res = await apiPost<NewDishDto>('dishes/create', data);
 
     if (res.status > 299) {
         const json = await res.json();
@@ -224,12 +224,12 @@ export async function createMeal(data: NewMealDto): Promise<MealDocument> {
     return await res.json();
 }
 
-export async function getMealComments(mealId: string): Promise<MealComment[]> {
-    let res: MealComment[] = [];
+export async function getDishComments(dishId: string): Promise<DishComment[]> {
+    let res: DishComment[] = [];
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealComment[]>(`meals/${mealId}/comments`);
+        res = await apiGet<DishComment[]>(`dishes/${dishId}/comments`);
     } catch (err: unknown) {
         throw err;
     }
@@ -237,8 +237,8 @@ export async function getMealComments(mealId: string): Promise<MealComment[]> {
     return res;
 }
 
-export async function postNewComment(data: NewMealCommentDto): Promise<void> {
-    const res = await apiPost<NewMealCommentDto>(`meals/${data.mealId}/comment`, data);
+export async function postNewComment(data: NewDishCommentDto): Promise<void> {
+    const res = await apiPost<NewDishCommentDto>(`dishes/${data.dishId}/comment`, data);
 
     if (res.status > 299) {
         const json = await res.json();
@@ -247,16 +247,16 @@ export async function postNewComment(data: NewMealCommentDto): Promise<void> {
     }
 }
 
-export async function getMealRating(mealId: string): Promise<MealRating> {
-    let res: MealRating = {
-        mealId,
+export async function getDishRating(dishId: string): Promise<DishRating> {
+    let res: DishRating = {
+        dishId: dishId,
         rating: 0,
         count: 0
     };
 
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiGet<MealRating>(`meals/${mealId}/rating`);
+        res = await apiGet<DishRating>(`dishes/${dishId}/rating`);
     } catch (err: unknown) {
         throw err;
     }
@@ -264,8 +264,8 @@ export async function getMealRating(mealId: string): Promise<MealRating> {
     return res;
 }
 
-export async function rateMeal(data: NewMealRatingDto): Promise<void> {
-    const res = await apiPost<NewMealRatingDto>(`meals/${data.mealId}/rating`, data);
+export async function rateDish(data: NewDishRatingDto): Promise<void> {
+    const res = await apiPost<NewDishRatingDto>(`dishes/${data.dishId}/rating`, data);
 
     if (res.status > 299) {
         const json = await res.json();
@@ -274,8 +274,8 @@ export async function rateMeal(data: NewMealRatingDto): Promise<void> {
     }
 }
 
-export async function editMeal(mealId: string, editMealDto: MealDifferenceDto): Promise<void> {
-    const res = await apiPut<MealDifferenceDto>(`meals/${mealId}`, editMealDto);
+export async function editDish(dishId: string, editDishDto: DishDifferenceDto): Promise<void> {
+    const res = await apiPut<DishDifferenceDto>(`dishes/${dishId}`, editDishDto);
 
     if (res.status > 299) {
         const json = await res.json();
