@@ -196,9 +196,9 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                             )}
                         />
                         <Controller
-                            name={'type'}
+                            name={'mealType'}
                             control={control}
-                            rules={{ required: 'Type is required' }}
+                            rules={{ required: 'Meal type is required' }}
                             render={({ field: { onChange, value } }) => (
                                 <InputSelect id={'meal-type'} options={mealOptions} label={'Select a meal type'} selectedValue={value} setSelectedValue={onChange} />
                             )}
