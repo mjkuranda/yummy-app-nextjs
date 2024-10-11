@@ -70,6 +70,14 @@ export function RegistrationForm() {
                     pattern: {
                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                         message: 'Niepoprawny adres email'
+                    },
+                    minLength: {
+                        value: 6,
+                        message: 'Długość adresu email nie może być krótsze niż 6 znaków'
+                    },
+                    maxLength: {
+                        value: 48,
+                        message: 'Długość adresu email nie może być dłuższe niż 48 znaków'
                     }
                 }}
                 render={({ field: { onChange, value } }) => (
@@ -79,7 +87,17 @@ export function RegistrationForm() {
             <Controller
                 name={'login'}
                 control={control}
-                rules={{ required: 'Login jest wymagany' }}
+                rules={{
+                    required: 'Login jest wymagany',
+                    minLength: {
+                        value: 4,
+                        message: 'Login nie może być krótszy niż 4 znaki'
+                    },
+                    maxLength: {
+                        value: 32,
+                        message: 'Login nie może być dłuzszy niż 32 znaki'
+                    }
+                }}
                 render={({ field: { onChange, value } }) => (
                     <InputString label={'Login'} value={value} setValue={onChange} error={errors.login} variant="outlined" width="25%" />
                 )}
@@ -87,7 +105,13 @@ export function RegistrationForm() {
             <Controller
                 name={'password'}
                 control={control}
-                rules={{ required: 'Hasło jest wymagane' }}
+                rules={{
+                    required: 'Hasło jest wymagane',
+                    pattern: {
+                        value: /(?=.*[0-9])(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?`~])/,
+                        message: 'Hasło powinno zawierać co najmniej 8 znaków, 1 cyfrę i 1 znak specjalny'
+                    }
+                }}
                 render={({ field: { onChange, value } }) => (
                     <InputPassword label={'Hasło'} value={value} setValue={onChange} error={errors.password} width="25%" />
                 )}
