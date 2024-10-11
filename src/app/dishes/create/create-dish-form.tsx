@@ -25,6 +25,7 @@ import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/dishes/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { InputNumber } from '@/src/components/common/form/input-number';
+import { DishImage } from '@/src/app/result/[id]/dish-image';
 
 const mealOptions = [
     { en: 'breakfast', label: 'Śniadanie' },
@@ -95,6 +96,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
 
+    const titleWatch = watch('title');
     const mealTypeWatch = watch('mealType');
 
     const hasImageWatch = watch('hasImage');
@@ -307,7 +309,9 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                                     error={errors.imageUrl}
                                                     width="100%"
                                                 />
-                                                {imageUrl && <img src={imageUrl} alt={'Zdjęcie dania'} width={432} style={{ margin: '16px 0 0 66px' }} />}
+                                                <div style={{ marginTop: '16px' }}>
+                                                    <DishImage provider={'yummy'} title={titleWatch} imgUrl={imageUrl} />
+                                                </div>
                                             </div>
                                         )}
                                     /> :

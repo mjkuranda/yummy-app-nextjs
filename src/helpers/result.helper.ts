@@ -6,5 +6,9 @@ export function getImageUrlForYummyDishes(provider: DishProvider, imgUrl?: strin
         return imgUrl;
     }
 
+    if (imgUrl?.includes('http')) {
+        return imgUrl;
+    }
+
     return imgUrl ? `${API_URL}/images/meals/${imgUrl}` : undefined;
 }
