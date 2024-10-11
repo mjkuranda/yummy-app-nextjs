@@ -37,8 +37,8 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
     return (
         <li className={styles['recipe-section-step']}>
             <div className={styles['step-container']}>
-                <InputString label={'Type step instruction'} value={instructionStep} setValue={onChangeStep} />
-                <RemoveButton label={'Remove'} onClick={onRemoveStep} />
+                <InputString label={'Wpisz co należy wykonać w tym kroku'} value={instructionStep} setValue={onChangeStep} width={'330px'} />
+                <RemoveButton label={'Usuń'} onClick={onRemoveStep} />
             </div>
         </li>
     );

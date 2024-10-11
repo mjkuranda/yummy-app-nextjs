@@ -10,9 +10,14 @@ interface InputNumberProps {
     unit?: string; // TODO: UnitType;
     width?: string;
     error?: FieldError;
+    shouldHaveMargin?: boolean;
+    customError?: {
+        message: string;
+        isError: boolean;
+    };
 }
 
-export function InputNumber({ label, value, setValue, unit, width = '25ch', error }: InputNumberProps) {
+export function InputNumber({ label, value, setValue, unit, width = '25ch', error, shouldHaveMargin = false, customError }: InputNumberProps) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value.trim());
     };
@@ -27,12 +32,12 @@ export function InputNumber({ label, value, setValue, unit, width = '25ch', erro
         <TextField
             label={label}
             className="input-number"
-            sx={{ m: 1, width }}
+            sx={{ margin: shouldHaveMargin ? 1 : 0, width }}
             InputProps={unit ? inputProps : {}}
             value={value}
             onChange={onChange}
-            error={Boolean(error)}
-            helperText={error?.message ?? ''}
+            error={Boolean(error) || customError?.isError}
+            helperText={(customError?.isError ? customError?.message : undefined) ?? error?.message ?? ''}
         />
     );
 }

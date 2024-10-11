@@ -46,13 +46,13 @@ export function RecipeSection({ section }: RecipeSectionProps) {
     return (
         <li>
             <div className={styles['section-name-container']}>
-                <InputString label={'Section name'} value={name} setValue={setValue} width="50%" />
-                <RemoveButton label={'Remove'} onClick={onRemoveSection} />
+                <InputString label={'Etykieta przepisu'} value={name} setValue={setValue} width="50%" />
+                <RemoveButton label={'Usuń'} onClick={onRemoveSection} />
             </div>
-            <ol>
+            <ol style={{ marginTop: '16px' }}>
                 {section.steps.map(step => <RecipeSectionStep key={step.id} step={step} section={section} />)}
             </ol>
-            <AddButton label={'Add the next step'} onClick={onAddStep} />
+            <AddButton label={'Dodaj nowy krok'} onClick={onAddStep} />
         </li>
     );
 }

@@ -15,10 +15,10 @@ export function RecipeForm() {
 
     return (
         <div className={styles['recipe-form']}>
-            <h4>Recipe</h4>
+            <h4>Przepis</h4>
             <ErrorMessage error={error} />
             <div className={styles['center-container']}>
-                <AddButton label={'Add a new section'} onClick={onAddSection} />
+                <AddButton label={'Dodaj nowy przepis'} onClick={onAddSection} />
             </div>
             <ul className={styles['recipe-section']}>
                 {sections.map(section =>
