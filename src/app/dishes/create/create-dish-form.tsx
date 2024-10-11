@@ -1,6 +1,6 @@
 'use client';
 
-import { DishFormData, DishRecipeSectionWithId } from '@/src/types/dish.types';
+import { DishFormData, DishRecipeSectionWithId, MealType } from '@/src/types/dish.types';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/app/dishes/create/create-dish-form.module.scss';
@@ -25,31 +25,67 @@ import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/dishes/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { InputNumber } from '@/src/components/common/form/input-number';
+import { DishImage } from '@/src/app/result/[id]/dish-image';
 
 const mealOptions = [
-    { en: 'breakfast', label: 'Breakfast' },
-    { en: 'launch', label: 'Launch' },
-    { en: 'dinner', label: 'Dinner' }
+    { en: 'breakfast', label: 'Śniadanie' },
+    { en: 'launch', label: 'Obiad' },
+    { en: 'dinner', label: 'Kolacja' }
 ];
 
-const dishOptions = [
-    { en: 'soup', label: 'Soup' },
-    { en: 'main course', label: 'Main Course' },
-    { en: 'salad', label: 'Salad' }
-];
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+const dishOptions: Record<MealType, { en: string, label: string }[]> = {
+    breakfast: [
+        { en: 'any', label: 'Każdy' },
+        { en: 'beverage', label: 'Napój' }
+    ],
+    launch: [
+        { en: 'soup', label: 'Zupa' },
+        { en: 'main course', label: 'Danie główne' },
+        { en: 'salad', label: 'Sałatka' },
+        { en: 'dessert', label: 'Deser' },
+        { en: 'beverage', label: 'Napój' }
+    ],
+    dinner: [
+        { en: 'any', label: 'Każdy' },
+        { en: 'beverage', label: 'Napój' }
+    ]
+};
 
 interface CreateDishFormProps {
     dish?: DetailedDishWithTranslations;
     ingredients: IngredientDataValue[];
 }
 const defaultValues: DishFormData = {
-    title: '',
-    description: '',
-    readyInMinutes: '0',
+    title: 'Nowe danie',
+    description: 'To jest opis dla nowego dania...',
+    readyInMinutes: '15',
     type: 'main course',
     mealType: 'launch',
-    ingredients: [],
-    recipe: [],
+    ingredients: [
+        {
+            id: crypto.randomUUID(),
+            amount: '1',
+            unit: 'piece',
+            data: {
+                id: 11124,
+                en: 'carrot',
+                pl: 'marchewka'
+            }
+        }
+    ],
+    recipe: [
+        {
+            id: crypto.randomUUID(),
+            name: '',
+            steps: [
+                { id: crypto.randomUUID(), text: 'Tutaj wpisz pierwszy krok' },
+                { id: crypto.randomUUID(), text: 'Tutaj wpisz drugi krok' },
+                { id: crypto.randomUUID(), text: 'A tutaj kolejny... itd...' }
+            ]
+        }
+    ],
     hasImage: false
 };
 
@@ -59,6 +95,9 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<DishFormData>({ defaultValues: dish ? getDefaultValues(dish, ingredients) : defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+
+    const titleWatch = watch('title');
+    const mealTypeWatch = watch('mealType');
 
     const hasImageWatch = watch('hasImage');
     const hasImageUrlWatch = watch('hasImageUrl');
@@ -105,7 +144,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
             const dto = proceedFormToData(data, user.login, 'pl', url);
 
             await createDish(dto);
-            toastSuccess('Successfully created a new dish');
+            toastSuccess('Pomyślnie utworzono nowe danie');
             setWasCreated(true);
             reset();
         } catch (err: unknown) {
@@ -127,7 +166,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
         try {
             await editDish(dish!.dish.id, differences);
 
-            toastSuccess('Successfully edited this dish.');
+            toastSuccess('Pomyślnie edytowano danie');
             router.push(`/result/${dish!.dish.id}`);
         } catch (err: unknown) {
             if (err instanceof ApiError) {
@@ -143,17 +182,17 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
             {isCreating && <Loader isAbsolute={true} />}
             <div className={styles['form-content-container']}>
                 <div className={styles['form-top-container']}>
-                    <h2 className={styles['form-top-header']}>{dish ? 'Edit a dish' : 'Create a new dish'}</h2>
+                    <h2 className={styles['form-top-header']}>{dish ? 'Edytuj danie' : 'Stwórz nowe danie'}</h2>
                     <Controller
                         name={'title'}
                         control={control}
                         rules={{
-                            required: 'Title is required',
+                            required: 'Tytuł jest wymagany',
                             minLength: 4,
                             maxLength: 64
                         }}
                         render={({ field: { onChange, value } }) => (
-                            <InputString label={'Type title'} value={value} setValue={onChange} error={errors.title} />
+                            <InputString label={'Wprowadź tytuł'} value={value} setValue={onChange} error={errors.title} />
                         )}
                     />
                 </div>
@@ -163,14 +202,20 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                             name={'description'}
                             control={control}
                             rules={{
-                                required: 'Description is required',
-                                minLength: 8,
-                                maxLength: 1280
+                                required: 'Opis jest wymagany',
+                                minLength: {
+                                    value: 3,
+                                    message: 'Opis nie może być krótszy niż 3 znaki'
+                                },
+                                maxLength: {
+                                    value: 1024,
+                                    message: 'Opis nie może być dłuższy niż 1024 znaki'
+                                }
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <div>
                                     <InputAreaString
-                                        label={'Type description'}
+                                        label={'Wprowadź opis'}
                                         value={value}
                                         setValue={onChange}
                                         error={errors.description}
@@ -183,43 +228,43 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                             name={'readyInMinutes'}
                             control={control}
                             rules={{
-                                required: 'Time preparation must be defined',
-                                validate: {
-                                    readyInMinutesRequired: (value: string) => value?.length > 0 ? true : 'Time preparation must be defined',
-                                    mustBeNumber: (value: string) => !isNaN(Number(value)) ? true : 'Time preparation must be a number'
+                                required: 'Czas przygotowania jest wymagany',
+                                min: {
+                                    value: 1,
+                                    message: 'Czas przygotowania musi wynosić przynajmniej 1 minutę'
                                 }
                             }}
                             render={({ field: { onChange, value } }) => (
                                 <div>
-                                    <InputNumber label={'Time preparation'} setValue={onChange} value={value ?? '0'} error={errors.readyInMinutes} width={'100%'} />
+                                    <InputNumber label={'Czas przygotowania w minutach'} setValue={onChange} value={value ?? '0'} error={errors.readyInMinutes} width={'100%'} />
                                 </div>
                             )}
                         />
                         <Controller
                             name={'mealType'}
                             control={control}
-                            rules={{ required: 'Meal type is required' }}
+                            rules={{ required: 'Typ posiłku jest wymagany' }}
                             render={({ field: { onChange, value } }) => (
-                                <InputSelect id={'meal-type'} options={mealOptions} label={'Select a meal type'} selectedValue={value} setSelectedValue={onChange} />
+                                <InputSelect id={'meal-type'} options={mealOptions} label={'Typ posiłku'} selectedValue={value} setSelectedValue={onChange} />
                             )}
                         />
                         <Controller
                             name={'type'}
                             control={control}
-                            rules={{ required: 'Dish type is required' }}
+                            rules={{ required: 'Typ posiłku jest wymagany' }}
                             render={({ field: { onChange, value } }) => (
-                                <InputSelect id={'dish-type'} options={dishOptions} label={'Select a dish type'} selectedValue={value} setSelectedValue={onChange} />
+                                <InputSelect id={'dish-type'} options={dishOptions[mealTypeWatch]} label={'Wybierz typ dania'} selectedValue={value} setSelectedValue={onChange} />
                             )}
                         />
                         <Controller
                             name={'ingredients'}
                             control={control}
                             rules={{
-                                required: 'Ingredients are required',
+                                required: 'Składniki są wymagane',
                                 validate: {
-                                    ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Ingredients are required',
-                                    eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Every ingredient must have defined unit',
-                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount)) && Number(el.amount) > 0) ? true : 'Every amount should be number value greater than 0'
+                                    ingredientsRequired: (value: IngredientWithId[]) => value.length > 0 ? true : 'Składniki są wymagane',
+                                    eachIngredientHasUnit: (value: IngredientWithId[]) => value.every(el => el.unit.length > 0) ? true : 'Każdy składnik musi mieć określoną jednostkę',
+                                    eachAmountIsNumber: (value: IngredientWithId[]) => value.every(el => el.amount.length > 0 && !isNaN(Number(el.amount)) && Number(el.amount) > 0) ? true : 'Każda ilość musi być większa od zera'
                                 }
                             }}
                             render={({ field: { onChange, value } }) => (
@@ -232,7 +277,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                             name={'hasImage'}
                             control={control}
                             render={({ field: { onChange, value } }) => (
-                                <InputCheckbox id={'has-image'} label={'Has an image'} isChecked={value} onChange={onChange} />
+                                <InputCheckbox id={'has-image'} label={'Ustaw zdjęcie'} isChecked={value} onChange={onChange} />
                             )}
                         />
                         {hasImageWatch && (
@@ -241,7 +286,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                     name={'hasImageUrl'}
                                     control={control}
                                     render={({ field: { onChange, value } }) => (
-                                        <InputCheckbox id={'has-image-url'} label={'Has an image URL'} isChecked={value ?? false} onChange={onChange} />
+                                        <InputCheckbox id={'has-image-url'} label={'Określ link do zdjęcia'} isChecked={value ?? false} onChange={onChange} />
                                     )}
                                 />
                                 {hasImageUrlWatch ?
@@ -249,28 +294,31 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                         name={'imageUrl'}
                                         control={control}
                                         rules={{
-                                            required: 'URL image is required',
+                                            required: 'Link do zdjęcia jest wymagany',
                                             pattern: {
                                                 value: /^((http|https):\/\/)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
-                                                message: 'String should be a correct URL'
+                                                message: 'Link powinien być poprawnym adresem URL'
                                             }
                                         }}
                                         render={({ field: { onChange } }) => (
                                             <div>
                                                 <InputString
-                                                    label={'Type image URL'}
+                                                    label={'Wprowadź adres URL'}
                                                     value={imageUrl ?? ''}
                                                     setValue={onChange}
                                                     error={errors.imageUrl}
                                                     width="100%"
                                                 />
+                                                <div style={{ marginTop: '16px' }}>
+                                                    <DishImage provider={'yummy'} title={titleWatch} imgUrl={imageUrl} />
+                                                </div>
                                             </div>
                                         )}
                                     /> :
                                     <Controller
                                         name={'imageFile'}
                                         control={control}
-                                        rules={{ required: 'Image is missing' }}
+                                        rules={{ required: 'Zdjęcie jest wymagane' }}
                                         render={({ field: { onChange } }) => (
                                             <InputImage id={'dish-image'} image={imageFile} setImage={onChange} width="100%" error={errors.imageFile} />
                                         )}
@@ -284,11 +332,15 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                             name={'recipe'}
                             control={control}
                             rules={{
-                                required: 'Recipe is required',
+                                required: 'Przepis jest wymagany',
                                 validate: {
-                                    required: (value: DishRecipeSectionWithId[]) => value.length > 0 ? true : 'Recipe is required',
-                                    stepRequired: (value: DishRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'At least 2 steps are required',
-                                    minStepCount: (value: DishRecipeSectionWithId[]) => value.length > 0 && value.every(section => section.steps.length > 1) ? true : 'Every section should have at least 2 steps'
+                                    // required: (value: DishRecipeSectionWithId[]) => value.length > 0 ? true : 'Przepis jest wymagany',
+                                    stepRequired: (value: DishRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'Co najmniej 2 kroki są wymagane',
+                                    minStepCount: (value: DishRecipeSectionWithId[]) => value.length > 0 && value.every(section => section.steps.length > 1) ? true : 'Każdy przepis powinien mieć co najmniej 2 kroki'
+                                },
+                                minLength: {
+                                    value: 1,
+                                    message: 'Przepis jest wymagany'
                                 }
                             }}
                             render={({ field: { onChange, value } }) => (
@@ -302,12 +354,12 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                 <div className={styles['create-button-container']}>
                     <div>
                         {dish
-                            ? <Button label={'Edit'} onClick={handleSubmit(onEdit)} disabled={Object.keys(errors).length > 0} />
-                            : <Button label={'Create'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
+                            ? <Button label={'Edytuj'} onClick={handleSubmit(onEdit)} disabled={Object.keys(errors).length > 0} />
+                            : <Button label={'Stwórz'} onClick={handleSubmit(onSubmit)} disabled={Object.keys(errors).length > 0} />
                         }
                     </div>
                     <div>
-                        {wasCreated && 'New dish has been created. Wait, until an administrator will confirm its.'}
+                        {wasCreated && 'Nowe danie zostało dodane. Poczekaj, aż administrator go zatwierdzi.'}
                     </div>
                 </div>
             </div>

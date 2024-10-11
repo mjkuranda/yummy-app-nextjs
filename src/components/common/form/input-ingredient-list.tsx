@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { FieldError, Merge } from 'react-hook-form';
 import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
-import { MealIngredient } from '@/src/app/dishes/create/meal-ingredient';
+import { DishIngredient } from '@/src/app/dishes/create/dish-ingredient';
 import { addIngredient } from '@/src/helpers/ingredient-form.helper';
 
 interface InputListProps {
@@ -59,6 +59,7 @@ export function InputIngredientList({ items, label, selectedItems, setSelectedIt
                 onOpen={onOpen}
                 onClose={onClose}
                 onInputChange={onInputChange}
+                noOptionsText={'Brak znalezionych składników'}
                 renderInput={(params) =>
                     <TextField
                         {...params}
@@ -70,7 +71,7 @@ export function InputIngredientList({ items, label, selectedItems, setSelectedIt
             />
             <List>
                 {selectedItems.map(ingredient =>
-                    <MealIngredient
+                    <DishIngredient
                         key={ingredient.id}
                         ingredient={ingredient}
                     />

@@ -14,7 +14,7 @@ export default function CreateDishPage() {
         <>
             <Header />
             <div className={styles['create-dish-page']}>
-                <BackLink link="/search" label={'Back to search'} />
+                <BackLink link="/search" label={'Powrót do wyszukiwania'} />
                 <CreateDishForm ingredients={ingredients} />
             </div>
             <Footer />

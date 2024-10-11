@@ -50,7 +50,7 @@ export function InputImage({ id, image, width = '100%', setImage, error }: Input
             <ErrorMessage error={error} />
             <div className={styles['center-horizontally']}>
                 <Button
-                    label={'Upload'}
+                    label={'Dołącz'}
                     onClick={onUpload}
                 />
             </div>

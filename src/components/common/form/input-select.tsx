@@ -2,6 +2,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ErrorMessage } from '@/src/components/common/error-message';
 
 interface Option {
     en: string;
@@ -16,16 +17,21 @@ interface InputSelectProps {
     setSelectedValue: (newValue: string) => void;
     width?: string;
     shouldHaveNone?: boolean;
+    shouldHaveMargin?: boolean;
+    customError?: {
+        message: string;
+        isError: boolean;
+    };
 }
 
-export function InputSelect({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone }: InputSelectProps) {
+export function InputSelect({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone, shouldHaveMargin = false, customError }: InputSelectProps) {
     const onChange = (event: SelectChangeEvent<string>): void => {
         setSelectedValue(event.target.value as string);
     };
 
     return (
         <div>
-            <FormControl sx={{ m: 1, width }}>
+            <FormControl sx={{ margin: shouldHaveMargin ? 1 : 0, width }}>
                 <InputLabel id={id}>{label}</InputLabel>
                 <Select
                     labelId={id}
@@ -33,6 +39,7 @@ export function InputSelect({ label, id, width = '100%', options, selectedValue,
                     value={selectedValue}
                     onChange={onChange}
                     label={label}
+                    error={customError?.isError}
                 >
                     {shouldHaveNone &&
                         <MenuItem value="">
@@ -45,6 +52,7 @@ export function InputSelect({ label, id, width = '100%', options, selectedValue,
                         </MenuItem>
                     ))}
                 </Select>
+                <ErrorMessage error={customError} />
             </FormControl>
         </div>
     );

@@ -100,6 +100,7 @@ export function SearchForm({ children }: SearchFormProps) {
                         options={mealTypeOptions}
                         selectedValue={selectedMealType}
                         setSelectedValue={onSelectedMealType}
+                        shouldHaveMargin={true}
                     />
                     <InputSelect
                         width={'200px'}
@@ -108,6 +109,7 @@ export function SearchForm({ children }: SearchFormProps) {
                         options={dishTypeOptions}
                         selectedValue={selectedDishType}
                         setSelectedValue={onSelectedDishType}
+                        shouldHaveMargin={true}
                     />
                 </div>
             </div>
