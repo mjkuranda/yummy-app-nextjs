@@ -25,8 +25,8 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     return (
         <>
             <Header />
-            <div className={styles['create-meal-page']}>
-                <BackLink link={`/result/${id}`} label={'Back to dish'} />
+            <div className={styles['create-dish-page']}>
+                <BackLink link={`/result/${id}`} label={'Powrót do posiłku'} />
                 <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
             </div>
             <Footer />

@@ -87,6 +87,10 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
         toastError('Nie jesteś uprawniony do wykonywania akcji admina.');
         router.push('/');
     }
+
+    if (err instanceof BadRequestError && err.message.includes('adres URL')) {
+        toastError(err.message);
+    }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -101,6 +105,10 @@ function getBadRequestMessage(message: string, context: ApiErrorContext): string
 
     if (message.includes('User') && message.includes('does not exist')) {
         return 'Użytkownik o podanym loginie nie istnieje';
+    }
+
+    if (message.includes('imageUrl') && message.includes('isLength')) {
+        return 'Podano zbyt długi adres URL';
     }
 
     return 'Wystąpił błąd';
