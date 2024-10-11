@@ -307,6 +307,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                                     error={errors.imageUrl}
                                                     width="100%"
                                                 />
+                                                {imageUrl && <img src={imageUrl} alt={'Zdjęcie dania'} width={432} style={{ margin: '16px 0 0 66px' }} />}
                                             </div>
                                         )}
                                     /> :
