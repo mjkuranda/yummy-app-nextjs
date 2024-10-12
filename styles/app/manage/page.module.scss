@@ -60,20 +60,45 @@
         margin: 16px 0;
     }
 
-    .object-table {
-        width: 100%;
+    .table-wrapper {
+        margin: 1rem 0 2rem 0;
+        border: 1px solid $cooper;
+        border-radius: 1rem;
 
-        tr {
-            border: 1px solid;
-        }
+        .object-table {
+            width: 100%;
+            background-color: $honey-yellow-alpha;
+            border-radius: 1rem;
 
-        th, td {
-            padding: 4px;
-        }
+            tr:nth-child(n+1):nth-last-child(n+2) {
+                border-bottom: 1px solid $cooper;
+            }
 
-        .object-table__action {
-            width: 15%;
-            text-align: center;
+            tr:first-child {
+                border-bottom: 1px solid $cooper;
+            }
+
+            th {
+                background-color: $honey-yellow;
+                height: 50px;
+
+                &:first-child {
+                    border-top-left-radius: 1rem;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 1rem;
+                }
+            }
+
+            th, td {
+                padding: 4px 4px 4px 16px;
+            }
+
+            .object-table__action {
+                width: 20%;
+                text-align: center;
+            }
         }
     }
 }

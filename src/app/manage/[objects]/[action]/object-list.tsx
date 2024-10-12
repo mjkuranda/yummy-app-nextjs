@@ -39,17 +39,20 @@ export function ObjectList({ objects, objectType, actionType, refetch }: ObjectL
     return (
         <>
             <h3>{objectType === 'dishes' ? 'Lista dań' : 'Lista użytkowników'}</h3>
-            <table className={styles['object-table']}>
-                <thead>
-                    <tr>
-                        <th className={styles['object-table__label']}>Nazwa</th>
-                        <th className={styles['object-table__action']}>Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {objects.map(object => <ObjectItem key={object.id} object={object} actionType={actionType} onClick={onClick} />)}
-                </tbody>
-            </table>
+            <div className={styles['table-wrapper']}>
+                <table className={styles['object-table']}>
+                    <thead>
+                        <tr>
+                            <th className={styles['object-table__label']}>Nazwa</th>
+                            <th className={styles['object-table__action']}>Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {objects.map(object => <ObjectItem key={object.id} object={object} actionType={actionType}
+                            onClick={onClick} />)}
+                    </tbody>
+                </table>
+            </div>
             {isProceeding && 'Przetwarzanie...'}
         </>
     );
