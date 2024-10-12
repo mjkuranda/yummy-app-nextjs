@@ -28,7 +28,7 @@ export function ObjectList({ objects, objectType, actionType, refetch }: ObjectL
         try {
             await action();
             refetch();
-            toastSuccess('Action performed successfully!');
+            toastSuccess('Pomyślnie wykonano akcję!');
         } catch (err: any) {
             handleApiError(err, router, userContext);
         } finally {
@@ -38,19 +38,19 @@ export function ObjectList({ objects, objectType, actionType, refetch }: ObjectL
 
     return (
         <>
-            <h3>{objectType === 'meals' ? 'Meal list' : 'User list'}</h3>
+            <h3>{objectType === 'dishes' ? 'Lista dań' : 'Lista użytkowników'}</h3>
             <table className={styles['object-table']}>
                 <thead>
                     <tr>
-                        <th className={styles['object-table__label']}>Name</th>
-                        <th className={styles['object-table__action']}>Action</th>
+                        <th className={styles['object-table__label']}>Nazwa</th>
+                        <th className={styles['object-table__action']}>Akcja</th>
                     </tr>
                 </thead>
                 <tbody>
                     {objects.map(object => <ObjectItem key={object.id} object={object} actionType={actionType} onClick={onClick} />)}
                 </tbody>
             </table>
-            {isProceeding && 'Proceeding...'}
+            {isProceeding && 'Przetwarzanie...'}
         </>
     );
 }
