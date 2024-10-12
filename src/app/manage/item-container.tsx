@@ -9,7 +9,7 @@ export function ItemContainer() {
     const router = useRouter();
     const { isFetching, user } = useUserContext();
     const [userItems, setUserItems] = useState<Item[]>([]);
-    const [mealItems, setMealItems] = useState<Item[]>([]);
+    const [dishItems, setDishItems] = useState<Item[]>([]);
 
     useEffect(() => {
         if (isFetching) {
@@ -17,40 +17,40 @@ export function ItemContainer() {
         }
 
         const userItemsTemp: Item[] = [];
-        const mealItemsTemp: Item[] = [];
+        const dishItemsTemp: Item[] = [];
 
         if (user.isAdmin) {
-            userItemsTemp.push({ link: 'users/not-activated', text: 'Nieaktywowani użytkownicy' });
+            userItemsTemp.push({ link: 'users/not-activated', text: 'Nowo zarejestrowani', description: 'Aktywuj nowo utworzonych użytkowników. Nieaktywowani użytkownicy nie mają możliwości logowania.' });
 
-            mealItemsTemp.push({ link: 'dishes/added', text: 'Dodane posiłki' });
-            mealItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane posiłki' });
-            mealItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte posiłki' });
+            dishItemsTemp.push({ link: 'dishes/added', text: 'Dodane dania', description: 'Zatwierdź nowo dodane dania. Dania niezatwierdzone nie są widoczne dla użytkowników.' });
+            dishItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane dania', description: 'Zatwierdź edycję dań. Użytkownicy nie widzą zmiań, dopóki nie zostaną one zatwierdzone.' });
+            dishItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte dania', description: 'Zatwierdź zlecenie usunięcia poszczególnych dań. Zatwierdzenie tej akcji permanentnie usunie takie dania.' });
         } else {
             if (user.capabilities?.canAdd) {
-                mealItemsTemp.push({ link: 'dishes/added', text: 'Dodane posiłki' });
+                dishItemsTemp.push({ link: 'dishes/added', text: 'Dodane dania', description: 'Zatwierdź nowo dodane dania. Dania niezatwierdzone nie są widoczne dla użytkowników.' });
             }
 
             if (user.capabilities?.canEdit) {
-                mealItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane posiłki' });
+                dishItemsTemp.push({ link: 'dishes/edited', text: 'Edytowane dania', description: 'Zatwierdź edycję dań. Użytkownicy nie widzą zmiań, dopóki nie zostaną one zatwierdzone.' });
             }
 
             if (user.capabilities?.canDelete) {
-                mealItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte posiłki' });
+                dishItemsTemp.push({ link: 'dishes/deleted', text: 'Usunięte dania', description: 'Zatwierdź zlecenie usunięcia poszczególnych dań. Zatwierdzenie tej akcji permanentnie usunie takie dania.' });
             }
 
-            if (userItemsTemp.length === 0 && mealItemsTemp.length === 0) {
+            if (userItemsTemp.length === 0 && dishItemsTemp.length === 0) {
                 return router.push('/');
             }
         }
 
         setUserItems([...userItemsTemp]);
-        setMealItems([...mealItemsTemp]);
+        setDishItems([...dishItemsTemp]);
     }, [isFetching]);
 
     return (
         <>
             {userItems.length > 0 && <ItemList list={userItems} header='Users' />}
-            {mealItems.length > 0 && <ItemList list={mealItems} header='Meals' />}
+            {dishItems.length > 0 && <ItemList list={dishItems} header='Dishes' />}
         </>
     );
 }
