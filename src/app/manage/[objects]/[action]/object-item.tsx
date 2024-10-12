@@ -32,7 +32,7 @@ function getActionLabel(actionType: ActionType): string {
         action = 'Dodaj';
         break;
     case 'edited':
-        action = 'Edytuj';
+        action = 'Zatwierdź';
         break;
     case 'deleted':
         action = 'Usuń';
