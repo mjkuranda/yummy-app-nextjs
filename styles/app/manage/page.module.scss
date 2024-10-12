@@ -70,12 +70,16 @@
             background-color: $honey-yellow-alpha;
             border-radius: 1rem;
 
-            tr:nth-child(n+1):nth-last-child(n+2) {
-                border-bottom: 1px solid $cooper;
-            }
+            tbody {
+                tr {
+                    &:first-child {
+                        border-top: 1px solid $cooper;
+                    }
 
-            tr:first-child {
-                border-bottom: 1px solid $cooper;
+                    &:nth-child(n+1):nth-last-child(n+2) {
+                        border-bottom: 1px solid $cooper;
+                    }
+                }
             }
 
             th {
