@@ -16,17 +16,14 @@ import { useUserContext } from '@/src/contexts/user.context';
 export interface ObjectItemStruct {
     id: string;
     label: string;
-    action: () => Promise<any>;
+    action: (objectList: ObjectItemStruct[]) => Promise<void>;
 }
 
 export function useObjectManagement(objects: ObjectType, action: ActionType) {
     const userContext = useUserContext();
     const router = useRouter();
-    const [refetch, toggleRefetch] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [objectList, setObjectList] = useState<ObjectItemStruct[]>([]);
-
-    const refetchObjects = useCallback(() => toggleRefetch(!refetch), []);
 
     const fetchObjects = useCallback(<FetchObject>(getFunction: () => Promise<FetchObject[]>, mapFunction: (object: FetchObject) => ObjectItemStruct): void => {
         getFunction()
@@ -45,10 +42,11 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 user => ({
                     id: user._id,
                     label: user.login,
-                    action: async () => {
+                    action: async (objectList: ObjectItemStruct[]) => {
                         // eslint-disable-next-line no-useless-catch
                         try {
                             await confirmUserActivation(user._id);
+                            setObjectList(objectList.filter(object => object.id !== user._id));
                         } catch (err: unknown) {
                             throw err;
                         }
@@ -64,10 +62,11 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     dish => ({
                         id: dish._id,
                         label: dish.title,
-                        action: async () => {
+                        action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {
                                 await confirmDishAddition(dish._id);
+                                setObjectList(objectList.filter(object => object.id !== dish._id));
                             } catch (err: unknown) {
                                 throw err;
                             }
@@ -81,10 +80,11 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     dish => ({
                         id: dish._id,
                         label: dish.title,
-                        action: async () => {
+                        action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {
                                 await confirmDishEdition(dish._id);
+                                setObjectList(objectList.filter(object => object.id !== dish._id));
                             } catch (err: unknown) {
                                 throw err;
                             }
@@ -98,10 +98,11 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     dish => ({
                         id: dish._id,
                         label: dish.title,
-                        action: async () => {
+                        action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {
                                 await confirmDishDeletion(dish._id);
+                                setObjectList(objectList.filter(object => object.id !== dish._id));
                             } catch (err: unknown) {
                                 throw err;
                             }
@@ -111,7 +112,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                 break;
             }
         }
-    }, [refetch]);
+    }, []);
 
-    return { isLoading, objectList, refetchObjects };
+    return { isLoading, objectList };
 }

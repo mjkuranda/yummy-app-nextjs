@@ -22,7 +22,7 @@ export function ObjectContainer() {
     const router = useRouter();
     const { isFetching, user } = useUserContext();
     const { objects, action } = useParams<ObjectManagementParams>();
-    const { objectList, isLoading, refetchObjects } = useObjectManagement(objects, action);
+    const { objectList, isLoading } = useObjectManagement(objects, action);
 
     useEffect(() => {
         if (isFetching) {
@@ -64,7 +64,7 @@ export function ObjectContainer() {
                     ? <Loader isAbsolute={true} />
                     : objectList.length === 0
                         ? 'Brak obiektów.'
-                        : <ObjectList objects={objectList} objectType={objects} actionType={action} refetch={refetchObjects} />
+                        : <ObjectList objects={objectList} objectType={objects} actionType={action} />
                 }
             </div>
         </>

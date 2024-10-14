@@ -14,20 +14,18 @@ interface ObjectListProps {
     objects: ObjectItemStruct[];
     objectType: ObjectType;
     actionType: ActionType;
-    refetch: () => void;
 }
 
-export function ObjectList({ objects, objectType, actionType, refetch }: ObjectListProps) {
+export function ObjectList({ objects, objectType, actionType }: ObjectListProps) {
     const userContext = useUserContext();
     const router = useRouter();
     const [isProceeding, setIsProceeding] = useState<boolean>(false);
 
-    const onClick = async (action: () => Promise<any>) => {
+    const onClick = async (action: (objectList: ObjectItemStruct[]) => Promise<void>) => {
         setIsProceeding(true);
 
         try {
-            await action();
-            refetch();
+            await action(objects);
             toastSuccess('Pomyślnie wykonano akcję!');
         } catch (err: any) {
             handleApiError(err, router, userContext);
