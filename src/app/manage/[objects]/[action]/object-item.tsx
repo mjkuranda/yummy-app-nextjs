@@ -8,7 +8,7 @@ import { ObjectItemStruct } from '@/src/hooks/use-object-management';
 interface ObjectItemProps {
     object: ObjectItemStruct;
     actionType: ActionType;
-    onClick: (action: () => Promise<any>) => Promise<void>;
+    onClick: (action: (objectList: ObjectItemStruct[]) => Promise<void>) => Promise<void>;
 }
 
 export function ObjectItem({ object, actionType, onClick }: ObjectItemProps) {
