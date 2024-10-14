@@ -21,7 +21,7 @@ export function DishRecipe({ recipe }: DishRecipeProps) {
             {recipe && recipe.map(section => {
                 return (
                     <div className={styles['instruction-section']}>
-                        <h5>Przepis{section.name ? `na ${section.name}` : ''}:</h5>
+                        <h5>{section.name ? section.name : 'Przepis'}:</h5>
                         <ol>
                             {section.steps.map((step, idx) => {
                                 // NOTE: Index is okay, because it's a static list

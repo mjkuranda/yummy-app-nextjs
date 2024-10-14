@@ -19,7 +19,7 @@ export function DishCommentContainer() {
             {!isLoading && data
                 ? (
                     <div className={styles['dish-comment-content']}>
-                        <h3 className={styles['dish-comment-header']}>Comments</h3>
+                        <h3 className={styles['dish-comment-header']}>Komentarze</h3>
                         {isLoggedIn()
                             ? <DishCommentAddSection refetch={refetch} />
                             : <p className="text-center"><Link href={'/users/login'}>Zaloguj się</Link>, aby dodać komentarz.</p>
