@@ -3,17 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.53.0] - 2024-10-14
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): User management styles and language.
+
 ## [1.52.3] - 2024-10-14
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `Dessert` and `beverage` integration.
-
-## [1.53.0] - 2024-10-12
-### Changed
-- [Marek Kurańda](https://github.com/mjkuranda): User management styles and language.
-
-## [1.53.0] - 2024-10-12
-### Changed
-- [Marek Kurańda](https://github.com/mjkuranda): User management styles and language.
 
 ## [1.52.2] - 2024-10-11
 ### Changed
