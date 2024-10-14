@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): User management styles and language.
 
+## [1.53.0] - 2024-10-12
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): User management styles and language.
+
 ## [1.52.2] - 2024-10-11
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Dish creator translations.
