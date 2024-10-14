@@ -36,13 +36,17 @@ export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
     }
 };
 
-export type DishType = 'any' | 'soup' | 'main course' | 'salad';
+export type DishType = 'any' | 'soup' | 'main course' | 'salad' | 'dessert' | 'beverage';
 
 export const DishTypeText: Record<MealType, Record<string, { en: string, pl: string }>> = {
     any: {
         'any': {
             en: 'any',
             pl: 'każdy'
+        },
+        'beverage': {
+            en: 'beverage',
+            pl: 'napój'
         }
     },
     breakfast: {
@@ -67,6 +71,14 @@ export const DishTypeText: Record<MealType, Record<string, { en: string, pl: str
         'salad': {
             en: 'salad',
             pl: 'sałatka'
+        },
+        'dessert': {
+            en: 'dessert',
+            pl: 'deser'
+        },
+        'beverage': {
+            en: 'beverage',
+            pl: 'napój'
         }
     },
     dinner: {}
