@@ -25,20 +25,20 @@ export function ObjectItem({ object, actionType, onClick }: ObjectItemProps) {
 }
 
 function getActionLabel(actionType: ActionType): string {
-    let action = 'Click';
+    let action = 'Wykonaj';
 
     switch (actionType) {
     case 'added':
-        action = 'Add';
+        action = 'Dodaj';
         break;
     case 'edited':
-        action = 'Edit';
+        action = 'Zatwierdź';
         break;
     case 'deleted':
-        action = 'Delete';
+        action = 'Usuń';
         break;
     case 'not-activated':
-        action = 'Activate';
+        action = 'Aktywuj';
         break;
     }
 

@@ -12,6 +12,42 @@
     ul {
         margin: 0;
         padding: 0;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            width: 256px;
+            height: 256px;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            background-color: $honey-yellow;
+            transition: 382ms;
+
+            a {
+                color: black;
+                text-decoration: none;
+
+                div {
+                    .item-text {
+                        text-align: center;
+                        font-style: italic;
+                        font-weight: 700;
+                    }
+
+                    .item-description {
+                        text-align: center;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+
+        li:hover {
+            background-color: $honey-yellow-alpha;
+            transition: 618ms;
+        }
     }
 }
 
@@ -24,20 +60,49 @@
         margin: 16px 0;
     }
 
-    .object-table {
-        width: 100%;
+    .table-wrapper {
+        margin: 1rem 0 2rem 0;
+        border: 1px solid $cooper;
+        border-radius: 1rem;
 
-        tr {
-            border: 1px solid;
-        }
+        .object-table {
+            width: 100%;
+            background-color: $honey-yellow-alpha;
+            border-radius: 1rem;
 
-        th, td {
-            padding: 4px;
-        }
+            tbody {
+                tr {
+                    &:first-child {
+                        border-top: 1px solid $cooper;
+                    }
 
-        .object-table__action {
-            width: 15%;
-            text-align: center;
+                    &:nth-child(n+1):nth-last-child(n+2) {
+                        border-bottom: 1px solid $cooper;
+                    }
+                }
+            }
+
+            th {
+                background-color: $honey-yellow;
+                height: 50px;
+
+                &:first-child {
+                    border-top-left-radius: 1rem;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 1rem;
+                }
+            }
+
+            th, td {
+                padding: 4px 4px 4px 16px;
+            }
+
+            .object-table__action {
+                width: 20%;
+                text-align: center;
+            }
         }
     }
 }
