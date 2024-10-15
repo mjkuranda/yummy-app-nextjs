@@ -9,6 +9,7 @@ import { toastSuccess } from '@/src/utils/toast.utils';
 import { handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';
 import { useUserContext } from '@/src/contexts/user.context';
+import { Loader } from '@/src/components/common/loader';
 
 interface ObjectListProps {
     objects: ObjectItemStruct[];
@@ -51,7 +52,7 @@ export function ObjectList({ objects, objectType, actionType }: ObjectListProps)
                     </tbody>
                 </table>
             </div>
-            {isProceeding && 'Przetwarzanie...'}
+            {isProceeding && <Loader isAbsolute={true} />}
         </>
     );
 }
