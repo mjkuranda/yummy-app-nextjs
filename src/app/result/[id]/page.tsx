@@ -20,19 +20,22 @@ export default function ResultById() {
 
     useEffect(() => {
         if (isError && error.message.includes('was not confirmed by admin')) {
-            toastError('Ten posiłek nie został jeszcze zatwierdzony przez administrację.');
-            redirect('/search');
+            toastError('To danie nie zostało jeszcze zatwierdzone przez administrację.');
+        }
+
+        if (isError && error.message.includes('deleted')) {
+            toastError('To danie zostało wyłączone do wglądu i czeka na usunięcie przez administrację.');
         }
 
         if (isApiError(dish)) {
             toastError('Wystąpił błąd podczas pobierania danych.');
-            redirect('/search');
         }
 
         if (isError) {
             toastError('Wystąpił błąd podczas pobierania danych.');
-            redirect('/search');
         }
+
+        redirect('/search');
     }, [dish, isError]);
 
     return (
