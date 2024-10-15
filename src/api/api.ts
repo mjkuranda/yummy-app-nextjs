@@ -162,17 +162,13 @@ export async function confirmDishEdition(id: string): Promise<DishDocument> {
     return await res.json();
 }
 
-export async function confirmDishDeletion(id: string): Promise<DishDocument> {
-    let res;
-
+export async function confirmDishDeletion(id: string): Promise<void> {
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost(`dishes/${id}/delete`);
+        await apiPost(`dishes/${id}/delete`);
     } catch (err: unknown) {
         throw err;
     }
-
-    return await res.json();
 }
 
 export async function confirmUserActivation(id: string): Promise<void> {
