@@ -1,4 +1,4 @@
-import { apiGet, apiPost, apiPut } from '@/src/api/methods';
+import { apiDelete, apiGet, apiPost, apiPut } from '@/src/api/methods';
 import {
     LoginUserData,
     DishProposal,
@@ -162,17 +162,13 @@ export async function confirmDishEdition(id: string): Promise<DishDocument> {
     return await res.json();
 }
 
-export async function confirmDishDeletion(id: string): Promise<DishDocument> {
-    let res;
-
+export async function confirmDishDeletion(id: string): Promise<void> {
     // eslint-disable-next-line no-useless-catch
     try {
-        res = await apiPost(`dishes/${id}/delete`);
+        await apiPost(`dishes/${id}/delete`);
     } catch (err: unknown) {
         throw err;
     }
-
-    return await res.json();
 }
 
 export async function confirmUserActivation(id: string): Promise<void> {
@@ -276,6 +272,16 @@ export async function rateDish(data: NewDishRatingDto): Promise<void> {
 
 export async function editDish(dishId: string, editDishDto: DishDifferenceDto): Promise<void> {
     const res = await apiPut<DishDifferenceDto>(`dishes/${dishId}`, editDishDto);
+
+    if (res.status > 299) {
+        const json = await res.json();
+
+        throw new ApiError(res.status, json.message);
+    }
+}
+
+export async function deleteDish(dishId: string): Promise<void> {
+    const res = await apiDelete(`dishes/${dishId}`);
 
     if (res.status > 299) {
         const json = await res.json();

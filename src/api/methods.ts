@@ -64,3 +64,20 @@ export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, is
 
     return res;
 }
+
+export async function apiDelete(endpointUrl: string): Promise<Response> {
+    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+        mode: 'cors',
+        method: 'DELETE',
+        headers: { 'accept': '*/*' },
+        credentials: 'include'
+    });
+
+    if (!res.ok) {
+        const errorResponse = await res.json() as ApiErrorResponse;
+
+        return throwApiError(errorResponse);
+    }
+
+    return res;
+}

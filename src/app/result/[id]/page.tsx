@@ -20,7 +20,12 @@ export default function ResultById() {
 
     useEffect(() => {
         if (isError && error.message.includes('was not confirmed by admin')) {
-            toastError('Ten posiłek nie został jeszcze zatwierdzony przez administrację.');
+            toastError('To danie nie zostało jeszcze zatwierdzone przez administrację.');
+            redirect('/search');
+        }
+
+        if (isError && error.message.includes('deleted')) {
+            toastError('To danie zostało wyłączone do wglądu i czeka na usunięcie przez administrację.');
             redirect('/search');
         }
 

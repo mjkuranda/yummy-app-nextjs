@@ -9,6 +9,7 @@ import FlatwareIcon from '@mui/icons-material/Flatware';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { DishIngredients } from '@/src/app/result/[id]/dish-ingredients';
 import { DishDescription } from '@/src/app/result/[id]/dish-description';
+import { DishDeletion } from '@/src/app/result/[id]/dish-deletion';
 
 interface DishGeneralProps {
     dish: DetailedDish;
@@ -29,7 +30,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                                 src="/uk.png"
                                 alt="Flaga UK"
                                 width={48}
-                                title="Posiłek został przetłumaczony. Może zawierać błędy w tłumaczeniu."
+                                title="Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu."
                                 data-author={
                                     <a href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">
                                         Uk flag icons created by IconsBox - Flaticon
@@ -57,7 +58,10 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                 </li>
                 <li className={styles['result-rating']}>
                     <DishRating />
-                    {dish.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />}
+                    <div>
+                        {dish.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />}
+                        <DishDeletion dish={dish} />
+                    </div>
                 </li>
             </ul>
             <div className={styles['dish-details-sections']}>

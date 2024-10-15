@@ -29,7 +29,7 @@ export default function Search() {
                 <section id={resultStyles['adder']}>
                     <div className="d-flex justify-content-center align-items-center">
                         <p className="text-center">
-                            Możesz również <Link href={'/dishes/create'}>utworzyć</Link> całkiem nowy posiłek,<br />
+                            Możesz również <Link href={'/dishes/create'}>utworzyć</Link> całkiem nowe danie,<br />
                             niezwiązany z obecnym wyszukiwaniem,<br />
                             dodając do bazy posiłków, by inni mogli go wyszukać w przyszłości.
                         </p>
