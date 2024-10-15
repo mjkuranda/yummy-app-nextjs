@@ -22,7 +22,7 @@ export function DishDeletion({ dish }: DishDeletionProps) {
     const { user } = userContext;
 
     const onClick = async () => {
-        if (confirm('Czy na pewno chcesz usunąć ten posiłek?')) {
+        if (confirm('Czy na pewno chcesz usunąć to danie?')) {
             setIsDeleting(true);
 
             try {

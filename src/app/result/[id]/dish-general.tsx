@@ -30,7 +30,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                                 src="/uk.png"
                                 alt="Flaga UK"
                                 width={48}
-                                title="Posiłek został przetłumaczony. Może zawierać błędy w tłumaczeniu."
+                                title="Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu."
                                 data-author={
                                     <a href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">
                                         Uk flag icons created by IconsBox - Flaticon
