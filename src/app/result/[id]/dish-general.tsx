@@ -9,6 +9,7 @@ import FlatwareIcon from '@mui/icons-material/Flatware';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { DishIngredients } from '@/src/app/result/[id]/dish-ingredients';
 import { DishDescription } from '@/src/app/result/[id]/dish-description';
+import { DishDeletion } from '@/src/app/result/[id]/dish-deletion';
 
 interface DishGeneralProps {
     dish: DetailedDish;
@@ -57,7 +58,10 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                 </li>
                 <li className={styles['result-rating']}>
                     <DishRating />
-                    {dish.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />}
+                    <div>
+                        {dish.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />}
+                        <DishDeletion dish={dish} />
+                    </div>
                 </li>
             </ul>
             <div className={styles['dish-details-sections']}>
