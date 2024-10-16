@@ -3,13 +3,13 @@ import { DishRecipe } from '@/src/app/result/[id]/dish-recipe';
 import { DetailedDish, DishRecipeSection, TranslatedIngredient } from '@/src/types/api.types';
 import { DishRating } from '@/src/app/result/[id]/dish-rating';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { EditLink } from '@/src/components/common/edit-link';
 import { DishTypeText } from '@/src/types/dish.types';
 import FlatwareIcon from '@mui/icons-material/Flatware';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { DishIngredients } from '@/src/app/result/[id]/dish-ingredients';
 import { DishDescription } from '@/src/app/result/[id]/dish-description';
 import { DishDeletion } from '@/src/app/result/[id]/dish-deletion';
+import { DishEdition } from '@/src/app/result/[id]/dish-edition';
 
 interface DishGeneralProps {
     dish: DetailedDish;
@@ -59,7 +59,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                 <li className={styles['result-rating']}>
                     <DishRating />
                     <div>
-                        {dish.provider === 'yummy' && <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />}
+                        <DishEdition dish={dish} />
                         <DishDeletion dish={dish} />
                     </div>
                 </li>
