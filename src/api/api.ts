@@ -193,6 +193,18 @@ export async function createUserAccount(data: UserData): Promise<void> {
     return await res.json();
 }
 
+export async function activateUser(activationCode: string): Promise<void> {
+    console.log('xxx');
+    // eslint-disable-next-line no-useless-catch
+    try {
+        console.log('x');
+        await apiPost(`users/activate/${activationCode}`);
+        console.log('y');
+    } catch (err: unknown) {
+        throw err;
+    }
+}
+
 export async function uploadImage(image: File): Promise<string> {
     const formData = new FormData();
     formData.append('image', image);
