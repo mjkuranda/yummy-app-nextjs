@@ -15,7 +15,7 @@ export function Header() {
                             alt="Yummy icon"
                         />
                     </div>
-                    <h1>Yummy</h1>
+                    <h1>Co na dziś?</h1>
                 </div>
                 <div className="d-flex justify-content-around align-items-center">
                     <nav className="d-flex justify-content-between align-items-center">

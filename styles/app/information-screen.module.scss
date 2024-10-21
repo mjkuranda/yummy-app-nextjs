@@ -3,6 +3,7 @@
 .information-screen {
     width: 100vw;
     height: 100vh;
+    background-color: $black-overlay-color;
 
     &[data-image-name="insane-easy"] {
         background: url('/fridge_1920.jpg') fixed;
@@ -14,6 +15,15 @@
 
     &[data-image-name="community"] {
         background: url('/integrate_1920.jpg') fixed;
+    }
+
+    .information-screen__overlay {
+        background-color: $black-overlay-color;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .information-screen-box {

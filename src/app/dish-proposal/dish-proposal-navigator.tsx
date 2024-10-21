@@ -12,9 +12,9 @@ interface DishProposalNavigatorProps {
 export function DishProposalNavigator({ onPrevious, onNext, onChoose }: DishProposalNavigatorProps) {
     return (
         <div className={styles['dish-proposal-container__navigator']}>
-            <Button label="Poprzednia" onClick={onPrevious} />
-            <Button label="Następna" onClick={onNext} />
-            <Button label="Wybierz" onClick={onChoose} />
+            <Button label="Poprzednia" icon="previous" onClick={onPrevious} />
+            <Button label="Następna" icon="next" onClick={onNext} />
+            <Button label="Wybierz" icon="details" onClick={onChoose} />
         </div>
     );
 }

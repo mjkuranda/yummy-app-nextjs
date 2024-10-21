@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Yummy',
+    title: 'Co na dziś?',
     description: 'Dowiedz się, co dziś ugotować'
 };
 
