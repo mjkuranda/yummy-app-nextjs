@@ -52,6 +52,7 @@ export function ObjectList({ objects, objectType, actionType }: ObjectListProps)
                     </tbody>
                 </table>
             </div>
+            <p className="text-center mt-3 mb-2">Liczba elementów: {objects.length}</p>
             {isProceeding && <Loader isAbsolute={true} />}
         </>
     );

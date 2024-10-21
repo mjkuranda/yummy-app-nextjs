@@ -55,7 +55,7 @@ export class NotFoundError extends ApiError {
 
 export class NotFoundActivationForUser extends NotFoundError {
     constructor() {
-        super('Not found any request for activation');
+        super('Nie znaleziono takiej prośby, aby aktywować użytkownika.');
     }
 }
 
@@ -68,9 +68,11 @@ export function throwApiError(res: ApiErrorResponse): never {
     case 403:
         throw new ForbiddenError(res.message);
     case 404:
-        if (res.message.includes('Not found any request for activation')) {
+        if (res.message.includes('Not found any request') && res.message.includes('activation token')) {
             throw new NotFoundActivationForUser();
         }
+
+        throw new NotFoundError(res.message);
     }
 
     throw new Error('Wystąpił nieoczekiwany błąd.');
@@ -91,6 +93,10 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
     if (err instanceof BadRequestError && err.message.includes('adres URL')) {
         toastError(err.message);
     }
+
+    if (err instanceof NotFoundError && err.message.includes('Not found any request with') && err.message.includes('activation token')) {
+        toastError('Podany token nie istnieje.');
+    }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -109,6 +115,14 @@ function getBadRequestMessage(message: string, context: ApiErrorContext): string
 
     if (message.includes('imageUrl') && message.includes('isLength')) {
         return 'Podano zbyt długi adres URL';
+    }
+
+    if (message.includes('Invalid activation token')) {
+        return 'Podany token jest nieprawidłowy.';
+    }
+
+    if (['User with id', 'does not exist, reported by', 'request token for activation.'].every(message => message.includes(message))) {
+        return 'Użytkownik przypisany do tego kodu już nie istnieje.';
     }
 
     return 'Wystąpił błąd';
