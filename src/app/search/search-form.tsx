@@ -118,8 +118,8 @@ export function SearchForm({ children }: SearchFormProps) {
                 <div>{children}</div>
             </div>
             <div className={`${styles['search-controls']} d-flex justify-content-center align-items-center mt-5 mb-4`}>
-                <Button label={'Wyczyść'} type={'button'} disabled={isSearchDisabled} onClick={onClear} />
-                <Button label={'Szukaj'} type="submit" disabled={isSearchDisabled} />
+                <Button label={'Wyczyść'} icon="clear" type={'button'} disabled={isSearchDisabled} onClick={onClear} />
+                <Button label={'Szukaj'} icon="search" type="submit" disabled={isSearchDisabled} />
             </div>
         </form>
     );

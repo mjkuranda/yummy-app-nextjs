@@ -10,10 +10,10 @@ export function WelcomeScreenPanel() {
 
     return (
         <div className={className}>
-            <h1 className={styles['header-panel']}>Yummy</h1>
+            <h1 className={styles['header-panel']}>Co na dziś?</h1>
             <div>
-                <Button label={'Szukaj po składnikach'} link={'/search'} />
-                <Button label={'Propozycja dnia'} link={'/dish-proposal'} disabled={!isLoggedIn()} />
+                <Button label={'Szukaj po składnikach'} icon="search" link={'/search'} />
+                <Button label={'Propozycja dnia'} icon="best search" link={'/dish-proposal'} disabled={!isLoggedIn()} />
             </div>
         </div>
     );

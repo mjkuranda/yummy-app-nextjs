@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Loader } from '@/src/components/common/loader';
 import { toastSuccess } from '@/src/utils/toast.utils';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export function User() {
     const { isLoggedIn, logoutUser, isFetching, user } = useUserContext();
@@ -49,12 +50,12 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        {hasCapability() && <Link href={'/manage'}>Zarządzaj</Link>}
+                        {hasCapability() && <Link href={'/manage'}>Zarządzaj <ManageAccountsIcon /></Link>}
                         &nbsp;&nbsp;&nbsp;
-                        <Button label={'Wyloguj się'} onClick={onLogout} />
+                        <Button label="Wyloguj się" icon="log out" onClick={onLogout} />
                     </>
                 )
-                : <Button label="Zaloguj się" link="/users/login" />
+                : <Button label="Zaloguj się" icon="log in" link="/users/login" />
             }
         </div>
     );
