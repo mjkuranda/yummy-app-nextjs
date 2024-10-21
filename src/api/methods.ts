@@ -1,9 +1,7 @@
 import { ApiErrorResponse, throwApiError } from '@/src/api/api-errors';
 
-export const API_URL = 'http://localhost:3001';
-
 export async function apiGet<T>(endpointUrl: string): Promise<T> {
-    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'GET',
         headers: {
@@ -24,7 +22,7 @@ export async function apiGet<T>(endpointUrl: string): Promise<T> {
 }
 
 export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
-    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'POST',
         headers: {
@@ -45,7 +43,7 @@ export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, i
 }
 
 export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
-    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'PUT',
         headers: {
@@ -66,7 +64,7 @@ export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, is
 }
 
 export async function apiDelete(endpointUrl: string): Promise<Response> {
-    const res = await fetch(`${API_URL}/${endpointUrl}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
         mode: 'cors',
         method: 'DELETE',
         headers: { 'accept': '*/*' },
