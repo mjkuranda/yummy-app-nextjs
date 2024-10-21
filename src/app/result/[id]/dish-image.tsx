@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/result/page.module.scss';
-import { useHasImage } from '@/src/hooks/useHasImage';
+import { useHasImage } from '@/src/hooks/use-has-image';
 import { Loader } from '@/src/components/common/loader';
 import { getImageUrlForYummyDishes } from '@/src/helpers/result.helper';
 import { DishProvider } from '@/src/types/api.types';

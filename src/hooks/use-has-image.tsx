@@ -12,27 +12,43 @@ export function useHasImage(imgUrl?: string): useHasImageReturnType {
     useEffect(() => {
         if (!imgUrl) {
             setIsLoading(false);
+            setHasImage(false);
 
             return;
         }
+
+        setIsLoading(true);
 
         checkImageUrl(imgUrl)
             .then(result => setHasImage(result))
             .catch(() => setHasImage(false))
             .finally(() => setIsLoading(false));
-    }, []);
+    }, [imgUrl]);
 
     return { hasImage, isLoading };
 }
 
-function checkImageUrl(urlString: string): Promise<boolean> {
+function checkImageUrl(urlString: string, timeout: number = 8000): Promise<boolean> {
     return new Promise((resolve, reject) => {
         try {
             const url = new URL(urlString);
             const img = new Image();
 
-            img.onload = () => resolve(true);
-            img.onerror = () => reject(false);
+            const timer = setTimeout(() => {
+                img.src = '';
+                reject(false);
+            }, timeout);
+
+            img.onload = () => {
+                clearTimeout(timer);
+                resolve(true);
+            };
+
+            img.onerror = () => {
+                clearTimeout(timer);
+                reject(false);
+            };
+
             img.src = url.toString();
         } catch (error) {
             reject(false);
