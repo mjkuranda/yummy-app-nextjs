@@ -14,11 +14,17 @@ interface ObjectItemProps {
 export function ObjectItem({ object, actionType, onClick }: ObjectItemProps) {
     const actionLabel = getActionLabel(actionType);
 
+    const onClickButton = async () => {
+        if (confirm('Czy aby na pewno chcesz wykonać tą akcję?')) {
+            await onClick(object.action);
+        }
+    };
+
     return (
         <tr key={object.id}>
             <td className={styles['object-table__label']}>{object.label}</td>
             <td className={styles['object-table__action']}>
-                <Button label={actionLabel} onClick={() => onClick(object.action)} />
+                <Button label={actionLabel} onClick={onClickButton} />
             </td>
         </tr>
     );
