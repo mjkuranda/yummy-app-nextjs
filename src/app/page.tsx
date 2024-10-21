@@ -1,10 +1,15 @@
+'use client';
+
 import { WelcomeScreen } from '@/src/app/welcome-screen';
 import { InformationScreen } from '@/src/app/information-screen';
 import { Footer } from '@/src/components/common/footer';
+import { useScroll } from '@/src/hooks/use-scroll';
 
 export default function Home() {
+    const { onWheel } = useScroll();
+
     return (
-        <>
+        <div onWheel={onWheel}>
             <WelcomeScreen />
             <div id="description">
                 <InformationScreen
@@ -27,6 +32,6 @@ export default function Home() {
                 />
             </div>
             <Footer />
-        </>
+        </div>
     );
 }

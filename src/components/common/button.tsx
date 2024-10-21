@@ -9,8 +9,11 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import SearchIcon from '@mui/icons-material/Search';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import ClearIcon from '@mui/icons-material/Clear';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-type IconVariant = 'log in' | 'log out' | 'manage' | 'search' | 'best search' | 'clear';
+type IconVariant = 'log in' | 'log out' | 'manage' | 'search' | 'best search' | 'clear' | 'next' | 'previous' | 'details';
 
 interface ButtonProps {
     label: string;
@@ -55,5 +58,8 @@ function renderIcon(icon: IconVariant) {
     case 'search': return <SearchIcon style={style} />;
     case 'best search': return <SavedSearchIcon style={style} />;
     case 'clear': return <ClearIcon style={style} />;
+    case 'previous': return <SkipPreviousIcon style={style} />;
+    case 'next': return <SkipNextIcon style={style} />;
+    case 'details': return <VisibilityIcon style={style} />;
     }
 }

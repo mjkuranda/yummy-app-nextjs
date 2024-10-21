@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.56.0] - 2024-10-21
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Semi-transparent black overlay to landing page screens.
-- [Marek Kurańda](https://github.com/mjkuranda): Icons for buttons: `log in`, `log out`, `manage`, `search`, `best search` and `clear`.
+- [Marek Kurańda](https://github.com/mjkuranda): Icons for buttons: `log in`, `log out`, `manage`, `search`, `best search`, `clear`, `previous`, `next` and `details`.
+- [Marek Kurańda](https://github.com/mjkuranda): Smooth screen scrolling at landing page.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Yummy` to `Co na dziś?`.
