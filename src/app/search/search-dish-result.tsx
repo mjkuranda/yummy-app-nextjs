@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { DishResult } from '@/src/types/api.types';
 import styles from '@/styles/app/search/search-dish-result.module.scss';
 import { Button } from '@/src/components/common/button';
-import { useHasImage } from '@/src/hooks/useHasImage';
+import { useHasImage } from '@/src/hooks/use-has-image';
 import { Loader } from '@/src/components/common/loader';
 import { ReactElement } from 'react';
 
