@@ -4,9 +4,18 @@ import { WelcomeScreen } from '@/src/app/welcome-screen';
 import { InformationScreen } from '@/src/app/information-screen';
 import { Footer } from '@/src/components/common/footer';
 import { useScroll } from '@/src/hooks/use-scroll';
+import { useEffect } from 'react';
 
 export default function Home() {
-    const { onWheel } = useScroll();
+    const { onWheel, onKeyDown } = useScroll();
+
+    useEffect(() => {
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+        };
+    }, []);
 
     return (
         <div onWheel={onWheel}>

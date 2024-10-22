@@ -1,6 +1,6 @@
 {
     "name": "yummy-app-nextjs",
-    "version": "1.55.0",
+    "version": "1.57.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
