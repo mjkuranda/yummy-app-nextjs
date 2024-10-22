@@ -8,7 +8,7 @@ export function Footer() {
                 <p>Wszelkie prawa zastrzeżone</p>
                 <div className={styles['author-information']}>
                     <h3>Marek Kurańda</h3>
-                    <h4>Yummy &copy; 2024</h4>
+                    <h4>DishMatcher &copy; 2024</h4>
                 </div>
                 <h5>
                     <Link href="https://icons8.com/icon/RxvLC54xtSnZ/yummy" rel="noopener noreferrer" target="_blank">Yummy</Link>
