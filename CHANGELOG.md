@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient lists and translation for `Fold/unfold`.
+- [Marek Kurańda](https://github.com/mjkuranda): `Next.js` version to `14.2.10`.
 
 ## [1.57.0] - 2024-10-22
 ### Added
