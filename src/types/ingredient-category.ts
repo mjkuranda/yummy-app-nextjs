@@ -5,4 +5,5 @@ export type IngredientCategoryData = Record<string, IngredientCategoryLabels>;
 export interface IngredientCategoryLabels {
     en: string;
     pl: string;
+    imageUrl?: string;
 }
