@@ -39,18 +39,6 @@
         "en": "quail",
         "pl": "przepiórka"
     },
-    "venison": {
-        "en": "venison",
-        "pl": "sarnina"
-    },
-    "buffalo": {
-        "en": "buffalo",
-        "pl": "bawół"
-    },
-    "bison": {
-        "en": "bison",
-        "pl": "bizon"
-    },
     "elk": {
         "en": "elk",
         "pl": "łoś"
@@ -62,10 +50,6 @@
     "pheasant": {
         "en": "pheasant",
         "pl": "bażant"
-    },
-    "ostrich": {
-        "en": "ostrich",
-        "pl": "struś"
     },
     "squab": {
         "en": "squab",
@@ -86,6 +70,10 @@
     "frog legs": {
         "en": "frog legs",
         "pl": "żabie udka"
+    },
+    "crab": {
+        "en": "crab",
+        "pl": "krab"
     },
     "snail": {
         "en": "snail",

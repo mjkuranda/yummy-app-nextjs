@@ -97,15 +97,11 @@
     },
     "beet": {
         "en": "beet",
-        "pl": "burak czerwony"
+        "pl": "burak"
     },
     "pumpkin": {
         "en": "pumpkin",
         "pl": "dynia"
-    },
-    "butternut squash": {
-        "en": "butternut squash",
-        "pl": "dynia zwyczajna"
     },
     "fennel": {
         "en": "fennel",
@@ -123,14 +119,6 @@
         "en": "rhubarb",
         "pl": "rabarbar"
     },
-    "paprika": {
-        "en": "paprika",
-        "pl": "papryka"
-    },
-    "sweet paprika": {
-        "en": "sweet paprika",
-        "pl": "słodka papryka"
-    },
     "chili pepper": {
         "en": "chili pepper",
         "pl": "papryczka chili"
@@ -147,20 +135,32 @@
         "en": "kohlrabi",
         "pl": "kalarepa"
     },
-    "collard greens": {
-        "en": "collard greens",
-        "pl": "jarmuż"
-    },
-    "chicory": {
-        "en": "chicory",
-        "pl": "cykoria"
-    },
-    "snow pea": {
-        "en": "snow pea",
-        "pl": "groszek cukrowy"
-    },
     "rutabaga": {
         "en": "rutabaga",
         "pl": "brukiew"
+    },
+    "paprika": {
+        "en": "paprika",
+        "pl": "papryka"
+    },
+    "kidney beans": {
+        "id": "16033",
+        "en": "kidney beans",
+        "pl": "fasola szparagowa"
+    },
+    "beans": {
+        "id": "16069",
+        "en": "beans",
+        "pl": "fasola"
+    },
+    "green grams": {
+        "id": "16080",
+        "en": "green grams",
+        "pl": "groszek zielony"
+    },
+    "parsley": {
+        "id": "11297",
+        "en": "parsley",
+        "pl": "pietruszka"
     }
 }

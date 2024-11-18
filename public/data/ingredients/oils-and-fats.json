@@ -71,6 +71,10 @@
         "en": "almond oil",
         "pl": "olej migdałowy"
     },
+    "macadamia nut oil": {
+        "en": "macadamia nut oil",
+        "pl": "olej z orzechów makadamia"
+    },
     "pumpkin seed oil": {
         "en": "pumpkin seed oil",
         "pl": "olej z pestek dyni"
@@ -82,6 +86,10 @@
     "poppyseed oil": {
         "en": "poppyseed oil",
         "pl": "olej makowy"
+    },
+    "safflower oil": {
+        "en": "safflower oil",
+        "pl": "olej krokoszowy"
     },
     "mustard oil": {
         "en": "mustard oil",
@@ -117,11 +125,7 @@
     },
     "bacon grease": {
         "en": "bacon grease",
-        "pl": "tłuszcz z boczku"
-    },
-    "margarine": {
-        "en": "margarine",
-        "pl": "margaryna"
+        "pl": "smar z boczku"
     },
     "vegetable shortening": {
         "en": "vegetable shortening",
@@ -134,9 +138,5 @@
     "cocoa butter": {
         "en": "cocoa butter",
         "pl": "masło kakaowe"
-    },
-    "clarified butter": {
-        "en": "clarified butter",
-        "pl": "masło klarowane"
     }
 }
