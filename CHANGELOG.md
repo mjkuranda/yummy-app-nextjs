@@ -6,10 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.58.0] - 2024-11-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): A new ingredient category - `cereal-products`.
+- [Marek Kurańda](https://github.com/mjkuranda): Images for all ingredients in categories and at `search` page.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient lists and translation for `Fold/unfold`.
 - [Marek Kurańda](https://github.com/mjkuranda): `Next.js` version to `14.2.10`.
+- [Marek Kurańda](https://github.com/mjkuranda): List of ingredients at `dish creation` page.
 
 ## [1.57.0] - 2024-10-22
 ### Added
