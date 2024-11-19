@@ -1,114 +1,72 @@
 {
     "cod": {
+        "id": "15015",
         "en": "cod",
-        "pl": "dorsz"
+        "pl": "dorsz",
+        "imageUrl": "cod-fillet.jpg"
     },
     "trout": {
+        "id": "10115261",
         "en": "trout",
-        "pl": "pstrąg"
-    },
-    "catfish": {
-        "en": "catfish",
-        "pl": "sum"
-    },
-    "swordfish": {
-        "en": "swordfish",
-        "pl": "miecznik"
-    },
-    "marlin": {
-        "en": "marlin",
-        "pl": "marlin"
-    },
-    "mackerel": {
-        "en": "mackerel",
-        "pl": "makrela"
-    },
-    "sardine": {
-        "en": "sardine",
-        "pl": "sardynka"
+        "pl": "pstrąg",
+        "imageUrl": "fish-fillet.jpg"
     },
     "herring": {
+        "id": "15039",
         "en": "herring",
-        "pl": "śledź"
+        "pl": "śledź",
+        "imageUrl": "mackerel-fresh.jpg"
     },
-    "anchovy": {
-        "en": "anchovy",
-        "pl": "sardela"
+    "mackerel": {
+        "id": "15050",
+        "en": "mackerel",
+        "pl": "makrela",
+        "imageUrl": "mackerel-fresh.jpg"
     },
-    "hake": {
-        "en": "hake",
-        "pl": "morszczuk"
+    "sardines": {
+        "id": "15088",
+        "en": "sardines",
+        "pl": "sardynki",
+        "imageUrl": "sardines-canned.jpg"
     },
-    "pollock": {
-        "en": "pollock",
-        "pl": "mintaj"
+    "pike": {
+        "id": "98906",
+        "en": "pike",
+        "pl": "szczupak",
+        "imageUrl": "fish-fillet.jpg"
     },
-    "bluefish": {
-        "en": "bluefish",
-        "pl": "ryba błękitna"
-    },
-    "tilefish": {
-        "en": "tilefish",
-        "pl": "ryba kafelkowa"
-    },
-    "ribbonfish": {
-        "en": "ribbonfish",
-        "pl": "ryba wstęgowata"
-    },
-    "rockfish": {
-        "en": "rockfish",
-        "pl": "ryba skalna"
-    },
-    "sturgeon": {
-        "en": "sturgeon",
-        "pl": "jesiotr"
-    },
-    "monkfish": {
-        "en": "monkfish",
-        "pl": "ryba morska"
-    },
-    "perch": {
-        "en": "perch",
-        "pl": "okoń"
-    },
-    "pickerel": {
-        "en": "pickerel",
-        "pl": "szczupak"
-    },
-    "walleye": {
-        "en": "walleye",
+    "zander": {
+        "id": "1000000",
+        "en": "zander",
         "pl": "sandacz"
     },
-    "whitefish": {
-        "en": "whitefish",
-        "pl": "biała ryba"
+    "carp": {
+        "id": "15008",
+        "en": "carp",
+        "pl": "karp",
+        "imageUrl": "fish-fillet.jpg"
     },
-    "oyster": {
-        "en": "oyster",
-        "pl": "ostryga"
+    "cat fish": {
+        "id": "15010",
+        "en": "cat fish",
+        "pl": "sum",
+        "imageUrl": "catfish.jpg"
     },
-    "crab": {
-        "en": "crab",
-        "pl": "krab"
+    "lox": {
+        "id": "15077",
+        "en": "lox",
+        "pl": "łosoś",
+        "imageUrl": "smoked-salmon.png"
     },
-    "salmon": {
-        "en": "salmon",
-        "pl": "łosoś"
+    "crayfish": {
+        "id": "15243",
+        "en": "crayfish",
+        "pl": "rak",
+        "imageUrl": "crayfish.jpg"
     },
-    "shrimp": {
-        "en": "shrimp",
+    "prawn": {
+        "id": "15152",
+        "en": "prawn",
         "pl": "krewetka"
-    },
-    "lobster": {
-        "en": "lobster",
-        "pl": "homar"
-    },
-    "crawfish": {
-        "en": "crawfish",
-        "pl": "rak"
-    },
-    "clams": {
-        "en": "clams",
-        "pl": "małże"
     }
 }

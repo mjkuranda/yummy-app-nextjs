@@ -13,6 +13,7 @@ export default function Search() {
             <Header />
             <SearchForm>
                 <SearchIngredientCategory category="breads" />
+                <SearchIngredientCategory category="cereal-products" />
                 <SearchIngredientCategory category="dairy-and-eggs" />
                 <SearchIngredientCategory category="fish-and-seafood" />
                 <SearchIngredientCategory category="fruits" />

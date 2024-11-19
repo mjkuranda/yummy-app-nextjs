@@ -4,6 +4,7 @@ export interface IngredientDataValue {
     id: number;
     en: string;
     pl: string;
+    imageUrl?: string;
 }
 
 export interface IngredientDataLabels {

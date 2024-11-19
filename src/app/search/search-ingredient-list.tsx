@@ -23,7 +23,7 @@ export function SearchIngredientList({ category, data }: SearchIngredientListPro
     return (
         <ul className={styles['search-ingredient-category__list']}>
             <SearchIngredientItemList category={category} ingredients={ingredients} queryIngredients={queryIngredients} />
-            {labels.length > 10 && <SearchIngredientFolder category={category} onChange={onChange} />}
+            {labels.length > 10 && <SearchIngredientFolder category={category} onChange={onChange} folded={folded} />}
         </ul>
     );
 }

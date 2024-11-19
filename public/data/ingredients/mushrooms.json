@@ -1,30 +1,40 @@
 {
-    "mushroom": {
-        "en": "mushroom",
-        "pl": "grzyb"
+    "porcini mushroom": {
+        "id": "1100000",
+        "en": "porcini mushroom",
+        "pl": "borowik"
     },
-    "mixed mushrooms": {
-        "en": "mixed mushrooms",
-        "pl": "mieszane grzyby"
-    },
-    "white mushrooms": {
-        "en": "white mushrooms",
-        "pl": "białe pieczarki"
+    "bolete mushroom": {
+        "id": "1100001",
+        "en": "bolete mushroom",
+        "pl": "podgrzybek"
     },
     "chanterelle mushrooms": {
+        "id": "11239",
         "en": "chanterelle mushrooms",
-        "pl": "kurki"
+        "pl": "kurki",
+        "imageUrl": "chanterelles.jpg"
+    },
+    "red pine mushroom": {
+        "id": "1100002",
+        "en": "red pine mushroom",
+        "pl": "rydz"
+    },
+    "mushrooms": {
+        "id": "11260",
+        "en": "mushrooms",
+        "pl": "pieczarki",
+        "imageUrl": "mushrooms-white.jpg"
+    },
+    "armillaria": {
+        "en": "armillaria",
+        "pl": "opieńka",
+        "id": "1100003"
     },
     "morel mushrooms": {
+        "id": "11240",
         "en": "morel mushrooms",
-        "pl": "smardze"
-    },
-    "button mushrooms": {
-        "en": "button mushrooms",
-        "pl": "pieczarki"
-    },
-    "dried porcini mushrooms": {
-        "en": "dried porcini mushrooms",
-        "pl": "suszone borowiki"
+        "pl": "smardze",
+        "imageUrl": "morel-mushrooms.jpg"
     }
 }
