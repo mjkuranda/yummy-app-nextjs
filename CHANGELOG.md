@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): A new ingredient category - `cereal-products`.
 - [Marek Kurańda](https://github.com/mjkuranda): Images for all ingredients in categories and at `search` page.
+- [Marek Kurańda](https://github.com/mjkuranda): `pantry` ingredients.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient lists and translation for `Fold/unfold`.
