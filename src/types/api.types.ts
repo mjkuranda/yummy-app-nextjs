@@ -93,6 +93,20 @@ export interface UserPermissions {
     }
 }
 
+export interface UserObject {
+    id: string;
+    email: string;
+    login: string;
+    isAdmin?: boolean;
+    capabilities?: {
+        canAdd?: boolean;
+        canEdit?: boolean;
+        canDelete?: boolean;
+    }
+}
+
+export type CapabilityType = 'canAdd' | 'canEdit' | 'canDelete';
+
 export interface DishProposalRequest {
     ingredients: string[];
 }

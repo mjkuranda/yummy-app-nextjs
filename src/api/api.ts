@@ -4,7 +4,7 @@ import {
     DishProposal,
     DishProposalRequest,
     DishResult, NotActivatedUser,
-    UserPermissions, DetailedDishWithTranslations, NewDishDto, DishDocument
+    UserPermissions, UserObject, DetailedDishWithTranslations, NewDishDto, DishDocument, CapabilityType
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
@@ -194,12 +194,9 @@ export async function createUserAccount(data: UserData): Promise<void> {
 }
 
 export async function activateUser(activationCode: string): Promise<void> {
-    console.log('xxx');
     // eslint-disable-next-line no-useless-catch
     try {
-        console.log('x');
         await apiPost(`users/activate/${activationCode}`);
-        console.log('y');
     } catch (err: unknown) {
         throw err;
     }
@@ -299,5 +296,51 @@ export async function deleteDish(dishId: string): Promise<void> {
         const json = await res.json();
 
         throw new ApiError(res.status, json.message);
+    }
+}
+
+export async function getAllUsers(): Promise<UserObject[]> {
+    let res: UserObject[] = [];
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+        res = await apiGet<UserObject[]>('users');
+    } catch (err: unknown) {
+        throw err;
+    }
+
+    return res;
+}
+export async function grandPermission(login: string, capability: CapabilityType): Promise<boolean> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const res = await apiPost<boolean>(`users/${login}/grant/${capability}`);
+
+        if (res.status >= 400) {
+            const json = await res.json();
+
+            throw new ApiError(res.status, json.message);
+        }
+
+        return await res.json();
+    } catch (err: unknown) {
+        throw err;
+    }
+}
+
+export async function denyPermission(login: string, capability: CapabilityType): Promise<boolean> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const res = await apiPost<boolean>(`users/${login}/deny/${capability}`);
+
+        if (res.status >= 400) {
+            const json = await res.json();
+
+            throw new ApiError(res.status, json.message);
+        }
+
+        return await res.json();
+    } catch (err: unknown) {
+        throw err;
     }
 }

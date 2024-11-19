@@ -4,6 +4,8 @@ import styles from '@/styles/app/manage/page.module.scss';
 import { Button } from '@/src/components/common/button';
 import { ActionType } from '@/src/types/manage.types';
 import { ObjectItemStruct } from '@/src/hooks/use-object-management';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 interface ObjectItemProps {
     object: ObjectItemStruct;
@@ -12,7 +14,7 @@ interface ObjectItemProps {
 }
 
 export function ObjectItem({ object, actionType, onClick }: ObjectItemProps) {
-    const actionLabel = getActionLabel(actionType);
+    const actionLabel = object.actionLabel || getActionLabel(actionType);
 
     const onClickButton = async () => {
         if (confirm('Czy aby na pewno chcesz wykonać tą akcję?')) {
@@ -20,11 +22,22 @@ export function ObjectItem({ object, actionType, onClick }: ObjectItemProps) {
         }
     };
 
+    const renderLabelIcon = () => {
+        switch (object.labelIcon) {
+        case 'person-grand':
+            return <PersonAddAlt1Icon style={{ color: 'green' }} />;
+        case 'person-deny':
+            return <PersonRemoveIcon style={{ color: 'red' }} />;
+        default:
+            return null;
+        }
+    };
+
     return (
         <tr key={object.id}>
-            <td className={styles['object-table__label']}>{object.label}</td>
+            <td className={styles['object-table__label']}>{renderLabelIcon()}{object.label && ' '}{object.label}</td>
             <td className={styles['object-table__action']}>
-                <Button label={actionLabel} onClick={onClickButton} />
+                <Button label={actionLabel} onClick={onClickButton} disabled={object.actionDisabled} />
             </td>
         </tr>
     );
