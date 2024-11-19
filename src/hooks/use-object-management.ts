@@ -1,11 +1,11 @@
 'use client';
 
 import {
-    confirmDishAddition, confirmDishDeletion, confirmDishEdition, confirmUserActivation,
+    confirmDishAddition, confirmDishDeletion, confirmDishEdition, confirmUserActivation, denyPermission, getAllUsers,
     getNotActivatedUsers,
     getSoftAddedDishes,
     getSoftDeletedDishes,
-    getSoftEditedDishes
+    getSoftEditedDishes, grandPermission
 } from '@/src/api/api';
 import { useCallback, useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/manage.types';
@@ -16,7 +16,10 @@ import { useUserContext } from '@/src/contexts/user.context';
 export interface ObjectItemStruct {
     id: string;
     label: string;
+    labelIcon?: 'person-grand' | 'person-deny';
     action: (objectList: ObjectItemStruct[]) => Promise<void>;
+    actionLabel?: string;
+    actionDisabled?: boolean;
 }
 
 export function useObjectManagement(objects: ObjectType, action: ActionType) {
@@ -36,23 +39,150 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
     }, []);
 
     useEffect(() => {
-        if (objects === 'users' && action === 'not-activated') {
-            fetchObjects(
-                getNotActivatedUsers,
-                user => ({
-                    id: user._id,
-                    label: user.login,
-                    action: async (objectList: ObjectItemStruct[]) => {
-                        // eslint-disable-next-line no-useless-catch
-                        try {
-                            await confirmUserActivation(user._id);
-                            setObjectList(objectList.filter(object => object.id !== user._id));
-                        } catch (err: unknown) {
-                            throw err;
+        if (objects === 'users') {
+            switch (action) {
+            case 'permission-for-adding':
+                fetchObjects(
+                    getAllUsers,
+                    user => ({
+                        id: user.id,
+                        label: user.login,
+                        labelIcon: user.isAdmin || user.capabilities?.canAdd ? 'person-grand' : 'person-deny',
+                        action: async (objectList: ObjectItemStruct[]) => {
+                            const shouldGrand = !user?.capabilities?.canAdd;
+
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                shouldGrand
+                                    ? await grandPermission(user.login, 'canAdd')
+                                    : await denyPermission(user.login, 'canAdd');
+
+                                user.capabilities = {
+                                    ...user.capabilities,
+                                    ...(shouldGrand && { canAdd: true })
+                                };
+
+                                setObjectList(objectList.map(object => {
+                                    if (object.id === user.id) {
+                                        return {
+                                            ...object,
+                                            actionLabel: shouldGrand ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                                            labelIcon: object.labelIcon === 'person-grand' ? 'person-deny' : 'person-grand'
+                                        };
+                                    }
+
+                                    return object;
+                                }));
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        },
+                        actionLabel: user.isAdmin || user.capabilities?.canAdd ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                        actionDisabled: user.isAdmin
+                    })
+                );
+                break;
+            case 'permission-for-editing':
+                fetchObjects(
+                    getAllUsers,
+                    user => ({
+                        id: user.id,
+                        label: user.login,
+                        labelIcon: user.isAdmin || user.capabilities?.canEdit ? 'person-grand' : 'person-deny',
+                        action: async (objectList: ObjectItemStruct[]) => {
+                            const shouldGrand = !user?.capabilities?.canEdit;
+
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                shouldGrand
+                                    ? await grandPermission(user.login, 'canEdit')
+                                    : await denyPermission(user.login, 'canEdit');
+
+                                user.capabilities = {
+                                    ...user.capabilities,
+                                    ...(shouldGrand && { canEdit: true })
+                                };
+
+                                setObjectList(objectList.map(object => {
+                                    if (object.id === user.id) {
+                                        return {
+                                            ...object,
+                                            actionLabel: shouldGrand ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                                            labelIcon: object.labelIcon === 'person-grand' ? 'person-deny' : 'person-grand'
+                                        };
+                                    }
+
+                                    return object;
+                                }));
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        },
+                        actionLabel: user.isAdmin || user.capabilities?.canEdit ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                        actionDisabled: user.isAdmin
+                    })
+                );
+                break;
+            case 'permission-for-deleting':
+                fetchObjects(
+                    getAllUsers,
+                    user => ({
+                        id: user.id,
+                        label: user.login,
+                        labelIcon: user.isAdmin || user.capabilities?.canDelete ? 'person-grand' : 'person-deny',
+                        action: async (objectList: ObjectItemStruct[]) => {
+                            const shouldGrand = !user?.capabilities?.canDelete;
+
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                shouldGrand
+                                    ? await grandPermission(user.login, 'canDelete')
+                                    : await denyPermission(user.login, 'canDelete');
+
+                                user.capabilities = {
+                                    ...user.capabilities,
+                                    ...(shouldGrand && { canDelete: true })
+                                };
+
+                                setObjectList(objectList.map(object => {
+                                    if (object.id === user.id) {
+                                        return {
+                                            ...object,
+                                            actionLabel: shouldGrand ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                                            labelIcon: object.labelIcon === 'person-grand' ? 'person-deny' : 'person-grand'
+                                        };
+                                    }
+
+                                    return object;
+                                }));
+                            } catch (err: unknown) {
+                                throw err;
+                            }
+                        },
+                        actionLabel: user.isAdmin || user.capabilities?.canDelete ? '- Odbierz uprawnienie' : '+ Nadaj uprawnienie',
+                        actionDisabled: user.isAdmin
+                    })
+                );
+                break;
+            case 'not-activated':
+                fetchObjects(
+                    getNotActivatedUsers,
+                    user => ({
+                        id: user._id,
+                        label: user.login,
+                        action: async (objectList: ObjectItemStruct[]) => {
+                            // eslint-disable-next-line no-useless-catch
+                            try {
+                                await confirmUserActivation(user._id);
+                                setObjectList(objectList.filter(object => object.id !== user._id));
+                            } catch (err: unknown) {
+                                throw err;
+                            }
                         }
-                    }
-                })
-            );
+                    })
+                );
+                break;
+            }
         }
         else if (objects === 'dishes') {
             switch (action) {

@@ -20,6 +20,9 @@ export function ItemContainer() {
         const dishItemsTemp: Item[] = [];
 
         if (user.isAdmin) {
+            userItemsTemp.push({ link: 'users/permission-for-adding', text: 'Uprawnienia do dodawania', description: 'Nadaj uprawnienia użytkownikom, by mogli zatwierdzać nowe dania.' });
+            userItemsTemp.push({ link: 'users/permission-for-editing', text: 'Uprawnienia do edycji', description: 'Nadaj uprawnienia użytkownikom, by mogli zatwierdzać edycję dań.' });
+            userItemsTemp.push({ link: 'users/permission-for-deleting', text: 'Uprawnienia do usuwania', description: 'Nadaj uprawnienia użytkownikom, by mogli zatwierdzać usuwanie dań.' });
             userItemsTemp.push({ link: 'users/not-activated', text: 'Nowo zarejestrowani', description: 'Aktywuj nowo utworzonych użytkowników. Nieaktywowani użytkownicy nie mają możliwości logowania.' });
 
             dishItemsTemp.push({ link: 'dishes/added', text: 'Dodane dania', description: 'Zatwierdź nowo dodane dania. Dania niezatwierdzone nie są widoczne dla użytkowników.' });
