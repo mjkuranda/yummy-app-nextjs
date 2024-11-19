@@ -12,6 +12,7 @@ import { Loader } from '@/src/components/common/loader';
 import { useEffect } from 'react';
 import { toastInfo } from '@/src/utils/toast.utils';
 import { useUserContext } from '@/src/contexts/user.context';
+import { PaginationProvider } from '@/src/contexts/pagination.context';
 
 interface ObjectManagementParams extends Params {
     objects: ObjectType;
@@ -64,7 +65,11 @@ export function ObjectContainer() {
                     ? <Loader isAbsolute={true} />
                     : objectList.length === 0
                         ? 'Brak obiektów.'
-                        : <ObjectList objects={objectList} objectType={objects} actionType={action} />
+                        : (
+                            <PaginationProvider>
+                                <ObjectList objects={objectList} objectType={objects} actionType={action} />
+                            </PaginationProvider>
+                        )
                 }
             </div>
         </>

@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): New subpages for admin: `Permission for adding`, `Permission for editing` and `Permission for deleting`.
 - [Marek Kurańda](https://github.com/mjkuranda): Capability for admins to grand or deny permissions all users which are not admins.
-- 
+- [Marek Kurańda](https://github.com/mjkuranda): Pagination for tables at `/manage` page.
+
 ## [1.58.1] - 2024-11-19
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): You can access management page when you log in and try to enter manage page.

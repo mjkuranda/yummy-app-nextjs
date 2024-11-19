@@ -10,6 +10,8 @@ import { handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';
 import { useUserContext } from '@/src/contexts/user.context';
 import { Loader } from '@/src/components/common/loader';
+import { CustomTablePagination } from '@/src/components/common/custom-table-pagination';
+import { usePaginationContext } from '@/src/contexts/pagination.context';
 
 interface ObjectListProps {
     objects: ObjectItemStruct[];
@@ -19,6 +21,7 @@ interface ObjectListProps {
 
 export function ObjectList({ objects, objectType, actionType }: ObjectListProps) {
     const userContext = useUserContext();
+    const { rowsPerPage, page } = usePaginationContext();
     const router = useRouter();
     const [isProceeding, setIsProceeding] = useState<boolean>(false);
 
@@ -47,12 +50,17 @@ export function ObjectList({ objects, objectType, actionType }: ObjectListProps)
                         </tr>
                     </thead>
                     <tbody>
-                        {objects.map(object => <ObjectItem key={object.id} object={object} actionType={actionType}
+                        {(rowsPerPage > 0
+                            ? objects.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            : objects
+                        ).map(object => <ObjectItem key={object.id} object={object} actionType={actionType}
                             onClick={onClick} />)}
                     </tbody>
                 </table>
             </div>
-            <p className="text-center mt-3 mb-2">Liczba elementów: {objects.length}</p>
+            <div className={styles['table-pagination-container']}>
+                <CustomTablePagination objects={objects} />
+            </div>
             {isProceeding && <Loader isAbsolute={true} />}
         </>
     );
