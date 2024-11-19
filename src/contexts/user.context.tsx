@@ -54,14 +54,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }, [user.login]);
 
     useEffect(() => {
-        const pathname = location.pathname;
-
-        if (pathname === '/users/login' && user.login !== '') {
-            router.push('/');
-        }
-    }, [isLogging, user]);
-
-    useEffect(() => {
         const loginUser = (login: string, permissions: UserPermissions): void => {
             setIsLogging(true);
             const user: CurrentUser = { login, ...permissions };
@@ -103,12 +95,24 @@ export function UserProvider({ children }: { children: ReactNode }) {
         };
 
         fetchUser();
-    }, []);
+    }, [user.login]);
 
     useEffect(() => {
+        if (user.login === '') {
+            return;
+        }
+
         const interval = setInterval(intervalHandler, 5 * MINUTE);
 
         return () => clearInterval(interval);
+    }, [user.login]);
+
+    useEffect(() => {
+        const pathname = location.pathname;
+
+        if (pathname === '/users/login' && user.login !== '') {
+            router.push('/');
+        }
     }, [user.login]);
 
     if (isFetching) {

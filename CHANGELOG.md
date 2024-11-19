@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.58.1] - 2024-11-19
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): You can access management page when you log in and try to enter manage page.
+
 ## [1.58.0] - 2024-11-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): A new ingredient category - `cereal-products`.
