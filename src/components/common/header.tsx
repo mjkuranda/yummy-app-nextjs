@@ -20,7 +20,7 @@ export function Header() {
                 <div className="d-flex justify-content-around align-items-center">
                     <nav className="d-flex justify-content-between align-items-center">
                         <div><Button label={'Strona główna'} link="/" /></div>
-                        <div><Button label={'O stronie'} link="/#description" /></div>
+                        <div><Button label={'O stronie'} link="/about" /></div>
                     </nav>
                     <User />
                 </div>
