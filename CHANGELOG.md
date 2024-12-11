@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.60.1] - 2024-12-11
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): API error handling for time preparation.
+- [Marek Kurańda](https://github.com/mjkuranda): Sorting ingredient labels which caused improper ID generation.
 
 ## [1.60.0] - 2024-11-27
 ### Added
