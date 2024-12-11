@@ -24,7 +24,7 @@ export default function AboutPage() {
                     </div>
                     <div className={styles['about-section']}>
                         <div>Aktualna wersja z dnia: <i>27.11.2024 r</i>.</div>
-                        <div><i>v1.60.0</i></div>
+                        <div><i>v1.60.1</i></div>
                     </div>
                 </div>
             </div>

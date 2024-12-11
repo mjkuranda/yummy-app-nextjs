@@ -97,6 +97,10 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
     if (err instanceof NotFoundError && err.message.includes('Not found any request with') && err.message.includes('activation token')) {
         toastError('Podany token nie istnieje.');
     }
+
+    if (err.message.includes('')) {
+        toastError('Błędnie podany czas wykonania.');
+    }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
