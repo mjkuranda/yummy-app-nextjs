@@ -11,18 +11,18 @@ import { DishResult } from '@/src/types/api.types';
 
 export function DishResultBox() {
     const boxRef = useRef<HTMLElement>(null);
-    const { originalQuery, ings, type, dish } = useSearchFilters();
+    const { originalQuery, ings, mealType, dishType } = useSearchFilters();
     const { data: dishes, isLoading } = useGetDishes(ings);
     const [filteredDishes, setFilteredDishes] = useState<DishResult[]>([]);
 
     useEffect(() => {
         if (!isLoading && ings.length > 0) {
-            const filtered = filterDishByType(dishes ?? [], type, dish);
+            const filtered = filterDishByType(dishes ?? [], mealType, dishType);
 
             setFilteredDishes(filtered);
             boxRef?.current?.scrollIntoView();
         }
-    }, [dishes, type, dish]);
+    }, [dishes, mealType, dishType]);
 
     if (!dishes && isLoading) {
         return <Loader />;

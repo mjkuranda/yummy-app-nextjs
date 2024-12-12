@@ -8,7 +8,7 @@ import {
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
-import { ApiError } from 'next/dist/server/api-utils';
+import { ApiError } from '@/src/api/api-errors';
 import {
     DishComment,
     DishDifferenceDto,

@@ -2,7 +2,7 @@
 
 import styles from '@/styles/app/search/search-ingredient-category.module.scss';
 import { IngredientCategoryData, IngredientCategoryType } from '@/src/types/ingredient-category';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { SearchIngredientItemList } from '@/src/app/search/search-ingredient-item-list';
 import { SearchIngredientFolder } from '@/src/app/search/search-ingredient-folder';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
@@ -14,7 +14,13 @@ interface SearchIngredientListProps {
 
 export function SearchIngredientList({ category, data }: SearchIngredientListProps) {
     const [folded, setFolded] = useState<boolean>(true);
-    const labels = useMemo(() => Object.entries(data).map(el => el[1]).sort((a, b) => a.pl.localeCompare(b.pl)), [data]);
+    const sortLabels = useCallback((a, b) => {
+        if (a.pl < b.pl) { return -1; }
+        if (a.pl > b.pl) { return 1; }
+
+        return 0;
+    }, []);
+    const labels = useMemo(() => Object.entries(data).map(el => el[1]).sort(sortLabels), [data]);
     const ingredients = folded ? labels.filter((el, idx) => idx < 10) : [...labels];
     const { ings: queryIngredients } = useSearchFilters();
 

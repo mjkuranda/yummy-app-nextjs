@@ -11,7 +11,7 @@ export function useSearchFilters(): SearchFilters {
     return {
         originalQuery: `ings=${searchParams.get('ings')}&type=${searchParams.get('type')}&dish=${searchParams.get('dish')}`,
         ings: decodeIngredients(searchParams.get('ings')),
-        type: searchParams.get('type') as MealType,
-        dish: searchParams.get('dish') as DishType
+        mealType: searchParams.get('type') as MealType,
+        dishType: searchParams.get('dish') as DishType
     };
 }

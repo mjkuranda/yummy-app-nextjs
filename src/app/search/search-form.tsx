@@ -22,12 +22,12 @@ interface SearchFormProps {
 
 export function SearchForm({ children }: SearchFormProps) {
     const router = useRouter();
-    const { ings, type, dish } = useSearchFilters();
+    const { ings, mealType, dishType } = useSearchFilters();
     const { isLoggedIn } = useUserContext();
     const inferredType = inferMealTypeBasingOnTime();
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
-    const [selectedMealType, setSelectedMealType] = useState<string>(type ?? inferredType);
-    const [selectedDishType, setSelectedDishType] = useState<string>(dish ?? 'any');
+    const [selectedMealType, setSelectedMealType] = useState<string>(mealType ?? inferredType);
+    const [selectedDishType, setSelectedDishType] = useState<string>(dishType ?? 'any');
     const mealTypeOptions = useMemo(() => {
         return Object
             .entries(MealTypeText)
