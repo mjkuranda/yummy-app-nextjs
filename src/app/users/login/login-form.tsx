@@ -57,6 +57,7 @@ export function LoginForm() {
                     <div className={styles['form-control-container-wrapper']}>
                         <Button label={'Zaloguj się'} type="submit" />
                         <p className="mt-3">Nie masz konta? <Link href={'/users/registration'}>Zarejestruj się</Link></p>
+                        <p className="mt-0">Nie pamiętasz hasła? <Link href={'/users/reset'}>Zresetuj</Link></p>
                     </div>
                 </div>
             </div>
