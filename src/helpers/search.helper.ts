@@ -1,20 +1,12 @@
 import { DishResult } from '@/src/types/api.types';
 import { DishType, DishTypeText, MealType } from '@/src/types/dish.types';
 
-export function filterDishByType(dishes: DishResult[], type: MealType, dishType: DishType): DishResult[] {
-    const filtered = dishes.filter(dish => {
-        if (dish.provider !== 'yummy') {
-            return true;
-        }
-
-        return dish.type === type;
-    });
-
-    if (dishType === 'any') {
-        return filtered;
+export function filterDishByType(dishes: DishResult[], mealType: MealType, dishType: DishType): DishResult[] {
+    if (mealType === 'any') {
+        return dishes;
     }
 
-    return filtered.filter(dish => dish.type === dishType);
+    return dishes.filter(dish => dish.mealType === mealType && (dishType === 'any' || dish.type === dishType));
 }
 
 export function inferMealTypeBasingOnTime(): MealType {

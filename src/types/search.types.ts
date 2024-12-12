@@ -7,6 +7,6 @@ export interface SearchFormData {
 export interface SearchFilters {
     originalQuery: string;
     ings: string[];
-    type: MealType;
-    dish: DishType;
+    mealType: MealType;
+    dishType: DishType;
 }

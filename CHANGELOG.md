@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): API error handling for time preparation.
 - [Marek Kurańda](https://github.com/mjkuranda): Sorting ingredient labels which caused improper ID generation.
+- [Marek Kurańda](https://github.com/mjkuranda): Searching dishes providing types.
 
 ## [1.60.0] - 2024-11-27
 ### Added
