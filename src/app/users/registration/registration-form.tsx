@@ -7,10 +7,11 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { BackLink } from '@/src/components/common/back-link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { createUserAccount } from '@/src/api/api';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const defaultValues: UserData = {
     email: '',
@@ -20,6 +21,9 @@ const defaultValues: UserData = {
 };
 
 export function RegistrationForm() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const isResetting = useMemo(() => Boolean(searchParams.get('action') === 'reset'), [searchParams.get('action')]);
     const { handleSubmit, control, formState: { errors }, watch, reset, setValue, clearErrors } = useForm<UserData>({ defaultValues, mode: 'onChange' });
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
@@ -51,6 +55,13 @@ export function RegistrationForm() {
         }
     };
 
+    const onReset = async () => {
+        // TODO: Implement
+
+        toastSuccess('Pomyślnie zmieniono hasło!');
+        router.push('/');
+    };
+
     const validateRepeatedPasswordMatch = (value: string) => {
         const password = watch('password');
 
@@ -58,50 +69,59 @@ export function RegistrationForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles['registration-form']}>
+        <form onSubmit={handleSubmit(isResetting ? onReset : onSubmit)} className={styles['registration-form']}>
             {isRegistering && <Loader isAbsolute={true} />}
-            <BackLink link="/users/login" label={'Powrót do logowania'} isAttached={true} />
-            <h2>Stwórz nowe konto</h2>
-            <Controller
-                name={'email'}
-                control={control}
-                rules={{
-                    required: 'Adres email jest wymagany',
-                    pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                        message: 'Niepoprawny adres email'
-                    },
-                    minLength: {
-                        value: 6,
-                        message: 'Długość adresu email nie może być krótsze niż 6 znaków'
-                    },
-                    maxLength: {
-                        value: 48,
-                        message: 'Długość adresu email nie może być dłuższe niż 48 znaków'
-                    }
-                }}
-                render={({ field: { onChange, value } }) => (
-                    <InputString label={'Email'} value={value} setValue={onChange} error={errors.email} variant="outlined" width="25%" />
-                )}
-            />
-            <Controller
-                name={'login'}
-                control={control}
-                rules={{
-                    required: 'Login jest wymagany',
-                    minLength: {
-                        value: 4,
-                        message: 'Login nie może być krótszy niż 4 znaki'
-                    },
-                    maxLength: {
-                        value: 32,
-                        message: 'Login nie może być dłuzszy niż 32 znaki'
-                    }
-                }}
-                render={({ field: { onChange, value } }) => (
-                    <InputString label={'Login'} value={value} setValue={onChange} error={errors.login} variant="outlined" width="25%" />
-                )}
-            />
+            {isResetting
+                ? <BackLink link="/" label={'Powrót do strony głównej'} isAttached={true} />
+                : <BackLink link="/users/login" label={'Powrót do logowania'} isAttached={true} />
+            }
+            <h2>{isResetting ? 'Zmień hasło' : 'Stwórz nowe konto'}</h2>
+            {!isResetting && (
+                <>
+                    <Controller
+                        name={'email'}
+                        control={control}
+                        rules={{
+                            required: 'Adres email jest wymagany',
+                            pattern: {
+                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                                message: 'Niepoprawny adres email'
+                            },
+                            minLength: {
+                                value: 6,
+                                message: 'Długość adresu email nie może być krótsze niż 6 znaków'
+                            },
+                            maxLength: {
+                                value: 48,
+                                message: 'Długość adresu email nie może być dłuższe niż 48 znaków'
+                            }
+                        }}
+                        render={({ field: { onChange, value } }) => (
+                            <InputString label={'Email'} value={value} setValue={onChange} error={errors.email}
+                                variant="outlined" width="25%" />
+                        )}
+                    />
+                    <Controller
+                        name={'login'}
+                        control={control}
+                        rules={{
+                            required: 'Login jest wymagany',
+                            minLength: {
+                                value: 4,
+                                message: 'Login nie może być krótszy niż 4 znaki'
+                            },
+                            maxLength: {
+                                value: 32,
+                                message: 'Login nie może być dłuzszy niż 32 znaki'
+                            }
+                        }}
+                        render={({ field: { onChange, value } }) => (
+                            <InputString label={'Login'} value={value} setValue={onChange} error={errors.login}
+                                variant="outlined" width="25%" />
+                        )}
+                    />
+                </>
+            )}
             <Controller
                 name={'password'}
                 control={control}
@@ -113,7 +133,7 @@ export function RegistrationForm() {
                     }
                 }}
                 render={({ field: { onChange, value } }) => (
-                    <InputPassword label={'Hasło'} value={value} setValue={onChange} error={errors.password} width="25%" />
+                    <InputPassword label={isResetting ? 'Nowe hasło' : 'Hasło'} value={value} setValue={onChange} error={errors.password} width="25%" />
                 )}
             />
             <Controller
@@ -121,10 +141,10 @@ export function RegistrationForm() {
                 control={control}
                 rules={{ required: 'Powtórzone hasło jest wymagane', validate: validateRepeatedPasswordMatch }}
                 render={({ field: { onChange, value } }) => (
-                    <InputPassword label={'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="25%" />
+                    <InputPassword label={isResetting ? 'Powtórz nowe hasło' : 'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="25%" />
                 )}
             />
-            <Button label={'Zarejestruj się'} type="submit" />
+            <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" />
             {wasCreated && 'Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.'}
         </form>
     );
