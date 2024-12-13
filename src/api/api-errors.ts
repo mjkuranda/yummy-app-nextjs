@@ -83,24 +83,30 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
         toastInfo('Twoja sesja wygasła. Zaloguj się ponownie.');
         router.push('/users/login');
         userContext.logoutUser();
+
+        return;
     }
 
     if (err instanceof ForbiddenError) {
         toastError('Nie jesteś uprawniony do wykonywania akcji admina.');
         router.push('/');
+
+        return;
     }
 
     if (err instanceof BadRequestError && err.message.includes('adres URL')) {
         toastError(err.message);
+
+        return;
     }
 
     if (err instanceof NotFoundError && err.message.includes('Not found any request with') && err.message.includes('activation token')) {
         toastError('Podany token nie istnieje.');
+
+        return;
     }
 
-    if (err.message.includes('')) {
-        toastError('Błędnie podany czas wykonania.');
-    }
+    toastError('Wystąpił błąd.');
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

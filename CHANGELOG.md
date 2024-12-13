@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): New mode for subpage `/users/register?reset` where you can change your password.
 
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Dish `readyForMinutes` time validation.
+
 ## [1.60.1] - 2024-12-11
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): API error handling for time preparation.
