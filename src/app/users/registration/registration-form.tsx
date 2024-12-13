@@ -8,7 +8,7 @@ import { Button } from '@/src/components/common/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { BackLink } from '@/src/components/common/back-link';
 import { useEffect, useMemo, useState } from 'react';
-import { createUserAccount } from '@/src/api/api';
+import { changeUserPassword, createUserAccount } from '@/src/api/api';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -27,6 +27,8 @@ export function RegistrationForm() {
     const { handleSubmit, control, formState: { errors }, watch, reset, setValue, clearErrors } = useForm<UserData>({ defaultValues, mode: 'onChange' });
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+
+    const isValid = Object.keys(errors).length === 0;
 
     useEffect(() => {
         const repeatedPassword = watch('repeatedPassword');
@@ -55,11 +57,26 @@ export function RegistrationForm() {
         }
     };
 
-    const onReset = async () => {
-        // TODO: Implement
+    const onReset: SubmitHandler<UserData> = async (data, e) => {
+        e?.preventDefault();
+        setIsRegistering(true); // is changing password, not registering :>
 
-        toastSuccess('Pomyślnie zmieniono hasło!');
-        router.push('/');
+        if (data.password.length === 0 || data.repeatedPassword.length === 0) {
+            toastError('Oba hasła muszą być identyczne.');
+
+            return;
+        }
+
+        try {
+            await changeUserPassword(data.password);
+
+            toastSuccess('Pomyślnie zmieniono hasło!');
+            router.push('/');
+        } catch (err: any) {
+            toastError(err);
+        } finally {
+            setIsRegistering(false);
+        }
     };
 
     const validateRepeatedPasswordMatch = (value: string) => {
@@ -144,7 +161,7 @@ export function RegistrationForm() {
                     <InputPassword label={isResetting ? 'Powtórz nowe hasło' : 'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="25%" />
                 )}
             />
-            <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" />
+            <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" disabled={!isValid} />
             {wasCreated && 'Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.'}
         </form>
     );

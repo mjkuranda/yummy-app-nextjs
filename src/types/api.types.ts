@@ -121,6 +121,10 @@ export interface NotActivatedUser {
  */
 export type Language = 'en' | 'en-US' | 'pl';
 
+export interface NewPasswordDto {
+    newPassword: string;
+}
+
 export interface NewDishDto {
     author: string;
     description: string;

@@ -4,7 +4,7 @@ import {
     DishProposal,
     DishProposalRequest,
     DishResult, NotActivatedUser,
-    UserPermissions, UserObject, DetailedDishWithTranslations, NewDishDto, DishDocument, CapabilityType
+    UserPermissions, UserObject, DetailedDishWithTranslations, NewDishDto, DishDocument, CapabilityType, NewPasswordDto
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
@@ -340,6 +340,23 @@ export async function denyPermission(login: string, capability: CapabilityType):
         }
 
         return await res.json();
+    } catch (err: unknown) {
+        throw err;
+    }
+}
+
+export async function changeUserPassword(newPassword: string): Promise<void> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const res = await apiPost<NewPasswordDto>('users/change-password', { newPassword });
+
+        if (res.status >= 400) {
+            const json = await res.json();
+
+            throw new ApiError(res.status, json.message);
+        }
+
+        return;
     } catch (err: unknown) {
         throw err;
     }
