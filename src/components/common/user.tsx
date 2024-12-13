@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Loader } from '@/src/components/common/loader';
 import { toastSuccess } from '@/src/utils/toast.utils';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 export function User() {
     const { isLoggedIn, logoutUser, isFetching, user } = useUserContext();
@@ -50,7 +51,9 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        {hasCapability() && <Link href={'/manage'}>Zarządzaj <ManageAccountsIcon /></Link>}
+                        <Link href={'/users/registration?action=reset'} style={{ color: 'white' }}>Zmień hasło <VpnKeyIcon /></Link>
+                        &nbsp;&nbsp;&nbsp;
+                        {hasCapability() && <Link href={'/manage'} style={{ color: 'white' }}>Zarządzaj <ManageAccountsIcon /></Link>}
                         &nbsp;&nbsp;&nbsp;
                         <Button label="Wyloguj się" icon="log out" onClick={onLogout} />
                     </>

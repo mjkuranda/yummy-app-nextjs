@@ -232,6 +232,10 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                 min: {
                                     value: 1,
                                     message: 'Czas przygotowania musi wynosić przynajmniej 1 minutę'
+                                },
+                                validate: {
+                                    typeofNumber: (value: string) => !isNaN(Number(value)) ? true : 'Podaj liczbę minut',
+                                    integerValue: (value: string) => !isNaN(Number(value)) && !value.includes('.') ? true : 'Podaj liczbę całkowitą'
                                 }
                             }}
                             render={({ field: { onChange, value } }) => (
