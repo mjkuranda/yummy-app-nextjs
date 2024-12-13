@@ -23,7 +23,7 @@ export default function AboutPage() {
                         <div>Promotorem pracy jest <strong>dr inż. Damian Grela</strong>.</div>
                     </div>
                     <div className={styles['about-section']}>
-                        <div>Aktualna wersja z dnia: <i>27.11.2024 r</i>.</div>
+                        <div>Aktualna wersja z dnia: <i>13.12.2024 r</i>.</div>
                         <div><i>v1.61.0</i></div>
                     </div>
                 </div>
