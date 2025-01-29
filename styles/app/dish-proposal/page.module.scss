@@ -25,9 +25,17 @@ $container-horizontal-margin: 33;
                 justify-content: center;
                 align-items: center;
 
-                img {
-                    height: calc(231px * 2);
-                    //box-shadow: 0 0 4px 4px black;
+                .dish-proposal-container__proposal-image-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 462px;
+                    height: 462px;
+
+                    img {
+                        height: calc(231px * 2);
+                        //box-shadow: 0 0 4px 4px black;
+                    }
                 }
             }
 

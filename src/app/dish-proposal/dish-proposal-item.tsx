@@ -14,7 +14,9 @@ export function DishProposalItem({ proposal }: DishProposalItemProps) {
     return (
         <div className={styles['dish-proposal-container__proposal']}>
             <div className={styles['dish-proposal-container__proposal-image']}>
-                <DishImage title={proposal.title} imgUrl={proposal.imgUrl} provider={proposal.provider} />
+                <div className={styles['dish-proposal-container__proposal-image-container']}>
+                    <DishImage title={proposal.title} imgUrl={proposal.imgUrl} provider={proposal.provider} />
+                </div>
             </div>
             <h3 className={styles['dish-proposal-container__proposal-header']}>
                 {proposal.title}
