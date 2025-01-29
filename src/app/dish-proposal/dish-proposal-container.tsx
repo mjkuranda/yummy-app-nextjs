@@ -10,8 +10,10 @@ import { DishProposal } from '@/src/types/api.types';
 import { Loader } from '@/src/components/common/loader';
 
 export function DishProposalContainer() {
-    const { onNext, onPrevious, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal } = useDishProposals();
+    const { onNext, onPrevious, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal } = useDishProposals();
     const currentProposal = getCurrentProposal() as DishProposal;
+    const previousProposal = getPreviousProposal() as DishProposal;
+    const nextProposal = getNextProposal() as DishProposal;
 
     if (isErrorProposals) {
         return <>Wystąpił błąd.</>;
@@ -23,7 +25,16 @@ export function DishProposalContainer() {
 
     return (
         <div className={styles['dish-proposal-container']}>
-            <DishProposalItem proposal={currentProposal} />
+            <div className={styles['dish-proposal-nearby']}>
+                {currentProposal ?
+                    <>
+                        <DishProposalItem proposal={previousProposal} isTransparent={true} />
+                        <DishProposalItem proposal={currentProposal} isTransparent={false} />
+                        <DishProposalItem proposal={nextProposal} isTransparent={true} />
+                    </> :
+                    <DishProposalItem proposal={currentProposal} isTransparent={false} />
+                }
+            </div>
             {currentProposal && <DishProposalNavigator onPrevious={onPrevious} onNext={onNext} onChoose={onChoose} />}
             <div className={styles['dish-proposal-back-link']}>
                 <Link href="/">

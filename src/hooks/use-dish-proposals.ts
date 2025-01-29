@@ -45,5 +45,21 @@ export function useDishProposals() {
         return proposals![currentProposalIdx];
     };
 
-    return { proposals: proposals ?? [], onPrevious, onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal };
+    const getPreviousProposal = (): DishProposal | null => {
+        if (isLoadingProposals || isErrorProposals || proposals?.length === 0) {
+            return null;
+        }
+
+        return proposals![(currentProposalIdx + proposals!.length - 1) % proposals!.length];
+    };
+
+    const getNextProposal = (): DishProposal | null => {
+        if (isLoadingProposals || isErrorProposals || proposals?.length === 0) {
+            return null;
+        }
+
+        return proposals![(currentProposalIdx + 1) % proposals!.length];
+    };
+
+    return { proposals: proposals ?? [], onPrevious, onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal };
 }

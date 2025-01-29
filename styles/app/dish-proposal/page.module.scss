@@ -17,45 +17,53 @@ $container-horizontal-margin: 33;
     }
 
     .dish-proposal-container {
-        margin: 0 calc($container-horizontal-margin * 1%);
+        //margin: 0 calc($container-horizontal-margin * 1%);
+        width: 100%;
 
-        .dish-proposal-container__proposal {
-            .dish-proposal-container__proposal-image {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+        .dish-proposal-nearby {
+            display: flex;
+            justify-content: center;
 
-                .dish-proposal-container__proposal-image-container {
+            .dish-proposal-container__proposal {
+                width: 33%;
+
+                .dish-proposal-container__proposal-image {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 462px;
-                    height: 462px;
 
-                    img {
-                        height: calc(231px * 2);
-                        //box-shadow: 0 0 4px 4px black;
+                    .dish-proposal-container__proposal-image-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 462px;
+                        height: 462px;
+
+                        img {
+                            height: calc(231px * 2);
+                            //box-shadow: 0 0 4px 4px black;
+                        }
                     }
                 }
-            }
 
-            .dish-proposal-container__proposal-header {
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                width: 50vw;
-                text-align: center;
-                margin-top: 1rem;
-            }
+                .dish-proposal-container__proposal-header {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 1rem;
+                }
 
-            p {
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: $proposal-max-line-count;
-                line-clamp: $proposal-max-line-count;
-                -webkit-box-orient: vertical;
+                p {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: $proposal-max-line-count;
+                    line-clamp: $proposal-max-line-count;
+                    -webkit-box-orient: vertical;
 
-                display: none;
+                    display: none;
+                }
             }
         }
 
