@@ -19,7 +19,7 @@ export function DishIngredients({ dish, ingredients }: DishIngredientsProps) {
         <div className={styles['dish-ingredients']}>
             <h5>Składniki:</h5>
             <ul>
-                {ingredients ?
+                {ingredients && ingredients.length > 0 ?
                     ingredients.map((ingredient, idx) => <DishIngredientElement text={ingredient.text} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />) :
                     dish.ingredients.map((ingredient, idx) => <DishIngredientElement text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />)
                 }
