@@ -4,15 +4,16 @@ import { DishImage } from '@/src/app/result/[id]/dish-image';
 
 interface DishProposalItemProps {
     proposal: DishProposal;
+    isTransparent: boolean;
 }
 
-export function DishProposalItem({ proposal }: DishProposalItemProps) {
+export function DishProposalItem({ proposal, isTransparent }: DishProposalItemProps) {
     if (!proposal) {
         return <div className={styles['dish-proposal-error']}>Niestety, brak propozycji dań dla Ciebie.</div>;
     }
 
     return (
-        <div className={styles['dish-proposal-container__proposal']}>
+        <div className={styles['dish-proposal-container__proposal']} style={{ opacity: isTransparent ? 0.382 : 1 }}>
             <div className={styles['dish-proposal-container__proposal-image']}>
                 <div className={styles['dish-proposal-container__proposal-image-container']}>
                     <DishImage title={proposal.title} imgUrl={proposal.imgUrl} provider={proposal.provider} />

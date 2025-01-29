@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.62.0] - 2025-01-29
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Optional property `width` to `button` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `BarLinkBar` component.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Browsing recommendation up to 3 proposals with new layout.
+
 ## [1.61.1] - 2025-01-29
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Errors for dish searching and details.

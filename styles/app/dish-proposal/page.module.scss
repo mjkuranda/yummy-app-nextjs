@@ -8,54 +8,80 @@ $container-horizontal-margin: 33;
     min-height: 100vh;
     background-color: $page-background-color;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
 
     .dish-proposal-error {
         text-align: center;
     }
 
     .dish-proposal-container {
-        margin: 0 calc($container-horizontal-margin * 1%);
+        //margin: 0 calc($container-horizontal-margin * 1%);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
 
-        .dish-proposal-container__proposal {
-            .dish-proposal-container__proposal-image {
+        .dish-proposal-nearby {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 12;
+
+            > * {
+                width: 33%;
+            }
+
+            .dish-proposal-current {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex-direction: column;
+            }
 
-                .dish-proposal-container__proposal-image-container {
+            .dish-proposal-select-button-container {
+                padding-top: 1rem;
+            }
+
+            .dish-proposal-container__proposal {
+                .dish-proposal-container__proposal-image {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 462px;
-                    height: 462px;
 
-                    img {
-                        height: calc(231px * 2);
-                        //box-shadow: 0 0 4px 4px black;
+                    .dish-proposal-container__proposal-image-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 462px;
+                        height: 462px;
+
+                        img {
+                            height: calc(231px * 2);
+                            //box-shadow: 0 0 4px 4px black;
+                        }
                     }
                 }
-            }
 
-            .dish-proposal-container__proposal-header {
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                width: 50vw;
-                text-align: center;
-                margin-top: 1rem;
-            }
+                .dish-proposal-container__proposal-header {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 1rem;
+                }
 
-            p {
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: $proposal-max-line-count;
-                line-clamp: $proposal-max-line-count;
-                -webkit-box-orient: vertical;
+                p {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: $proposal-max-line-count;
+                    line-clamp: $proposal-max-line-count;
+                    -webkit-box-orient: vertical;
 
-                display: none;
+                    display: none;
+                }
             }
         }
 
@@ -63,17 +89,16 @@ $container-horizontal-margin: 33;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 5rem;
+            flex: 1;
+
+            margin: 0 .5% .5% .5%;
+            padding: 1.6em;
+            background-color: $honey-yellow;
+            border-radius: 16px;
 
             button + button {
                 margin-left: 1rem;
             }
-        }
-
-        .dish-proposal-back-link {
-            position: absolute;
-            top: 32px;
-            left: 32px;
         }
     }
 }
