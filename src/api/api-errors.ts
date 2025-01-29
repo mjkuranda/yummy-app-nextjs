@@ -79,6 +79,10 @@ export function throwApiError(res: ApiErrorResponse): never {
 }
 
 export function handleApiError(err: ApiError, router: AppRouterInstance, userContext: UserContextValues): void {
+    if (!err) {
+        return;
+    }
+
     if (err instanceof UnauthorizedError) {
         toastInfo('Twoja sesja wygasła. Zaloguj się ponownie.');
         router.push('/users/login');
