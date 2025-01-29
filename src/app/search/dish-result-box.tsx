@@ -12,7 +12,7 @@ import { DishResult } from '@/src/types/api.types';
 export function DishResultBox() {
     const boxRef = useRef<HTMLElement>(null);
     const { originalQuery, ings, mealType, dishType } = useSearchFilters();
-    const { data: dishes, isLoading } = useGetDishes(ings);
+    const { data: dishes, isLoading, refetch, isFetching } = useGetDishes(ings);
     const [filteredDishes, setFilteredDishes] = useState<DishResult[]>([]);
 
     useEffect(() => {
@@ -24,7 +24,15 @@ export function DishResultBox() {
         }
     }, [dishes, mealType, dishType]);
 
-    if (!dishes && isLoading) {
+    useEffect(() => {
+        refetch().then(queryResult => {
+            const filtered = filterDishByType(queryResult.data ?? [], mealType, dishType);
+
+            setFilteredDishes(filtered);
+        });
+    }, []);
+
+    if (isFetching || !dishes && isLoading) {
         return <Loader />;
     }
 

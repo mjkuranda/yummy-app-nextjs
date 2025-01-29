@@ -19,9 +19,10 @@ export function DishIngredients({ dish, ingredients }: DishIngredientsProps) {
         <div className={styles['dish-ingredients']}>
             <h5>Składniki:</h5>
             <ul>
+                {/* Index for ingredients is okay, because I do nothing with them except from rendering */}
                 {ingredients && ingredients.length > 0 ?
-                    ingredients.map((ingredient, idx) => <DishIngredientElement text={ingredient.text} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />) :
-                    dish.ingredients.map((ingredient, idx) => <DishIngredientElement text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />)
+                    ingredients.map((ingredient, idx) => <DishIngredientElement key={idx} text={ingredient.text} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />) :
+                    dish.ingredients.map((ingredient, idx) => <DishIngredientElement key={idx} text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />)
                 }
             </ul>
         </div>

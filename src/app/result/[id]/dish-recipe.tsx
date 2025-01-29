@@ -20,13 +20,13 @@ export function DishRecipe({ recipe }: DishRecipeProps) {
         <div>
             {recipe && recipe.map(section => {
                 return (
-                    <div className={styles['instruction-section']}>
+                    <div key={section.name ?? 'x'} className={styles['instruction-section']}>
                         <h5>{section.name ? section.name : 'Przepis'}:</h5>
                         <ol>
                             {section.steps.map((step, idx) => {
                                 // NOTE: Index is okay, because it's a static list
                                 return (
-                                    <li key={idx}>{step}</li>
+                                    <li key={`${section.name ?? 'x'}-${idx}`}>{step}</li>
                                 );
                             })}
                         </ol>
