@@ -91,7 +91,7 @@ $container-horizontal-margin: 33;
             align-items: center;
             flex: 1;
 
-            margin: 0 1% 1% 1%;
+            margin: 0 .5% .5% .5%;
             padding: 1.6em;
             background-color: $honey-yellow;
             border-radius: 16px;
@@ -99,12 +99,6 @@ $container-horizontal-margin: 33;
             button + button {
                 margin-left: 1rem;
             }
-        }
-
-        .dish-proposal-back-link {
-            position: absolute;
-            top: 32px;
-            left: 32px;
         }
     }
 }

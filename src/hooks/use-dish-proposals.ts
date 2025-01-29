@@ -61,5 +61,5 @@ export function useDishProposals() {
         return proposals![(currentProposalIdx + 1) % proposals!.length];
     };
 
-    return { proposals: proposals ?? [], onPrevious, onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal };
+    return { currentProposalNumber: currentProposalIdx + 1, proposals: proposals ?? [], onPrevious, onNext, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal };
 }

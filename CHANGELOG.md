@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.62.0] - 2025-01-29
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Optional property `width` to `button` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `BarLinkBar` component.
 
 ### Changed
-- [Marek Kurańda](https://github.com/mjkuranda): Browsing recommendation up to 3 proposals.
+- [Marek Kurańda](https://github.com/mjkuranda): Browsing recommendation up to 3 proposals with new layout.
 
 ## [1.61.1] - 2025-01-29
 ### Fixed

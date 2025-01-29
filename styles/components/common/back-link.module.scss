@@ -1,5 +1,18 @@
+@import '@/styles/globals-colors';
+
 .back-link {
     margin: 16px 0;
+}
+
+.back-link-bar {
+    background-color: $honey-yellow;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+
+    > a > i {
+        margin-right: 0.5em;
+    }
 }
 
 .attached-back-link {
