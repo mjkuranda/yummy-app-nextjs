@@ -9,10 +9,13 @@ import { inferMealTypeBasingOnTime } from '@/src/helpers/search.helper';
 export function useSearchFilters(): SearchFilters {
     const searchParams = useSearchParams();
 
+    const mealType = (searchParams.get('type') ?? inferMealTypeBasingOnTime()) as MealType;
+    const dishType = (searchParams.get('dish') ?? 'any') as DishType;
+
     return {
-        originalQuery: `ings=${searchParams.get('ings')}&type=${searchParams.get('type')}&dish=${searchParams.get('dish')}`,
+        originalQuery: `ings=${searchParams.get('ings')}&type=${mealType}&dish=${dishType}`,
         ings: decodeIngredients(searchParams.get('ings')),
-        mealType: (searchParams.get('type') ?? inferMealTypeBasingOnTime()) as MealType,
-        dishType: (searchParams.get('dish') ?? 'any') as DishType
+        mealType,
+        dishType
     };
 }
