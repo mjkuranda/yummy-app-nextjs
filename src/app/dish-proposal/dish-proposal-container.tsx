@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useDishProposals } from '@/src/hooks/use-dish-proposals';
 import { DishProposal } from '@/src/types/api.types';
 import { Loader } from '@/src/components/common/loader';
+import { Button } from '@/src/components/common/button';
 
 export function DishProposalContainer() {
     const { onNext, onPrevious, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal } = useDishProposals();
@@ -25,17 +26,23 @@ export function DishProposalContainer() {
 
     return (
         <div className={styles['dish-proposal-container']}>
+            <div style={{ flex: 1 }}></div>
             <div className={styles['dish-proposal-nearby']}>
                 {currentProposal ?
                     <>
                         <DishProposalItem proposal={previousProposal} isTransparent={true} />
-                        <DishProposalItem proposal={currentProposal} isTransparent={false} />
+                        <div className={styles['dish-proposal-current']}>
+                            <DishProposalItem proposal={currentProposal} isTransparent={false} />
+                            <div className={styles['dish-proposal-select-button-container']}>
+                                <Button label="Wybierz" icon="details" onClick={onChoose} />
+                            </div>
+                        </div>
                         <DishProposalItem proposal={nextProposal} isTransparent={true} />
                     </> :
                     <DishProposalItem proposal={currentProposal} isTransparent={false} />
                 }
             </div>
-            {currentProposal && <DishProposalNavigator onPrevious={onPrevious} onNext={onNext} onChoose={onChoose} />}
+            {currentProposal && <DishProposalNavigator onPrevious={onPrevious} onNext={onNext} />}
             <div className={styles['dish-proposal-back-link']}>
                 <Link href="/">
                     <ArrowCircleLeftIcon />Powrót do strony głównej

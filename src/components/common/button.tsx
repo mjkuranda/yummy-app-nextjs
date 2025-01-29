@@ -21,10 +21,11 @@ interface ButtonProps {
     icon?: IconVariant;
     link?: string;
     type?: 'button' | 'submit'
+    width?: number;
     onClick?: (e: any) => void;
 }
 
-export function Button({ disabled, label, link, icon, type, onClick }: ButtonProps) {
+export function Button({ disabled, label, link, icon, type, width, onClick }: ButtonProps) {
     const className = disabled ? `${styles['button']} ${styles['button--disabled']}` : styles['button'];
 
     if (link) {
@@ -36,12 +37,13 @@ export function Button({ disabled, label, link, icon, type, onClick }: ButtonPro
                 tabIndex={disabled ? -1 : undefined}>
                 {label}
                 {icon && renderIcon(icon)}
+                {width}
             </Link>
         );
     }
 
     return (
-        <button type={type ?? 'button'} onClick={onClick ?? (() => {})} disabled={disabled} className={className}>
+        <button type={type ?? 'button'} onClick={onClick ?? (() => {})} disabled={disabled} className={className} style={{ width }}>
             {label}
             {icon && renderIcon(icon)}
         </button>
