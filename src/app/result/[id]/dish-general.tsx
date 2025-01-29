@@ -67,7 +67,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
             <div className={styles['dish-details-sections']}>
                 <DishDescription description={description} dish={dish} />
                 <DishIngredients ingredients={ingredients} dish={dish} />
-                <DishRecipe recipe={recipe} dish={dish} />
+                <DishRecipe recipe={recipe?.length ? recipe : dish.recipeSections} dish={dish} />
             </div>
         </div>
     );

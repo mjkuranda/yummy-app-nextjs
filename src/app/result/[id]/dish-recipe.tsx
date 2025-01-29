@@ -11,7 +11,7 @@ export function DishRecipe({ recipe }: DishRecipeProps) {
         return (
             <div className={styles['instruction-section']}>
                 <h5>Przepis:</h5>
-                <p>Niesety, autor nie dostarczył żadnego przepisu dla tego posiłku.</p>
+                <p>Niestety, autor nie dostarczył żadnego przepisu dla tego posiłku.</p>
             </div>
         );
     }
