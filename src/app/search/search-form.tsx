@@ -14,7 +14,7 @@ import { UnauthorizedError } from '@/src/api/api-errors';
 import { InputSelect } from '@/src/components/common/form/input-select';
 import { MealType, MealTypeText } from '@/src/types/dish.types';
 import { useUserContext } from '@/src/contexts/user.context';
-import { getDishTypes, inferMealTypeBasingOnTime } from '@/src/helpers/search.helper';
+import { getDishTypes } from '@/src/helpers/search.helper';
 
 interface SearchFormProps {
     children: ReactElement[];
@@ -24,10 +24,9 @@ export function SearchForm({ children }: SearchFormProps) {
     const router = useRouter();
     const { ings, mealType, dishType } = useSearchFilters();
     const { isLoggedIn } = useUserContext();
-    const inferredType = inferMealTypeBasingOnTime();
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
-    const [selectedMealType, setSelectedMealType] = useState<string>(mealType ?? inferredType);
-    const [selectedDishType, setSelectedDishType] = useState<string>(dishType ?? 'any');
+    const [selectedMealType, setSelectedMealType] = useState<string>(mealType);
+    const [selectedDishType, setSelectedDishType] = useState<string>(dishType);
     const mealTypeOptions = useMemo(() => {
         return Object
             .entries(MealTypeText)

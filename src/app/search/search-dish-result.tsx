@@ -7,16 +7,18 @@ import { Button } from '@/src/components/common/button';
 import { useHasImage } from '@/src/hooks/use-has-image';
 import { Loader } from '@/src/components/common/loader';
 import { ReactElement } from 'react';
+import { encodeSearchQuery } from '@/src/helpers/query.helper';
+import { useSearchFilters } from '@/src/hooks/use-search-filters';
 
 interface SearchDishResultProps {
     dish: DishResult;
-    ingredientQuery: string;
 }
 
-export function SearchDishResult({ dish, ingredientQuery }: SearchDishResultProps) {
+export function SearchDishResult({ dish }: SearchDishResultProps) {
     const { hasImage, isLoading } = useHasImage(dish.imgUrl);
     const imgSrc = hasImage ? dish.imgUrl : '/no-image.png';
-    const encodedUri = encodeURI(`/search?${ingredientQuery}`);
+    const { ings, mealType, dishType } = useSearchFilters();
+    const searchUrlQuery = encodeSearchQuery(ings, mealType, dishType);
 
     const renderMissing = (missingCount: number): ReactElement | string => {
         if (missingCount === 0) {
@@ -41,8 +43,8 @@ export function SearchDishResult({ dish, ingredientQuery }: SearchDishResultProp
     return (
         <div className={`${styles['result-container']} d-flex justify-content-center align-items-center`}>
             <div className={styles['result-image']}>
-                <Link className={styles['img-link']} href={`/result/${dish.id}?sourceUrl=${ingredientQuery}`} target="_blank">
-                    {isLoading ? <Loader /> : <img src={imgSrc} alt={`Zdjęcie posiłku o nazwie ${dish.title}`} />}
+                <Link className={styles['img-link']} href={`/result/${dish.id}?sourceUrl=${searchUrlQuery}`} target="_blank">
+                    {isLoading ? <Loader /> : <img src={imgSrc} alt={`Zdjęcie dania o nazwie ${dish.title}`} />}
                 </Link>
             </div>
             <div className={styles['result-label']}>
@@ -54,7 +56,7 @@ export function SearchDishResult({ dish, ingredientQuery }: SearchDishResultProp
                     </div>
                 </div>
                 <div className={`${styles['result-button']} d-flex justify-content-center align-items-center`}>
-                    <Button label={'Zobacz'} link={`/result/${dish.id}?sourceUrl=${encodedUri}`} />
+                    <Button label={'Zobacz'} link={`/result/${dish.id}?sourceUrl=${searchUrlQuery}`} />
                 </div>
             </div>
         </div>

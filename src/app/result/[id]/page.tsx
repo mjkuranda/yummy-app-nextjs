@@ -12,6 +12,8 @@ import { DetailedDishWithTranslations } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
 import { useEffect } from 'react';
+import { decodeSearchQuery } from '@/src/helpers/query.helper';
+import { EncodedUrlQuery } from '@/src/types/search.types';
 
 export default function ResultById() {
     const { id } = useParams();
@@ -45,7 +47,7 @@ export default function ResultById() {
             <Header />
             <div className={styles['result-page']}>
                 <div className={styles['result-nav']}>
-                    <Link href={searchParams.get('sourceUrl') ?? '/search'}>
+                    <Link href={typeof searchParams.get('sourceUrl') === 'string' ? `/search?${decodeSearchQuery(searchParams.get('sourceUrl') as EncodedUrlQuery)}` : '/search'}>
                         <ArrowCircleLeftIcon />Wróć do wyszukiwania
                     </Link>
                 </div>

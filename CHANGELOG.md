@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.61.1] - 2025-01-29
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Errors for dish searching and details.
+
+### Removed
+- [Marek Kurańda](https://github.com/mjkuranda): `/about` page.
+
 ## [1.61.0] - 2024-12-12
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): New mode for subpage `/users/register?reset` where you can change your password.

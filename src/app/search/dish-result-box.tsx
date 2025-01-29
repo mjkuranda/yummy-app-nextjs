@@ -11,8 +11,8 @@ import { DishResult } from '@/src/types/api.types';
 
 export function DishResultBox() {
     const boxRef = useRef<HTMLElement>(null);
-    const { originalQuery, ings, mealType, dishType } = useSearchFilters();
-    const { data: dishes, isLoading } = useGetDishes(ings);
+    const { ings, mealType, dishType } = useSearchFilters();
+    const { data: dishes, isLoading, refetch, isFetching } = useGetDishes(ings);
     const [filteredDishes, setFilteredDishes] = useState<DishResult[]>([]);
 
     useEffect(() => {
@@ -24,7 +24,15 @@ export function DishResultBox() {
         }
     }, [dishes, mealType, dishType]);
 
-    if (!dishes && isLoading) {
+    useEffect(() => {
+        refetch().then(queryResult => {
+            const filtered = filterDishByType(queryResult.data ?? [], mealType, dishType);
+
+            setFilteredDishes(filtered);
+        });
+    }, []);
+
+    if (isFetching || !dishes && isLoading) {
         return <Loader />;
     }
 
@@ -32,7 +40,7 @@ export function DishResultBox() {
         <section className={[resultStyles['result-box'], 'pt-4'].join(' ')} ref={boxRef}>
             {ings.length > 0 && (filteredDishes.length > 0
                 ? filteredDishes.map(dish => {
-                    return <SearchDishResult dish={dish} key={dish.id} ingredientQuery={originalQuery} />;
+                    return <SearchDishResult dish={dish} key={dish.id} />;
                 })
                 : <div className="w-100 text-center">
                     <b><i>Nie znaleziono żadnych dopasowań.</i></b>
