@@ -2,8 +2,12 @@ import { DishResult } from '@/src/types/api.types';
 import { DishType, DishTypeText, MealType } from '@/src/types/dish.types';
 
 export function filterDishByType(dishes: DishResult[], mealType: MealType, dishType: DishType): DishResult[] {
-    if (mealType === 'any') {
+    if (mealType === 'any' && dishType === 'any') {
         return dishes;
+    }
+
+    if (mealType === 'any') {
+        return dishes.filter(dish => dish.type === dishType);
     }
 
     return dishes.filter(dish => dish.mealType === mealType && (dishType === 'any' || dish.type === dishType));

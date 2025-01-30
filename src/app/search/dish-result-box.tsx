@@ -37,15 +37,22 @@ export function DishResultBox() {
     }
 
     return (
-        <section className={[resultStyles['result-box'], 'pt-4'].join(' ')} ref={boxRef}>
-            {ings.length > 0 && (filteredDishes.length > 0
-                ? filteredDishes.map(dish => {
-                    return <SearchDishResult dish={dish} key={dish.id} />;
-                })
-                : <div className="w-100 text-center">
-                    <b><i>Nie znaleziono żadnych dopasowań.</i></b>
-                </div>
-            )}
-        </section>
+        <>
+            <section className={[resultStyles['result-box'], 'pt-4'].join(' ')} ref={boxRef}>
+                {ings.length > 0 && (filteredDishes.length > 0
+                    ? filteredDishes.map(dish => {
+                        return <SearchDishResult dish={dish} key={dish.id} />;
+                    })
+                    : <div className="w-100 text-center">
+                        <b><i>Nie znaleziono żadnych dopasowań.</i></b>
+                    </div>
+                )}
+            </section>
+            {ings.length > 0 && filteredDishes.length > 0 &&
+                <p style={{ textAlign: 'center', marginTop: '2rem' }}>
+                    <strong>Wyników</strong>: {filteredDishes.length}
+                </p>
+            }
+        </>
     );
 }
