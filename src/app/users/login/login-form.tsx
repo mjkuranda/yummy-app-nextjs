@@ -38,9 +38,8 @@ export function LoginForm() {
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form className={styles['form-control']} onSubmit={onSubmit}>
             {isLogging && <Loader isAbsolute={true} />}
-            {/*<BackLinkBar link="/" label={'Powrót do strony głównej'} isAttached={true} />*/}
             <div>
                 <div>
                     <h3>Zaloguj się</h3>

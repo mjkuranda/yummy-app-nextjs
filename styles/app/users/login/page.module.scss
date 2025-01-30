@@ -1,39 +1,30 @@
 @import '@/styles/globals-colors';
 
-.login-page {
-    width: 100vw;
-    height: 100vh;
+.form-control {
     display: flex;
-    flex-direction: column;
-    background-color: $honey-yellow-alpha;
+    justify-content: center;
+    align-items: center;
 
-    form {
+    h3 {
+        text-align: center;
+    }
+
+    .form-control-container {
         display: flex;
         justify-content: center;
-        align-items: center;
-        flex: 1;
+        margin-top: 2rem;
 
-        h3 {
-            text-align: center;
-        }
-
-        .form-control-container {
+        .form-control-container-wrapper {
             display: flex;
-            justify-content: center;
-            margin-top: 2rem;
+            flex-direction: column;
 
-            .form-control-container-wrapper {
-                display: flex;
-                flex-direction: column;
-
-                > p {
-                    margin-top: .3rem;
-                }
+            > p {
+                margin-top: .3rem;
             }
         }
+    }
 
-        .form-control-container + .form-control-container {
-            margin-top: 1rem;
-        }
+    .form-control-container + .form-control-container {
+        margin-top: 1rem;
     }
 }
