@@ -1,24 +1,21 @@
 import styles from '@/styles/app/dishes/create/page.module.scss';
-import { Header } from '@/src/components/common/header';
-import { Footer } from '@/src/components/common/footer';
 import { CreateDishForm } from '@/src/app/dishes/create/create-dish-form';
 import { BackLink } from '@/src/components/common/back-link';
 import { IngredientData, IngredientDataValue } from '@/src/types/ingredient.types';
 import path from 'path';
 import fs from 'fs';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 
 export default function CreateDishPage() {
     const ingredients = getMergedIngredients();
 
     return (
-        <>
-            <Header />
+        <WrappedContentLayout>
             <div className={styles['create-dish-page']}>
                 <BackLink link="/search" label={'Powrót do wyszukiwania'} />
                 <CreateDishForm ingredients={ingredients} />
             </div>
-            <Footer />
-        </>
+        </WrappedContentLayout>
     );
 }
 

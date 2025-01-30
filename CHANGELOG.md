@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.65.0] - 2025-01-30
 ### Added
-- [Marek Kurańda](https://github.com/mjkuranda): `WrappedContentLayout` and `WrappedScreenContentLayout` layouts.
+- [Marek Kurańda](https://github.com/mjkuranda): `ScreenContentLayout`, `WrappedContentLayout` and `WrappedScreenContentLayout` layouts.
 
 ## [1.64.0] - 2025-01-30
 ### Changed
