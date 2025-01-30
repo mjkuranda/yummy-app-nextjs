@@ -1,6 +1,5 @@
-import styles from '@/styles/app/dishes/create/page.module.scss';
 import { CreateDishForm } from '@/src/app/dishes/create/create-dish-form';
-import { BackLink } from '@/src/components/common/back-link';
+import { BackLinkBar } from '@/src/components/common/back-link-bar';
 import { getDish } from '@/src/api/api';
 import { redirect } from 'next/navigation';
 import { fetchIngredients } from '@/src/app/dishes/create/page';
@@ -22,11 +21,9 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     const ingredients = fetchIngredients();
 
     return (
-        <WrappedContentLayout>
-            <div className={styles['create-dish-page']}>
-                <BackLink link={`/dishes/${id}`} label={'Powrót do dania'} />
-                <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
-            </div>
+        <WrappedContentLayout style={{ padding: '16px 10%' }}>
+            <BackLinkBar link={`/dishes/${id}`} label={'Powrót do dania'} />
+            <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
         </WrappedContentLayout>
     );
 }
