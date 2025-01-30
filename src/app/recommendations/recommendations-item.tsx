@@ -1,6 +1,6 @@
 import styles from '@/styles/app/recommendations/page.module.scss';
 import { DishProposal } from '@/src/types/api.types';
-import { DishImage } from '@/src/app/result/[id]/dish-image';
+import { DishImage } from '@/src/app/dishes/[id]/dish-image';
 
 interface DishProposalItemProps {
     proposal: DishProposal;

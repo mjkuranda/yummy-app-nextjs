@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.64.0] - 2025-01-30
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `/dish-proposal` to `/recommendations`.
+- [Marek Kurańda](https://github.com/mjkuranda): `/result` to `/dishes/:id`.
 
 ## [1.63.0] - 2025-01-30
 ### Added

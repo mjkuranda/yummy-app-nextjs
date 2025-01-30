@@ -1,4 +1,4 @@
-import styles from '@/styles/app/result/dish-comment-container.module.scss';
+import styles from '@/styles/app/dishes/[id]/dish-comment-container.module.scss';
 import PersonIcon from '@mui/icons-material/Person';
 import { DishComment } from '@/src/types/dish.types';
 import { HOUR, MINUTE, SECOND } from '@/src/constants/numbers';

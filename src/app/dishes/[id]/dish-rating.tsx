@@ -1,8 +1,8 @@
 'use client';
 
-import styles from '@/styles/app/result/dish-rating.module.scss';
-import { DishRatingStars } from '@/src/app/result/[id]/dish-rating-stars';
-import { DishRatingUser } from '@/src/app/result/[id]/dish-rating-user';
+import styles from '@/styles/app/dishes/[id]/dish-rating.module.scss';
+import { DishRatingStars } from '@/src/app/dishes/[id]/dish-rating-stars';
+import { DishRatingUser } from '@/src/app/dishes/[id]/dish-rating-user';
 import { TextButton } from '@/src/components/common/text-button';
 import { useEffect, useState } from 'react';
 import { DishRating as DishRatingType } from '@/src/types/dish.types';

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/result/dish-rating.module.scss';
+import styles from '@/styles/app/dishes/[id]/dish-rating.module.scss';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarBorderIcon from '@mui/icons-material/StarBorder';

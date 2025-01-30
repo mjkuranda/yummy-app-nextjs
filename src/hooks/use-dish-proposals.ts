@@ -31,7 +31,7 @@ export function useDishProposals() {
 
     const onChoose = () => {
         if (proposals) {
-            return router.push(`/result/${proposals[currentProposalIdx].id}`);
+            return router.push(`/dishes/${proposals[currentProposalIdx].id}`);
         }
 
         router.push('/');

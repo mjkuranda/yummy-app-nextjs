@@ -1,8 +1,8 @@
 'use client';
 
 import { DetailedDish, TranslatedIngredient } from '@/src/types/api.types';
-import { DishIngredientElement } from '@/src/app/result/[id]/dish-ingredient-element';
-import styles from '@/styles/app/result/page.module.scss';
+import { DishIngredientElement } from '@/src/app/dishes/[id]/dish-ingredient-element';
+import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import { useSearchParams } from 'next/navigation';
 import { useComparedIngredients } from '@/src/hooks/use-compared-ingredients';
 

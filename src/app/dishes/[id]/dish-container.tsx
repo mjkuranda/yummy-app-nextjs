@@ -1,7 +1,7 @@
-import { DishImage } from '@/src/app/result/[id]/dish-image';
+import { DishImage } from '@/src/app/dishes/[id]/dish-image';
 import { DetailedDishWithTranslations } from '@/src/types/api.types';
-import { DishGeneral } from '@/src/app/result/[id]/dish-general';
-import { DishCommentContainer } from '@/src/app/result/[id]/dish-comment-container';
+import { DishGeneral } from '@/src/app/dishes/[id]/dish-general';
+import { DishCommentContainer } from '@/src/app/dishes/[id]/dish-comment-container';
 
 interface DishContainerProps {
     complexDishObject: DetailedDishWithTranslations;
