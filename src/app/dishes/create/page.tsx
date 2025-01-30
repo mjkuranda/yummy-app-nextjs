@@ -9,7 +9,7 @@ export default function CreateDishPage() {
     const ingredients = getMergedIngredients();
 
     return (
-        <WrappedContentLayout style={{ padding: '16px 10%' }}>
+        <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
             <BackLinkBar link="/search" label={'Powrót do wyszukiwania'} />
             <CreateDishForm ingredients={ingredients} />
         </WrappedContentLayout>

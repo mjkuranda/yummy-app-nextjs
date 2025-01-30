@@ -21,7 +21,7 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     const ingredients = fetchIngredients();
 
     return (
-        <WrappedContentLayout style={{ padding: '16px 10%' }}>
+        <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
             <BackLinkBar link={`/dishes/${id}`} label={'Powrót do dania'} />
             <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
         </WrappedContentLayout>
