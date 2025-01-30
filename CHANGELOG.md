@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `/dish-proposal` to `/recommendations`.
 - [Marek Kurańda](https://github.com/mjkuranda): `/result` to `/dishes/:id`.
+- [Marek Kurańda](https://github.com/mjkuranda): Ingredient icon to default one when image hasn't found.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Matched ingredients.
 
 ## [1.63.0] - 2025-01-30
 ### Added

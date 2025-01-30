@@ -11,7 +11,8 @@ export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, di
         return null;
     }
 
-    const ingredients = [...sourceUrl.substring(13).split(','), ...pantryIngredients];
+    const [,, ...ings] = sourceUrl.split(',');
+    const ingredients = [...ings, ...pantryIngredients];
 
     return dish.ingredients.map(ingredient => ingredients.includes(ingredient.name));
 }
