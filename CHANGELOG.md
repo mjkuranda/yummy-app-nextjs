@@ -3,6 +3,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.64.0] - 2025-01-30
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `/dish-proposal` to `/recommendations`.
+- [Marek Kurańda](https://github.com/mjkuranda): `/result` to `/dishes/:id`.
+- [Marek Kurańda](https://github.com/mjkuranda): `/dishes/create/:id` to `/dishes/:id/edit`.
+- [Marek Kurańda](https://github.com/mjkuranda): `/users/registration?action=reset` to `/users/change-password`.
+- [Marek Kurańda](https://github.com/mjkuranda): Ingredient icon to default one when image hasn't found.
+- [Marek Kurańda](https://github.com/mjkuranda): Login, register and activation screen layout.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Matched ingredients.
+
 ## [1.63.0] - 2025-01-30
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `FlagIcon` component.

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/result/dish-comment-container.module.scss';
+import styles from '@/styles/app/dishes/[id]/dish-comment-container.module.scss';
 import { InputString } from '@/src/components/common/form/input-string';
 import { useEffect, useState } from 'react';
 import { SendIconButton } from '@/src/components/common/send-icon-button';

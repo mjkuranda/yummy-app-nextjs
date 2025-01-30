@@ -1,15 +1,15 @@
-import styles from '@/styles/app/result/page.module.scss';
-import { DishRecipe } from '@/src/app/result/[id]/dish-recipe';
+import styles from '@/styles/app/dishes/[id]/page.module.scss';
+import { DishRecipe } from '@/src/app/dishes/[id]/dish-recipe';
 import { DetailedDish, DishRecipeSection, TranslatedIngredient } from '@/src/types/api.types';
-import { DishRating } from '@/src/app/result/[id]/dish-rating';
+import { DishRating } from '@/src/app/dishes/[id]/dish-rating';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { DishTypeText } from '@/src/types/dish.types';
 import FlatwareIcon from '@mui/icons-material/Flatware';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { DishIngredients } from '@/src/app/result/[id]/dish-ingredients';
-import { DishDescription } from '@/src/app/result/[id]/dish-description';
-import { DishDeletion } from '@/src/app/result/[id]/dish-deletion';
-import { DishEdition } from '@/src/app/result/[id]/dish-edition';
+import { DishIngredients } from '@/src/app/dishes/[id]/dish-ingredients';
+import { DishDescription } from '@/src/app/dishes/[id]/dish-description';
+import { DishDeletion } from '@/src/app/dishes/[id]/dish-deletion';
+import { DishEdition } from '@/src/app/dishes/[id]/dish-edition';
 import { FlagIcon } from '@/src/components/common/flag-icon';
 
 interface DishGeneralProps {

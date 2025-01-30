@@ -1,5 +1,5 @@
-import styles from '@/styles/app/result/dish-rating.module.scss';
-import { DishRatingStars } from '@/src/app/result/[id]/dish-rating-stars';
+import styles from '@/styles/app/dishes/[id]/dish-rating.module.scss';
+import { DishRatingStars } from '@/src/app/dishes/[id]/dish-rating-stars';
 import { ChangeEvent, useState } from 'react';
 import { InputRange } from '@/src/components/common/form/input-range';
 import { Button } from '@/src/components/common/button';

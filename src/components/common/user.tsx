@@ -51,7 +51,7 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        <Link href={'/users/registration?action=reset'} style={{ color: 'white' }}>Zmień hasło <VpnKeyIcon /></Link>
+                        <Link href={'/users/change-password'} style={{ color: 'white' }}>Zmień hasło <VpnKeyIcon /></Link>
                         &nbsp;&nbsp;&nbsp;
                         {hasCapability() && <Link href={'/manage'} style={{ color: 'white' }}>Zarządzaj <ManageAccountsIcon /></Link>}
                         &nbsp;&nbsp;&nbsp;

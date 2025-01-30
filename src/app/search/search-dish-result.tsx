@@ -44,7 +44,7 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
     return (
         <div className={`${styles['result-container']} d-flex justify-content-center align-items-center`}>
             <div className={styles['result-image']}>
-                <Link className={styles['img-link']} href={`/result/${dish.id}?sourceUrl=${searchUrlQuery}`} target="_blank">
+                <Link className={styles['img-link']} href={`/dishes/${dish.id}?sourceUrl=${searchUrlQuery}`} target="_blank">
                     {isLoading ? <Loader /> : <img src={imgSrc} alt={`Zdjęcie dania o nazwie ${dish.title}`} />}
                 </Link>
             </div>
@@ -60,7 +60,7 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
                     </div>
                 </div>
                 <div className={`${styles['result-button']} d-flex justify-content-center align-items-center`}>
-                    <Button label={'Zobacz'} link={`/result/${dish.id}?sourceUrl=${searchUrlQuery}`} />
+                    <Button label={'Zobacz'} link={`/dishes/${dish.id}?sourceUrl=${searchUrlQuery}`} />
                 </div>
             </div>
         </div>

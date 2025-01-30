@@ -1,11 +1,11 @@
 'use client';
 
-import styles from '@/styles/app/result/dish-comment-container.module.scss';
+import styles from '@/styles/app/dishes/[id]/dish-comment-container.module.scss';
 import { useParams } from 'next/navigation';
 import { useGetDishComments } from '@/src/api/endpoints';
 import { Loader } from '@/src/components/common/loader';
-import { DishCommentContent } from '@/src/app/result/[id]/dish-comment-content';
-import { DishCommentAddSection } from '@/src/app/result/[id]/dish-comment-add-section';
+import { DishCommentContent } from '@/src/app/dishes/[id]/dish-comment-content';
+import { DishCommentAddSection } from '@/src/app/dishes/[id]/dish-comment-add-section';
 import Link from 'next/link';
 import { useUserContext } from '@/src/contexts/user.context';
 

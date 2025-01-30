@@ -25,7 +25,7 @@ import { IngredientFormProvider } from '@/src/contexts/ingredient-form.context';
 import { IngredientForm } from '@/src/app/dishes/create/ingredient-form';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { InputNumber } from '@/src/components/common/form/input-number';
-import { DishImage } from '@/src/app/result/[id]/dish-image';
+import { DishImage } from '@/src/app/dishes/[id]/dish-image';
 
 const mealOptions = [
     { en: 'breakfast', label: 'Śniadanie' },
@@ -118,7 +118,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
             if (!userContext.user.isAdmin && !userContext.user.capabilities?.canEdit) {
                 toastInfo('Aby edytować posiłki, potrzebujesz uprawnień admina, badź możliwości edycji.');
 
-                return router.push(`/result/${dish?.dish.id}`);
+                return router.push(`/dishes/${dish?.dish.id}`);
             }
         } else {
             if (!userContext.user.isAdmin && !userContext.user.capabilities?.canAdd) {
@@ -167,7 +167,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
             await editDish(dish!.dish.id, differences);
 
             toastSuccess('Pomyślnie edytowano danie');
-            router.push(`/result/${dish!.dish.id}`);
+            router.push(`/dishes/${dish!.dish.id}`);
         } catch (err: unknown) {
             if (err instanceof ApiError) {
                 handleApiError(err, router, userContext);

@@ -1,4 +1,4 @@
-import styles from '@/styles/app/result/page.module.scss';
+import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import { DetailedDish } from '@/src/types/api.types';
 
 interface DishDescriptionProps {

@@ -2,12 +2,12 @@
 
 import { Header } from '@/src/components/common/header';
 import { Footer } from '@/src/components/common/footer';
-import styles from '@/styles/app/result/page.module.scss';
+import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
 import { redirect, useParams, useSearchParams } from 'next/navigation';
 import { useGetDishById } from '@/src/api/endpoints';
-import { DishContainer } from '@/src/app/result/[id]/dish-container';
+import { DishContainer } from '@/src/app/dishes/[id]/dish-container';
 import { DetailedDishWithTranslations } from '@/src/types/api.types';
 import { toastError } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { decodeSearchQuery } from '@/src/helpers/query.helper';
 import { EncodedUrlQuery } from '@/src/types/search.types';
 
-export default function ResultById() {
+export default function DishById() {
     const { id } = useParams();
     const searchParams = useSearchParams();
     const { data: dish, isLoading, isError, error } = useGetDishById(id as string);

@@ -17,7 +17,7 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     const dishWithTranslations = await getDish(id);
 
     if (dishWithTranslations.dish.provider !== 'yummy') {
-        return redirect(`/result/${id}`);
+        return redirect(`/dishes/${id}`);
     }
 
     const ingredients = fetchIngredients();
@@ -26,7 +26,7 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
         <>
             <Header />
             <div className={styles['create-dish-page']}>
-                <BackLink link={`/result/${id}`} label={'Powrót do dania'} />
+                <BackLink link={`/dishes/${id}`} label={'Powrót do dania'} />
                 <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
             </div>
             <Footer />
