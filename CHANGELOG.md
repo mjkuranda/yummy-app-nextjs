@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `/dishes/create/:id` to `/dishes/:id/edit`.
 - [Marek Kurańda](https://github.com/mjkuranda): `/users/registration?action=reset` to `/users/change-password`.
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient icon to default one when image hasn't found.
+- [Marek Kurańda](https://github.com/mjkuranda): Login, register and activation screen layout.
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Matched ingredients.

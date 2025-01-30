@@ -2,13 +2,16 @@
 
 .login-page {
     width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $honey-yellow-alpha;
 
     form {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: calc(100vh - 222px);
-        background-color: $honey-yellow-alpha;
+        flex: 1;
 
         h3 {
             text-align: center;
