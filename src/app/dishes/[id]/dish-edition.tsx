@@ -16,7 +16,7 @@ export function  DishEdition({ dish }: DishEditionProps) {
     }
 
     if (user.isAdmin || dish.sourceOrAuthor === user.login) {
-        return <EditLink label={'Edytuj'} link={`/dishes/create/${dish.id}`} />;
+        return <EditLink label={'Edytuj'} link={`/dishes/${dish.id}/edit`} />;
     }
 
     return <></>;

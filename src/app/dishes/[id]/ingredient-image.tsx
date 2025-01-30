@@ -26,14 +26,4 @@ export function IngredientImage({ imageUrl, text }: IngredientImageProps) {
     }
 
     return <img className={styles['result-ingredient__image']} src={imageUrl} alt={text} />;
-
-    // return (
-    //     <div className={styles['result-image']}>
-    //         <img src={hasImage ? imageUrl : '/no-image.png'} alt={`Zdjęcie daniam o nazwie ${title}`} onError={(e) => {
-    //             const target = e.target as HTMLImageElement;
-    //             target.src = '/no-image.png';
-    //             target.alt = 'Brak dostępnego zdjęcia';
-    //         }} />
-    //     </div>
-    // );
 }
