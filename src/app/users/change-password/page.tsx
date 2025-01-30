@@ -1,12 +1,10 @@
-import styles from '@/styles/app/users/registration/page.module.scss';
 import { RegistrationForm } from '@/src/app/users/registration/registration-form';
-import { Footer } from '@/src/components/common/footer';
+import { WrappedScreenContentLayout } from '@/src/components/common/layouts/wrapped-screen-content-layout';
 
 export default function ChangePasswordPage() {
     return (
-        <div className={styles['registration-page']}>
+        <WrappedScreenContentLayout>
             <RegistrationForm isResetting={true} />
-            <Footer />
-        </div>
+        </WrappedScreenContentLayout>
     );
 }
