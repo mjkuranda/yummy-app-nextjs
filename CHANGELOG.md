@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.62.1] - 2025-01-30
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Result bar below result at search page.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Filtering dishes by meal and dish types.
+
 ## [1.62.0] - 2025-01-29
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Optional property `width` to `button` component.
