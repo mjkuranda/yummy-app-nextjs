@@ -7,11 +7,15 @@ import { InputString } from '@/src/components/common/form/input-string';
 import { Button } from '@/src/components/common/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { BackLink } from '@/src/components/common/back-link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { changeUserPassword, createUserAccount } from '@/src/api/api';
 import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
+interface RegistrationFormProps {
+    isResetting?: boolean;
+}
 
 const defaultValues: UserData = {
     email: '',
@@ -20,10 +24,8 @@ const defaultValues: UserData = {
     repeatedPassword: ''
 };
 
-export function RegistrationForm() {
+export function RegistrationForm({ isResetting }: RegistrationFormProps) {
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const isResetting = useMemo(() => Boolean(searchParams.get('action') === 'reset'), [searchParams.get('action')]);
     const { handleSubmit, control, formState: { errors }, watch, reset, setValue, clearErrors } = useForm<UserData>({ defaultValues, mode: 'onChange' });
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
