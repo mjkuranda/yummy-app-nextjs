@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Title, description and relevance information texts were centered.
+- [Marek Kurańda](https://github.com/mjkuranda): Dish result title shortened to 2 lines.
 
 ## [1.62.1] - 2025-01-30
 ### Added
