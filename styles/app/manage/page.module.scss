@@ -1,9 +1,7 @@
 @import "@/styles/globals-colors";
 
-.manage-page {
-    background-color: $orange-yellow-crayola;
+.manage-container {
     padding: 16px 10%;
-    flex: 1;
 
     .item-list {
         margin: 16px 0;
