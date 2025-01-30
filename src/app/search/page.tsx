@@ -1,16 +1,14 @@
-import { Header } from '@/src/components/common/header';
 import styles from '@/styles/app/search/page.module.scss';
 import resultStyles from '@/styles/app/search/search-dish-result.module.scss';
-import { Footer } from '@/src/components/common/footer';
 import SearchIngredientCategory from '@/src/app/search/search-ingredient-category';
 import { SearchForm } from '@/src/app/search/search-form';
 import { DishResultBox } from '@/src/app/search/dish-result-box';
 import Link from 'next/link';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 
 export default function Search() {
     return (
-        <div id={styles['search-page']}>
-            <Header />
+        <WrappedContentLayout>
             <SearchForm>
                 <SearchIngredientCategory category="breads" />
                 <SearchIngredientCategory category="cereal-products" />
@@ -37,7 +35,6 @@ export default function Search() {
                     </div>
                 </section>
             </div>
-            <Footer />
-        </div>
+        </WrappedContentLayout>
     );
 }

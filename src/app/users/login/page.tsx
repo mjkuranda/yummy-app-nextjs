@@ -1,14 +1,10 @@
-import { Footer } from '@/src/components/common/footer';
-import styles from '@/styles/app/users/login/page.module.scss';
+import { WrappedScreenContentLayout } from '@/src/components/common/layouts/wrapped-screen-content-layout';
 import { LoginForm } from '@/src/app/users/login/login-form';
-import { Header } from '@/src/components/common/header';
 
 export default function LoginPage() {
     return (
-        <div className={styles['login-page']}>
-            <Header />
+        <WrappedScreenContentLayout>
             <LoginForm />
-            <Footer />
-        </div>
+        </WrappedScreenContentLayout>
     );
 }

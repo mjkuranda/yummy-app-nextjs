@@ -1,7 +1,5 @@
 'use client';
 
-import { Header } from '@/src/components/common/header';
-import { Footer } from '@/src/components/common/footer';
 import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Link from 'next/link';
@@ -14,6 +12,7 @@ import { Loader } from '@/src/components/common/loader';
 import { useEffect } from 'react';
 import { decodeSearchQuery } from '@/src/helpers/query.helper';
 import { EncodedUrlQuery } from '@/src/types/search.types';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 
 export default function DishById() {
     const { id } = useParams();
@@ -43,8 +42,7 @@ export default function DishById() {
     }, [dish, isError]);
 
     return (
-        <>
-            <Header />
+        <WrappedContentLayout>
             <div className={styles['result-page']}>
                 <div className={styles['result-nav']}>
                     <Link href={typeof searchParams.get('sourceUrl') === 'string' ? `/search?${decodeSearchQuery(searchParams.get('sourceUrl') as EncodedUrlQuery)}` : '/search'}>
@@ -60,8 +58,7 @@ export default function DishById() {
                     {isError && <div>Wystąpił błąd.</div>}
                 </div>
             </div>
-            <Footer />
-        </>
+        </WrappedContentLayout>
     );
 }
 

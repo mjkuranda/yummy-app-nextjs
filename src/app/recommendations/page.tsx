@@ -1,12 +1,12 @@
 'use client';
 
-import styles from '@/styles/app/recommendations/page.module.scss';
 import { RecommendationsContainer } from '@/src/app/recommendations/recommendations-container';
+import { ScreenContentLayout } from '@/src/components/common/layouts/screen-content-layout';
 
 export default function RecommendationsPage() {
     return (
-        <div className={styles['recommendations-page']}>
+        <ScreenContentLayout>
             <RecommendationsContainer />
-        </div>
+        </ScreenContentLayout>
     );
 }

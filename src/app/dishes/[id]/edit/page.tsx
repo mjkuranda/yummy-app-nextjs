@@ -1,11 +1,9 @@
-import styles from '@/styles/app/dishes/create/page.module.scss';
-import { Header } from '@/src/components/common/header';
-import { Footer } from '@/src/components/common/footer';
 import { CreateDishForm } from '@/src/app/dishes/create/create-dish-form';
-import { BackLink } from '@/src/components/common/back-link';
+import { BackLinkBar } from '@/src/components/common/back-link-bar';
 import { getDish } from '@/src/api/api';
 import { redirect } from 'next/navigation';
 import { fetchIngredients } from '@/src/app/dishes/create/page';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 
 interface EditDishPageProps {
     params: {
@@ -23,13 +21,9 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     const ingredients = fetchIngredients();
 
     return (
-        <>
-            <Header />
-            <div className={styles['create-dish-page']}>
-                <BackLink link={`/dishes/${id}`} label={'Powrót do dania'} />
-                <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
-            </div>
-            <Footer />
-        </>
+        <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
+            <BackLinkBar link={`/dishes/${id}`} label={'Powrót do dania'} />
+            <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
+        </WrappedContentLayout>
     );
 }

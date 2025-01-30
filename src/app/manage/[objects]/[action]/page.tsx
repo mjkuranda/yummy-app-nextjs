@@ -1,13 +1,10 @@
-import { Header } from '@/src/components/common/header';
-import { Footer } from '@/src/components/common/footer';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 import { ObjectContainer } from '@/src/app/manage/[objects]/[action]/object-container';
 
 export default function ObjectManagementPage() {
     return (
-        <>
-            <Header />
+        <WrappedContentLayout>
             <ObjectContainer />
-            <Footer />
-        </>
+        </WrappedContentLayout>
     );
 }

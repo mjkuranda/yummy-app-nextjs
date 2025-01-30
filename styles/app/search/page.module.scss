@@ -1,40 +1,35 @@
 @import '@/styles/globals-colors.scss';
 
-#search-page {
-    background-color: $orange-yellow-crayola;
-    min-height: 100vh;
+#search-query-part,
+#dish-result-part {
+    margin: 0 10%;
+}
 
-    #search-query-part,
-    #dish-result-part {
-        margin: 0 10%;
+#search-query-part {
+    background-color: $honey-yellow;
+    padding-top: 5rem;
+
+    > div {
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0 0 20px 20px;
     }
+}
 
-    #search-query-part {
-        background-color: $honey-yellow;
-        padding-top: 5rem;
+#search-meal-type {
+    margin: 0 10%;
+    padding: 1rem 0;
+    background-color: $honey-yellow;
 
-        > div {
-            display: flex;
-            flex-wrap: wrap;
-            border-radius: 0 0 20px 20px;
-        }
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+}
 
-    #search-meal-type {
-        margin: 0 10%;
-        padding: 1rem 0;
-        background-color: $honey-yellow;
-
-        > div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    .search-controls {
-        button + button {
-            margin-left: 1rem;
-        }
+.search-controls {
+    button + button {
+        margin-left: 1rem;
     }
 }
