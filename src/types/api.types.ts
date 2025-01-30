@@ -7,6 +7,7 @@ export interface DishResult {
     imgUrl?: string;
     ingredients: string[];
     missingCount: number;
+    language: Language;
     provider: DishProvider;
     title: string;
     relevance: number;

@@ -9,6 +9,7 @@ import { Loader } from '@/src/components/common/loader';
 import { ReactElement } from 'react';
 import { encodeSearchQuery } from '@/src/helpers/query.helper';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
+import { FlagIcon } from '@/src/components/common/flag-icon';
 
 interface SearchDishResultProps {
     dish: DishResult;
@@ -53,6 +54,9 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
                     <div className={styles['result-text']}>
                         <span>{renderRelevance(dish.relevance)}</span>
                         <span>{renderMissing(dish.missingCount)}</span>
+                        <div className="d-flex justify-content-center">
+                            <FlagIcon language={dish.language} hasTranslationInfo={false} />
+                        </div>
                     </div>
                 </div>
                 <div className={`${styles['result-button']} d-flex justify-content-center align-items-center`}>
