@@ -112,6 +112,8 @@ $spc: 8px;
         transform: scale(1);
         transition: 618ms;
 
+        border-radius: 0.618rem;
+
         .result-image {
             width: $h;
             height: $h;
@@ -120,6 +122,7 @@ $spc: 8px;
                 width: $h;
                 height: $h;
                 object-fit: cover;
+                border-radius: 0.618rem 0 0 0.618rem;
             }
         }
 
@@ -129,6 +132,7 @@ $spc: 8px;
                 width: $hd;
                 height: $hd;
                 background-color: $cooper;
+                border-top-right-radius: 0.618rem;
 
                 .result-title {
                     $htt: calc($hd - ($hd / $phi));

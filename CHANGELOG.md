@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.62.1] - 2025-01-30
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Result bar below result at search page.
+- [Marek Kurańda](https://github.com/mjkuranda): Rounded borders for search results.
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Filtering dishes by meal and dish types.
