@@ -13,7 +13,7 @@ export function WelcomeScreenPanel() {
             <h1 className={styles['header-panel']}>DishMatcher</h1>
             <div>
                 <Button label={'Szukaj po składnikach'} icon="search" link={'/search'} />
-                <Button label={'Propozycja dnia'} icon="best search" link={'/dish-proposal'} disabled={!isLoggedIn()} />
+                <Button label={'Propozycja dnia'} icon="best search" link={'/recommendations'} disabled={!isLoggedIn()} />
             </div>
         </div>
     );

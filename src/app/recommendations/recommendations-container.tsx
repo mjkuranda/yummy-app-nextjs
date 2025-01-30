@@ -1,15 +1,15 @@
 'use client';
 
-import styles from '@/styles/app/dish-proposal/page.module.scss';
-import { DishProposalNavigator } from '@/src/app/dish-proposal/dish-proposal-navigator';
-import { DishProposalItem } from '@/src/app/dish-proposal/dish-proposal-item';
+import styles from '@/styles/app/recommendations/page.module.scss';
+import { RecommendationsNavigator } from '@/src/app/recommendations/recommendations-navigator';
+import { RecommendationsItem } from '@/src/app/recommendations/recommendations-item';
 import { useDishProposals } from '@/src/hooks/use-dish-proposals';
 import { DishProposal } from '@/src/types/api.types';
 import { Loader } from '@/src/components/common/loader';
 import { Button } from '@/src/components/common/button';
 import { BackLinkBar } from '@/src/components/common/back-link-bar';
 
-export function DishProposalContainer() {
+export function RecommendationsContainer() {
     const { onNext, onPrevious, onChoose, isLoadingProposals, isErrorProposals, getCurrentProposal, getPreviousProposal, getNextProposal, currentProposalNumber, proposals } = useDishProposals();
     const currentProposal = getCurrentProposal() as DishProposal;
     const previousProposal = getPreviousProposal() as DishProposal;
@@ -24,27 +24,27 @@ export function DishProposalContainer() {
     }
 
     return (
-        <div className={styles['dish-proposal-container']}>
+        <div className={styles['recommendations-container']}>
             <div style={{ flex: 1, margin: '.5% .5% 0 .5%' }}>
                 <BackLinkBar link="/" label={'Powrót do strony głównej'} />
             </div>
-            <div className={styles['dish-proposal-nearby']}>
+            <div className={styles['recommendations-nearby']}>
                 {currentProposal ?
                     <>
-                        <DishProposalItem proposal={previousProposal} isTransparent={true} />
-                        <div className={styles['dish-proposal-current']}>
-                            <DishProposalItem proposal={currentProposal} isTransparent={false} />
-                            <div className={styles['dish-proposal-select-button-container']}>
+                        <RecommendationsItem proposal={previousProposal} isTransparent={true} />
+                        <div className={styles['recommendations-current']}>
+                            <RecommendationsItem proposal={currentProposal} isTransparent={false} />
+                            <div className={styles['recommendations-select-button-container']}>
                                 <Button label="Wybierz" icon="details" onClick={onChoose} />
                                 <p style={{ marginTop: '1rem' }}>{currentProposalNumber} z {proposals.length} rekomendacji</p>
                             </div>
                         </div>
-                        <DishProposalItem proposal={nextProposal} isTransparent={true} />
+                        <RecommendationsItem proposal={nextProposal} isTransparent={true} />
                     </> :
-                    <DishProposalItem proposal={currentProposal} isTransparent={false} />
+                    <RecommendationsItem proposal={currentProposal} isTransparent={false} />
                 }
             </div>
-            {currentProposal && <DishProposalNavigator onPrevious={onPrevious} onNext={onNext} />}
+            {currentProposal && <RecommendationsNavigator onPrevious={onPrevious} onNext={onNext} />}
         </div>
     );
 }

@@ -4,26 +4,21 @@ $page-background-color: $orange-yellow-crayola;
 $proposal-max-line-count: 4;
 $container-horizontal-margin: 33;
 
-.dish-proposal-page {
+.recommendations-page {
     min-height: 100vh;
     background-color: $page-background-color;
 
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
-
-    .dish-proposal-error {
+    .recommendations-error {
         text-align: center;
     }
 
-    .dish-proposal-container {
-        //margin: 0 calc($container-horizontal-margin * 1%);
+    .recommendations-container {
         width: 100%;
         height: 100vh;
         display: flex;
         flex-direction: column;
 
-        .dish-proposal-nearby {
+        .recommendations-nearby {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,24 +28,24 @@ $container-horizontal-margin: 33;
                 width: 33%;
             }
 
-            .dish-proposal-current {
+            .recommendations-current {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
             }
 
-            .dish-proposal-select-button-container {
+            .recommendations-select-button-container {
                 padding-top: 1rem;
             }
 
-            .dish-proposal-container__proposal {
-                .dish-proposal-container__proposal-image {
+            .recommendations-container__proposal {
+                .recommendations-container__proposal-image {
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
-                    .dish-proposal-container__proposal-image-container {
+                    .recommendations-container__proposal-image-container {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -64,7 +59,7 @@ $container-horizontal-margin: 33;
                     }
                 }
 
-                .dish-proposal-container__proposal-header {
+                .recommendations-container__proposal-header {
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
@@ -85,7 +80,7 @@ $container-horizontal-margin: 33;
             }
         }
 
-        .dish-proposal-container__navigator {
+        .recommendations-container__navigator {
             display: flex;
             justify-content: center;
             align-items: center;
