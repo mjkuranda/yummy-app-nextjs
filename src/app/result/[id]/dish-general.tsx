@@ -10,6 +10,7 @@ import { DishIngredients } from '@/src/app/result/[id]/dish-ingredients';
 import { DishDescription } from '@/src/app/result/[id]/dish-description';
 import { DishDeletion } from '@/src/app/result/[id]/dish-deletion';
 import { DishEdition } from '@/src/app/result/[id]/dish-edition';
+import { FlagIcon } from '@/src/components/common/flag-icon';
 
 interface DishGeneralProps {
     dish: DetailedDish;
@@ -25,19 +26,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                 <li>
                     <div className={styles['result-dish-title']}>
                         <h3>{dish.title}</h3>
-                        {dish.language !== 'pl' &&
-                            <img
-                                src="/uk.png"
-                                alt="Flaga UK"
-                                width={48}
-                                title="Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu."
-                                data-author={
-                                    <a href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">
-                                        Uk flag icons created by IconsBox - Flaticon
-                                    </a>
-                                }
-                            />
-                        }
+                        {dish.language !== 'pl' && <FlagIcon language={'en'} />}
                     </div>
                     <div className={styles['information-container']}>
                         <span>Czas wykonania:</span>

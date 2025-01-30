@@ -141,9 +141,13 @@ $spc: 8px;
                     height: $htt;
                     padding: calc($spc / 2);
 
-                    white-space: break-spaces;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
                     overflow: hidden;
+                    white-space: break-spaces;
                     text-overflow: ellipsis;
+                    text-align: center;
                 }
 
                 .result-text {
@@ -157,6 +161,7 @@ $spc: 8px;
 
                     span {
                         display: block;
+                        text-align: center;
                     }
 
                     span:first-child {
