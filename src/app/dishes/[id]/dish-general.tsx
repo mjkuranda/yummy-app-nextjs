@@ -45,8 +45,10 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                         <span>Autor:</span>
                         <span><PersonAddIcon /></span>
                         <span>
-                            <Link href={`/users/${dish.sourceOrAuthor}/profile`}>{dish.sourceOrAuthor}</Link>
-                            &nbsp;{dish.provider === 'spoonacular' ? '(poprzez Spoonacular)' : ''}
+                            {dish.provider !== 'spoonacular'
+                                ? <Link href={`/users/${dish.sourceOrAuthor}/profile?dishId=${dish.id}`}>{dish.sourceOrAuthor}</Link>
+                                : <>{dish.sourceOrAuthor} (poprzez Spoonacular)</>
+                            }
                         </span>
                     </div>
                 </li>
