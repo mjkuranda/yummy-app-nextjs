@@ -19,9 +19,10 @@ interface DishGeneralProps {
     description?: string;
     ingredients?: TranslatedIngredient[];
     recipe?: DishRecipeSection[];
+    sourceUrl: string | null;
 }
 
-export function DishGeneral({ dish, description, ingredients, recipe }: DishGeneralProps) {
+export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl }: DishGeneralProps) {
     return (
         <div className={styles['result-details']}>
             <ul>
@@ -46,7 +47,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                         <span><PersonAddIcon /></span>
                         <span>
                             {dish.provider !== 'spoonacular'
-                                ? <Link href={`/users/${dish.sourceOrAuthor}/profile?dishId=${dish.id}`}>{dish.sourceOrAuthor}</Link>
+                                ? <Link href={`/users/${dish.sourceOrAuthor}/profile?dishId=${dish.id}` + (sourceUrl ? `&sourceUrl=${sourceUrl}` : '')}>{dish.sourceOrAuthor}</Link>
                                 : <>{dish.sourceOrAuthor} (poprzez Spoonacular)</>
                             }
                         </span>

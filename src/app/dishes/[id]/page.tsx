@@ -52,7 +52,7 @@ export default function DishById() {
                 <div className={styles['result-container']}>
                     {isLoading || isError
                         ? <Loader isAbsolute={true} />
-                        : <DishContainer complexDishObject={dish as DetailedDishWithTranslations} />
+                        : <DishContainer complexDishObject={dish as DetailedDishWithTranslations} sourceUrl={searchParams.get('sourceUrl')} />
                     }
                     {!isLoading && !dish && <div>Danie nie zostało znalezione.</div>}
                     {isError && <div>Wystąpił błąd.</div>}

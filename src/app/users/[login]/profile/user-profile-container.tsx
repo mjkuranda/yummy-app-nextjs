@@ -18,6 +18,7 @@ export function UserProfileContainer() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const dishId = searchParams.get('dishId');
+    const sourceUrl = searchParams.get('sourceUrl');
 
     if (!profile && !isLoading) {
         return router.push('/');
@@ -31,7 +32,7 @@ export function UserProfileContainer() {
 
     return (
         <Suspense>
-            {dishId && <BackLinkBar link={`/dishes/${dishId}`} label={'Wróć do dania'} />}
+            {dishId && <BackLinkBar link={`/dishes/${dishId}` + (sourceUrl ? `?sourceUrl=${sourceUrl}` : '')} label={'Wróć do dania'} />}
             <UserProfileTile isLoading={isLoading} profile={userProfile} />
         </Suspense>
     );
