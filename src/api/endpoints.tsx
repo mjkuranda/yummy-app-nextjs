@@ -1,6 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import {
-    DetailedDish,
     DetailedDishWithTranslations,
     DishProposal,
     DishResult,
@@ -10,9 +9,6 @@ import {
     getDish, getDishComments,
     getDishProposals,
     getDishes, getNotActivatedUsers,
-    getSoftAddedDishes,
-    getSoftDeletedDishes,
-    getSoftEditedDishes
 } from '@/src/api/api';
 import { DAY, HOUR, MINUTE } from '@/src/constants/numbers';
 import { DishComment } from '@/src/types/dish.types';
@@ -42,52 +38,52 @@ export function useGetDishProposals(): UseQueryResult<DishProposal[]> {
 }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftAddedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
-    if (!isTriggered) {
-        return useQuery({
-            queryKey: ['dishes', 'soft', 'added'],
-            staleTime: HOUR
-        });
-    }
-
-    return useQuery({
-        queryFn: async (): Promise<DetailedDish[]> => await getSoftAddedDishes(),
-        queryKey: ['dishes', 'soft', 'added'],
-        staleTime: HOUR
-    });
-}
-
-// TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftEditedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
-    if (!isTriggered) {
-        return useQuery({
-            queryKey: ['dishes', 'soft', 'edited'],
-            staleTime: HOUR
-        });
-    }
-
-    return useQuery({
-        queryFn: async (): Promise<DetailedDish[]> => await getSoftEditedDishes(),
-        queryKey: ['dishes', 'soft', 'edited'],
-        staleTime: HOUR
-    });
-}
+// export function useGetSoftAddedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
+//     if (!isTriggered) {
+//         return useQuery({
+//             queryKey: ['dishes', 'soft', 'added'],
+//             staleTime: HOUR
+//         });
+//     }
+//
+//     return useQuery({
+//         queryFn: async (): Promise<DetailedDish[]> => await getSoftAddedDishes(),
+//         queryKey: ['dishes', 'soft', 'added'],
+//         staleTime: HOUR
+//     });
+// }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
-export function useGetSoftDeletedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
-    if (!isTriggered) {
-        return useQuery({
-            queryKey: ['dishes', 'soft', 'deleted'],
-            staleTime: HOUR
-        });
-    }
+// export function useGetSoftEditedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
+//     if (!isTriggered) {
+//         return useQuery({
+//             queryKey: ['dishes', 'soft', 'edited'],
+//             staleTime: HOUR
+//         });
+//     }
+//
+//     return useQuery({
+//         queryFn: async (): Promise<DetailedDish[]> => await getSoftEditedDishes(),
+//         queryKey: ['dishes', 'soft', 'edited'],
+//         staleTime: HOUR
+//     });
+// }
 
-    return useQuery({
-        queryFn: async (): Promise<DetailedDish[]> => await getSoftDeletedDishes(),
-        queryKey: ['dishes', 'soft', 'deleted'],
-        staleTime: HOUR
-    });
-}
+// TODO: Use to fetch data. Trigger hooks using boolean value
+// export function useGetSoftDeletedDishes(isTriggered: boolean = true): UseQueryResult<DetailedDish[]> {
+//     if (!isTriggered) {
+//         return useQuery({
+//             queryKey: ['dishes', 'soft', 'deleted'],
+//             staleTime: HOUR
+//         });
+//     }
+//
+//     return useQuery({
+//         queryFn: async (): Promise<DetailedDish[]> => await getSoftDeletedDishes(),
+//         queryKey: ['dishes', 'soft', 'deleted'],
+//         staleTime: HOUR
+//     });
+// }
 
 // TODO: Use to fetch data. Trigger hooks using boolean value
 export function useGetNotActivatedUsers(isTriggered: boolean = true): UseQueryResult<NotActivatedUser[]> {

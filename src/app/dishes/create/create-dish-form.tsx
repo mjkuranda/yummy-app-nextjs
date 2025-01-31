@@ -300,7 +300,7 @@ export function CreateDishForm({ dish, ingredients }: CreateDishFormProps) {
                                         rules={{
                                             required: 'Link do zdjęcia jest wymagany',
                                             pattern: {
-                                                value: /^((http|https):\/\/)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+                                                value: /^((http|https):\/\/)[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/,
                                                 message: 'Link powinien być poprawnym adresem URL'
                                             }
                                         }}

@@ -22,6 +22,7 @@ export function InputNumber({ label, value, setValue, unit, width = '25ch', erro
         setValue(event.target.value.trim());
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const isFloat = (value: number) => !isNaN(value) && value.toString().indexOf('.') != -1;
 
     const inputProps = {

@@ -22,7 +22,7 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
 
     return (
         <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
-            <BackLinkBar link={`/dishes/${id}`} label={'Powrót do dania'} />
+            <BackLinkBar link={`/dishes/${id}`} label={'Wróć do dania'} onlyMarginBottom={true} />
             <CreateDishForm dish={dishWithTranslations} ingredients={ingredients} />
         </WrappedContentLayout>
     );

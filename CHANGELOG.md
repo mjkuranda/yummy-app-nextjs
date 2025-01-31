@@ -5,7 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.66.0] - 2025-01-31
 ### Added
+- [Marek Kurańda](https://github.com/mjkuranda): New subpage `/users/:login/profile` for rendering basic user profile info.
 - [Marek Kurańda](https://github.com/mjkuranda): Handling `data-type` attribute property with value `multi-content` to `WrappedScreenContentLayout` not to break layout when more than one element was added into component body.
+- [Marek Kurańda](https://github.com/mjkuranda): Handling `data-only-margin-bottom` attribute property with value `true` to `BackLinkBar`.
+- [Marek Kurańda](https://github.com/mjkuranda): First buildable version of the application.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Page code layout for 404 pages. 

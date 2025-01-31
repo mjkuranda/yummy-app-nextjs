@@ -5,7 +5,7 @@ import {
     TablePagination,
     tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
 import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -41,11 +41,12 @@ export function CustomTablePagination({ objects }: CustomTablePaginationProps) {
     const { page, setPage, rowsPerPage, setRowsPerPage } = usePaginationContext();
 
     // Avoid a layout jump when reaching the last page with empty rows.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - objects.length) : 0;
 
     const handleChangePage = (
-        event: MouseEvent<HTMLDivElement, MouseEvent> | null,
+        event: MouseEvent<HTMLButtonElement> | null,
         newPage: number,
     ) => {
         setPage(newPage);

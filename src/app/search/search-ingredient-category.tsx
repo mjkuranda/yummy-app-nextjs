@@ -2,7 +2,7 @@ import styles from '@/styles/app/search/search-ingredient-category.module.scss';
 import { useIngredientCategory } from '@/src/hooks/use-ingredient-category';
 import { IngredientCategoryType } from '@/src/types/ingredient-category';
 import { SearchIngredientList } from '@/src/app/search/search-ingredient-list';
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import path from 'path';
 import fs from 'fs';
 
@@ -22,7 +22,7 @@ export default function SearchIngredientCategory({ category }: SearchIngredientC
     return (
         <div className={styles['search-ingredient-category']}>
             <div className={styles['search-ingredient-category__title']}>{categories[category].pl}</div>
-            <SearchIngredientList category={category} data={ingredientData} />
+            <Suspense><SearchIngredientList category={category} data={ingredientData} /></Suspense>
         </div>
     );
 }

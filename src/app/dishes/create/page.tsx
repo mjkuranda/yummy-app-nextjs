@@ -10,7 +10,7 @@ export default function CreateDishPage() {
 
     return (
         <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
-            <BackLinkBar link="/search" label={'Powrót do wyszukiwania'} />
+            <BackLinkBar link="/search" label={'Powrót do wyszukiwania'} onlyMarginBottom={true} />
             <CreateDishForm ingredients={ingredients} />
         </WrappedContentLayout>
     );

@@ -5,9 +5,7 @@ import { WrappedScreenContentLayout } from '@/src/components/common/layouts/wrap
 export default function RegistrationPage() {
     return (
         <WrappedScreenContentLayout type="multi-content">
-            <div style={{ margin: '.5rem' }}>
-                <BackLinkBar link="/users/login" label={'Powrót do logowania'} />
-            </div>
+            <BackLinkBar link="/users/login" label={'Powrót do logowania'} />
             <RegistrationForm />
         </WrappedScreenContentLayout>
     );
