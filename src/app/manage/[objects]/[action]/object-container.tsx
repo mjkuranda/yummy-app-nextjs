@@ -55,7 +55,7 @@ export function ObjectContainer() {
 
     return (
         <>
-            <div className={styles['object-container']}>
+            <div className={styles['object-container']} style={{ minHeight: 'calc(100vh - 222px - 96px)' }}>
                 <div className={styles['back-link']}>
                     <Link href="/manage">
                         <ArrowCircleLeftIcon />Powrót do zarządzania

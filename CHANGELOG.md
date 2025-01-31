@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Handling `data-type` attribute property with value `multi-content` to `WrappedScreenContentLayout` not to break layout when more than one element was added into component body.
 - [Marek Kurańda](https://github.com/mjkuranda): Handling `data-only-margin-bottom` attribute property with value `true` to `BackLinkBar`.
 - [Marek Kurańda](https://github.com/mjkuranda): First buildable version of the application.
+- [Marek Kurańda](https://github.com/mjkuranda): Links to the users and dishes at management page.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Page code layout for 404 pages. 
