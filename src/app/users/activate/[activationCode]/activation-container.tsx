@@ -1,6 +1,5 @@
 'use client';
 
-import styles from '@/styles/app/not-found.module.scss';
 import { useParams } from 'next/navigation';
 import { useActivateUser } from '@/src/hooks/use-activate-user';
 import { Loader } from '@/src/components/common/loader';
@@ -11,7 +10,7 @@ export function ActivationContainer() {
     const { wasActivated, isProceeding, errorMessage } = useActivateUser(activationCode);
 
     return (
-        <div className={styles['not-found__info']}>
+        <div className="d-flex justify-content-center align-items-center">
             <div>
                 {isProceeding
                     ? <Loader />

@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.66.0] - 2025-01-31
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Handling `data-type` attribute property with value `multi-content` to `WrappedScreenContentLayout` not to break layout when more than one element was added into component body.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Page code layout for 404 pages. 
+
 ## [1.65.0] - 2025-01-30
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `ScreenContentLayout`, `WrappedContentLayout` and `WrappedScreenContentLayout` layouts.

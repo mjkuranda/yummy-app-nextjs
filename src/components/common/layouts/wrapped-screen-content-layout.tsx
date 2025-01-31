@@ -5,14 +5,18 @@ import { Footer } from '@/src/components/common/footer';
 
 interface WrappedScreenContentLayoutProps {
     children: ReactNode;
+    type?: 'multi-content';
 }
 
-export function WrappedScreenContentLayout({ children }: WrappedScreenContentLayoutProps) {
+export function WrappedScreenContentLayout({ children, type }: WrappedScreenContentLayoutProps) {
     return (
         <div className={styles['page-container']}>
             <Header />
-            <div className={styles['children-container']}>
-                {children}
+            <div className={styles['children-container']} data-type={type}>
+                {type === 'multi-content'
+                    ? <div>{children}</div>
+                    : <>{children}</>
+                }
             </div>
             <Footer />
         </div>
