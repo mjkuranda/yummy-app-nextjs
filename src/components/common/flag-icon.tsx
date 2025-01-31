@@ -5,7 +5,8 @@ interface FlagIconProps {
     hasTranslationInfo?: boolean;
 }
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 const flagInfo: Record<Language, { alt: string, author: JSX.Element, image: string }> = {
     pl: {
         alt: 'Flaga Polski',

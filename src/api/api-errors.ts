@@ -2,7 +2,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { toastError, toastInfo } from '@/src/utils/toast.utils';
 import { UserContextValues } from '@/src/contexts/user.context';
 
-type HttpStatusCode =
+export type HttpStatusCode =
     | 200  // OK
     | 201  // Created
     | 400  // Bad Request
@@ -11,7 +11,8 @@ type HttpStatusCode =
     | 404  // Not Found
     | 500  // Internal Server Error
     | 502  // Bad Gateway
-    | 503; // Service Unavailable
+    | 503  // Service Unavailable
+;
 
 type ApiErrorContext = `${string}/${string}`;
 

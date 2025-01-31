@@ -5,7 +5,7 @@ import { SearchDishResult } from '@/src/app/search/search-dish-result';
 import { useGetDishes } from '@/src/api/endpoints';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
 import { Loader } from '@/src/components/common/loader';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { filterDishByType } from '@/src/helpers/search.helper';
 import { DishResult } from '@/src/types/api.types';
 
@@ -41,7 +41,11 @@ export function DishResultBox() {
             <section className={[resultStyles['result-box'], 'pt-4'].join(' ')} ref={boxRef}>
                 {ings.length > 0 && (filteredDishes.length > 0
                     ? filteredDishes.map(dish => {
-                        return <SearchDishResult dish={dish} key={dish.id} />;
+                        return (
+                            <Suspense>
+                                <SearchDishResult dish={dish} key={dish.id} />
+                            </Suspense>
+                        );
                     })
                     : <div className="w-100 text-center">
                         <b><i>Nie znaleziono żadnych dopasowań.</i></b>

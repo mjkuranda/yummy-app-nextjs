@@ -5,26 +5,29 @@ import { SearchForm } from '@/src/app/search/search-form';
 import { DishResultBox } from '@/src/app/search/dish-result-box';
 import Link from 'next/link';
 import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
+import { Suspense } from 'react';
 
 export default function Search() {
     return (
         <WrappedContentLayout>
-            <SearchForm>
-                <SearchIngredientCategory category="breads" />
-                <SearchIngredientCategory category="cereal-products" />
-                <SearchIngredientCategory category="dairy-and-eggs" />
-                <SearchIngredientCategory category="fish-and-seafood" />
-                <SearchIngredientCategory category="fruits" />
-                <SearchIngredientCategory category="meats" />
-                <SearchIngredientCategory category="mushrooms" />
-                <SearchIngredientCategory category="oils-and-fats" />
-                <SearchIngredientCategory category="pasta" />
-                <SearchIngredientCategory category="seeds-and-nuts" />
-                <SearchIngredientCategory category="spices" />
-                <SearchIngredientCategory category="vegetables" />
-            </SearchForm>
+            <Suspense>
+                <SearchForm>
+                    <SearchIngredientCategory category="breads" />
+                    <SearchIngredientCategory category="cereal-products" />
+                    <SearchIngredientCategory category="dairy-and-eggs" />
+                    <SearchIngredientCategory category="fish-and-seafood" />
+                    <SearchIngredientCategory category="fruits" />
+                    <SearchIngredientCategory category="meats" />
+                    <SearchIngredientCategory category="mushrooms" />
+                    <SearchIngredientCategory category="oils-and-fats" />
+                    <SearchIngredientCategory category="pasta" />
+                    <SearchIngredientCategory category="seeds-and-nuts" />
+                    <SearchIngredientCategory category="spices" />
+                    <SearchIngredientCategory category="vegetables" />
+                </SearchForm>
+            </Suspense>
             <div id={styles['dish-result-part']}>
-                <DishResultBox />
+                <Suspense><DishResultBox /></Suspense>
                 <section id={resultStyles['adder']}>
                     <div className="d-flex justify-content-center align-items-center">
                         <p className="text-center">

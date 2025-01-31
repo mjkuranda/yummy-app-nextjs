@@ -1,10 +1,11 @@
 {
     "name": "yummy-app-nextjs",
-    "version": "1.65.0",
+    "version": "1.66.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "build:force": "NEXT_DISABLE_ESLINT=true NEXT_PUBLIC_DISABLE_ESLINT=true NODE_OPTIONS='--no-warnings' next build || true",
         "start": "next start",
         "lint": "next lint",
         "lint:custom": "eslint . --ext .js,.jsx,.ts,.tsx --config .eslintrc.json"

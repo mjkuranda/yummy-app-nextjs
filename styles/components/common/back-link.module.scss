@@ -7,8 +7,12 @@
 .back-link-bar {
     background-color: $honey-yellow;
     padding: 1em;
-    margin-bottom: 0.5em;
+    margin: 0.5em;
     border-radius: 0.5em;
+
+    &[data-only-margin-bottom=true] {
+        margin: 0 0 0.5rem 0 !important;
+    }
 
     > a > i {
         margin-right: 0.5em;

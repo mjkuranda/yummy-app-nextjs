@@ -3,12 +3,20 @@ import {
     LoginUserData,
     DishProposal,
     DishProposalRequest,
-    DishResult, NotActivatedUser,
-    UserPermissions, UserObject, DetailedDishWithTranslations, NewDishDto, DishDocument, CapabilityType, NewPasswordDto
+    DishResult,
+    NotActivatedUser,
+    UserPermissions,
+    UserObject,
+    DetailedDishWithTranslations,
+    NewDishDto,
+    DishDocument,
+    CapabilityType,
+    NewPasswordDto,
+    UserProfile
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
-import { ApiError } from '@/src/api/api-errors';
+import { ApiError, HttpStatusCode } from '@/src/api/api-errors';
 import {
     DishComment,
     DishDifferenceDto,
@@ -211,7 +219,7 @@ export async function uploadImage(image: File): Promise<string> {
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 
     return await res.text();
@@ -223,7 +231,7 @@ export async function createDish(data: NewDishDto): Promise<DishDocument> {
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 
     return await res.json();
@@ -248,7 +256,7 @@ export async function postNewComment(data: NewDishCommentDto): Promise<void> {
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 }
 
@@ -275,7 +283,7 @@ export async function rateDish(data: NewDishRatingDto): Promise<void> {
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 }
 
@@ -285,7 +293,7 @@ export async function editDish(dishId: string, editDishDto: DishDifferenceDto): 
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 }
 
@@ -295,7 +303,7 @@ export async function deleteDish(dishId: string): Promise<void> {
     if (res.status > 299) {
         const json = await res.json();
 
-        throw new ApiError(res.status, json.message);
+        throw new ApiError(res.status as HttpStatusCode, json.message);
     }
 }
 
@@ -319,7 +327,7 @@ export async function grandPermission(login: string, capability: CapabilityType)
         if (res.status >= 400) {
             const json = await res.json();
 
-            throw new ApiError(res.status, json.message);
+            throw new ApiError(res.status as HttpStatusCode, json.message);
         }
 
         return await res.json();
@@ -336,7 +344,7 @@ export async function denyPermission(login: string, capability: CapabilityType):
         if (res.status >= 400) {
             const json = await res.json();
 
-            throw new ApiError(res.status, json.message);
+            throw new ApiError(res.status as HttpStatusCode, json.message);
         }
 
         return await res.json();
@@ -353,10 +361,19 @@ export async function changeUserPassword(newPassword: string): Promise<void> {
         if (res.status >= 400) {
             const json = await res.json();
 
-            throw new ApiError(res.status, json.message);
+            throw new ApiError(res.status as HttpStatusCode, json.message);
         }
 
         return;
+    } catch (err: unknown) {
+        throw err;
+    }
+}
+
+export async function getUserProfile(login: string): Promise<UserProfile> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        return await apiGet<UserProfile>(`users/${login}/profile`);
     } catch (err: unknown) {
         throw err;
     }

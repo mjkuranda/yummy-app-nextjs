@@ -7,15 +7,16 @@ import {
     getSoftDeletedDishes,
     getSoftEditedDishes, grandPermission
 } from '@/src/api/api';
-import { useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { ActionType, ObjectType } from '@/src/types/manage.types';
 import { useRouter } from 'next/navigation';
 import { handleApiError } from '@/src/api/api-errors';
 import { useUserContext } from '@/src/contexts/user.context';
+import Link from 'next/link';
 
 export interface ObjectItemStruct {
     id: string;
-    label: string;
+    label: ReactNode;
     labelIcon?: 'person-grand' | 'person-deny';
     action: (objectList: ObjectItemStruct[]) => Promise<void>;
     actionLabel?: string;
@@ -46,7 +47,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getAllUsers,
                     user => ({
                         id: user.id,
-                        label: user.login,
+                        label: <Link href={`/users/${user.login}/profile`}>{user.login}</Link>,
                         labelIcon: user.isAdmin || user.capabilities?.canAdd ? 'person-grand' : 'person-deny',
                         action: async (objectList: ObjectItemStruct[]) => {
                             const shouldGrand = !user?.capabilities?.canAdd;
@@ -87,7 +88,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getAllUsers,
                     user => ({
                         id: user.id,
-                        label: user.login,
+                        label: <Link href={`/users/${user.login}/profile`}>{user.login}</Link>,
                         labelIcon: user.isAdmin || user.capabilities?.canEdit ? 'person-grand' : 'person-deny',
                         action: async (objectList: ObjectItemStruct[]) => {
                             const shouldGrand = !user?.capabilities?.canEdit;
@@ -128,7 +129,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getAllUsers,
                     user => ({
                         id: user.id,
-                        label: user.login,
+                        label: <Link href={`/users/${user.login}/profile`}>{user.login}</Link>,
                         labelIcon: user.isAdmin || user.capabilities?.canDelete ? 'person-grand' : 'person-deny',
                         action: async (objectList: ObjectItemStruct[]) => {
                             const shouldGrand = !user?.capabilities?.canDelete;
@@ -169,7 +170,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getNotActivatedUsers,
                     user => ({
                         id: user._id,
-                        label: user.login,
+                        label: <Link href={`/users/${user.login}/profile`}>{user.login}</Link>,
                         action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {
@@ -209,7 +210,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getSoftEditedDishes,
                     dish => ({
                         id: dish._id,
-                        label: dish.title,
+                        label: <Link href={`/dishes/${dish._id}`}>{dish.title}</Link>,
                         action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {
@@ -227,7 +228,7 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
                     getSoftDeletedDishes,
                     dish => ({
                         id: dish._id,
-                        label: dish.title,
+                        label: <Link href={`/dishes/${dish._id}`}>{dish.title}</Link>,
                         action: async (objectList: ObjectItemStruct[]) => {
                             // eslint-disable-next-line no-useless-catch
                             try {

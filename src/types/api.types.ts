@@ -106,8 +106,6 @@ export interface UserObject {
     }
 }
 
-export type CapabilityType = 'canAdd' | 'canEdit' | 'canDelete';
-
 export interface DishProposalRequest {
     ingredients: string[];
 }
@@ -159,3 +157,22 @@ export interface DishDocument {
     readonly readyInMinutes: number;
     readonly recipeSections: DishRecipeSection[];
 }
+
+export type CapabilityType = 'canAdd' | 'canEdit' | 'canDelete';
+
+export type UserCapabilities = Record<CapabilityType, boolean>;
+
+export interface UserDocument {
+    readonly email: string;
+    readonly login: string;
+    readonly password: string;
+    readonly salt: string;
+    readonly isAdmin?: boolean;
+    readonly capabilities?: Partial<UserCapabilities>;
+    readonly activated?: number;
+}
+
+export type UserProfile = Pick<UserDocument, 'login' | 'isAdmin' | 'capabilities'> & {
+    activated: number,
+    dishList: Array<Pick<DishDocument, 'title'> & { id: string }>;
+};

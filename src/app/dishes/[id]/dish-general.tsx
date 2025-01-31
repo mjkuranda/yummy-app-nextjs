@@ -11,15 +11,18 @@ import { DishDescription } from '@/src/app/dishes/[id]/dish-description';
 import { DishDeletion } from '@/src/app/dishes/[id]/dish-deletion';
 import { DishEdition } from '@/src/app/dishes/[id]/dish-edition';
 import { FlagIcon } from '@/src/components/common/flag-icon';
+import { Suspense } from 'react';
+import Link from 'next/link';
 
 interface DishGeneralProps {
     dish: DetailedDish;
     description?: string;
     ingredients?: TranslatedIngredient[];
     recipe?: DishRecipeSection[];
+    sourceUrl: string | null;
 }
 
-export function DishGeneral({ dish, description, ingredients, recipe }: DishGeneralProps) {
+export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl }: DishGeneralProps) {
     return (
         <div className={styles['result-details']}>
             <ul>
@@ -42,7 +45,12 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
                     <div className={styles['information-container']}>
                         <span>Autor:</span>
                         <span><PersonAddIcon /></span>
-                        <span>{dish.sourceOrAuthor} {dish.provider === 'spoonacular' ? '(poprzez Spoonacular)' : ''}</span>
+                        <span>
+                            {dish.provider !== 'spoonacular'
+                                ? <Link href={`/users/${dish.sourceOrAuthor}/profile?dishId=${dish.id}` + (sourceUrl ? `&sourceUrl=${sourceUrl}` : '')}>{dish.sourceOrAuthor}</Link>
+                                : <>{dish.sourceOrAuthor} (poprzez Spoonacular)</>
+                            }
+                        </span>
                     </div>
                 </li>
                 <li className={styles['result-rating']}>
@@ -55,7 +63,7 @@ export function DishGeneral({ dish, description, ingredients, recipe }: DishGene
             </ul>
             <div className={styles['dish-details-sections']}>
                 <DishDescription description={description} dish={dish} />
-                <DishIngredients ingredients={ingredients} dish={dish} />
+                <Suspense><DishIngredients ingredients={ingredients} dish={dish} /></Suspense>
                 <DishRecipe recipe={recipe?.length ? recipe : dish.recipeSections} dish={dish} />
             </div>
         </div>

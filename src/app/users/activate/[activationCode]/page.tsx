@@ -1,14 +1,10 @@
-import { Header } from '@/src/components/common/header';
-import { Footer } from '@/src/components/common/footer';
+import { WrappedScreenContentLayout } from '@/src/components/common/layouts/wrapped-screen-content-layout';
 import { ActivationContainer } from '@/src/app/users/activate/[activationCode]/activation-container';
-import styles from '@/styles/app/not-found.module.scss';
 
 export default function ActivationPage() {
     return (
-        <div className={styles['not-found']}>
-            <Header />
+        <WrappedScreenContentLayout>
             <ActivationContainer />
-            <Footer />
-        </div>
+        </WrappedScreenContentLayout>
     );
 }
