@@ -1,21 +1,58 @@
 import styles from '@/styles/components/common/footer.module.scss';
-import Link from 'next/link';
+import { PageLink, PageLinkProps } from '@/src/components/common/page-link';
+
+const mainLinks: PageLinkProps[] = [
+    { label: 'Strona główna', href: '/' },
+    { label: 'O stronie', href: '/#description' },
+    { label: 'Wyszukaj dania', href: '/search' },
+    { label: 'Rekomendacje', href: '/recommendations' },
+    { label: 'Zaloguj się', href: '/users/login' },
+    { label: 'Zarejestruj się', href: '/users/register' }
+];
+
+const visitLinks: PageLinkProps[] = [
+    { label: 'Kreator dania', href: '/dishes/create' }
+];
+
+const contactLinks: Array<PageLinkProps | any> = [
+    { label: 'Email', href: 'mailto:my.email@email.com?subject=Witaj,%20DishMatcher!&body=Witaj,' }
+];
 
 export function Footer() {
     return (
         <footer className={styles['app-footer']}>
-            <div>
-                <p>Wszelkie prawa zastrzeżone</p>
-                <div className={styles['author-information']}>
-                    <h3>Marek Kurańda</h3>
-                    <h4>DishMatcher &copy; 2025</h4>
-                </div>
-                <h5>
-                    <Link href="https://icons8.com/icon/RxvLC54xtSnZ/yummy" rel="noopener noreferrer" target="_blank">Yummy</Link>
-                    &nbsp;ikona pochodzi z&nbsp;
-                    <Link href="https://icons8.com" rel="noopener noreferrer" target="_blank">Icons8</Link>
-                </h5>
+            <div className={styles['brand-container']}>
+                <img src="/logo.svg" width={64} height={64} />
+                <p>&copy; 2025 DishMatcher</p>
+                <p>Wszelkie prawa zastrzeżone.</p>
             </div>
+            <SectionContainer label={'Linki'} links={mainLinks} />
+            <SectionContainer label={'Zobacz też'} links={visitLinks} />
+            <SectionContainer label={'Kontakt'} links={contactLinks} />
         </footer>
+    );
+}
+
+interface SectionContainerProps {
+    label: string;
+    links: PageLinkProps[];
+}
+
+function SectionContainer({ label, links }: SectionContainerProps) {
+    return (
+        <div className={styles['section-container']}>
+            <div>
+                <h5>{label}</h5>
+                <ul>
+                    {links.map(link => {
+                        return (
+                            <li key={link.href}>
+                                <PageLink label={link.label} href={link.href} style={{ color: 'gray' }} />
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        </div>
     );
 }

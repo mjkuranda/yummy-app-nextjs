@@ -1,14 +1,26 @@
-@import '@/styles/globals-colors.scss';
+@import '@/styles/palette';
+@import '@/styles/constants';
 
 .app-footer {
-    background-color: $cooper;
+    background-color: $shark;
+    color: $shady-lady;
+    padding: 6rem 15%;
 
-    >div {
-        padding: 2rem 0;
-        text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .brand-container {
+        > * + * {
+            margin-top: $minor-rem;
+        }
     }
 
-    .author-information {
-        margin: 16px 0;
+    .section-container {
+        height: 225px;
+
+        li + li {
+            margin-top: $minor-rem;
+        }
     }
 }

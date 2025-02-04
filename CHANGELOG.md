@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
 - [Marek Kurańda](https://github.com/mjkuranda): Buttons design.
-- [Marek Kurańda](https://github.com/mjkuranda): Landing page design.
+- [Marek Kurańda](https://github.com/mjkuranda): Landing page, header and footer design.
 
 ## [1.66.0] - 2025-01-31
 ### Added

@@ -1,12 +1,24 @@
 import styles from '@/styles/components/common/page-link.module.scss';
-import { PagePathname } from '@/src/constants/strings';
 import Link from 'next/link';
+import { CSSProperties } from 'react';
+import { PagePathname } from '@/src/constants/strings';
 
-interface PageLinkProps {
+export interface PageLinkProps {
     label: string;
     href: PagePathname;
+    shouldOpenNewTab?: boolean;
+    style?: CSSProperties;
 }
 
-export function PageLink({ href, label }: PageLinkProps) {
-    return <Link href={href} className={styles['page-link']}>{label}</Link>;
+export function PageLink({ href, label, shouldOpenNewTab, style }: PageLinkProps) {
+    const newTabOptions = {
+        target: '_blank',
+        rel: 'noopener noreferrer'
+    };
+
+    return (
+        <Link href={href} className={styles['page-link']} style={style} {...shouldOpenNewTab ? { ...newTabOptions } : { ...{} }}>
+            {label}
+        </Link>
+    );
 }
