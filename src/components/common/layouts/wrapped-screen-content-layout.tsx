@@ -10,7 +10,7 @@ interface WrappedScreenContentLayoutProps {
 
 export function WrappedScreenContentLayout({ children, type }: WrappedScreenContentLayoutProps) {
     return (
-        <div className={styles['page-container']}>
+        <main className={styles['page-container']}>
             <Header />
             <div className={styles['children-container']} data-type={type}>
                 {type === 'multi-content'
@@ -19,6 +19,6 @@ export function WrappedScreenContentLayout({ children, type }: WrappedScreenCont
                 }
             </div>
             <Footer />
-        </div>
+        </main>
     );
 }

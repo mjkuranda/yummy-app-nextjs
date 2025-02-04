@@ -1,0 +1,13 @@
+@import '@/styles/palette';
+@import '@/styles/constants';
+
+.page-link {
+    text-decoration: none;
+    transition: $minor-time;
+    color: $abbey;
+
+    &:hover {
+        transition: $major-time;
+        color: $shady-lady;
+    }
+}

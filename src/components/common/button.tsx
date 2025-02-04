@@ -34,18 +34,20 @@ export function Button({ disabled, label, link, icon, type, width, onClick }: Bu
                 href={disabled ? '/' : link}
                 className={className}
                 aria-disabled={disabled}
+                style={{ width: `${width}px`, display: 'flex' }}
                 tabIndex={disabled ? -1 : undefined}>
-                {label}
                 {icon && renderIcon(icon)}
-                {width}
+                {icon && '\u00A0'}
+                {label}
             </Link>
         );
     }
 
     return (
         <button type={type ?? 'button'} onClick={onClick ?? (() => {})} disabled={disabled} className={className} style={{ width }}>
-            {label}
             {icon && renderIcon(icon)}
+            {icon && '\u00A0'}
+            {label}
         </button>
     );
 }

@@ -1,7 +1,10 @@
+@import '@/styles/palette';
+@import '@/styles/constants';
+
 .button {
-    background-color: #3f51b5;
-    color: white;
-    border: 2px solid #3f51b5;
+    background-color: $chilean-fire;
+    color: $white;
+    border: 2px solid $chilean-fire;
     border-radius: 1em;
     padding: 0.5em 2em;
 
@@ -9,23 +12,23 @@
     justify-content: center;
 
     box-shadow: rgb(0 0 0 / 0) 0 0 5px 2px;
-    transition: 300ms;
+    transition: $minor-time;
 }
 
 .button:hover {
-    background-color: white;
-    color: #3f51b5;
-    border: 2px solid #3f51b5;
+    background-color: $white;
+    color: $chilean-fire;
+    border: 2px solid $chilean-fire;
 
     cursor: pointer;
 
     box-shadow: rgb(0 0 0 / 23%) 0 0 5px 2px;
-    transition: 300ms;
+    transition: $minor-time;
 }
 
 .button:disabled,
 .button--disabled {
-    opacity: 0.618;
+    opacity: $major-phi;
     cursor: not-allowed !important;
 }
 

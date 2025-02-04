@@ -1,29 +1,31 @@
 import styles from '@/styles/components/common/header.module.scss';
 import { User } from '@/src/components/common/user';
-import { Button } from '@/src/components/common/button';
+import { PageLink } from '@/src/components/common/page-link';
 
-export function Header() {
+interface HeaderProps {
+    isTransparent?: boolean;
+}
+
+export function Header({ isTransparent }: HeaderProps) {
     return (
-        <header className={styles['app-header']}>
-            <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex justify-content-center align-items-center">
-                    <div id={styles.logo}>
-                        <img
-                            src="/yummy.ico"
-                            width="64px"
-                            height="64px"
-                            alt="Yummy icon"
-                        />
-                    </div>
-                    <h1>DishMatcher</h1>
+        <header className={styles['header-container']} data-background-transparent={isTransparent}>
+            <div className={styles['brand-container']}>
+                <div id={styles.logo}>
+                    <img
+                        src="/logo.svg"
+                        width="64px"
+                        height="64px"
+                        alt="Yummy icon"
+                    />
                 </div>
-                <div className="d-flex justify-content-around align-items-center">
-                    <nav className="d-flex justify-content-between align-items-center">
-                        <div><Button label={'Strona główna'} link="/" /></div>
-                        <div><Button label={'O stronie'} link="/#description" /></div>
-                    </nav>
-                    <User />
-                </div>
+                <h1>DishMatcher</h1>
+            </div>
+            <div className={styles['link-container']}>
+                <PageLink href={'/'} label={'Strona główna'} />
+                <PageLink href={'/#description'} label={'O stronie'} />
+            </div>
+            <div className={styles['user-container']}>
+                <User />
             </div>
         </header>
     );

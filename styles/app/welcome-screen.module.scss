@@ -1,37 +1,46 @@
 @import '@/styles/globals-colors.scss';
+@import '@/styles/palette';
 
 .welcome-screen {
     width: 100vw;
     height: 100vh;
-    background-image: url('/soup_1920.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 50%;
 
-    .panel {
+    .welcome-screen__panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: $spring-wood;
         width: 100%;
         height: 100%;
-        background-color: $black-overlay-color;
 
-        .header-panel {
-            text-shadow:
-                    2px 2px 2px grey,
-                    -3px 6px 5px $blue-de-france;
-            color: $honey-yellow;
-            padding: 1em 2em;
-            border-radius: 1em;
-            background-color: $blue-de-france-alpha;
-        }
+        .welcome-screen__panel-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
 
-        >div {
-            margin: 80px 0;
+            height: 100%;
+            text-align: center;
 
-            a + a {
-                margin-left: 2rem;
+            > h2 {
+                margin-bottom: 3.618rem;
             }
 
-            >:nth-child(2) {
-                transform: scale(1.25);
+            > p {
+                line-height: 1.618rem;
+                width: 61%;
+            }
+
+            .main-navigator-container {
+                margin-top: 4.618rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a + a {
+                    margin-left: 1.618rem;
+                }
             }
         }
     }

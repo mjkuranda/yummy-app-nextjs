@@ -10,12 +10,12 @@ interface WrappedContentLayoutProps {
 
 export function WrappedContentLayout({ children, style }: WrappedContentLayoutProps) {
     return (
-        <div className={styles['page-container']}>
+        <main className={styles['page-container']}>
             <Header />
             <div style={style}>
                 {children}
             </div>
             <Footer />
-        </div>
+        </main>
     );
 }
