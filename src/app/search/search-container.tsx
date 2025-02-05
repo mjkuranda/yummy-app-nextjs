@@ -13,6 +13,7 @@ import { toastError } from '@/src/utils/toast.utils';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import ingredientStyles from '@/styles/app/search/search-ingredient-category.module.scss';
 import { SearchForm } from '@/src/app/search/search-form';
+import { InputSelectOptionIcon } from '@/src/components/common/form/input-select';
 
 interface SearchContainerProps {
     children: ReactElement[];
@@ -30,7 +31,8 @@ export function SearchContainer({ children }: SearchContainerProps) {
             .entries(MealTypeText)
             .map(entry => ({
                 en: entry[1].en,
-                label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1)
+                label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1),
+                icon: entry[1].en as InputSelectOptionIcon
             }));
     },
     []);
@@ -41,7 +43,8 @@ export function SearchContainer({ children }: SearchContainerProps) {
             .entries(dishes)
             .map(entry => ({
                 en: entry[1].en,
-                label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1)
+                label: entry[1].pl[0].toUpperCase() + entry[1].pl.substring(1),
+                icon: entry[1].en as InputSelectOptionIcon
             }));
     }, [selectedMealType]);
 

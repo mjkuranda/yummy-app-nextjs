@@ -17,7 +17,9 @@ export interface DishFormData {
 
 export type MealType = 'any' | 'breakfast' | 'launch' | 'dinner';
 
-export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
+export type MealRecord = { en: string, pl: string };
+
+export const MealTypeText: Record<MealType, MealRecord> = {
     any: {
         en: 'any',
         pl: 'każdy'
@@ -38,7 +40,7 @@ export const MealTypeText: Record<MealType, { en: string, pl: string }> = {
 
 export type DishType = 'any' | 'soup' | 'main course' | 'salad' | 'dessert' | 'beverage';
 
-export type DishRecord = Record<string, { en: string, pl: string }>;
+export type DishRecord = Record<string, MealRecord>;
 
 export const DishTypeText: Record<MealType, DishRecord> = {
     any: {

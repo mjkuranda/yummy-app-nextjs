@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `PageLink` and `TopHeader` components.
 - [Marek Kurańda](https://github.com/mjkuranda): New files for constants.
+- [Marek Kurańda](https://github.com/mjkuranda): Icons to `InputSelect` component.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
