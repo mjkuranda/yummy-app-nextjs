@@ -1,6 +1,8 @@
 @import "@/styles/globals-constants";
 @import "@/styles/globals-colors";
 
+@import '@/styles/palette';
+
 $spc: 8px;
 
 /* Below 1000px */
@@ -15,7 +17,7 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        padding-top: $spc;
+        margin-top: $spc;
         padding-bottom: $spc;
     }
     /*
@@ -38,7 +40,7 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        padding-top: $spc;
+        margin-top: $spc;
         padding-bottom: $spc;
     }
 
@@ -69,7 +71,7 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        padding-top: $spc;
+        margin-top: $spc;
         padding-bottom: $spc;
     }
     .result-container:not(:nth-child(3n + 1)) {
@@ -100,7 +102,7 @@ $spc: 8px;
     display: flex;
     flex-wrap: wrap;
     width: calc(100vw - ($ratio * $in-row));
-    padding-top: $spc;
+    margin-top: $spc;
     padding-bottom: $spc;
 
     .result-container {
@@ -109,7 +111,7 @@ $spc: 8px;
 
         width: $w;
         height: $h;
-        background-color: $honey-yellow;
+        background-color: $spring-wood;
         /* box-shadow: 0 0 2px 2px; */
         display: flex;
 
@@ -135,7 +137,7 @@ $spc: 8px;
                 $hd: calc($h / $phi);
                 width: $hd;
                 height: $hd;
-                background-color: $cooper;
+                background-color: $shady-lady;
                 border-top-right-radius: 0.618rem;
 
                 .result-title {
@@ -189,7 +191,7 @@ $spc: 8px;
     }
 
     .result-container:hover {
-        box-shadow: 0 0 $spc $spc $orange-yellow-crayola;
+        box-shadow: 0 0 $spc $spc $spring-wood;
 
         transform: scale($phi);
         transition: 618ms;
