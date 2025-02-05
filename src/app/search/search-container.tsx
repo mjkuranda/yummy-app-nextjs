@@ -62,6 +62,7 @@ export function SearchContainer({ children }: SearchContainerProps) {
     const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
+        setIsSearchDisabled(true);
         const { ingredients } = getSearchFormData(e);
 
         if (ingredients.length === 0) {
@@ -79,6 +80,7 @@ export function SearchContainer({ children }: SearchContainerProps) {
         }
 
         router.push(`/search?ings=${encodeIngredients(ingredients)}&type=${selectedMealType}&dish=${selectedDishType}`);
+        setIsSearchDisabled(false);
     };
 
     const onClick = (): void => {

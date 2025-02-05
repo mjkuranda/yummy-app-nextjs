@@ -60,7 +60,7 @@ export function SearchForm({ children, dishTypeOptions, mealTypeOptions, selecte
                 </div>
                 <div className={styles['type-details']}>
                     <div className={styles['type-details__container']}>
-                        <h5>Czas na posiłek: {mealOption.label}</h5>
+                        <h5>{inferredMealType === 'any' ? 'Czas, by pomyśleć o śnie' : `Czas na posiłek: ${mealOption.label}`}</h5>
                         <ProgressBar value={value} maxValue={maxValue} />
                         <div className={styles['time-period-container']}>
                             <p>{periodTimes.start}</p>

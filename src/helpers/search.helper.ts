@@ -66,9 +66,10 @@ export function getPeriodTimes(mealType: MealType): PeriodTimesType {
 export function getPeriodProgressState(periodTimes: PeriodTimesType): { value: number, maxValue: number } {
     const [, month, day, year] = new Date().toString().split(' ');
     const currentDate = `${month} ${day} ${year}`;
+    const nextDay = `${month} ${new Date().getDate() + 1} ${year}`;
 
     const startDate = new Date(`${currentDate} ${periodTimes.start}`);
-    const endDate = new Date(`${currentDate} ${periodTimes.end}`);
+    const endDate = new Date(`${periodTimes.start === '20:00' ? nextDay : currentDate} ${periodTimes.end}`);
 
     const maxValue = endDate.getTime() - startDate.getTime();
     const value = Date.now() - startDate.getTime();
