@@ -88,6 +88,27 @@ export const DishTypeText: Record<MealType, DishRecord> = {
     dinner: {}
 };
 
+type PeriodRecord = Record<MealType, string[]>;
+
+export const PeriodText: PeriodRecord = {
+    'any': [
+        'Nie jem w nocy, bo mój lodówkowy czujnik kalorii ma laserowy alarm!',
+        'Nocą jedzenie ma więcej kalorii – to udowodnione... przez moje spodnie rano.'
+    ],
+    'breakfast': [
+        'Śniadanie to najważniejszy posiłek dnia – mówił to ktoś, kto nigdy nie jadł pizzy na kolację!',
+        'Zasada śniadaniowa: Im później wstaniesz, tym bardziej przypomina to obiad!'
+    ],
+    'launch': [
+        'Obiad to taki moment, kiedy zaczynasz żałować, że nie zrobiłeś więcej śniadania.',
+        'Nie jem obiadu, tylko robię research do recenzji kulinarnej mojego brzucha.'
+    ],
+    'dinner': [
+        'Kolacja to taki moment, gdy udajesz, że cały dzień nic nie jadłeś, żeby się usprawiedliwić.',
+        'Dieta? To chyba włoskie słowo na \'zjem wszystko po 18:00\'.'
+    ]
+};
+
 export interface DishRecipeStepWithId {
     id: string;
     text: string;

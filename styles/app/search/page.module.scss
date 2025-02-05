@@ -1,30 +1,67 @@
 @import '@/styles/globals-colors.scss';
 
+@import '@/styles/constants';
+@import '@/styles/palette';
+
 #search-query-part,
 #dish-result-part {
-    margin: 0 10%;
+    padding: 0 10%;
+    background-color: $spring-wood;
 }
 
 #search-query-part {
-    background-color: $honey-yellow;
+    background-color: $spring-wood;
     padding-top: 5rem;
 
-    > div {
+    .ingredient-category-container {
         display: flex;
         flex-wrap: wrap;
         border-radius: 0 0 20px 20px;
+
+        > * {
+            width: 33%;
+        }
     }
 }
 
-#search-meal-type {
-    margin: 0 10%;
-    padding: 1rem 0;
-    background-color: $honey-yellow;
+.search-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $major-rem 0;
+    background-color: $spring-wood;
+}
+
+#form-content-container {
+    background-color: $spring-wood;
 
     > div {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .type-details {
+        flex-direction: column;
+
+        .type-details__container {
+            width: 25%;
+            padding-top: 1rem;
+
+            h5 {
+                text-align: center;
+            }
+
+            .time-period-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .period-text {
+                margin: 0 $major-rem;
+                text-align: center;
+            }
+        }
     }
 }
 

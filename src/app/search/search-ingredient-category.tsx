@@ -22,7 +22,9 @@ export default function SearchIngredientCategory({ category }: SearchIngredientC
     return (
         <div className={styles['search-ingredient-category']}>
             <div className={styles['search-ingredient-category__title']}>{categories[category].pl}</div>
-            <Suspense><SearchIngredientList category={category} data={ingredientData} /></Suspense>
+            <Suspense>
+                <SearchIngredientList category={category} data={ingredientData} />
+            </Suspense>
         </div>
     );
 }

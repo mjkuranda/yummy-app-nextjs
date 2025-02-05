@@ -1,49 +1,69 @@
-@import '@/styles/globals-colors';
+@import '@/styles/constants';
+@import '@/styles/palette';
 
 .search-ingredient-category {
-    width: 40%;
-    height: fit-content;
-    background-color: $orange-yellow-crayola-alpha;
-    padding: 8px;
-    border-radius: 16px;
-    margin: 5%;
+    width: 33%;
+    margin: 16px 0.1%;
 
     .search-ingredient-category__title {
         font-weight: 800;
         text-transform: uppercase;
         text-align: center;
         width: 100%;
-        margin-top: 0.6rem;
+        margin-top: $minor-rem;
+        background: linear-gradient(180deg, $cinnabar 0%, $terracotta 100%);;
+        color: $white;
+        border-radius: $major-rem;
+        padding: $minor-rem 0;
     }
 
     .search-ingredient-category__list {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 25px;
-
-        .search-ingredient-category__ingredient + .search-ingredient-category__ingredient {
-            margin-left: 8px;
-        }
+        display: grid;
+        grid-template-columns: repeat(3, 140px);
+        justify-content: center;
+        gap: 10px;
+        user-select: none;
 
         .search-ingredient-category__ingredient {
+            margin: $minor-rem;
+
             label {
                 cursor: pointer;
-                padding: 8px;
-                margin: 8px;
-                border: 1px solid $cooper-alpha;
-                border-radius: 16px;
+                padding: $minor-rem;
+                width: 140px;
+                height: 140px;
+
+                background: transparent;
+                transition: $major-time;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+
+                border-radius: $major-rem;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                }
+
+                p {
+                    text-align: center;
+                }
             }
 
             input:checked ~ label {
                 font-weight: 700;
-                color: white;
-                background-color: $cooper-alpha;
+                color: $white;
+                background: radial-gradient(circle, $tonys-pink 0%, $terracotta 100%);
+                transition: $minor-time;
             }
         }
 
         span.search-ingredient-category__ingredient {
             label {
-                border: 3px solid $cooper-alpha;
                 font-weight: 700;
             }
         }

@@ -13,12 +13,12 @@ export interface InputSelectOption {
     icon?: InputSelectOptionIcon;
 }
 
-interface InputSelectProps {
+interface InputSelectProps<Value> {
     id: string;
     label: string;
     options: InputSelectOption[];
     selectedValue: string;
-    setSelectedValue: (newValue: string) => void;
+    setSelectedValue: (newValue: Value) => void;
     width?: string;
     shouldHaveNone?: boolean;
     shouldHaveMargin?: boolean;
@@ -28,9 +28,9 @@ interface InputSelectProps {
     };
 }
 
-export function InputSelect({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone, shouldHaveMargin = false, customError }: InputSelectProps) {
+export function InputSelect<Value>({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone, shouldHaveMargin = false, customError }: InputSelectProps<Value>) {
     const onChange = (event: SelectChangeEvent<string>): void => {
-        setSelectedValue(event.target.value as string);
+        setSelectedValue(event.target.value as Value);
     };
 
     const renderIcon = (icon: InputSelectOptionIcon) => {

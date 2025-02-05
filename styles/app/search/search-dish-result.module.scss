@@ -15,7 +15,8 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        padding-top: $spc;
+        padding-bottom: $spc;
     }
     /*
         Margin above elements, but starting with 3rd one (n+3)
@@ -37,7 +38,8 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        padding-top: $spc;
+        padding-bottom: $spc;
     }
 
     /*
@@ -67,7 +69,8 @@ $spc: 8px;
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        padding-top: $spc;
+        padding-bottom: $spc;
     }
     .result-container:not(:nth-child(3n + 1)) {
         margin-left: $spc;
@@ -97,7 +100,8 @@ $spc: 8px;
     display: flex;
     flex-wrap: wrap;
     width: calc(100vw - ($ratio * $in-row));
-    margin: $spc auto;
+    padding-top: $spc;
+    padding-bottom: $spc;
 
     .result-container {
         $w: calc($ratio * $phi);
@@ -194,7 +198,7 @@ $spc: 8px;
 }
 
 #adder {
-    margin: 2em 0;
+    padding: 2em 0;
 
     > div:nth-child(1) {
         margin-bottom: 0.5em;

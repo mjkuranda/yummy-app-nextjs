@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `PageLink`, `TopHeader` and `ProgressBar` components.
 - [Marek Kurańda](https://github.com/mjkuranda): New files for constants.
 - [Marek Kurańda](https://github.com/mjkuranda): Icons to `InputSelect` component.
+- [Marek Kurańda](https://github.com/mjkuranda): Funny texts related to current period of the meal along with progress bar and time constraints at search page.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.

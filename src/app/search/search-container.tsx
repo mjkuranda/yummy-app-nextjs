@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useSearchFilters } from '@/src/hooks/use-search-filters';
 import { useUserContext } from '@/src/contexts/user.context';
 import { FormEvent, ReactElement, useMemo, useState } from 'react';
-import { MealType, MealTypeText } from '@/src/types/dish.types';
+import { DishType, MealType, MealTypeText } from '@/src/types/dish.types';
 import { getDishTypes } from '@/src/helpers/search.helper';
 import { clearSearchIngredients, getSearchFormData, getSelectedIngredientNumber } from '@/src/utils/search-form.utils';
 import { addDishProposal } from '@/src/api/api';
@@ -24,8 +24,8 @@ export function SearchContainer({ children }: SearchContainerProps) {
     const { ings, mealType, dishType } = useSearchFilters();
     const { isLoggedIn } = useUserContext();
     const [isSearchDisabled, setIsSearchDisabled] = useState<boolean>(ings.length === 0);
-    const [selectedMealType, setSelectedMealType] = useState<string>(mealType);
-    const [selectedDishType, setSelectedDishType] = useState<string>(dishType);
+    const [selectedMealType, setSelectedMealType] = useState<MealType>(mealType);
+    const [selectedDishType, setSelectedDishType] = useState<DishType>(dishType);
     const mealTypeOptions = useMemo(() => {
         return Object
             .entries(MealTypeText)
@@ -48,9 +48,9 @@ export function SearchContainer({ children }: SearchContainerProps) {
             }));
     }, [selectedMealType]);
 
-    const onSelectedMealType = (mealType: string) => setSelectedMealType(mealType);
+    const onSelectedMealType = (mealType: MealType) => setSelectedMealType(mealType);
 
-    const onSelectedDishType = (dishType: string) => setSelectedDishType(dishType);
+    const onSelectedDishType = (dishType: DishType) => setSelectedDishType(dishType);
 
     const onClear = () => {
         clearSearchIngredients();
