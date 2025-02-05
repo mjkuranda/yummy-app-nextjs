@@ -93,19 +93,31 @@ type PeriodRecord = Record<MealType, string[]>;
 export const PeriodText: PeriodRecord = {
     'any': [
         'Nie jem w nocy, bo mój lodówkowy czujnik kalorii ma laserowy alarm!',
-        'Nocą jedzenie ma więcej kalorii – to udowodnione... przez moje spodnie rano.'
+        'Nocą jedzenie ma więcej kalorii – to udowodnione... przez moje spodnie rano.',
+        'Lodówka powinna być zamknięta… jak twoje oczy! Idź spać!',
+        'Zjesz teraz? Twój brzuch zapamięta… i twoje spodnie rano też.',
+        'Pamiętaj: nocą lodówka jest pusta. Nawet jeśli jest pełna, to i tak jest pusta!',
+        'Nocne podjadanie? Świetny pomysł! O ile chcesz, żeby twoja poduszka szeptała rano \'Naprawdę?'
     ],
     'breakfast': [
-        'Śniadanie to najważniejszy posiłek dnia – mówił to ktoś, kto nigdy nie jadł pizzy na kolację!',
-        'Zasada śniadaniowa: Im później wstaniesz, tym bardziej przypomina to obiad!'
+        'Zacznij dzień jak mistrz – owsianka! Albo jak leniuch – kawa i ciastko.',
+        'Zasada śniadaniowa: Im później wstaniesz, tym bardziej przypomina to obiad!',
+        'Jajecznica, tosty, a może naleśniki? Decyzja ważniejsza niż wybór prezydenta!',
+        'Płatki z mlekiem? Klasyk! Chyba że skończyło się mleko… wtedy to już dramat.',
+        'Nie wiesz, co zjeść? Weź kanapkę. Z czym? Z czymkolwiek – kanapka nie ocenia!'
     ],
     'launch': [
         'Obiad to taki moment, kiedy zaczynasz żałować, że nie zrobiłeś więcej śniadania.',
-        'Nie jem obiadu, tylko robię research do recenzji kulinarnej mojego brzucha.'
+        'Zupa czy drugie danie? W sumie lepiej oba, żeby uniknąć trudnych wyborów.',
+        'Makaron? Zawsze dobra opcja. Jak nie wiesz, co dodać, to ser uratuje sytuację.',
+        'Kotlet, ziemniaki, surówka… albo po prostu pizza – też ma warzywa!',
+        'Jak nie masz pomysłu na obiad, to znaczy, że pora na naleśniki. Takie są zasady!'
     ],
     'dinner': [
-        'Kolacja to taki moment, gdy udajesz, że cały dzień nic nie jadłeś, żeby się usprawiedliwić.',
-        'Dieta? To chyba włoskie słowo na \'zjem wszystko po 18:00\'.'
+        'Kanapki? Sałatka? A może tost, bo to kanapka, ale na ciepło i z charakterem?',
+        'Jeśli chcesz lekko – sałatka. Jeśli chcesz dobrze – kanapka. Jeśli chcesz perfekcyjnie – zapiekanka!',
+        'Jajko sadzone, awokado, tost… albo po prostu wszystko, co masz w lodówce, wymieszane na patelni.',
+        'Kolacja powinna być lekka… ale czy naleśniki z Nutellą się liczą jako lekkie? Nie słyszę sprzeciwu!'
     ]
 };
 
