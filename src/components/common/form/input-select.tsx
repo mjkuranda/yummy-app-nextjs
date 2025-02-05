@@ -4,7 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ErrorMessage } from '@/src/components/common/error-message';
 
-interface Option {
+export interface InputSelectOption {
     en: string;
     label: string;
 }
@@ -12,7 +12,7 @@ interface Option {
 interface InputSelectProps {
     id: string;
     label: string;
-    options: Option[];
+    options: InputSelectOption[];
     selectedValue: string;
     setSelectedValue: (newValue: string) => void;
     width?: string;

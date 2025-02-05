@@ -1,5 +1,5 @@
 import { DishResult } from '@/src/types/api.types';
-import { DishType, DishTypeText, MealType } from '@/src/types/dish.types';
+import { DishRecord, DishType, DishTypeText, MealType } from '@/src/types/dish.types';
 
 export function filterDishByType(dishes: DishResult[], mealType: MealType, dishType: DishType): DishResult[] {
     if (mealType === 'any' && dishType === 'any') {
@@ -35,7 +35,7 @@ export function inferMealTypeBasingOnTime(): MealType {
     return 'any';
 }
 
-export function getDishTypes(mealType: MealType): Record<string, { en: string, pl: string }> {
+export function getDishTypes(mealType: MealType): DishRecord {
     const dishes = DishTypeText[mealType];
 
     if (Object.keys(dishes).length === 0) {

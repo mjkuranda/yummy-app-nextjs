@@ -1,17 +1,17 @@
 import styles from '@/styles/app/search/page.module.scss';
 import resultStyles from '@/styles/app/search/search-dish-result.module.scss';
 import SearchIngredientCategory from '@/src/app/search/search-ingredient-category';
-import { SearchForm } from '@/src/app/search/search-form';
 import { DishResultBox } from '@/src/app/search/dish-result-box';
 import Link from 'next/link';
 import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
 import { Suspense } from 'react';
+import { SearchContainer } from '@/src/app/search/search-container';
 
 export default function Search() {
     return (
         <WrappedContentLayout>
             <Suspense>
-                <SearchForm>
+                <SearchContainer>
                     <SearchIngredientCategory category="breads" />
                     <SearchIngredientCategory category="cereal-products" />
                     <SearchIngredientCategory category="dairy-and-eggs" />
@@ -24,7 +24,7 @@ export default function Search() {
                     <SearchIngredientCategory category="seeds-and-nuts" />
                     <SearchIngredientCategory category="spices" />
                     <SearchIngredientCategory category="vegetables" />
-                </SearchForm>
+                </SearchContainer>
             </Suspense>
             <div id={styles['dish-result-part']}>
                 <Suspense><DishResultBox /></Suspense>
