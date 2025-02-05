@@ -4,6 +4,7 @@ import styles from '@/styles/app/search/page.module.scss';
 import { Button } from '@/src/components/common/button';
 import { FormEvent, ReactElement } from 'react';
 import { InputSelect, InputSelectOption } from '@/src/components/common/form/input-select';
+import { ProgressBar } from '@/src/components/common/progress-bar';
 
 interface SearchFormProps {
     children: ReactElement[];
@@ -43,6 +44,9 @@ export function SearchForm({ children, dishTypeOptions, mealTypeOptions, selecte
                         setSelectedValue={onSelectDishType}
                         shouldHaveMargin={true}
                     />
+                </div>
+                <div>
+                    <ProgressBar value={20} maxValue={100} />
                 </div>
             </div>
             <div id={styles['search-query-part']}>

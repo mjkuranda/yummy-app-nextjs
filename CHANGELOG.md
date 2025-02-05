@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2025-02-04
 ### Added
-- [Marek Kurańda](https://github.com/mjkuranda): `PageLink` and `TopHeader` components.
+- [Marek Kurańda](https://github.com/mjkuranda): `PageLink`, `TopHeader` and `ProgressBar` components.
 - [Marek Kurańda](https://github.com/mjkuranda): New files for constants.
 - [Marek Kurańda](https://github.com/mjkuranda): Icons to `InputSelect` component.
 
