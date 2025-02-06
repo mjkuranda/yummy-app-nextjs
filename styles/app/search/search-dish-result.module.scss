@@ -1,7 +1,5 @@
-@import "@/styles/globals-constants";
-@import "@/styles/globals-colors";
-
 @import '@/styles/palette';
+@import '@/styles/constants';
 
 $spc: 8px;
 
@@ -116,9 +114,9 @@ $spc: 8px;
         display: flex;
 
         transform: scale(1);
-        transition: 618ms;
+        transition: $major-time;
 
-        border-radius: 0.618rem;
+        border-radius: $minor-rem;
 
         .result-image {
             width: $h;
@@ -138,7 +136,7 @@ $spc: 8px;
                 width: $hd;
                 height: $hd;
                 background-color: $shady-lady;
-                border-top-right-radius: 0.618rem;
+                border-top-right-radius: $minor-rem;
 
                 .result-title {
                     $htt: calc($hd - ($hd / $phi));
@@ -194,7 +192,7 @@ $spc: 8px;
         box-shadow: 0 0 $spc $spc $spring-wood;
 
         transform: scale($phi);
-        transition: 618ms;
+        transition: $major-time;
         z-index: 2;
     }
 }
