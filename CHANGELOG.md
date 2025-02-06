@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] - 2025-02-04
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `PageLink`, `TopHeader` and `ProgressBar` components.
+- [Marek Kurańda](https://github.com/mjkuranda): Containers for some forms.
 - [Marek Kurańda](https://github.com/mjkuranda): New files for constants.
 - [Marek Kurańda](https://github.com/mjkuranda): Icons to `InputSelect` component.
 - [Marek Kurańda](https://github.com/mjkuranda): Funny texts related to current period of the meal along with progress bar and time constraints at search page.
@@ -13,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
 - [Marek Kurańda](https://github.com/mjkuranda): Buttons design.
-- [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, header and footer design.
+- [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, login page, header and footer design.
 - [Marek Kurańda](https://github.com/mjkuranda): Independent `SearchForm` and `SearchContainer` to have logics separately.
 
 ## [1.66.0] - 2025-01-31
