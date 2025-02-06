@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
 - [Marek Kurańda](https://github.com/mjkuranda): Buttons design.
-- [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, login page, registration page, header and footer design.
+- [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, login page, registration page, recommendation page, header and footer design.
 - [Marek Kurańda](https://github.com/mjkuranda): Independent `SearchForm` and `SearchContainer` to have logics separately.
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient and flag information for dish results.
 

@@ -19,9 +19,11 @@ export function RecommendationsItem({ proposal, isTransparent }: DishProposalIte
                     <DishImage title={proposal.title} imgUrl={proposal.imgUrl} provider={proposal.provider} />
                 </div>
             </div>
-            <h3 className={styles['recommendations-container__proposal-header']}>
-                {proposal.title}
-            </h3>
+            <div className={styles['recommendations-container__proposal-header-container']}>
+                <h3 className={styles['recommendations-container__proposal-header']}>
+                    {proposal.title}
+                </h3>
+            </div>
         </div>
     );
 }
