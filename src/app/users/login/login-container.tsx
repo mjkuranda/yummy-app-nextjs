@@ -3,14 +3,19 @@
 import { FormEvent, useState } from 'react';
 import { useUserContext } from '@/src/contexts/user.context';
 import { doUserLogin } from '@/src/api/api';
-import { toastError, toastSuccess } from '@/src/utils/toast.utils';
+import { toastSuccess } from '@/src/utils/toast.utils';
 import { LoginForm } from '@/src/app/users/login/login-form';
+import { handleApiError } from '@/src/api/api-errors';
+import { useRouter } from 'next/navigation';
 
 export function LoginContainer() {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isLogging, setIsLogging] = useState<boolean>(false);
-    const { loginUser } = useUserContext();
+    const userContext = useUserContext();
+    const router = useRouter();
+
+    const { loginUser } = userContext;
 
     const onLogIn = async () => {
         setIsLogging(true);
@@ -21,7 +26,7 @@ export function LoginContainer() {
 
             toastSuccess('Pomyślnie zalogowano');
         } catch (err: any) {
-            toastError(err.message);
+            handleApiError(err.message, router, userContext);
         } finally {
             setIsLogging(false);
         }

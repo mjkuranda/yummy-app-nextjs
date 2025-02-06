@@ -54,9 +54,15 @@ export class NotFoundError extends ApiError {
     }
 }
 
-export class NotFoundActivationForUser extends NotFoundError {
+export class NotFoundActivationForUserError extends NotFoundError {
     constructor() {
         super('Nie znaleziono takiej prośby, aby aktywować użytkownika.');
+    }
+}
+
+export class NotFoundUserLoginError extends NotFoundError {
+    constructor(login: string) {
+        super(`Użytkownik o loginie "${login}" nie istnieje.`);
     }
 }
 
@@ -70,7 +76,13 @@ export function throwApiError(res: ApiErrorResponse): never {
         throw new ForbiddenError(res.message);
     case 404:
         if (res.message.includes('Not found any request') && res.message.includes('activation token')) {
-            throw new NotFoundActivationForUser();
+            throw new NotFoundActivationForUserError();
+        }
+
+        if (res.message.includes('User') && res.message.includes('does not exist')) {
+            const [,login] = res.message.split(' ');
+
+            throw new NotFoundUserLoginError(login);
         }
 
         throw new NotFoundError(res.message);
@@ -111,7 +123,7 @@ export function handleApiError(err: ApiError, router: AppRouterInstance, userCon
         return;
     }
 
-    toastError('Wystąpił błąd.');
+    toastError(err.message ?? err ?? 'Wystąpił błąd.');
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
