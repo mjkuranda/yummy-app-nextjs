@@ -1,12 +1,18 @@
-import { RegistrationForm } from '@/src/app/users/registration/registration-form';
-import { BackLinkBar } from '@/src/components/common/back-link-bar';
-import { WrappedScreenContentLayout } from '@/src/components/common/layouts/wrapped-screen-content-layout';
+import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
+import { RegistrationContainer } from '@/src/app/users/registration/registration-container';
+import styles from '@/styles/app/users/registration/page.module.scss';
 
 export default function RegistrationPage() {
     return (
-        <WrappedScreenContentLayout type="multi-content">
-            <BackLinkBar link="/users/login" label={'Powrót do logowania'} />
-            <RegistrationForm />
-        </WrappedScreenContentLayout>
+        <WrappedContentLayout>
+            <div className={styles['registration-box']}>
+                <div className={styles['registration-box__form-container']}>
+                    <RegistrationContainer />
+                </div>
+                <div className={styles['registration-box__img-container']}>
+                    <img src="/register.jpg" alt="People united by food" />
+                </div>
+            </div>
+        </WrappedContentLayout>
     );
 }

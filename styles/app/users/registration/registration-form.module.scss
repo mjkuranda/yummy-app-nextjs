@@ -1,11 +1,26 @@
+@import '@/styles/constants';
+
 .registration-form {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    flex: 1;
 
+    h2 {
+        text-align: center;
+        margin-bottom: $e-rem;
+    }
+
+    // for each controls and other elements inside the form
     > * {
         margin: 1rem 0 !important;
+    }
+
+    // Last control from form
+    > div:last-of-type {
+        margin-bottom: $major-rem !important;
+    }
+
+    .account-creating-notification-text {
+        text-align: justify;
     }
 }

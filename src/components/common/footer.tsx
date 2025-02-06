@@ -7,7 +7,7 @@ const mainLinks: PageLinkProps[] = [
     { label: 'Wyszukaj dania', href: '/search' },
     { label: 'Rekomendacje', href: '/recommendations' },
     { label: 'Zaloguj się', href: '/users/login' },
-    { label: 'Zarejestruj się', href: '/users/register' }
+    { label: 'Zarejestruj się', href: '/users/registration' }
 ];
 
 const visitLinks: PageLinkProps[] = [
@@ -22,7 +22,7 @@ export function Footer() {
     return (
         <footer className={styles['app-footer']}>
             <div className={styles['brand-container']}>
-                <img src="/logo.svg" width={64} height={64} />
+                <img src="/logo.svg" width={64} height={64} alt={'DishMatcher logo'} />
                 <p>&copy; 2025 DishMatcher</p>
                 <p>Wszelkie prawa zastrzeżone.</p>
             </div>

@@ -3,9 +3,10 @@
 import EditIcon from '@mui/icons-material/Edit';
 import styles from '@/styles/components/common/add-button.module.scss';
 import { useRouter } from 'next/navigation';
+import { PagePathname } from '@/src/constants/strings';
 
 interface EditLinkProps {
-    link: string; // TODO: various pages links
+    link: PagePathname;
     label: string;
 }
 

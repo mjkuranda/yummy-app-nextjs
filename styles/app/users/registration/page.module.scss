@@ -1,0 +1,23 @@
+@import '@/styles/constants';
+@import '@/styles/components/common/button.module';
+
+.registration-box {
+    margin: $major-rem 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .registration-box__form-container {
+        width: $minor-cent;
+    }
+
+    .registration-box__img-container {
+        width: $major-cent;
+        margin-left: 10%;
+
+        img {
+            width: 100%;
+            border-radius: $minor-cent $major-cent $minor-cent $major-cent;
+        }
+    }
+}
