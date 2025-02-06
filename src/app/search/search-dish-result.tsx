@@ -38,7 +38,7 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
     };
 
     const renderRelevance = (relevance: number): ReactElement => {
-        return <>Zgodność z Twoim wyszukiwaniem: <b>{Math.ceil(relevance * 100)}%</b></>;
+        return <><b>{Math.ceil(relevance * 100)}%</b> pasujących składników</>;
     };
 
     return (
@@ -59,7 +59,8 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
                     <div className={styles['result-text']}>
                         <span>{renderRelevance(dish.relevance)}</span>
                         <span>{renderMissing(dish.missingCount)}</span>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
+                            <p className="w-50">Język oryginału:</p>
                             <FlagIcon language={dish.language} hasTranslationInfo={false} />
                         </div>
                     </div>
