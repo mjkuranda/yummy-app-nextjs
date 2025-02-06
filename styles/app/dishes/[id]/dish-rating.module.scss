@@ -1,4 +1,8 @@
+@import '@/styles/constants';
+
 .dish-rating {
+    margin: $minor-rem 0 $major-rem 0;
+
     .dish-rating-stars {
         color: #f9f900;
     }

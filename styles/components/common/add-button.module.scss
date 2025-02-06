@@ -1,13 +1,15 @@
+@import '@/styles/palette';
+
 .add-button {
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: #3f51b5;
+    color: blue;
     transition: 300ms;
     user-select: none;
 
     &:hover {
-        color: white;
+        color: $tonys-pink;
         transition: 300ms;
     }
 

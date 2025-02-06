@@ -29,7 +29,6 @@ export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl 
                 <li>
                     <div className={styles['result-dish-title']}>
                         <h3>{dish.title}</h3>
-                        {dish.language !== 'pl' && <FlagIcon language={'en'} />}
                     </div>
                     <div className={styles['information-container']}>
                         <span>Czas wykonania:</span>
@@ -51,6 +50,10 @@ export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl 
                                 : <>{dish.sourceOrAuthor} (poprzez Spoonacular)</>
                             }
                         </span>
+                    </div>
+                    <div className={styles['information-container']}>
+                        <span>Oryginalny język: <FlagIcon language={dish.language} size={32} /></span>
+
                     </div>
                 </li>
                 <li className={styles['result-rating']}>

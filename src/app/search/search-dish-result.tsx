@@ -60,7 +60,7 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
                         <span>{renderRelevance(dish.relevance)}</span>
                         <span>{renderMissing(dish.missingCount)}</span>
                         <div className="d-flex justify-content-center align-items-center">
-                            <p className="w-50">Język oryginału:</p>
+                            <p className="w-50">Oryginalny język:</p>
                             <FlagIcon language={dish.language} hasTranslationInfo={false} />
                         </div>
                     </div>

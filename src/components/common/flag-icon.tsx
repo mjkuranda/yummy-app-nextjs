@@ -2,6 +2,7 @@ import { Language } from '@/src/types/api.types';
 
 interface FlagIconProps {
     language: Language;
+    size?: number;
     hasTranslationInfo?: boolean;
 }
 
@@ -20,7 +21,7 @@ const flagInfo: Record<Language, { alt: string, author: JSX.Element, image: stri
     }
 };
 
-export function FlagIcon({ language, hasTranslationInfo }: FlagIconProps) {
+export function FlagIcon({ language, size = 48, hasTranslationInfo }: FlagIconProps) {
     const flag = flagInfo[language];
 
     return (
@@ -28,8 +29,8 @@ export function FlagIcon({ language, hasTranslationInfo }: FlagIconProps) {
             style={{ cursor: 'pointer' }}
             src={`/flags/${flag.image}.png`}
             alt={flag.alt}
-            width={48}
-            title={hasTranslationInfo ? 'Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu.' : 'Język oryginału'}
+            width={size}
+            title={hasTranslationInfo ? 'Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu.' : 'Flaga kraju, gdzie język występuje jako urzędowy'}
             data-author={flag.author}
         />
     );
