@@ -6,7 +6,7 @@ export interface DishFormData {
     description: string;
     readyInMinutes: string;
     type: DishType;
-    mealType: MealType;
+    mealType: OnlyMealType;
     ingredients: IngredientWithId[];
     recipe: DishRecipeSectionWithId[];
     hasImage: boolean;
@@ -15,7 +15,9 @@ export interface DishFormData {
     imageFile?: File;
 }
 
-export type MealType = 'any' | 'breakfast' | 'launch' | 'dinner';
+export type OnlyMealType = 'breakfast' | 'launch' | 'dinner';
+
+export type MealType = 'any' | OnlyMealType;
 
 export type MealRecord = { en: string, pl: string };
 
