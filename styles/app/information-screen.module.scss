@@ -7,8 +7,24 @@
     display: flex;
     padding: 8rem;
 
+    &:nth-child(2n + 1) {
+        .information-screen__image-container {
+            div[data-image-name] {
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+            }
+        }
+    }
+
     &:nth-child(2n + 2) {
         background-color: $spring-wood;
+
+        .information-screen__image-container {
+            div[data-image-name] {
+                border-top-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+        }
     }
 
     .information-screen__details-container {
