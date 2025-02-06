@@ -25,7 +25,7 @@ export function RecommendationsContainer() {
 
     return (
         <div className={styles['recommendations-container']}>
-            <BackLinkBar link="/" label={'Powrót do strony głównej'} />
+            <BackLinkBar link="/" label={'Powrót do strony głównej'} hasMarginAround={true} />
             <div className={styles['recommendations-nearby']}>
                 {currentProposal ?
                     <>

@@ -1,7 +1,10 @@
 @import '@/styles/globals-colors';
 
+@import '@/styles/constants';
+@import '@/styles/palette';
+
 .result-page {
-    padding: 8px;
+    margin: $minor-rem;
 
     .result-nav {
         background-color: $honey-yellow;

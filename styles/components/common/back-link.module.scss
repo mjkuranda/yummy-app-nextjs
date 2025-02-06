@@ -1,4 +1,5 @@
 @import '@/styles/palette';
+@import '@/styles/constants';
 
 .back-link {
     margin: 16px 0;
@@ -6,9 +7,12 @@
 
 .back-link-bar {
     background-color: $spring-wood;
+    border-radius: $minor-rem;
     padding: 1em;
-    margin: 0.5em;
-    border-radius: 0.5em;
+
+    &[data-has-margin-around=true] {
+        margin: $minor-rem;
+    }
 
     &[data-only-margin-bottom=true] {
         margin: 0 0 0.5rem 0 !important;

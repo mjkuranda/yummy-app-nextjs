@@ -1,8 +1,6 @@
 'use client';
 
 import styles from '@/styles/app/dishes/[id]/page.module.scss';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import Link from 'next/link';
 import { redirect, useParams, useSearchParams } from 'next/navigation';
 import { useGetDishById } from '@/src/api/endpoints';
 import { DishContainer } from '@/src/app/dishes/[id]/dish-container';
@@ -13,6 +11,8 @@ import { useEffect } from 'react';
 import { decodeSearchQuery } from '@/src/helpers/query.helper';
 import { EncodedUrlQuery } from '@/src/types/search.types';
 import { WrappedContentLayout } from '@/src/components/common/layouts/wrapped-content-layout';
+import { BackLinkBar } from '@/src/components/common/back-link-bar';
+import { PagePathname } from '@/src/constants/strings';
 
 export default function DishById() {
     const { id } = useParams();
@@ -41,14 +41,12 @@ export default function DishById() {
         }
     }, [dish, isError]);
 
+    const linkHref = (typeof searchParams.get('sourceUrl') === 'string' ? `/search?${decodeSearchQuery(searchParams.get('sourceUrl') as EncodedUrlQuery)}` : '/search') as PagePathname;
+
     return (
         <WrappedContentLayout>
             <div className={styles['result-page']}>
-                <div className={styles['result-nav']}>
-                    <Link href={typeof searchParams.get('sourceUrl') === 'string' ? `/search?${decodeSearchQuery(searchParams.get('sourceUrl') as EncodedUrlQuery)}` : '/search'}>
-                        <ArrowCircleLeftIcon />Wróć do wyszukiwania
-                    </Link>
-                </div>
+                <BackLinkBar link={linkHref} label={'Wróć do wyszukiwania'} onlyMarginBottom={true} />
                 <div className={styles['result-container']}>
                     {isLoading || isError
                         ? <Loader isAbsolute={true} />

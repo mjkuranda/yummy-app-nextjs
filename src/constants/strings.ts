@@ -9,6 +9,7 @@ export type PagePathname
     | ManageDishesPathname
     | '/recommendations'
     | '/search'
+    | `/search?sourceUrl=${string}&type=${string}&dish=${string}`
     | `/users/${string}/profile`
     | `/users/activate/${string}`
     | '/users/change-password'
