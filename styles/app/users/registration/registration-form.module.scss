@@ -15,12 +15,12 @@
         margin: 1rem 0 !important;
     }
 
-    // Last control from form
-    > div:last-of-type {
-        margin-bottom: $major-rem !important;
-    }
+    .registration-form-container {
+        margin-top: calc(2 * $major-rem) !important;
 
-    .account-creating-notification-text {
-        text-align: justify;
+        .account-creating-notification-text {
+            text-align: justify;
+            margin-top: $major-rem;
+        }
     }
 }

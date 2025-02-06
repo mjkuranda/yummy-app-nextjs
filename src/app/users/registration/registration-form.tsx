@@ -103,8 +103,10 @@ export function RegistrationForm({ control, errors, handleSubmit, validateRepeat
                     <InputPassword label={isResetting ? 'Powtórz nowe hasło' : 'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="100%" />
                 )}
             />
-            <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" disabled={!isValid} />
-            {wasCreated && <p className={styles['account-creating-notification-text']}>Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.</p>}
+            <div className={styles['registration-form-container']}>
+                <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" disabled={!isValid} width="100%" />
+                {wasCreated && <p className={styles['account-creating-notification-text']}>Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.</p>}
+            </div>
         </form>
     );
 }

@@ -21,7 +21,7 @@ interface ButtonProps {
     icon?: IconVariant;
     link?: string;
     type?: 'button' | 'submit'
-    width?: number;
+    width?: number | string;
     onClick?: (e: any) => void;
 }
 
@@ -34,7 +34,7 @@ export function Button({ disabled, label, link, icon, type, width, onClick }: Bu
                 href={disabled ? '/' : link}
                 className={className}
                 aria-disabled={disabled}
-                style={{ width: `${width}px`, display: 'flex' }}
+                style={{ width: typeof width === 'string' ? width : `${width}px`, display: 'flex' }}
                 tabIndex={disabled ? -1 : undefined}>
                 {icon && renderIcon(icon)}
                 {icon && '\u00A0'}
