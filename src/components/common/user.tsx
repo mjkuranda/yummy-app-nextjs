@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { useUserContext } from '@/src/contexts/user.context';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';

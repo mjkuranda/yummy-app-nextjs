@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Funny texts related to current period of the meal along with progress bar and time constraints at search page.
 - [Marek Kurańda](https://github.com/mjkuranda): `hasMarginAround` data property to `BackLinkBar` component to define a margin or not.
 - [Marek Kurańda](https://github.com/mjkuranda): `DishCreatorContainer` for containing all logics for proceeding dish creator data.
+- [Marek Kurańda](https://github.com/mjkuranda): `Checkbox` component.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
@@ -19,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, login page, registration page, recommendation page, dish details page, header and footer design.
 - [Marek Kurańda](https://github.com/mjkuranda): Independent `SearchForm` and `SearchContainer` to have logics separately.
 - [Marek Kurańda](https://github.com/mjkuranda): Ingredient and flag information for dish results.
+- [Marek Kurańda](https://github.com/mjkuranda): All button components were moved to `src/components/common/buttons`.
+- [Marek Kurańda](https://github.com/mjkuranda): All link components were moved to `src/components/common/links`.
 
 ## [1.66.0] - 2025-01-31
 ### Added

@@ -1,7 +1,7 @@
 'use client';
 
 import { DetailedDish } from '@/src/types/api.types';
-import { EditLink } from '@/src/components/common/edit-link';
+import { EditLink } from '@/src/components/common/links/edit-link';
 import { useUserContext } from '@/src/contexts/user.context';
 
 interface DishEditionProps {

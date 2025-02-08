@@ -12,7 +12,7 @@ import { toastInfo, toastSuccess } from '@/src/utils/toast.utils';
 import { createDish, editDish, uploadImage } from '@/src/api/api';
 import { proceedFormToData } from '@/src/helpers/recipe-form.helper';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
-import { CreateDishForm } from '@/src/app/dishes/create/create-dish-form';
+import { DishCreatorForm } from '@/src/app/dishes/create/dish-creator-form';
 
 export interface MealOption {
     en: OnlyMealType;
@@ -73,9 +73,20 @@ const defaultValues: DishFormData = {
                 { id: crypto.randomUUID(), text: 'A tutaj kolejny... itd...' }
             ]
         }
-    ],
-    hasImage: false
+    ]
 };
+
+export const initialCheckboxSelectedState: CheckboxSelectedState = {
+    none: true,
+    link: false,
+    upload: false
+};
+
+export interface CheckboxSelectedState {
+    none: boolean;
+    link: boolean;
+    upload: boolean;
+}
 
 interface DishCreatorContainerProps {
     dish?: DetailedDishWithTranslations;
@@ -89,15 +100,24 @@ export function DishCreatorContainer({ dish, ingredients }: DishCreatorContainer
     const { handleSubmit, control, formState: { errors }, reset, watch } = useForm<DishFormData>({ defaultValues: dish ? getDefaultValues(dish, ingredients) : defaultValues, mode: 'onChange' });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [wasCreated, setWasCreated] = useState<boolean>(false);
+    const [checkboxSelected, setCheckboxSelected] = useState<CheckboxSelectedState>(initialCheckboxSelectedState);
 
     const titleWatch = watch('title');
     const mealTypeWatch = watch('mealType');
-
-    const hasImageWatch = watch('hasImage');
-    const hasImageUrlWatch = watch('hasImageUrl');
-
     const imageUrl = watch('imageUrl');
     const imageFile = watch('imageFile');
+
+    const selectCheckbox = (type: 'none' | 'link' | 'upload'): void => {
+        let value: CheckboxSelectedState = { ... initialCheckboxSelectedState };
+
+        switch (type) {
+        case 'none': value = { none: true, link: false, upload: false }; break;
+        case 'link': value = { none: false, link: true, upload: false }; break;
+        case 'upload': value = { none: false, link: false, upload: true }; break;
+        }
+
+        setCheckboxSelected(value);
+    };
 
     useEffect(() => {
         if (userContext.isFetching) {
@@ -172,11 +192,11 @@ export function DishCreatorContainer({ dish, ingredients }: DishCreatorContainer
     };
 
     return (
-        <CreateDishForm
+        <DishCreatorForm
             control={control}
             errors={errors}
-            hasImageWatch={hasImageWatch}
-            hasImageUrlWatch={hasImageUrlWatch}
+            checkboxSelected={checkboxSelected}
+            selectCheckbox={selectCheckbox}
             imageUrl={imageUrl}
             imageFile={imageFile}
             isCreating={isCreating}

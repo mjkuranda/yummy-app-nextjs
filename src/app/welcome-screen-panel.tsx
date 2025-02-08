@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/welcome-screen.module.scss';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { TopHeader } from '@/src/components/common/top-header';
 import { useUserContext } from '@/src/contexts/user.context';
 

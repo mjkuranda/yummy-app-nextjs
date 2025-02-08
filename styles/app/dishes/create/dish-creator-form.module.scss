@@ -1,0 +1,123 @@
+@import '@/styles/constants';
+@import '@/styles/palette';
+
+.dish-creator-form {
+    .dish-creator-form-content-container {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        justify-content: center;
+
+        .dish-creator-form__dish-image {
+            .dish-creator-form__dish-image-background {
+                width: 100%;
+                display: flex;
+                aspect-ratio: 1 / 1;
+                border-radius: 0.5rem;
+                border: 1px solid $chilean-fire;
+
+                // .result-image class
+                > div {
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0.5rem;
+                    }
+                }
+            }
+
+            .dish-creator-form__dish-image-selector-container {
+                display: inline-flex;
+                justify-content: center;
+                margin: $major-rem 0 $major-rem 0;
+                width: 100%;
+                gap: $minor-rem;
+
+            }
+
+            .dish-creator-form__dish-image-result-container {
+                margin: 0 $minor-rem;
+            }
+        }
+
+        .dish-creator-form__dish-details {
+            padding: 2rem;
+
+            .dish-creator-form__dish-details__general {}
+            .dish-creator-form__dish-details__description {}
+            .dish-creator-form__dish-details__ingredients {}
+            .dish-creator-form__dish-details__recipe {}
+        }
+    }
+
+    .dish-creator-form__button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: $major-rem 0;
+    }
+}
+
+//.create-dish-form {
+//    display: flex;
+//    min-height: calc(100vh - 222px);
+//    background-color: $honey-yellow-alpha;
+//    border-radius: 16px;
+//
+//    .form-content-container {
+//        width: 100%;
+//        margin: 1rem;
+//
+//        .form-top-container {
+//            display: flex;
+//            flex-direction: column;
+//
+//            .form-top-header {
+//                text-align: center;
+//            }
+//
+//            // title
+//            > :last-child {
+//                width: 30%;
+//                margin: 0 auto;
+//            }
+//        }
+//
+//        .form-field-container {
+//            display: flex;
+//            margin: 2rem;
+//
+//            .form-left-side,
+//            .form-right-side {
+//                margin: 1rem 0 !important;
+//                width: 100%;
+//            }
+//
+//            .form-left-side {
+//                margin: 1rem 0 !important;
+//
+//                > * {
+//                    margin: 2rem auto;
+//                    width: 80%;
+//                }
+//            }
+//
+//            .form-right-side {
+//                margin: 1rem 0 !important;
+//            }
+//        }
+//
+//        .create-button-container {
+//            display: flex;
+//            justify-content: center;
+//            align-items: center;
+//            flex-direction: column;
+//
+//            > :last-child {
+//                margin-top: 1rem;
+//            }
+//        }
+//    }
+//}

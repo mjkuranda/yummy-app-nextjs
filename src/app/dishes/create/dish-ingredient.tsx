@@ -5,7 +5,7 @@ import { IngredientWithId } from '@/src/types/ingredient.types';
 import { InputNumber } from '@/src/components/common/form/input-number';
 import { InputSelect } from '@/src/components/common/form/input-select';
 import { useMemo, useState } from 'react';
-import { RemoveButton } from '@/src/components/common/remove-button';
+import { RemoveButton } from '@/src/components/common/buttons/remove-button';
 import { useIngredientFormContext } from '@/src/contexts/ingredient-form.context';
 import { removeIngredient, setIngredientAmount, setIngredientUnit } from '@/src/helpers/ingredient-form.helper';
 

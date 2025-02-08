@@ -9,8 +9,6 @@ export interface DishFormData {
     mealType: OnlyMealType;
     ingredients: IngredientWithId[];
     recipe: DishRecipeSectionWithId[];
-    hasImage: boolean;
-    hasImageUrl?: boolean;
     imageUrl?: string;
     imageFile?: File;
 }

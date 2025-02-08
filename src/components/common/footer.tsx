@@ -1,5 +1,5 @@
 import styles from '@/styles/components/common/footer.module.scss';
-import { PageLink, PageLinkProps } from '@/src/components/common/page-link';
+import { PageLink, PageLinkProps } from '@/src/components/common/links/page-link';
 
 const mainLinks: PageLinkProps[] = [
     { label: 'Strona główna', href: '/' },

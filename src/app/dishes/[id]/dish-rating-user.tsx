@@ -2,7 +2,7 @@ import styles from '@/styles/app/dishes/[id]/dish-rating.module.scss';
 import { DishRatingStars } from '@/src/app/dishes/[id]/dish-rating-stars';
 import { ChangeEvent, useState } from 'react';
 import { InputRange } from '@/src/components/common/form/input-range';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { useParams, useRouter } from 'next/navigation';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { useUserContext } from '@/src/contexts/user.context';

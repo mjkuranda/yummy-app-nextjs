@@ -1,7 +1,7 @@
 import styles from '@/styles/app/users/login/page.module.scss';
 import { InputString } from '@/src/components/common/form/input-string';
 import { InputPassword } from '@/src/components/common/form/input-password';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { Loader } from '@/src/components/common/loader';
 import Link from 'next/link';
 import { Dispatch, FormEvent, SetStateAction } from 'react';

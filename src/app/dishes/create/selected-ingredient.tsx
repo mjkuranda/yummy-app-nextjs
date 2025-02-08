@@ -1,5 +1,5 @@
 import { ListItem, ListItemText } from '@mui/material';
-import { RemoveButton } from '@/src/components/common/remove-button';
+import { RemoveButton } from '@/src/components/common/buttons/remove-button';
 import React from 'react';
 import { Items } from '@/src/components/common/form/input-list';
 

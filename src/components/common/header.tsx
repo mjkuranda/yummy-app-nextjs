@@ -1,6 +1,6 @@
 import styles from '@/styles/components/common/header.module.scss';
 import { User } from '@/src/components/common/user';
-import { PageLink } from '@/src/components/common/page-link';
+import { PageLink } from '@/src/components/common/links/page-link';
 
 interface HeaderProps {
     isTransparent?: boolean;

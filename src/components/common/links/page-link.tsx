@@ -1,4 +1,4 @@
-import styles from '@/styles/components/common/page-link.module.scss';
+import styles from '@/styles/components/common/links/page-link.module.scss';
 import Link from 'next/link';
 import { CSSProperties } from 'react';
 import { PagePathname } from '@/src/constants/strings';

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { removeSectionStep, updateSectionStep } from '@/src/helpers/recipe-form.helper';
 import styles from '@/styles/app/dishes/create/recipe-form.module.scss';
-import { RemoveButton } from '@/src/components/common/remove-button';
+import { RemoveButton } from '@/src/components/common/buttons/remove-button';
 
 interface RecipeSectionStepProps {
     section: DishRecipeSectionWithId;
@@ -37,7 +37,7 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
     return (
         <li className={styles['recipe-section-step']}>
             <div className={styles['step-container']}>
-                <InputString label={'Wpisz co należy wykonać w tym kroku'} value={instructionStep} setValue={onChangeStep} width={'330px'} />
+                <InputString label={'Wpisz, co należy wykonać w tym kroku'} value={instructionStep} setValue={onChangeStep} width={'330px'} />
                 <RemoveButton label={'Usuń'} onClick={onRemoveStep} />
             </div>
         </li>

@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/search/page.module.scss';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { FormEvent, ReactElement } from 'react';
 import { InputSelect, InputSelectOption } from '@/src/components/common/form/input-select';
 import { ProgressBar } from '@/src/components/common/progress-bar';

@@ -11,7 +11,7 @@ import {
 } from 'react-hook-form';
 import styles from '@/styles/app/users/registration/registration-form.module.scss';
 import { InputString } from '@/src/components/common/form/input-string';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
 import { Loader } from '@/src/components/common/loader';
 import { BaseSyntheticEvent } from 'react';

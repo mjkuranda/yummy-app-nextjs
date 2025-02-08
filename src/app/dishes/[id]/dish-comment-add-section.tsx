@@ -3,7 +3,7 @@
 import styles from '@/styles/app/dishes/[id]/dish-comment-container.module.scss';
 import { InputString } from '@/src/components/common/form/input-string';
 import { useEffect, useState } from 'react';
-import { SendIconButton } from '@/src/components/common/send-icon-button';
+import { SendIconButton } from '@/src/components/common/buttons/send-icon-button';
 import { postNewComment } from '@/src/api/api';
 import { useParams, useRouter } from 'next/navigation';
 import { QueryObserverResult } from '@tanstack/react-query';
