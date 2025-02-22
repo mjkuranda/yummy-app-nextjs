@@ -148,8 +148,12 @@ function getBadRequestMessage(message: string, context: ApiErrorContext): string
         return 'Podany token jest nieprawidłowy.';
     }
 
-    if (['User with id', 'does not exist, reported by', 'request token for activation.'].every(message => message.includes(message))) {
+    if (['User with id', 'does not exist, reported by', 'request token for activation.'].every(element => message.includes(element))) {
         return 'Użytkownik przypisany do tego kodu już nie istnieje.';
+    }
+
+    if (message === 'File is too large') {
+        return 'Zbyt duży rozmiar pliku';
     }
 
     return 'Wystąpił błąd';

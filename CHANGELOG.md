@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `hasMarginAround` data property to `BackLinkBar` component to define a margin or not.
 - [Marek Kurańda](https://github.com/mjkuranda): `DishCreatorContainer` for containing all logics for proceeding dish creator data.
 - [Marek Kurańda](https://github.com/mjkuranda): `Checkbox` component.
+- [Marek Kurańda](https://github.com/mjkuranda): New `DishMatcher` icon.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.

@@ -104,7 +104,6 @@ export function DishCreatorForm({ control, errors, checkboxSelected, selectCheck
                 </div>
                 <div className={styles['dish-creator-form__dish-details']}>
                     <div className={styles['dish-creator-form__dish-details__general']}>
-
                         <Controller
                             name={'title'}
                             control={control}
@@ -137,7 +136,7 @@ export function DishCreatorForm({ control, errors, checkboxSelected, selectCheck
                                 </div>
                             )}
                         />
-                        <div>
+                        <div className={styles['dish-creator-form__dish-details__general-types']}>
                             <Controller
                                 name={'mealType'}
                                 control={control}
@@ -210,7 +209,6 @@ export function DishCreatorForm({ control, errors, checkboxSelected, selectCheck
                             rules={{
                                 required: 'Przepis jest wymagany',
                                 validate: {
-                                    // required: (value: DishRecipeSectionWithId[]) => value.length > 0 ? true : 'Przepis jest wymagany',
                                     stepRequired: (value: DishRecipeSectionWithId[]) => value.length > 0 && value[0].steps.length > 1 ? true : 'Co najmniej 2 kroki są wymagane',
                                     minStepCount: (value: DishRecipeSectionWithId[]) => value.length > 0 && value.every(section => section.steps.length > 1) ? true : 'Każdy przepis powinien mieć co najmniej 2 kroki'
                                 },

@@ -77,7 +77,7 @@ export function DishIngredient({ ingredient }: DishIngredientProps) {
         <li>
             <InputNumber label={'Ilość'} value={amount} setValue={setAmountValue} width={'150px'} shouldHaveMargin={true} customError={customAmountError} />
             <InputSelect id={`${ingredient.id}-unit`} label={'Jednostka'} options={unitOptions} selectedValue={unit} setSelectedValue={setUnitValue} width={'150px'} shouldHaveMargin={true} customError={customUnitError} />
-            <div className={styles['ingredient-name']} style={{ marginTop: '26px', alignItems: 'flex-start' }}>
+            <div className={styles['ingredient-name']} style={{ marginTop: '22px', alignItems: 'flex-start' }}>
                 {ingredient.data.imageUrl
                     ? <img src={`https://img.spoonacular.com/ingredients_250x250/${ingredient.data.imageUrl}`}
                         alt="Ingredient image icon"
@@ -93,7 +93,9 @@ export function DishIngredient({ ingredient }: DishIngredientProps) {
                         data-a-text="Ingredients icons created by Flat Icons - Flaticon"
                     />
                 }
-                {ingredient.data.pl}
+                <p style={{ marginTop: '4px' }}>
+                    {ingredient.data.pl}
+                </p>
             </div>
             <RemoveButton label={'Usuń'} onClick={onRemoveIngredient} customStyle={{ marginTop: '26px', alignItems: 'flex-start' }} />
         </li>

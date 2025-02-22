@@ -12,19 +12,18 @@
                 width: 100%;
                 display: flex;
                 aspect-ratio: 1 / 1;
-                border-radius: 0.5rem;
-                border: 1px solid $chilean-fire;
+                border-radius: $minor-rem;
 
                 // .result-image class
                 > div {
                     width: 100%;
                     height: 100%;
+                }
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 0.5rem;
-                    }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: $minor-rem;
                 }
             }
 
@@ -45,10 +44,34 @@
         .dish-creator-form__dish-details {
             padding: 2rem;
 
-            .dish-creator-form__dish-details__general {}
-            .dish-creator-form__dish-details__description {}
-            .dish-creator-form__dish-details__ingredients {}
-            .dish-creator-form__dish-details__recipe {}
+            // FIXME: What's a mess below... O.O
+
+            > * {
+                margin-bottom: $major-rem;
+            }
+
+            .dish-creator-form__dish-details__general {
+                > * {
+                    margin: $major-rem 0;
+                }
+
+                .dish-creator-form__dish-details__general-types {
+                    > * {
+                        margin: $major-rem 0;
+                    }
+                }
+            }
+            .dish-creator-form__dish-details__description {
+                > * {
+                    margin: $major-rem 0;
+                }
+            }
+            .dish-creator-form__dish-details__ingredients {
+                margin: calc($major-rem * 2) 0;
+            }
+            .dish-creator-form__dish-details__recipe {
+                margin: $major-rem 0;
+            }
         }
     }
 
@@ -57,67 +80,7 @@
         justify-content: center;
         align-items: center;
         margin: $major-rem 0;
+        flex-direction: column;
+        gap: $major-rem;
     }
 }
-
-//.create-dish-form {
-//    display: flex;
-//    min-height: calc(100vh - 222px);
-//    background-color: $honey-yellow-alpha;
-//    border-radius: 16px;
-//
-//    .form-content-container {
-//        width: 100%;
-//        margin: 1rem;
-//
-//        .form-top-container {
-//            display: flex;
-//            flex-direction: column;
-//
-//            .form-top-header {
-//                text-align: center;
-//            }
-//
-//            // title
-//            > :last-child {
-//                width: 30%;
-//                margin: 0 auto;
-//            }
-//        }
-//
-//        .form-field-container {
-//            display: flex;
-//            margin: 2rem;
-//
-//            .form-left-side,
-//            .form-right-side {
-//                margin: 1rem 0 !important;
-//                width: 100%;
-//            }
-//
-//            .form-left-side {
-//                margin: 1rem 0 !important;
-//
-//                > * {
-//                    margin: 2rem auto;
-//                    width: 80%;
-//                }
-//            }
-//
-//            .form-right-side {
-//                margin: 1rem 0 !important;
-//            }
-//        }
-//
-//        .create-button-container {
-//            display: flex;
-//            justify-content: center;
-//            align-items: center;
-//            flex-direction: column;
-//
-//            > :last-child {
-//                margin-top: 1rem;
-//            }
-//        }
-//    }
-//}
