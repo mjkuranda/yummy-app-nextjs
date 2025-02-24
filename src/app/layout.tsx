@@ -26,6 +26,8 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
             <head>
                 <title>{metadata.title as string}</title>
                 <link rel="icon" href="favicon.ico" />
+                <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap"
+                    rel="stylesheet" />
             </head>
             <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <UserProvider>

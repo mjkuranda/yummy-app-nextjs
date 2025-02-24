@@ -8,6 +8,11 @@
     font-family: "Montserrat", sans-serif !important;
 }
 
+body {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
