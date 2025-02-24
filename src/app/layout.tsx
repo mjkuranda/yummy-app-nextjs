@@ -16,7 +16,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'DishMatcher',
-    description: 'Dowiedz się, co dziś ugotować'
+    description: 'Dowiedz się, co dziś ugotować',
+    icons: '/logo.svg'
 };
 
 export default function RootLayout({ children }: Readonly<{children: ReactNode;}>) {
