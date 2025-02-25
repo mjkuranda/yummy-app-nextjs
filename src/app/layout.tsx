@@ -15,7 +15,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['400', '700'],
-    style: ['normal', 'italic']
+    style: ['normal', 'italic'],
+    variable: '--font-montserrat'
 });
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                 <title>{metadata.title as string}</title>
                 <link rel="icon" href="favicon.ico" />
             </head>
-            <body className={montserrat.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <body className={montserrat.variable} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <UserProvider>
                     <ReactQueryProvider>
                         <AppRouterCacheProvider>

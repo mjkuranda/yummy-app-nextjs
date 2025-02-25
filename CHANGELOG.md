@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): All button components were moved to `src/components/common/buttons`.
 - [Marek Kurańda](https://github.com/mjkuranda): All link components were moved to `src/components/common/links`.
 
+### Removed
+- [Marek Kurańda](https://github.com/mjkuranda): `global-colors` and `global-constants` SCSS files.
+
 ## [1.66.0] - 2025-01-31
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): New subpage `/users/:login/profile` for rendering basic user profile info.

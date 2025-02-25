@@ -1,4 +1,4 @@
-@import '@/styles/globals-colors.scss';
+@import '@/styles/palette';
 
 .header-container {
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     padding: 1rem;
 
-    background-color: white;
+    background-color: $white;
 
     &[data-background-transparent=true] {
         background-color: transparent;

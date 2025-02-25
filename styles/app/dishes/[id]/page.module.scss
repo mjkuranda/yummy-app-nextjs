@@ -1,21 +1,8 @@
-@import '@/styles/globals-colors';
-
 @import '@/styles/constants';
 @import '@/styles/palette';
 
 .result-page {
     margin: $minor-rem;
-
-    .result-nav {
-        background-color: $honey-yellow;
-        padding: 1em;
-        margin-bottom: 0.5em;
-        border-radius: 0.5em;
-
-        > a > i {
-            margin-right: 0.5em;
-        }
-    }
 
     .result-container {
         display: grid;
