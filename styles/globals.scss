@@ -3,9 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-
-    font-family: "Sacramento", sans-serif !important;
-    font-family: "Montserrat", sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 body {
@@ -24,6 +22,7 @@ p {
 }
 
 :root {
+    // TODO: Get rid of soon
     /* Web colors */
     --cooper: #b1740f;
     --orange-yellow-crayola: #ffd07b;

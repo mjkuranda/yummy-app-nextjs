@@ -1,4 +1,4 @@
-@import '@/styles/globals-colors';
+@import '@/styles/palette';
 
 .page-container {
     width: 100vw;
@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: $orange-yellow-crayola;
+    background-color: $white;
 
     .children-container {
         display: flex;

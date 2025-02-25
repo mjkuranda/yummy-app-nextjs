@@ -51,9 +51,10 @@ export function User() {
             {isLoggedIn()
                 ? (
                     <>
-                        <Link href={'/users/change-password'} style={{ color: 'white' }}>Zmień hasło <VpnKeyIcon /></Link>
+                        {/* TODO: Custom link components instead */}
+                        <Link href={'/users/change-password'} style={{ color: '#505053' }}>Zmień hasło <VpnKeyIcon /></Link>
                         &nbsp;&nbsp;&nbsp;
-                        {hasCapability() && <Link href={'/manage'} style={{ color: 'white' }}>Zarządzaj <ManageAccountsIcon /></Link>}
+                        {hasCapability() && <Link href={'/manage'} style={{ color: '#505053' }}>Zarządzaj <ManageAccountsIcon /></Link>}
                         &nbsp;&nbsp;&nbsp;
                         <Button label="Wyloguj się" icon="log out" onClick={onLogout} />
                     </>
