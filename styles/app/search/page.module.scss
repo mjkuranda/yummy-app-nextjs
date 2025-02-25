@@ -1,9 +1,8 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 #search-query-part,
 #dish-result-part {
-    padding: $major-rem 10% 0 10%;
+    padding: v.$major-rem 10% 0 10%;
 }
 
 #dish-result-part {
@@ -13,7 +12,7 @@
 }
 
 #search-query-part {
-    background-color: $spring-wood;
+    background-color: v.$spring-wood;
     padding-top: 5rem;
 
     .ingredient-category-container {
@@ -31,12 +30,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: $major-rem 0;
-    background-color: $spring-wood;
+    padding: v.$major-rem 0;
+    background-color: v.$spring-wood;
 }
 
 #form-content-container {
-    background-color: $spring-wood;
+    background-color: v.$spring-wood;
 
     > div {
         display: flex;
@@ -61,7 +60,7 @@
             }
 
             .period-text {
-                margin: 0 $major-rem;
+                margin: 0 v.$major-rem;
                 text-align: center;
             }
         }

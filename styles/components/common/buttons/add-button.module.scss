@@ -1,4 +1,4 @@
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .add-button {
     cursor: pointer;
@@ -9,7 +9,7 @@
     user-select: none;
 
     &:hover {
-        color: $tonys-pink;
+        color: v.$tonys-pink;
         transition: 300ms;
     }
 

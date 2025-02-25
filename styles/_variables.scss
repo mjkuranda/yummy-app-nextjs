@@ -1,3 +1,4 @@
+// Palette
 $white: #FFFFFF;
 $spring-wood: #F3EEE7;
 $shady-lady: #9A999A;
@@ -14,3 +15,23 @@ $tonys-pink: #E39988;
 $romantic: #FED8BF;
 $tuft-bush: #FED5C4;
 $provincial-pink: #FEF8F6;
+
+// Constants
+$major-time: 618ms;
+$minor-time: 382ms;
+
+$major-phi: 0.618;
+$minor-phi: 0.382;
+
+$phi: 1.618;
+$e: 2.71;
+
+$major-cent: 61%;
+$minor-cent: 39%;
+
+$major-rem: 1.618rem;
+$minor-rem: 0.618rem;
+
+$e-rem: 2.71rem;
+
+.x {}

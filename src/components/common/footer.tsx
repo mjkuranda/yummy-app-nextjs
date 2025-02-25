@@ -47,7 +47,7 @@ function SectionContainer({ label, links }: SectionContainerProps) {
                     {links.map(link => {
                         return (
                             <li key={link.href}>
-                                <PageLink label={link.label} href={link.href} style={{ color: 'gray' }} />
+                                <PageLink label={link.label} href={link.href} style={{ color: '#9A999A' /* shady-lady colour */ }} />
                             </li>
                         );
                     })}

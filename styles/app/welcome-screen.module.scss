@@ -1,5 +1,5 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 .welcome-screen {
     width: 100vw;
@@ -10,7 +10,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: $spring-wood;
+        background-color: v.$spring-wood;
         width: 100%;
         height: 100%;
 
@@ -38,22 +38,22 @@
                 margin-left: 4rem;
 
                 > h2 {
-                    margin-bottom: calc(3 * $major-rem);
+                    margin-bottom: f.golden-size(3);
                 }
 
                 > p {
-                    line-height: $major-rem;
-                    width: $major-cent;
+                    line-height: v.$major-rem;
+                    width: v.$major-cent;
                 }
 
                 .main-navigator-container {
-                    margin-top: calc(4 * $major-rem);
+                    margin-top: f.golden-size(4);
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
                     a + a {
-                        margin-left: $major-rem;
+                        margin-left: v.$major-rem;
                     }
                 }
             }

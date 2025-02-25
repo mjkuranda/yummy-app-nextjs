@@ -1,5 +1,4 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .dish-creator-form {
     .dish-creator-form-content-container {
@@ -12,7 +11,7 @@
                 width: 100%;
                 display: flex;
                 aspect-ratio: 1 / 1;
-                border-radius: $minor-rem;
+                border-radius: v.$minor-rem;
 
                 // .result-image class
                 > div {
@@ -23,21 +22,21 @@
                 img {
                     width: 100%;
                     height: 100%;
-                    border-radius: $minor-rem;
+                    border-radius: v.$minor-rem;
                 }
             }
 
             .dish-creator-form__dish-image-selector-container {
                 display: inline-flex;
                 justify-content: center;
-                margin: $major-rem 0 $major-rem 0;
+                margin: v.$major-rem 0 v.$major-rem 0;
                 width: 100%;
-                gap: $minor-rem;
+                gap: v.$minor-rem;
 
             }
 
             .dish-creator-form__dish-image-result-container {
-                margin: 0 $minor-rem;
+                margin: 0 v.$minor-rem;
             }
         }
 

@@ -1,5 +1,5 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 .manage-container {
     padding: 16px 10%;
@@ -8,10 +8,10 @@
         margin: 16px 0;
 
         .item-list__header {
-            background: linear-gradient(180deg, $cinnabar 0%, $chilean-fire 100%);
-            color: $white;
-            padding: $major-rem;
-            border-radius: $major-rem;
+            background: linear-gradient(180deg, v.$cinnabar 0%, v.$chilean-fire 100%);
+            color: v.$white;
+            padding: v.$major-rem;
+            border-radius: v.$major-rem;
             text-align: center;
         }
 
@@ -25,19 +25,19 @@
 
             .item-list__item {
                 aspect-ratio: 1/1;
-                background-color: $shady-lady;
+                background-color: v.$shady-lady;
                 border: 2px solid #ccc;
-                border-radius: $major-rem;
-                transition: $major-time;
+                border-radius: v.$major-rem;
+                transition: v.$major-time;
 
                 &:hover {
                     border: 2px solid #ccc;
-                    background-color: $spring-wood;
-                    transition: $minor-time;
+                    background-color: v.$spring-wood;
+                    transition: v.$minor-time;
 
                     > * {
-                        color: $abbey;
-                        transition: $minor-time;
+                        color: v.$abbey;
+                        transition: v.$minor-time;
                     }
                 }
 
@@ -46,8 +46,8 @@
                     height: 100%;
 
                     text-decoration: none;
-                    color: $white;
-                    transition: $major-time;
+                    color: v.$white;
+                    transition: v.$major-time;
 
                     > div {
                         width: 100%;
@@ -59,7 +59,7 @@
                         flex-direction: column;
 
                         .item-text {
-                            margin-bottom: $major-rem;
+                            margin-bottom: v.$major-rem;
 
                             text-align: center;
                             font-style: italic;
@@ -77,12 +77,12 @@
     }
 
     .item-list + .item-list {
-        margin-top: calc(4 * $major-rem);
+        margin-top: f.golden-size(4);
     }
 }
 
 .object-container {
-    background-color: $white;
+    background-color: v.$white;
     padding: 16px 10%;
     flex: 1;
 
@@ -92,28 +92,28 @@
 
     .table-wrapper {
         margin-top: 1rem;
-        border: 1px solid $abbey;
+        border: 1px solid v.$abbey;
         border-radius: 1rem;
 
         .object-table {
             width: 100%;
-            background-color: $spring-wood;
+            background-color: v.$spring-wood;
             border-radius: 1rem;
 
             tbody {
                 tr {
                     &:first-child {
-                        border-top: 1px solid $abbey;
+                        border-top: 1px solid v.$abbey;
                     }
 
                     &:nth-child(n+1):nth-last-child(n+2) {
-                        border-bottom: 1px solid $abbey;
+                        border-bottom: 1px solid v.$abbey;
                     }
                 }
             }
 
             th {
-                background-color: $shady-lady;
+                background-color: v.$shady-lady;
                 height: 50px;
 
                 &:first-child {

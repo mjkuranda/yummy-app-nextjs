@@ -1,9 +1,8 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .app-footer {
-    background-color: $shark;
-    color: $shady-lady;
+    background-color: v.$shark;
+    color: v.$spring-wood;
     padding: 6rem 15%;
 
     display: flex;
@@ -12,7 +11,7 @@
 
     .brand-container {
         > * + * {
-            margin-top: $minor-rem;
+            margin-top: v.$minor-rem;
         }
     }
 
@@ -20,7 +19,7 @@
         height: 225px;
 
         li + li {
-            margin-top: $minor-rem;
+            margin-top: v.$minor-rem;
         }
     }
 }

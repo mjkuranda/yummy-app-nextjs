@@ -1,5 +1,5 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 $proposal-max-line-count: 4;
 $container-horizontal-margin: 33;
@@ -56,7 +56,7 @@ $container-horizontal-margin: 33;
                     img {
                         height: calc(231px * 2);
                         //box-shadow: 0 0 4px 4px black;
-                        border-radius: calc(2 * $major-rem);
+                        border-radius: f.golden-size(2);
                     }
                 }
             }
@@ -99,8 +99,8 @@ $container-horizontal-margin: 33;
         flex: 1;
 
         margin: 0 .5% .5% .5%;
-        padding: $major-rem;
-        background-color: $spring-wood;
+        padding: v.$major-rem;
+        background-color: v.$spring-wood;
         border-radius: 16px;
 
         button + button {

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `DishCreatorContainer` for containing all logics for proceeding dish creator data.
 - [Marek Kurańda](https://github.com/mjkuranda): `Checkbox` component.
 - [Marek Kurańda](https://github.com/mjkuranda): New `DishMatcher` icon.
+- [Marek Kurańda](https://github.com/mjkuranda): Partial SCSS files: `functions`, `typographies` and `variables`.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - [Marek Kurańda](https://github.com/mjkuranda): `global-colors` and `global-constants` SCSS files.
+- [Marek Kurańda](https://github.com/mjkuranda): `@import` directives replacing with `@use` ones.
 
 ## [1.66.0] - 2025-01-31
 ### Added

@@ -1,5 +1,4 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .information-screen {
     width: 100vw;
@@ -17,7 +16,7 @@
     }
 
     &:nth-child(2n + 2) {
-        background-color: $spring-wood;
+        background-color: v.$spring-wood;
 
         .information-screen__image-container {
             div[data-image-name] {
@@ -28,7 +27,7 @@
     }
 
     .information-screen__details-container {
-        width: $major-cent;
+        width: v.$major-cent;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -46,7 +45,7 @@
     }
 
     .information-screen__image-container {
-        width: $minor-cent;
+        width: v.$minor-cent;
         height: 100%;
         display: flex;
         justify-content: center;

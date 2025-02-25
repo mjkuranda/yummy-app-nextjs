@@ -1,10 +1,9 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .checkbox {
     appearance: none;
-    background-color: $white;
-    border: 2px solid $chilean-fire;
+    background-color: v.$white;
+    border: 2px solid v.$chilean-fire;
     border-radius: 50%;
 
     display: flex;
@@ -16,27 +15,16 @@
     }
 
     box-shadow: rgb(0 0 0 / 0) 0 0 5px 2px;
-    transition: $minor-time;
+    transition: v.$minor-time;
 
     &[data-checked=true] {
-        background-color: $chilean-fire;
+        background-color: v.$chilean-fire;
     }
 
     &:hover {
         cursor: pointer;
 
         box-shadow: rgb(0 0 0 / 23%) 0 0 5px 2px;
-        transition: $minor-time;
+        transition: v.$minor-time;
     }
 }
-
-//.checkbox:hover {
-//    background-color: $white;
-//    color: $chilean-fire;
-//    border: 2px solid $chilean-fire;
-//
-//    cursor: pointer;
-//
-//    box-shadow: rgb(0 0 0 / 23%) 0 0 5px 2px;
-//    transition: $minor-time;
-//}

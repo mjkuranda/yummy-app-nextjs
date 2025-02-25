@@ -1,4 +1,5 @@
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 .registration-form {
     display: flex;
@@ -7,7 +8,7 @@
 
     h2 {
         text-align: center;
-        margin-bottom: $e-rem;
+        margin-bottom: v.$e-rem;
     }
 
     // for each controls and other elements inside the form
@@ -16,11 +17,11 @@
     }
 
     .registration-form-container {
-        margin-top: calc(2 * $major-rem) !important;
+        margin-top: f.golden-size(2) !important;
 
         .account-creating-notification-text {
             text-align: justify;
-            margin-top: $major-rem;
+            margin-top: v.$major-rem;
         }
     }
 }

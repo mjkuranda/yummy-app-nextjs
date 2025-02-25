@@ -1,8 +1,7 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .result-page {
-    margin: $minor-rem;
+    margin: v.$minor-rem;
 
     .result-container {
         display: grid;
@@ -31,7 +30,7 @@
                         align-items: center;
 
                         > img {
-                            margin-left: 0.618rem;
+                            margin-left: v.$minor-rem;
                             margin-bottom: 0.3rem;
                         }
                     }
@@ -92,7 +91,7 @@
                     margin: 1em;
 
                     .result-ingredient__text {
-                        margin-left: 0.618em;
+                        margin-left: v.$minor-rem;
                         cursor: default;
                     }
 

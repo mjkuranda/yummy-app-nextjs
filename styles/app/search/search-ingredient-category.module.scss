@@ -1,5 +1,4 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .search-ingredient-category {
     width: 33%;
@@ -10,11 +9,11 @@
         text-transform: uppercase;
         text-align: center;
         width: 100%;
-        margin-top: $minor-rem;
-        background: linear-gradient(180deg, $cinnabar 0%, $terracotta 100%);
-        color: $white;
-        border-radius: $major-rem;
-        padding: $minor-rem 0;
+        margin-top: v.$minor-rem;
+        background: linear-gradient(180deg, v.$cinnabar 0%, v.$terracotta 100%);
+        color: v.$white;
+        border-radius: v.$major-rem;
+        padding: v.$minor-rem 0;
     }
 
     .search-ingredient-category__list {
@@ -25,23 +24,23 @@
         user-select: none;
 
         .search-ingredient-category__ingredient {
-            margin: $minor-rem;
+            margin: v.$minor-rem;
 
             label {
                 cursor: pointer;
-                padding: $minor-rem;
+                padding: v.$minor-rem;
                 width: 140px;
                 height: 140px;
 
                 background: transparent;
-                transition: $major-time;
+                transition: v.$major-time;
 
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
 
-                border-radius: $major-rem;
+                border-radius: v.$major-rem;
 
                 img {
                     width: 80px;
@@ -56,9 +55,9 @@
 
             input:checked ~ label {
                 font-weight: 700;
-                color: $white;
-                background: radial-gradient(circle, $tonys-pink 0%, $terracotta 100%);
-                transition: $minor-time;
+                color: v.$white;
+                background: radial-gradient(circle, v.$tonys-pink 0%, v.$terracotta 100%);
+                transition: v.$minor-time;
             }
         }
 

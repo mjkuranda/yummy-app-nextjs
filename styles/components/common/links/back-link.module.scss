@@ -1,17 +1,16 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .back-link {
     margin: 16px 0;
 }
 
 .back-link-bar {
-    background-color: $spring-wood;
-    border-radius: $minor-rem;
+    background-color: v.$spring-wood;
+    border-radius: v.$minor-rem;
     padding: 1em;
 
     &[data-has-margin-around=true] {
-        margin: $minor-rem;
+        margin: v.$minor-rem;
     }
 
     &[data-only-margin-bottom=true] {

@@ -1,7 +1,9 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 $spc: 8px;
+$phi-n: v.$phi;
+$golden-ratio-n-2: f.golden-size-n(2);
 
 /* Below 1000px */
 @media all and (max-width: 700px) {
@@ -9,7 +11,7 @@ $spc: 8px;
         $in-row: 1;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
@@ -32,7 +34,7 @@ $spc: 8px;
         $in-row: 2;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
@@ -63,7 +65,7 @@ $spc: 8px;
         $in-row: 3;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
@@ -94,7 +96,7 @@ $spc: 8px;
     $in-row: 3;
     $ratio: calc(
             (100vw - $spc * calc($in-row - 1)) /
-            ($in-row * (1 + $phi))
+            ($in-row * $golden-ratio-n-2)
     );
 
     display: flex;
@@ -104,19 +106,19 @@ $spc: 8px;
     padding-bottom: $spc;
 
     .result-container {
-        $w: calc($ratio * $phi);
-        $h: calc($w / $phi);
+        $w: calc($ratio * $phi-n);
+        $h: calc($w / $phi-n);
 
         width: $w;
         height: $h;
-        background-color: $spring-wood;
+        background-color: v.$spring-wood;
         /* box-shadow: 0 0 2px 2px; */
         display: flex;
 
         transform: scale(1);
-        transition: $major-time;
+        transition: v.$major-time;
 
-        border-radius: $minor-rem;
+        border-radius: v.$minor-rem;
 
         .result-image {
             width: $h;
@@ -126,20 +128,20 @@ $spc: 8px;
                 width: $h;
                 height: $h;
                 object-fit: cover;
-                border-radius: 0.618rem 0 0 0.618rem;
+                border-radius: v.$minor-rem 0 0 v.$minor-rem;
             }
         }
 
         .result-label {
             .result-description {
-                $hd: calc($h / $phi);
+                $hd: calc($h / $phi-n);
                 width: $hd;
                 height: $hd;
-                background-color: $shady-lady;
-                border-top-right-radius: $minor-rem;
+                background-color: v.$shady-lady;
+                border-top-right-radius: v.$minor-rem;
 
                 .result-title {
-                    $htt: calc($hd - ($hd / $phi));
+                    $htt: calc($hd - ($hd / $phi-n));
 
                     width: $hd;
                     height: $htt;
@@ -155,11 +157,11 @@ $spc: 8px;
                 }
 
                 .result-text {
-                    $htx: calc($hd / $phi);
+                    $htx: calc($hd / $phi-n);
 
                     width: $hd;
                     height: $htx;
-                    font-size: calc(1em / $phi);
+                    font-size: calc(1em / $phi-n);
                     /* font-weight: 700; */
                     padding: calc($spc / 2);
 
@@ -180,7 +182,7 @@ $spc: 8px;
 
             .result-button {
                 $wb: calc($w - $h);
-                $hb: calc($h / $phi); /* hb = h - hd */
+                $hb: calc($h / $phi-n); /* hb = h - hd */
 
                 width: $wb;
                 height: calc($h - $hb);
@@ -189,10 +191,10 @@ $spc: 8px;
     }
 
     .result-container:hover {
-        box-shadow: 0 0 $spc $spc $spring-wood;
+        box-shadow: 0 0 $spc $spc v.$spring-wood;
 
-        transform: scale($phi);
-        transition: $major-time;
+        transform: scale($phi-n);
+        transition: v.$major-time;
         z-index: 2;
     }
 }

@@ -1,6 +1,7 @@
 {
     "name": "yummy-app-nextjs",
     "version": "2.0.0",
+    "license": "UNLICENSED",
     "private": true,
     "scripts": {
         "dev": "next dev",

@@ -1,13 +1,12 @@
-@import '@/styles/palette';
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .page-link {
     text-decoration: none;
-    transition: $minor-time;
-    color: $abbey;
+    transition: v.$minor-time;
+    color: v.$abbey;
 
     &:hover {
-        transition: $major-time;
-        color: $shady-lady;
+        transition: v.$major-time;
+        color: v.$shady-lady;
     }
 }

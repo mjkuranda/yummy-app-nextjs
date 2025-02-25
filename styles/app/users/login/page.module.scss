@@ -1,13 +1,13 @@
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .login-box {
-    margin: $major-rem 15%;
+    margin: v.$major-rem 15%;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .login-box__form-container {
-        width: $minor-cent;
+        width: v.$minor-cent;
 
         .form-control {
             display: flex;
@@ -16,7 +16,7 @@
 
             h3 {
                 text-align: center;
-                margin-bottom: $e-rem;
+                margin-bottom: v.$e-rem;
             }
 
             .form-control-container {
@@ -29,10 +29,10 @@
                     flex-direction: column;
                     width: 100%;
                     padding: 0 10px;
-                    margin-top: $major-rem;
+                    margin-top: v.$major-rem;
 
                     p {
-                        margin-top: $minor-rem;
+                        margin-top: v.$minor-rem;
                     }
                 }
             }
@@ -44,7 +44,7 @@
     }
 
     .login-box__img-container {
-        width: $major-cent;
+        width: v.$major-cent;
         margin-left: 10%;
 
         img {

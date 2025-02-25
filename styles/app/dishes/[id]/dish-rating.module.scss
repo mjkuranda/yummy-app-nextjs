@@ -1,7 +1,7 @@
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
 
 .dish-rating {
-    margin: $minor-rem 0 $major-rem 0;
+    margin: v.$minor-rem 0 v.$major-rem 0;
 
     .dish-rating-stars {
         color: #f9f900;

@@ -1,23 +1,24 @@
-@import '@/styles/constants';
+@use '@/styles/variables' as v;
+
 @import '@/styles/components/common/buttons/button.module';
 
 .registration-box {
-    margin: $major-rem 15%;
+    margin: v.$major-rem 15%;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .registration-box__form-container {
-        width: $minor-cent;
+        width: v.$minor-cent;
     }
 
     .registration-box__img-container {
-        width: $major-cent;
+        width: v.$major-cent;
         margin-left: 10%;
 
         img {
             width: 100%;
-            border-radius: $minor-cent $major-cent $minor-cent $major-cent;
+            border-radius: v.$minor-cent v.$major-cent v.$minor-cent v.$major-cent;
         }
     }
 }

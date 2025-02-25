@@ -1,16 +1,31 @@
-@import '@/styles/constants';
-@import '@/styles/palette';
+@use '@/styles/variables' as v;
 
 .progress-bar {
-    border-radius: $minor-rem;
+    border-radius: v.$minor-rem;
     width: 100%;
-    height: $major-rem;
-    box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+    height: v.$major-rem;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 
-    &::-webkit-progress-bar,
-    &::-webkit-progress-value,
+    // Resetting default styles in all browsers
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    overflow: hidden; // Remove rounded corners in some browsers
+
+    // WebKit (Chrome, Safari, Edge)
+    &::-webkit-progress-bar {
+        background-color: transparent;
+        border-radius: v.$minor-rem;
+    }
+
+    &::-webkit-progress-value {
+        background: linear-gradient(90deg, v.$cinnabar 0%, v.$terracotta 100%);
+        border-radius: v.$minor-rem;
+    }
+
+    // Firefox
     &::-moz-progress-bar {
-        background: linear-gradient(90deg, $cinnabar 0%, $terracotta 100%);
-        border-radius: $minor-rem;
+        background: linear-gradient(90deg, v.$cinnabar 0%, v.$terracotta 100%);
+        border-radius: v.$minor-rem;
     }
 }

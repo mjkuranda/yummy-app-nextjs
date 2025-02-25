@@ -2,10 +2,12 @@
 
 The client side application using [Yummy API](https://github.com/mjkuranda/yummy-app-nestjs/).
 
+🚫 This source code is protected by copyright. Unauthorized copying, modification, distribution, or use is strictly prohibited.
+
 ## Technologies
 
 This application was built using:
-* NextJS 13
+* Next.js 14
 * TypeScript
 * Bootstrap 5
 * SCSS
