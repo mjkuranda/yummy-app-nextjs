@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 .dish-creator-form {
     .dish-creator-form-content-container {
@@ -46,30 +47,30 @@
             // FIXME: What's a mess below... O.O
 
             > * {
-                margin-bottom: $major-rem;
+                margin-bottom: v.$major-rem;
             }
 
             .dish-creator-form__dish-details__general {
                 > * {
-                    margin: $major-rem 0;
+                    margin: v.$major-rem 0;
                 }
 
                 .dish-creator-form__dish-details__general-types {
                     > * {
-                        margin: $major-rem 0;
+                        margin: v.$major-rem 0;
                     }
                 }
             }
             .dish-creator-form__dish-details__description {
                 > * {
-                    margin: $major-rem 0;
+                    margin: v.$major-rem 0;
                 }
             }
             .dish-creator-form__dish-details__ingredients {
-                margin: calc($major-rem * 2) 0;
+                margin: f.golden-size(2) 0;
             }
             .dish-creator-form__dish-details__recipe {
-                margin: $major-rem 0;
+                margin: v.$major-rem 0;
             }
         }
     }
@@ -78,8 +79,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: $major-rem 0;
+        margin: v.$major-rem 0;
         flex-direction: column;
-        gap: $major-rem;
+        gap: v.$major-rem;
     }
 }
