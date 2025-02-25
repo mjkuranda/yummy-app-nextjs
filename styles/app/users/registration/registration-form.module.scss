@@ -1,11 +1,27 @@
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
+
 .registration-form {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    flex: 1;
 
+    h2 {
+        text-align: center;
+        margin-bottom: v.$e-rem;
+    }
+
+    // for each controls and other elements inside the form
     > * {
         margin: 1rem 0 !important;
+    }
+
+    .registration-form-container {
+        margin-top: f.golden-size(2) !important;
+
+        .account-creating-notification-text {
+            text-align: justify;
+            margin-top: v.$major-rem;
+        }
     }
 }

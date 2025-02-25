@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/manage/page.module.scss';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { ActionType } from '@/src/types/manage.types';
 import { ObjectItemStruct } from '@/src/hooks/use-object-management';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';

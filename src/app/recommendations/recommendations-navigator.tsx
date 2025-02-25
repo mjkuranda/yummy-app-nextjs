@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/recommendations/page.module.scss';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 
 interface DishProposalNavigatorProps {
     onPrevious: () => void;

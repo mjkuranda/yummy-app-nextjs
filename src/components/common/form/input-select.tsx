@@ -3,18 +3,22 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ErrorMessage } from '@/src/components/common/error-message';
+import { DishType, MealType } from '@/src/types/dish.types';
 
-interface Option {
+export type InputSelectOptionIcon = MealType | DishType;
+
+export interface InputSelectOption {
     en: string;
     label: string;
+    icon?: InputSelectOptionIcon;
 }
 
-interface InputSelectProps {
+interface InputSelectProps<Value> {
     id: string;
     label: string;
-    options: Option[];
+    options: InputSelectOption[];
     selectedValue: string;
-    setSelectedValue: (newValue: string) => void;
+    setSelectedValue: (newValue: Value) => void;
     width?: string;
     shouldHaveNone?: boolean;
     shouldHaveMargin?: boolean;
@@ -24,9 +28,20 @@ interface InputSelectProps {
     };
 }
 
-export function InputSelect({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone, shouldHaveMargin = false, customError }: InputSelectProps) {
+export function InputSelect<Value>({ label, id, width = '100%', options, selectedValue, setSelectedValue, shouldHaveNone, shouldHaveMargin = false, customError }: InputSelectProps<Value>) {
     const onChange = (event: SelectChangeEvent<string>): void => {
-        setSelectedValue(event.target.value as string);
+        setSelectedValue(event.target.value as Value);
+    };
+
+    const renderIcon = (icon: InputSelectOptionIcon) => {
+        const iconSize = 24;
+        const altText = `Ikona ${icon}`;
+
+        if (icon === 'any') {
+            return <img src={'/input-icons/meal.png'} width={iconSize} height={iconSize}  alt={altText} />;
+        }
+
+        return <img src={`/input-icons/${icon}.png`} width={iconSize} height={iconSize}  alt={altText} />;
     };
 
     return (
@@ -48,7 +63,9 @@ export function InputSelect({ label, id, width = '100%', options, selectedValue,
                     }
                     {options.map((option) => (
                         <MenuItem key={option.en} value={option.en}>
-                            {option.label}
+                            <div className="d-flex align-items-center">
+                                {option.icon && renderIcon(option.icon)}&nbsp;{option.label}
+                            </div>
                         </MenuItem>
                     ))}
                 </Select>

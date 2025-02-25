@@ -1,4 +1,4 @@
-import styles from '@/styles/components/common/add-button.module.scss';
+import styles from '@/styles/components/common/buttons/add-button.module.scss';
 
 interface TextButtonProps {
     label: string;

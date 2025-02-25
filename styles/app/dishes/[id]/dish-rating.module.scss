@@ -1,4 +1,8 @@
+@use '@/styles/variables' as v;
+
 .dish-rating {
+    margin: v.$minor-rem 0 v.$major-rem 0;
+
     .dish-rating-stars {
         color: #f9f900;
     }

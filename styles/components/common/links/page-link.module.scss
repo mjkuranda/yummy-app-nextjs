@@ -1,0 +1,12 @@
+@use '@/styles/variables' as v;
+
+.page-link {
+    text-decoration: none;
+    transition: v.$minor-time;
+    color: v.$abbey;
+
+    &:hover {
+        transition: v.$major-time;
+        color: v.$shady-lady;
+    }
+}

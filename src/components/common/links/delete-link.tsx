@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import styles from '@/styles/components/common/add-button.module.scss';
+import styles from '@/styles/components/common/buttons/add-button.module.scss';
 
 interface DeleteLinkProps {
     label: string;

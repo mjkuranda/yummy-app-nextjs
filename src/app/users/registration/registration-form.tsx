@@ -1,91 +1,36 @@
 'use client';
 
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { UserData } from '@/src/types/register.types';
+import {
+    Control,
+    Controller,
+    DeepRequired,
+    FieldErrorsImpl,
+    GlobalError,
+    SubmitErrorHandler,
+    SubmitHandler
+} from 'react-hook-form';
 import styles from '@/styles/app/users/registration/registration-form.module.scss';
 import { InputString } from '@/src/components/common/form/input-string';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { InputPassword } from '@/src/components/common/form/input-password';
-import { useEffect, useState } from 'react';
-import { changeUserPassword, createUserAccount } from '@/src/api/api';
-import { toastError, toastSuccess } from '@/src/utils/toast.utils';
 import { Loader } from '@/src/components/common/loader';
-import { useRouter } from 'next/navigation';
+import { BaseSyntheticEvent } from 'react';
+import { UserData } from '@/src/types/register.types';
 
 interface RegistrationFormProps {
+    control: Control<UserData>;
+    errors:  Partial<FieldErrorsImpl<DeepRequired<UserData>>> & {root?: Record<string, GlobalError> & GlobalError};
+    handleSubmit: (onValid: SubmitHandler<UserData>, onInvalid?: SubmitErrorHandler<UserData>) => (e?: BaseSyntheticEvent) => Promise<void>;
+    validateRepeatedPasswordMatch: (value: string) => boolean | string;
+    isRegistering: boolean;
+    isValid: boolean;
+    wasCreated: boolean;
+    onReset: SubmitHandler<UserData>;
+    onSubmit: SubmitHandler<UserData>;
     isResetting?: boolean;
 }
 
-const defaultValues: UserData = {
-    email: '',
-    login: '',
-    password: '',
-    repeatedPassword: ''
-};
-
-export function RegistrationForm({ isResetting }: RegistrationFormProps) {
-    const router = useRouter();
-    const { handleSubmit, control, formState: { errors }, watch, reset, setValue, clearErrors } = useForm<UserData>({ defaultValues, mode: 'onChange' });
-    const [isRegistering, setIsRegistering] = useState<boolean>(false);
-    const [wasCreated, setWasCreated] = useState<boolean>(false);
-
-    const isValid = Object.keys(errors).length === 0;
-
-    useEffect(() => {
-        const repeatedPassword = watch('repeatedPassword');
-
-        if (repeatedPassword.length === 0) {
-            return;
-        }
-
-        clearErrors('repeatedPassword');
-        setValue('repeatedPassword', repeatedPassword, { shouldValidate: true });
-    }, [watch('password')]);
-
-    const onSubmit: SubmitHandler<UserData> = async (data, e) => {
-        e?.preventDefault();
-        setIsRegistering(true);
-
-        try {
-            await createUserAccount({ ...data });
-            toastSuccess('Pomyślnie utworzono nowe konto!');
-            setWasCreated(true);
-            reset();
-        } catch (err: any) {
-            toastError(err.message);
-        } finally {
-            setIsRegistering(false);
-        }
-    };
-
-    const onReset: SubmitHandler<UserData> = async (data, e) => {
-        e?.preventDefault();
-        setIsRegistering(true); // is changing password, not registering :>
-
-        if (data.password.length === 0 || data.repeatedPassword.length === 0) {
-            toastError('Oba hasła muszą być identyczne.');
-
-            return;
-        }
-
-        try {
-            await changeUserPassword(data.password);
-
-            toastSuccess('Pomyślnie zmieniono hasło!');
-            router.push('/');
-        } catch (err: any) {
-            toastError(err);
-        } finally {
-            setIsRegistering(false);
-        }
-    };
-
-    const validateRepeatedPasswordMatch = (value: string) => {
-        const password = watch('password');
-
-        return value === password ? true : 'Hasła nie są identyczne';
-    };
-
+export function RegistrationForm({ control, errors, handleSubmit, validateRepeatedPasswordMatch, isRegistering, isValid, wasCreated, onReset, onSubmit, isResetting }: RegistrationFormProps) {
     return (
         <form onSubmit={handleSubmit(isResetting ? onReset : onSubmit)} className={styles['registration-form']}>
             {isRegistering && <Loader isAbsolute={true} />}
@@ -112,7 +57,7 @@ export function RegistrationForm({ isResetting }: RegistrationFormProps) {
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputString label={'Email'} value={value} setValue={onChange} error={errors.email}
-                                variant="outlined" width="25%" />
+                                variant="outlined" />
                         )}
                     />
                     <Controller
@@ -131,7 +76,7 @@ export function RegistrationForm({ isResetting }: RegistrationFormProps) {
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputString label={'Login'} value={value} setValue={onChange} error={errors.login}
-                                variant="outlined" width="25%" />
+                                variant="outlined" />
                         )}
                     />
                 </>
@@ -147,7 +92,7 @@ export function RegistrationForm({ isResetting }: RegistrationFormProps) {
                     }
                 }}
                 render={({ field: { onChange, value } }) => (
-                    <InputPassword label={isResetting ? 'Nowe hasło' : 'Hasło'} value={value} setValue={onChange} error={errors.password} width="25%" />
+                    <InputPassword label={isResetting ? 'Nowe hasło' : 'Hasło'} value={value} setValue={onChange} error={errors.password} width="100%" />
                 )}
             />
             <Controller
@@ -155,11 +100,13 @@ export function RegistrationForm({ isResetting }: RegistrationFormProps) {
                 control={control}
                 rules={{ required: 'Powtórzone hasło jest wymagane', validate: validateRepeatedPasswordMatch }}
                 render={({ field: { onChange, value } }) => (
-                    <InputPassword label={isResetting ? 'Powtórz nowe hasło' : 'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="25%" />
+                    <InputPassword label={isResetting ? 'Powtórz nowe hasło' : 'Powtórz hasło'} value={value} setValue={onChange} error={errors.repeatedPassword} width="100%" />
                 )}
             />
-            <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" disabled={!isValid} />
-            {wasCreated && 'Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.'}
+            <div className={styles['registration-form-container']}>
+                <Button label={isResetting ? 'Zmień hasło' : 'Zarejestruj się'} type="submit" disabled={!isValid} width="100%" />
+                {wasCreated && <p className={styles['account-creating-notification-text']}>Użytkownik został utworzony. Sprawdź swoją skrzynkę mailową, aby aktywować swoje konto.</p>}
+            </div>
         </form>
     );
 }

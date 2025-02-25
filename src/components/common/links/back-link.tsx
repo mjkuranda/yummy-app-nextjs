@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import styles from '@/styles/components/common/links/back-link.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import styles from '@/styles/components/common/back-link.module.scss';
+import { PagePathname } from '@/src/constants/strings';
 
 interface BackLinkProps {
-    link: string; // TODO: various pages links
+    link: PagePathname;
     label: string;
     isAttached?: boolean;
 }

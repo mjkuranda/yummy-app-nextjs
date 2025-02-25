@@ -1,40 +1,76 @@
-@import '@/styles/globals-colors.scss';
+@use '@/styles/variables' as v;
 
 .information-screen {
     width: 100vw;
     height: 100vh;
-    background-color: $black-overlay-color;
+    display: flex;
+    padding: 8rem;
 
-    &[data-image-name="insane-easy"] {
-        background: url('/fridge_1920.jpg') fixed;
+    &:nth-child(2n + 1) {
+        .information-screen__image-container {
+            div[data-image-name] {
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+            }
+        }
     }
 
-    &[data-image-name="dishes"] {
-        background: url('/dishes_1920.jpg') fixed;
+    &:nth-child(2n + 2) {
+        background-color: v.$spring-wood;
+
+        .information-screen__image-container {
+            div[data-image-name] {
+                border-top-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+        }
     }
 
-    &[data-image-name="community"] {
-        background: url('/integrate_1920.jpg') fixed;
+    .information-screen__details-container {
+        width: v.$major-cent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            // Perhaps, I consider uncommenting this part once (:
+            //text-shadow: 2px 2px 2px $abbey, -3px 6px 5px $cod-gray;
+            //color: $black;
+        }
+
+        p {
+            margin-top: 1rem;
+        }
     }
 
-    .information-screen__overlay {
-        background-color: $black-overlay-color;
-        width: 100%;
-        height: 100vh;
+    .information-screen__image-container {
+        width: v.$minor-cent;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
 
-    .information-screen-box {
-        background-color: $blue-de-france-alpha;
-        text-shadow: 2px 2px 2px grey, -3px 6px 5px $blue-de-france;
-        color: $honey-yellow;
-        padding: 1em 2em;
-        border-radius: 1em;
+        > div {
+            width: calc(1920px / 3);
+            height: calc(1280px / 3);
+            border-radius: 2.7rem;
+            background-clip: border-box;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
 
-        h3, p {
-            text-align: center;
+            &[data-image-name="insane-easy"] {
+                background-image: url('/fridge_1920.jpg');
+            }
+
+            &[data-image-name="dishes"] {
+                background-image: url('/dishes_1920.jpg');
+            }
+
+            &[data-image-name="community"] {
+                background-image: url('/integrate_1920.jpg');
+            }
         }
     }
 }

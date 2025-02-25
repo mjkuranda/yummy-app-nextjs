@@ -1,5 +1,5 @@
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import styles from '@/styles/components/common/add-button.module.scss';
+import styles from '@/styles/components/common/buttons/add-button.module.scss';
 
 interface RemoveButtonProps {
     label: string;

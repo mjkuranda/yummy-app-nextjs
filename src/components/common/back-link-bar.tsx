@@ -1,16 +1,18 @@
 import Link from 'next/link';
+import styles from '@/styles/components/common/links/back-link.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import styles from '@/styles/components/common/back-link.module.scss';
+import { PagePathname } from '@/src/constants/strings';
 
 interface BackLinkBarProps {
-    link: string; // TODO: various pages links
+    link: PagePathname;
     label: string;
+    hasMarginAround?: boolean;
     onlyMarginBottom?: boolean;
 }
 
-export function BackLinkBar({ link, label, onlyMarginBottom }: BackLinkBarProps) {
+export function BackLinkBar({ link, label, hasMarginAround, onlyMarginBottom }: BackLinkBarProps) {
     return (
-        <div className={styles['back-link-bar']} data-only-margin-bottom={onlyMarginBottom}>
+        <div className={styles['back-link-bar']} data-has-margin-around={hasMarginAround} data-only-margin-bottom={onlyMarginBottom}>
             <Link href={link}>
                 <ArrowCircleLeftIcon />{label}
             </Link>

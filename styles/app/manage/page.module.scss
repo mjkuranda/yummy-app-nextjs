@@ -1,58 +1,88 @@
-@import "@/styles/globals-colors";
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 .manage-container {
     padding: 16px 10%;
 
     .item-list {
         margin: 16px 0;
-    }
 
-    ul {
-        margin: 0;
-        padding: 0;
+        .item-list__header {
+            background: linear-gradient(180deg, v.$cinnabar 0%, v.$chilean-fire 100%);
+            color: v.$white;
+            padding: v.$major-rem;
+            border-radius: v.$major-rem;
+            text-align: center;
+        }
 
-        display: flex;
-        flex-wrap: wrap;
+        .item-list__container {
+            margin: 1%;
+            padding: 0;
 
-        li {
-            width: 256px;
-            height: 256px;
-            margin: 1rem;
-            padding: 1rem;
-            border: 2px solid $cooper;
-            border-radius: 1rem;
-            background-color: $honey-yellow;
-            transition: 382ms;
+            display: grid;
+            grid-template-columns: repeat(4, 24%);
+            gap: 1.33%;
 
-            a {
-                color: black;
-                text-decoration: none;
+            .item-list__item {
+                aspect-ratio: 1/1;
+                background-color: v.$shady-lady;
+                border: 2px solid #ccc;
+                border-radius: v.$major-rem;
+                transition: v.$major-time;
 
-                div {
-                    .item-text {
-                        text-align: center;
-                        font-style: italic;
-                        font-weight: 700;
+                &:hover {
+                    border: 2px solid #ccc;
+                    background-color: v.$spring-wood;
+                    transition: v.$minor-time;
+
+                    > * {
+                        color: v.$abbey;
+                        transition: v.$minor-time;
                     }
+                }
 
-                    .item-description {
-                        text-align: center;
-                        font-style: italic;
+                a {
+                    width: 100%;
+                    height: 100%;
+
+                    text-decoration: none;
+                    color: v.$white;
+                    transition: v.$major-time;
+
+                    > div {
+                        width: 100%;
+                        height: 100%;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .item-text {
+                            margin-bottom: v.$major-rem;
+
+                            text-align: center;
+                            font-style: italic;
+                            font-weight: 700;
+                        }
+
+                        .item-description {
+                            text-align: center;
+                            font-style: italic;
+                        }
                     }
                 }
             }
         }
+    }
 
-        li:hover {
-            border: 2px solid $cooper-alpha;
-            background-color: $honey-yellow-alpha;
-            transition: 618ms;
-        }
+    .item-list + .item-list {
+        margin-top: f.golden-size(4);
     }
 }
 
 .object-container {
-    background-color: $orange-yellow-crayola;
+    background-color: v.$white;
     padding: 16px 10%;
     flex: 1;
 
@@ -62,28 +92,28 @@
 
     .table-wrapper {
         margin-top: 1rem;
-        border: 1px solid $cooper;
+        border: 1px solid v.$abbey;
         border-radius: 1rem;
 
         .object-table {
             width: 100%;
-            background-color: $honey-yellow-alpha;
+            background-color: v.$spring-wood;
             border-radius: 1rem;
 
             tbody {
                 tr {
                     &:first-child {
-                        border-top: 1px solid $cooper;
+                        border-top: 1px solid v.$abbey;
                     }
 
                     &:nth-child(n+1):nth-last-child(n+2) {
-                        border-bottom: 1px solid $cooper;
+                        border-bottom: 1px solid v.$abbey;
                     }
                 }
             }
 
             th {
-                background-color: $honey-yellow;
+                background-color: v.$shady-lady;
                 height: 50px;
 
                 &:first-child {

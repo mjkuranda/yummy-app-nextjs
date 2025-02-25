@@ -1,0 +1,30 @@
+@use '@/styles/variables' as v;
+
+.checkbox {
+    appearance: none;
+    background-color: v.$white;
+    border: 2px solid v.$chilean-fire;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > {
+        width: 50%;
+    }
+
+    box-shadow: rgb(0 0 0 / 0) 0 0 5px 2px;
+    transition: v.$minor-time;
+
+    &[data-checked=true] {
+        background-color: v.$chilean-fire;
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        box-shadow: rgb(0 0 0 / 23%) 0 0 5px 2px;
+        transition: v.$minor-time;
+    }
+}

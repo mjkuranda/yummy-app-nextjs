@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import styles from '@/styles/components/common/button.module.scss';
+import styles from '@/styles/components/common/buttons/button.module.scss';
 
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -21,7 +21,7 @@ interface ButtonProps {
     icon?: IconVariant;
     link?: string;
     type?: 'button' | 'submit'
-    width?: number;
+    width?: number | string;
     onClick?: (e: any) => void;
 }
 
@@ -34,18 +34,20 @@ export function Button({ disabled, label, link, icon, type, width, onClick }: Bu
                 href={disabled ? '/' : link}
                 className={className}
                 aria-disabled={disabled}
+                style={{ width: typeof width === 'string' ? width : `${width}px`, display: 'flex' }}
                 tabIndex={disabled ? -1 : undefined}>
-                {label}
                 {icon && renderIcon(icon)}
-                {width}
+                {icon && '\u00A0'}
+                {label}
             </Link>
         );
     }
 
     return (
         <button type={type ?? 'button'} onClick={onClick ?? (() => {})} disabled={disabled} className={className} style={{ width }}>
-            {label}
             {icon && renderIcon(icon)}
+            {icon && '\u00A0'}
+            {label}
         </button>
     );
 }

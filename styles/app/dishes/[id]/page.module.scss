@@ -1,18 +1,7 @@
-@import '@/styles/globals-colors';
+@use '@/styles/variables' as v;
 
 .result-page {
-    padding: 8px;
-
-    .result-nav {
-        background-color: $honey-yellow;
-        padding: 1em;
-        margin-bottom: 0.5em;
-        border-radius: 0.5em;
-
-        > a > i {
-            margin-right: 0.5em;
-        }
-    }
+    margin: v.$minor-rem;
 
     .result-container {
         display: grid;
@@ -27,7 +16,7 @@
         }
 
         .result-details {
-            margin: 2em;
+            padding: 2rem;
 
             > ul {
                 list-style: none;
@@ -41,7 +30,7 @@
                         align-items: center;
 
                         > img {
-                            margin-left: 0.618rem;
+                            margin-left: v.$minor-rem;
                             margin-bottom: 0.3rem;
                         }
                     }
@@ -83,6 +72,12 @@
                     h5 {
                         font-style: normal;
                     }
+
+                    ol {
+                        li {
+                            line-height: 2rem;
+                        }
+                    }
                 }
             }
         }
@@ -96,7 +91,7 @@
                     margin: 1em;
 
                     .result-ingredient__text {
-                        margin-left: 0.618em;
+                        margin-left: v.$minor-rem;
                         cursor: default;
                     }
 

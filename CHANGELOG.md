@@ -3,6 +3,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-02-25
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `PageLink`, `TopHeader` and `ProgressBar` components.
+- [Marek Kurańda](https://github.com/mjkuranda): Containers for some forms.
+- [Marek Kurańda](https://github.com/mjkuranda): New files for constants.
+- [Marek Kurańda](https://github.com/mjkuranda): Icons to `InputSelect` component.
+- [Marek Kurańda](https://github.com/mjkuranda): Funny texts related to current period of the meal along with progress bar and time constraints at search page.
+- [Marek Kurańda](https://github.com/mjkuranda): `hasMarginAround` data property to `BackLinkBar` component to define a margin or not.
+- [Marek Kurańda](https://github.com/mjkuranda): `DishCreatorContainer` for containing all logics for proceeding dish creator data.
+- [Marek Kurańda](https://github.com/mjkuranda): `Checkbox` component.
+- [Marek Kurańda](https://github.com/mjkuranda): New `DishMatcher` icon.
+- [Marek Kurańda](https://github.com/mjkuranda): Partial SCSS files: `functions`, `typographies` and `variables`.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Colour palette.
+- [Marek Kurańda](https://github.com/mjkuranda): Buttons design.
+- [Marek Kurańda](https://github.com/mjkuranda): Landing page, search page, login page, registration page, recommendation page, dish details page, header and footer design.
+- [Marek Kurańda](https://github.com/mjkuranda): Independent `SearchForm` and `SearchContainer` to have logics separately.
+- [Marek Kurańda](https://github.com/mjkuranda): Ingredient and flag information for dish results.
+- [Marek Kurańda](https://github.com/mjkuranda): All button components were moved to `src/components/common/buttons`.
+- [Marek Kurańda](https://github.com/mjkuranda): All link components were moved to `src/components/common/links`.
+
+### Removed
+- [Marek Kurańda](https://github.com/mjkuranda): `global-colors` and `global-constants` SCSS files.
+- [Marek Kurańda](https://github.com/mjkuranda): `@import` directives replacing with `@use` ones.
+
 ## [1.66.0] - 2025-01-31
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): New subpage `/users/:login/profile` for rendering basic user profile info.

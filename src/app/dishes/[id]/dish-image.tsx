@@ -22,7 +22,7 @@ export function DishImage({ imgUrl, title, provider }: DishImageProps) {
 
     return (
         <div className={styles['result-image']}>
-            <img src={hasImage ? imageUrl : '/no-image.png'} alt={`Zdjęcie daniam o nazwie ${title}`} onError={(e) => {
+            <img src={hasImage ? imageUrl : '/no-image.png'} alt={`Zdjęcie dania o nazwie "${title}"`} onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = '/no-image.png';
                 target.alt = 'Brak dostępnego zdjęcia';

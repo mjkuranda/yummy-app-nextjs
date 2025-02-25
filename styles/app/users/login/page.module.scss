@@ -1,30 +1,55 @@
-@import '@/styles/globals-colors';
+@use '@/styles/variables' as v;
 
-.form-control {
+.login-box {
+    margin: v.$major-rem 15%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    h3 {
-        text-align: center;
-    }
+    .login-box__form-container {
+        width: v.$minor-cent;
 
-    .form-control-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
-
-        .form-control-container-wrapper {
+        .form-control {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-            > p {
-                margin-top: .3rem;
+            h3 {
+                text-align: center;
+                margin-bottom: v.$e-rem;
+            }
+
+            .form-control-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 2rem;
+
+                .form-control-container-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    padding: 0 10px;
+                    margin-top: v.$major-rem;
+
+                    p {
+                        margin-top: v.$minor-rem;
+                    }
+                }
+            }
+
+            .form-control-container + .form-control-container {
+                margin-top: 1rem;
             }
         }
     }
 
-    .form-control-container + .form-control-container {
-        margin-top: 1rem;
+    .login-box__img-container {
+        width: v.$major-cent;
+        margin-left: 10%;
+
+        img {
+            width: 100%;
+            border-radius: 50%;
+        }
     }
 }

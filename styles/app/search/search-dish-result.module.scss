@@ -1,7 +1,9 @@
-@import "@/styles/globals-constants";
-@import "@/styles/globals-colors";
+@use '@/styles/variables' as v;
+@use '@/styles/functions' as f;
 
 $spc: 8px;
+$phi-n: v.$phi;
+$golden-ratio-n-2: f.golden-size-n(2);
 
 /* Below 1000px */
 @media all and (max-width: 700px) {
@@ -9,13 +11,14 @@ $spc: 8px;
         $in-row: 1;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        margin-top: $spc;
+        padding-bottom: $spc;
     }
     /*
         Margin above elements, but starting with 3rd one (n+3)
@@ -31,13 +34,14 @@ $spc: 8px;
         $in-row: 2;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        margin-top: $spc;
+        padding-bottom: $spc;
     }
 
     /*
@@ -61,13 +65,14 @@ $spc: 8px;
         $in-row: 3;
         $ratio: calc(
                 (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * (1 + $phi))
+                ($in-row * $golden-ratio-n-2)
         );
 
         display: flex;
         flex-wrap: wrap;
         width: calc(100vw - ($ratio * $in-row));
-        margin: $spc auto;
+        margin-top: $spc;
+        padding-bottom: $spc;
     }
     .result-container:not(:nth-child(3n + 1)) {
         margin-left: $spc;
@@ -91,28 +96,29 @@ $spc: 8px;
     $in-row: 3;
     $ratio: calc(
             (100vw - $spc * calc($in-row - 1)) /
-            ($in-row * (1 + $phi))
+            ($in-row * $golden-ratio-n-2)
     );
 
     display: flex;
     flex-wrap: wrap;
     width: calc(100vw - ($ratio * $in-row));
-    margin: $spc auto;
+    margin-top: $spc;
+    padding-bottom: $spc;
 
     .result-container {
-        $w: calc($ratio * $phi);
-        $h: calc($w / $phi);
+        $w: calc($ratio * $phi-n);
+        $h: calc($w / $phi-n);
 
         width: $w;
         height: $h;
-        background-color: $honey-yellow;
+        background-color: v.$spring-wood;
         /* box-shadow: 0 0 2px 2px; */
         display: flex;
 
         transform: scale(1);
-        transition: 618ms;
+        transition: v.$major-time;
 
-        border-radius: 0.618rem;
+        border-radius: v.$minor-rem;
 
         .result-image {
             width: $h;
@@ -122,20 +128,20 @@ $spc: 8px;
                 width: $h;
                 height: $h;
                 object-fit: cover;
-                border-radius: 0.618rem 0 0 0.618rem;
+                border-radius: v.$minor-rem 0 0 v.$minor-rem;
             }
         }
 
         .result-label {
             .result-description {
-                $hd: calc($h / $phi);
+                $hd: calc($h / $phi-n);
                 width: $hd;
                 height: $hd;
-                background-color: $cooper;
-                border-top-right-radius: 0.618rem;
+                background-color: v.$shady-lady;
+                border-top-right-radius: v.$minor-rem;
 
                 .result-title {
-                    $htt: calc($hd - ($hd / $phi));
+                    $htt: calc($hd - ($hd / $phi-n));
 
                     width: $hd;
                     height: $htt;
@@ -151,11 +157,11 @@ $spc: 8px;
                 }
 
                 .result-text {
-                    $htx: calc($hd / $phi);
+                    $htx: calc($hd / $phi-n);
 
                     width: $hd;
                     height: $htx;
-                    font-size: calc(1em / $phi);
+                    font-size: calc(1em / $phi-n);
                     /* font-weight: 700; */
                     padding: calc($spc / 2);
 
@@ -176,7 +182,7 @@ $spc: 8px;
 
             .result-button {
                 $wb: calc($w - $h);
-                $hb: calc($h / $phi); /* hb = h - hd */
+                $hb: calc($h / $phi-n); /* hb = h - hd */
 
                 width: $wb;
                 height: calc($h - $hb);
@@ -185,16 +191,16 @@ $spc: 8px;
     }
 
     .result-container:hover {
-        box-shadow: 0 0 $spc $spc $orange-yellow-crayola;
+        box-shadow: 0 0 $spc $spc v.$spring-wood;
 
-        transform: scale($phi);
-        transition: 618ms;
+        transform: scale($phi-n);
+        transition: v.$major-time;
         z-index: 2;
     }
 }
 
 #adder {
-    margin: 2em 0;
+    padding: 2em 0;
 
     > div:nth-child(1) {
         margin-bottom: 0.5em;

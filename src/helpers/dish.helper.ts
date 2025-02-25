@@ -1,5 +1,5 @@
 import { DetailedDish, DetailedDishWithTranslations, Ingredient, NewDishDto } from '@/src/types/api.types';
-import { DishDifferenceDto, DishFormData, DishRecipeSectionWithId } from '@/src/types/dish.types';
+import { DishDifferenceDto, DishFormData, DishRecipeSectionWithId, OnlyMealType } from '@/src/types/dish.types';
 import { IngredientDataValue, IngredientWithId } from '@/src/types/ingredient.types';
 
 export function getDefaultValues(dishWithTranslations: DetailedDishWithTranslations, ingredients: IngredientDataValue[]): DishFormData {
@@ -10,12 +10,10 @@ export function getDefaultValues(dishWithTranslations: DetailedDishWithTranslati
         description: dish.description,
         readyInMinutes: dish.readyInMinutes?.toFixed() ?? 'missing',
         type: dish.type,
-        mealType: dish.mealType,
+        mealType: dish.mealType as OnlyMealType,
         ingredients: mapIngredients(dish.ingredients, ingredients),
         imageUrl: dish.imgUrl,
-        recipe: mapRecipe(dish),
-        hasImage: Boolean(dish.imgUrl),
-        hasImageUrl: Boolean(dish.imgUrl)
+        recipe: mapRecipe(dish)
     };
 }
 

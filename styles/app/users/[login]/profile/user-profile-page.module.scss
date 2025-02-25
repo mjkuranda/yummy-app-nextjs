@@ -1,4 +1,4 @@
-@import '@/styles/globals-colors';
+@use '@/styles/variables' as v;
 
 .user-profile-tile {
     margin: .5rem;
@@ -10,7 +10,7 @@
     }
 
     .user-profile__content-layout {
-        background-color: $honey-yellow;
+        background-color: v.$spring-wood;
         border-radius: .5rem;
         width: 61vw;
         height: 39vw;

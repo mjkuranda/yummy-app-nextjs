@@ -3,7 +3,7 @@ import { RecipeSection } from '@/src/app/dishes/create/recipe-section';
 import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { createNewSection } from '@/src/helpers/recipe-form.helper';
 import { ErrorMessage } from '@/src/components/common/error-message';
-import { AddButton } from '@/src/components/common/add-button';
+import { AddButton } from '@/src/components/common/buttons/add-button';
 
 export function RecipeForm() {
     const { sections, onChangeSections, error } = useRecipeFormContext();

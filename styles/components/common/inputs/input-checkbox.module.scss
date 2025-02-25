@@ -1,5 +1,4 @@
-@import "@/styles/globals-colors";
-@import "@/styles/globals-constants";
+@use '@/styles/variables' as v;
 
 .input-checkbox {
     display: flex;
@@ -10,24 +9,24 @@
 
     .input-container {
         input[type="checkbox"] {
-            width: calc(1em * $phi);
+            width: calc(1em * var(v.$phi));
             aspect-ratio: 1 / 1;
             border-radius: 50%;
             transition: box-shadow 0.3s;
-            background: $orange-yellow-crayola;
+            background: v.$spring-wood;
             cursor: pointer;
-            border: 0.2em outset $cooper;
+            border: 0.2em outset v.$abbey;
             appearance: none;
             -webkit-appearance: none;
         }
 
         input[type="checkbox"]:hover {
             /* background: $cooper-alpha; */
-            transition: 618ms;
+            transition: v.$minor-time;
         }
 
         input[type="checkbox"]:checked {
-            box-shadow: inset 0 0 0 30px $cooper;
+            box-shadow: inset 0 0 0 30px v.$abbey;
         }
     }
 

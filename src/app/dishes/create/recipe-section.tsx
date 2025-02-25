@@ -12,8 +12,8 @@ import {
     updateSectionStep
 } from '@/src/helpers/recipe-form.helper';
 import { RecipeSectionStep } from '@/src/app/dishes/create/recipe-section-step';
-import { AddButton } from '@/src/components/common/add-button';
-import { RemoveButton } from '@/src/components/common/remove-button';
+import { AddButton } from '@/src/components/common/buttons/add-button';
+import { RemoveButton } from '@/src/components/common/buttons/remove-button';
 
 interface RecipeSectionProps {
     section: DishRecipeSectionWithId;

@@ -6,7 +6,7 @@ import { RecommendationsItem } from '@/src/app/recommendations/recommendations-i
 import { useDishProposals } from '@/src/hooks/use-dish-proposals';
 import { DishProposal } from '@/src/types/api.types';
 import { Loader } from '@/src/components/common/loader';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { BackLinkBar } from '@/src/components/common/back-link-bar';
 
 export function RecommendationsContainer() {
@@ -25,7 +25,7 @@ export function RecommendationsContainer() {
 
     return (
         <div className={styles['recommendations-container']}>
-            <BackLinkBar link="/" label={'Powrót do strony głównej'} />
+            <BackLinkBar link="/" label={'Powrót do strony głównej'} hasMarginAround={true} />
             <div className={styles['recommendations-nearby']}>
                 {currentProposal ?
                     <>

@@ -1,14 +1,25 @@
-@import '@/styles/globals-colors.scss';
+@use '@/styles/variables' as v;
 
 .app-footer {
-    background-color: $cooper;
+    background-color: v.$shark;
+    color: v.$spring-wood;
+    padding: 6rem 15%;
 
-    >div {
-        padding: 2rem 0;
-        text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .brand-container {
+        > * + * {
+            margin-top: v.$minor-rem;
+        }
     }
 
-    .author-information {
-        margin: 16px 0;
+    .section-container {
+        height: 225px;
+
+        li + li {
+            margin-top: v.$minor-rem;
+        }
     }
 }

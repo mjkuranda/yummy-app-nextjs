@@ -2,7 +2,7 @@
 
 import { DetailedDish } from '@/src/types/api.types';
 import { useUserContext } from '@/src/contexts/user.context';
-import { DeleteLink } from '@/src/components/common/delete-link';
+import { DeleteLink } from '@/src/components/common/links/delete-link';
 import { useState } from 'react';
 import { handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';

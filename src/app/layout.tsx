@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ReactQueryProvider } from '@/src/app/react-query-provider';
@@ -12,11 +12,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const montserrat = Montserrat({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    style: ['normal', 'italic'],
+    variable: '--font-montserrat'
+});
 
 export const metadata: Metadata = {
     title: 'DishMatcher',
-    description: 'Dowiedz się, co dziś ugotować'
+    description: 'Dowiedz się, co dziś ugotować',
+    icons: '/logo.svg'
 };
 
 export default function RootLayout({ children }: Readonly<{children: ReactNode;}>) {
@@ -26,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{children: ReactNode;}
                 <title>{metadata.title as string}</title>
                 <link rel="icon" href="favicon.ico" />
             </head>
-            <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <body className={montserrat.variable} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <UserProvider>
                     <ReactQueryProvider>
                         <AppRouterCacheProvider>

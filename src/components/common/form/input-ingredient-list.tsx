@@ -77,7 +77,19 @@ export function InputIngredientList({ items, label, selectedItems, setSelectedIt
                     />
                 )}
             </List>
-            <p className={'text-center'}>Wybrano {selectedItems.length} składników.</p>
+            <p className={'text-center'}>Wybrano {getIngredientCountInformation(selectedItems.length)}.</p>
         </Box>
     );
+}
+
+function getIngredientCountInformation(selectedIngredientsCount: number): string {
+    if (selectedIngredientsCount === 1) {
+        return '1 składnik';
+    }
+
+    if (selectedIngredientsCount > 1 && selectedIngredientsCount < 5) {
+        return `${selectedIngredientsCount} składniki`;
+    }
+
+    return `${selectedIngredientsCount} składników`;
 }

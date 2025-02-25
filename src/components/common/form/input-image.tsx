@@ -1,4 +1,4 @@
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { ChangeEvent, useRef } from 'react';
 import styles from '@/styles/components/common/inputs/input-image.module.scss';
 import { FieldError } from 'react-hook-form';
@@ -10,9 +10,10 @@ interface InputImageProps {
     image?: File;
     width?: string;
     error?: FieldError;
+    shouldShowResult?: boolean;
 }
 
-export function InputImage({ id, image, width = '100%', setImage, error }: InputImageProps) {
+export function InputImage({ id, image, width = '100%', setImage, error, shouldShowResult = true }: InputImageProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,7 @@ export function InputImage({ id, image, width = '100%', setImage, error }: Input
 
     return (
         <div className={styles['input-image']}>
-            {image && (
+            {shouldShowResult && image && (
                 <div className={styles['center-horizontally']}>
                     <img
                         className={styles['uploaded-image']}

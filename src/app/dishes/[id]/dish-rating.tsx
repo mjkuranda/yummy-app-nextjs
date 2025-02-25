@@ -3,7 +3,7 @@
 import styles from '@/styles/app/dishes/[id]/dish-rating.module.scss';
 import { DishRatingStars } from '@/src/app/dishes/[id]/dish-rating-stars';
 import { DishRatingUser } from '@/src/app/dishes/[id]/dish-rating-user';
-import { TextButton } from '@/src/components/common/text-button';
+import { TextButton } from '@/src/components/common/buttons/text-button';
 import { useEffect, useState } from 'react';
 import { DishRating as DishRatingType } from '@/src/types/dish.types';
 import { getDishRating } from '@/src/api/api';

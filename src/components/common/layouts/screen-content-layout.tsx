@@ -7,8 +7,8 @@ interface ScreenContentLayoutProps {
 
 export function ScreenContentLayout({ children }: ScreenContentLayoutProps) {
     return (
-        <div className={styles['page-container']}>
+        <main className={styles['page-container']}>
             {children}
-        </div>
+        </main>
     );
 }

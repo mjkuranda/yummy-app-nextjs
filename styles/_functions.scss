@@ -1,0 +1,7 @@
+@function golden-size($x, $unit: rem) {
+    @return ($x + 0.618) + $unit;
+}
+
+@function golden-size-n($x) {
+    @return $x + 0.618;
+}

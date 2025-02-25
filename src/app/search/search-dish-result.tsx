@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { DishResult } from '@/src/types/api.types';
 import styles from '@/styles/app/search/search-dish-result.module.scss';
-import { Button } from '@/src/components/common/button';
+import { Button } from '@/src/components/common/buttons/button';
 import { useHasImage } from '@/src/hooks/use-has-image';
 import { Loader } from '@/src/components/common/loader';
 import { ReactElement } from 'react';
@@ -38,14 +38,19 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
     };
 
     const renderRelevance = (relevance: number): ReactElement => {
-        return <>Zgodność z Twoim wyszukiwaniem: <b>{Math.ceil(relevance * 100)}%</b></>;
+        return <><b>{Math.ceil(relevance * 100)}%</b> pasujących składników</>;
     };
 
     return (
         <div className={`${styles['result-container']} d-flex justify-content-center align-items-center`}>
             <div className={styles['result-image']}>
                 <Link className={styles['img-link']} href={`/dishes/${dish.id}?sourceUrl=${searchUrlQuery}`} target="_blank">
-                    {isLoading ? <Loader /> : <img src={imgSrc} alt={`Zdjęcie dania o nazwie ${dish.title}`} />}
+                    {isLoading
+                        ? (
+                            <div className="d-flex justify-content-center align-items-center w-100 h-100">
+                                <Loader />
+                            </div>
+                        ) : <img src={imgSrc} alt={`Zdjęcie dania o nazwie ${dish.title}`} />}
                 </Link>
             </div>
             <div className={styles['result-label']}>
@@ -54,7 +59,8 @@ export function SearchDishResult({ dish }: SearchDishResultProps) {
                     <div className={styles['result-text']}>
                         <span>{renderRelevance(dish.relevance)}</span>
                         <span>{renderMissing(dish.missingCount)}</span>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
+                            <p className="w-50">Oryginalny język:</p>
                             <FlagIcon language={dish.language} hasTranslationInfo={false} />
                         </div>
                     </div>
