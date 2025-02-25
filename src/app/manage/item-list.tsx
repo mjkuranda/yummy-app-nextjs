@@ -17,11 +17,11 @@ interface ItemListProps {
 export function ItemList({ list, header }: ItemListProps) {
     return (
         <div className={styles['item-list']}>
-            <h3>{getItemHeader(header)}</h3>
-            <ul>
+            <h3 className={styles['item-list__header']}>{getItemHeader(header)}</h3>
+            <ul className={styles['item-list__container']}>
                 {list.map(item => {
                     return (
-                        <li key={item.link}>
+                        <li key={item.link} className={styles['item-list__item']}>
                             <Link href={`/manage/${item.link}`}>
                                 <div>
                                     <p className={styles['item-text']}>{item.text}</p>
