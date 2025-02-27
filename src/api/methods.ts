@@ -1,15 +1,12 @@
 import { ApiErrorResponse, throwApiError } from '@/src/api/api-errors';
+import { apiCall } from '@/src/helpers/api.helper';
 
 export async function apiGet<T>(endpointUrl: string): Promise<T> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
-        mode: 'cors',
-        method: 'GET',
+    const res = await apiCall('GET', endpointUrl, {
         headers: {
-            'accept': '*/*',
             'Accept-Language': 'pl', // TODO: from i18n
             'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
     });
 
     if (!res.ok) {
@@ -22,14 +19,10 @@ export async function apiGet<T>(endpointUrl: string): Promise<T> {
 }
 
 export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
-        mode: 'cors',
-        method: 'POST',
+    const res = await apiCall('POST', endpointUrl, {
         headers: {
-            'accept': '*/*',
             ...(!isFormData && { 'Content-Type': 'application/json' })
         },
-        credentials: 'include',
         body: isFormData ? payload as FormData : typeof payload === 'string' ? payload : JSON.stringify(payload)
     });
 
@@ -43,14 +36,10 @@ export async function apiPost<P = undefined>(endpointUrl: string, payload?: P, i
 }
 
 export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, isFormData?: boolean): Promise<Response> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
-        mode: 'cors',
-        method: 'PUT',
+    const res = await apiCall('PUT', endpointUrl, {
         headers: {
-            'accept': '*/*',
             ...(!isFormData && { 'Content-Type': 'application/json' })
         },
-        credentials: 'include',
         body: isFormData ? payload as FormData : typeof payload === 'string' ? payload : JSON.stringify(payload)
     });
 
@@ -64,12 +53,7 @@ export async function apiPut<P = undefined>(endpointUrl: string, payload?: P, is
 }
 
 export async function apiDelete(endpointUrl: string): Promise<Response> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${endpointUrl}`, {
-        mode: 'cors',
-        method: 'DELETE',
-        headers: { 'accept': '*/*' },
-        credentials: 'include'
-    });
+    const res = await apiCall('DELETE', endpointUrl);
 
     if (!res.ok) {
         const errorResponse = await res.json() as ApiErrorResponse;

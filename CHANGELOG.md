@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-02-27
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): API helper containing `apiCall` function.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): API URL with the prefix and version.
+
 ## [2.0.1] - 2025-02-25
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Build due to variables in `dish-creator-form.module`.
