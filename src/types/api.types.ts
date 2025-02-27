@@ -1,5 +1,7 @@
 import { DishType, MealType } from '@/src/types/dish.types';
 
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'Patch' | 'DELETE';
+
 export type DishProvider = 'yummy' | 'spoonacular';
 
 export interface DishResult {
