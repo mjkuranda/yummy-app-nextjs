@@ -14,6 +14,11 @@ import { handleApiError } from '@/src/api/api-errors';
 import { useUserContext } from '@/src/contexts/user.context';
 import Link from 'next/link';
 
+type FetchObjectFunction = <FetchObject>(
+    getFunction: () => Promise<FetchObject[]>,
+    mapFunction: (object: FetchObject) => ObjectItemStruct
+) => void;
+
 export interface ObjectItemStruct {
     id: string;
     label: ReactNode;
@@ -29,15 +34,18 @@ export function useObjectManagement(objects: ObjectType, action: ActionType) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [objectList, setObjectList] = useState<ObjectItemStruct[]>([]);
 
-    const fetchObjects = useCallback(<FetchObject>(getFunction: () => Promise<FetchObject[]>, mapFunction: (object: FetchObject) => ObjectItemStruct): void => {
-        getFunction()
-            .then(fetchedObjects => {
-                const objects = fetchedObjects.map(mapFunction);
-                setObjectList(objects);
-            })
-            .catch(err => handleApiError(err, router, userContext))
-            .finally(() => setIsLoading(false));
-    }, []);
+    const fetchObjects = useCallback<FetchObjectFunction>(
+        (getFunction, mapFunction) => {
+            getFunction()
+                .then(fetchedObjects => {
+                    const objects = fetchedObjects.map(mapFunction);
+                    setObjectList(objects);
+                })
+                .catch(err => handleApiError(err, router, userContext))
+                .finally(() => setIsLoading(false));
+        },
+        []
+    );
 
     useEffect(() => {
         if (objects === 'users') {
