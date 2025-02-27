@@ -1,4 +1,4 @@
-name: CI Checks
+name: CI Checks after raising a Pull Request
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   install-lint-build:
-    name: Install, lint and build checks
+    name: Install, Lint, and Build after raising a Pull Request
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npm run lint:custom
+        run: npm run lint
 
       - name: Run Build
-        run: npm run build:force
+        run: npm run build
