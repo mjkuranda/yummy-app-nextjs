@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .app-footer {
     background-color: v.$shark;
@@ -20,6 +21,18 @@
 
         li + li {
             margin-top: v.$minor-rem;
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .app-footer {
+        padding: 4rem 2rem;
+        display: block;
+
+        .section-container {
+            height: auto;
+            margin-top: v.$major-rem;
         }
     }
 }
