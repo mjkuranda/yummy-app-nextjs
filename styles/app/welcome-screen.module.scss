@@ -81,17 +81,18 @@
                     width: 100%;
                     margin-left: 0;
 
-                    background-image: url("/vegetables-in-bowl.webp");
-                    background-position-y: calc(100vh - 20rem);
-                    background-position-x: calc(100vw - 32rem);
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    border-top-left-radius: 50%;
-                    border-bottom-left-radius: 50%;
+                    // NOTE: Let's get rid off...
+                    //background-image: url("/vegetables-in-bowl.webp");
+                    //background-position-y: calc(100vh - 20rem);
+                    //background-position-x: calc(100vw - 32rem);
+                    //background-size: contain;
+                    //background-repeat: no-repeat;
+                    //border-top-left-radius: 50%;
+                    //border-bottom-left-radius: 50%;
 
                     display: flex;
                     justify-content: flex-end;
-                    padding-bottom: 15rem;
+                    padding-bottom: 4rem;
                 }
 
                 .welcome-screen__panel-content-image {
