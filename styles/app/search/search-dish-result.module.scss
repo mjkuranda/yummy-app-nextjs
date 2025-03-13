@@ -222,6 +222,17 @@ $golden-ratio-n-2: f.golden-size-n(2);
             height: unset;
             aspect-ratio: v.$phi / 1;
 
+            transform: unset;
+            transition: unset;
+
+            &:hover {
+                box-shadow: unset;
+
+                transform: unset;
+                transition: unset;
+                z-index: unset;
+            }
+
             .result-image {
                 width: 61%;
                 height: 102%; // I know, it's weird, but it works... Sometimes a magic is needed (:
@@ -256,10 +267,6 @@ $golden-ratio-n-2: f.golden-size-n(2);
 
                         > span {
                             font-size: 1.3em;
-                        }
-
-                        > span:first-of-type {
-                            font-size: 1.5em;
                         }
 
                         > div {
