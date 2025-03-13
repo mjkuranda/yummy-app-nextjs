@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 #search-query-part,
 #dish-result-part {
@@ -70,5 +71,35 @@
 .search-controls {
     button + button {
         margin-left: 1rem;
+    }
+}
+
+@include m.respond(mobile) {
+    #form-content-container {
+        .type-container {
+            flex-direction: column;
+        }
+
+        .type-details {
+            .type-details__container {
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+    }
+
+    #search-query-part,
+    #dish-result-part {
+        padding: v.$major-rem v.$minor-rem 0 v.$minor-rem;
+    }
+
+    #search-query-part {
+        .ingredient-category-container {
+            display: block;
+
+            > * {
+                width: 100%;
+            }
+        }
     }
 }
