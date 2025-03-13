@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 @import '@/styles/components/common/buttons/button.module';
 
@@ -19,6 +20,18 @@
         img {
             width: 100%;
             border-radius: v.$minor-cent v.$major-cent v.$minor-cent v.$major-cent;
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .registration-box {
+        .registration-box__form-container {
+            width: 100%;
+        }
+
+        .registration-box__img-container {
+            display: none;
         }
     }
 }

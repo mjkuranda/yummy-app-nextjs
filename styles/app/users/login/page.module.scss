@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .login-box {
     margin: v.$major-rem 15%;
@@ -50,6 +51,18 @@
         img {
             width: 100%;
             border-radius: 50%;
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .login-box {
+        .login-box__form-container {
+            width: 100%;
+        }
+
+        .login-box__img-container {
+            display: none;
         }
     }
 }
