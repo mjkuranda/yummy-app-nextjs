@@ -1,0 +1,26 @@
+@use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
+
+.activation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .activation-content-container {
+        p:last-of-type {
+            margin-top: v.$major-rem;
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .activation-container {
+        .activation-content-container {
+            padding: 5rem 0;
+
+            p:last-of-type {
+                margin-top: v.$major-rem;
+            }
+        }
+    }
+}
