@@ -100,7 +100,7 @@
 @include m.respond(mobile) {
     .recommendations-container {
         .recommendations-nearby {
-            flex: unset;
+            flex: 1;
 
             .recommendations-current {
                 width: 100% !important;
@@ -152,6 +152,7 @@
         .recommendations-container__navigator {
             flex: unset;
             margin: v.$minor-rem;
+            padding: v.$minor-rem;
         }
     }
 }
