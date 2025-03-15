@@ -1,3 +1,6 @@
+@use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
+
 .ingredient-form {
     h4 {
         text-align: center;
@@ -12,6 +15,51 @@
             align-items: center;
             margin: 1rem;
             width: 150px;
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .ingredient-form {
+        li {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 10px; //
+
+            background-color: v.$spring-wood;
+            border-radius: v.$minor-rem;
+            padding: v.$major-rem;
+
+            > div:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            > div:nth-child(2) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            > div:nth-child(3) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            > div:nth-child(4) {
+                grid-column: 2;
+                grid-row: 1 / 4;
+                margin-top: -0.5rem !important;
+                align-items: center !important;
+            }
+
+            .ingredient-name {
+                margin: 0 !important;
+            }
+        }
+
+        li + li {
+            margin-top: v.$minor-rem;
         }
     }
 }

@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .dish-comment-container {
     display: flex;
@@ -51,6 +52,14 @@
                 display: flex;
                 align-items: center;
             }
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .dish-comment-container {
+        .dish-comment-content {
+            width: 80vw;
         }
     }
 }

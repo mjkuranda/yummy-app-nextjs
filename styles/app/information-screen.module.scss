@@ -1,8 +1,11 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
+@use '@/styles/functions' as f;
 
 .information-screen {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     padding: 8rem;
 
@@ -71,6 +74,25 @@
             &[data-image-name="community"] {
                 background-image: url('/integrate_1920.jpg');
             }
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .information-screen {
+        flex-direction: column;
+        padding: 0;
+
+        .information-screen__details-container {
+            width: 100%;
+            height: v.$minor-cent;
+            padding: f.golden-size(2, rem);
+            text-align: center;
+        }
+
+        .information-screen__image-container {
+            width: 100%;
+            height: v.$major-cent;
         }
     }
 }

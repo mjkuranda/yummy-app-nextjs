@@ -32,9 +32,9 @@ export function RecommendationsContainer() {
                         <RecommendationsItem proposal={previousProposal} isTransparent={true} />
                         <div className={styles['recommendations-current']}>
                             <RecommendationsItem proposal={currentProposal} isTransparent={false} />
-                            <div className={styles['recommendations-select-button-container']}>
+                            <div className={styles['recommendations-select-container']}>
                                 <Button label="Wybierz" icon="details" onClick={onChoose} />
-                                <p style={{ marginTop: '1rem' }}>{currentProposalNumber} z {proposals.length} rekomendacji</p>
+                                <p className={styles['recommendations-select__text-information']}>{currentProposalNumber} z {proposals.length} rekomendacji</p>
                             </div>
                         </div>
                         <RecommendationsItem proposal={nextProposal} isTransparent={true} />

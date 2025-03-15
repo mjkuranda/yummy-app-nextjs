@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import '@/styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from '@/styles/components/common/layouts/root-layout.module.scss';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -26,13 +27,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{children: ReactNode;}>) {
+    const bodyClassName = [montserrat.variable, styles['root-layout']].join(' ');
+
     return (
         <html lang="pl">
             <head>
                 <title>{metadata.title as string}</title>
                 <link rel="icon" href="favicon.ico" />
             </head>
-            <body className={montserrat.variable} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <body className={bodyClassName}>
                 <UserProvider>
                     <ReactQueryProvider>
                         <AppRouterCacheProvider>

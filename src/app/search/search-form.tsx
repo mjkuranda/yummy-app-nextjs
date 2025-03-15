@@ -38,7 +38,7 @@ export function SearchForm({ children, dishTypeOptions, mealTypeOptions, selecte
         <form onSubmit={onSubmit} onClick={onClick}>
             <div id={styles['form-content-container']}>
                 <h3 className="text-center p-4">Wybierz typ posiłku:</h3>
-                <div>
+                <div className={styles['type-container']}>
                     <InputSelect<MealType>
                         width={'200px'}
                         id={'meal-type'}

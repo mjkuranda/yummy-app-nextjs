@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as m;
+
 .recipe-form {
     > h4 {
         text-align: center;
@@ -47,6 +49,14 @@
             > :last-child {
                 margin-top: .8rem;
             }
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .recipe-form {
+        .recipe-section-step {
+            width: 85vw;
         }
     }
 }

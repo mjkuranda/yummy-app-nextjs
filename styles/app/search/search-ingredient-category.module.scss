@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .search-ingredient-category {
     width: 33%;
@@ -66,5 +67,32 @@
                 font-weight: 700;
             }
         }
+    }
+}
+
+@include m.respond(mobile) {
+    .search-ingredient-category {
+        margin: 0 0.1%;
+
+        .search-ingredient-category__list {
+            grid-template-columns: repeat(2, 40%);
+            gap: v.$minor-rem;
+
+            .search-ingredient-category__ingredient {
+                margin: v.$minor-rem 0 0;
+            }
+        }
+    }
+}
+
+@include m.respond(desktop, hd) {
+    .search-ingredient-category {
+        width: 49.5% !important;
+    }
+}
+
+@include m.respond(desktop) {
+    .search-ingredient-category {
+        width: 49.5% !important;
     }
 }

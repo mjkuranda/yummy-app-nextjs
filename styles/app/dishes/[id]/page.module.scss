@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .result-page {
     margin: v.$minor-rem;
@@ -7,6 +8,7 @@
         display: grid;
         grid-template-columns: 50% 50%;
         min-height: 100vh;
+        min-height: 100dvh;
 
         .result-image > img {
             width: 100%;
@@ -102,6 +104,29 @@
                         border-radius: 50%;
                         border-collapse: separate;
                         box-shadow: 0 0 0.25rem 0.25rem white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include m.respond(mobile) {
+    .result-page {
+        .result-container {
+            display: block;
+
+            .result-rating {
+                display: block !important;
+            }
+
+            .result-details {
+                .dish-details-sections {
+                    .dish-description {
+                        > p {
+                            overflow-y: unset;
+                            height: unset;
+                        }
                     }
                 }
             }

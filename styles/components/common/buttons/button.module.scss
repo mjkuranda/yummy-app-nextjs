@@ -1,4 +1,5 @@
 @use '@/styles/variables' as v;
+@use '@/styles/mixins' as m;
 
 .button {
     background-color: v.$chilean-fire;
@@ -27,10 +28,20 @@
 
 .button:disabled,
 .button--disabled {
-    opacity: v.$major-phi;
+    opacity: v.$phi-major-frac;
     cursor: not-allowed !important;
 }
 
 a.button {
     text-decoration: none;
+}
+
+@include m.respond(mobile) {
+    .button:hover {
+        background-color: v.$chilean-fire;
+        color: v.$white;
+        border: 2px solid v.$chilean-fire;
+
+        box-shadow: rgb(0 0 0 / 0) 0 0 5px 2px;
+    }
 }
