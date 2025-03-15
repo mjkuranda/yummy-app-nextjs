@@ -8,6 +8,7 @@
         display: grid;
         grid-template-columns: 50% 50%;
         min-height: 100vh;
+        min-height: 100dvh;
 
         .result-image > img {
             width: 100%;
