@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.3.0] - 2025-02-27
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Mixin for different type of devices: `mobile`,`tablet` and `desktop`.
-- [Marek Kurańda](https://github.com/mjkuranda): Responsive version of `header`, `footer`, landing page, search page and login page, registration page, dish details page, dish creation page, recommendation page and activation page.
+- [Marek Kurańda](https://github.com/mjkuranda): Responsive version of `header`, `footer`, landing page, search page and login page, registration page, dish details page, dish creation page, recommendation page, activation page and management pages.
 - [Marek Kurańda](https://github.com/mjkuranda): `dvh` unit.
 - [Marek Kurańda](https://github.com/mjkuranda): `hd` and `full-hd` type resolutions.
 
