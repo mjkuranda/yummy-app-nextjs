@@ -6,7 +6,7 @@ $spc: 8px;
 $phi-n: v.$phi;
 $golden-ratio-n-2: f.golden-size-n(2);
 
-@mixin result-box-styles($in-row: 3) {
+@mixin results-in-row($in-row: 3) {
     $ratio: calc(
             (100vw - $spc * calc($in-row - 1)) /
             ($in-row * $golden-ratio-n-2)
@@ -125,7 +125,7 @@ $golden-ratio-n-2: f.golden-size-n(2);
             result-button
 */
 .result-box {
-    @include result-box-styles(3);
+    @include results-in-row(3);
 }
 
 #adder {
@@ -142,19 +142,19 @@ $golden-ratio-n-2: f.golden-size-n(2);
 
 @include m.respond(desktop) {
     .result-box {
-        @include result-box-styles(2);
+        @include results-in-row(2);
     }
 }
 
 @include m.respond(desktop, hd) {
     .result-box {
-        @include result-box-styles(2)
+        @include results-in-row(2)
     }
 }
 
 @include m.respond(desktop, full-hd) {
     .result-box {
-        @include result-box-styles(3);
+        @include results-in-row(3);
     }
 }
 
