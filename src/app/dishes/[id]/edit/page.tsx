@@ -13,7 +13,7 @@ export default async function EditDishPage({ params: { id } }: EditDishPageProps
     const ingredients = fetchIngredients();
 
     return (
-        <WrappedContentLayout style={{ padding: '.5rem 10%' }}>
+        <WrappedContentLayout style={{ padding: '.5rem min(10%, .5rem)' }}>
             <BackLinkBar link={`/dishes/${id}`} label={'Wróć do dania'} onlyMarginBottom={true} />
             <DishEditorContainer ingredients={ingredients} dishId={id} />
         </WrappedContentLayout>
