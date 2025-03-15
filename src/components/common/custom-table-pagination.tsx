@@ -106,7 +106,7 @@ const StyledTablePagination = styled(TablePagination)(
   & .${classes.toolbar}  {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
     padding: 4px 0;
     margin-top: 1rem;

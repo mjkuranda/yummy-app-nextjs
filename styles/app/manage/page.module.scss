@@ -1,5 +1,6 @@
 @use '@/styles/variables' as v;
 @use '@/styles/functions' as f;
+@use '@/styles/mixins' as m;
 
 .manage-container {
     padding: 16px 10%;
@@ -139,5 +140,29 @@
     .table-pagination-container {
         display: flex;
         justify-content: center;
+    }
+}
+
+@include m.respond(mobile) {
+    .manage-container {
+        padding: v.$minor-rem 0 v.$major-rem 0;
+
+        .item-list {
+            margin: v.$minor-rem 0;
+
+            .item-list__header {
+                padding: v.$minor-rem;
+                border-radius: v.$minor-rem;
+            }
+
+            .item-list__container {
+                grid-template-columns: repeat(1, 95%);
+                justify-content: center;
+            }
+        }
+    }
+
+    .object-container {
+        padding: 16px v.$minor-rem;
     }
 }

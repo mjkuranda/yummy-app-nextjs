@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Responsive version of `header`, `footer`, landing page, search page and login page, registration page, dish details page, dish creation page, recommendation page and activation page.
 - [Marek Kurańda](https://github.com/mjkuranda): `dvh` unit.
 
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Editing the dishes, adding `DishEditorContainer`.
+
 ## [2.2.1] - 2025-02-27
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): GitHub workflow for CI checks after squash merge as `ci-checks-master`.

@@ -115,6 +115,10 @@
     .result-page {
         .result-container {
             display: block;
+
+            .result-rating {
+                display: block !important;
+            }
         }
     }
 }
