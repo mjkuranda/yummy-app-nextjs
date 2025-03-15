@@ -119,6 +119,17 @@
             .result-rating {
                 display: block !important;
             }
+
+            .result-details {
+                .dish-details-sections {
+                    .dish-description {
+                        > p {
+                            overflow-y: unset;
+                            height: unset;
+                        }
+                    }
+                }
+            }
         }
     }
 }
