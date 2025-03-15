@@ -6,95 +6,7 @@ $spc: 8px;
 $phi-n: v.$phi;
 $golden-ratio-n-2: f.golden-size-n(2);
 
-/* Below 1000px */
-@media all and (max-width: 700px) {
-    .result-box {
-        $in-row: 1;
-        $ratio: calc(
-                (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * $golden-ratio-n-2)
-        );
-
-        display: flex;
-        flex-wrap: wrap;
-        width: calc(100vw - ($ratio * $in-row));
-        margin-top: $spc;
-        padding-bottom: $spc;
-    }
-    /*
-        Margin above elements, but starting with 3rd one (n+3)
-        n+4 means line with 3 elements
-    */
-    .result-container:nth-child(n + 1) {
-        margin-top: $spc;
-    }
-}
-/* 700px-1400px */
-@media all and (min-width: 700px) and (max-width: 1400px) {
-    .result-box {
-        $in-row: 2;
-        $ratio: calc(
-                (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * $golden-ratio-n-2)
-        );
-
-        display: flex;
-        flex-wrap: wrap;
-        width: calc(100vw - ($ratio * $in-row));
-        margin-top: $spc;
-        padding-bottom: $spc;
-    }
-
-    /*
-        Margin between left and right element
-        2n*1 -> the first one in two elements line
-    */
-    .result-container:not(:nth-child(2n + 1)) {
-        margin-left: $spc;
-    }
-    /*
-        Margin above elements, but starting with 3rd one (n+3)
-        n+4 means line with 3 elements
-    */
-    .result-container:nth-child(n + 3) {
-        margin-top: $spc;
-    }
-}
-/* Upper than 1400px */
-@media all and (min-width: 1400px) {
-    .result-box {
-        $in-row: 3;
-        $ratio: calc(
-                (100vw - $spc * calc($in-row - 1)) /
-                ($in-row * $golden-ratio-n-2)
-        );
-
-        display: flex;
-        flex-wrap: wrap;
-        width: calc(100vw - ($ratio * $in-row));
-        margin-top: $spc;
-        padding-bottom: $spc;
-    }
-    .result-container:not(:nth-child(3n + 1)) {
-        margin-left: $spc;
-    }
-    .result-container:nth-child(n + 4) {
-        margin-top: $spc;
-    }
-}
-
-/*
-    Result found and defined by your query
-    inside search bar.
-
-    result-container
-        result-image
-        result-label
-            result-description
-            result-button
-*/
-.result-box {
-    $in-row: 3;
+@mixin result-box-styles($in-row: 3) {
     $ratio: calc(
             (100vw - $spc * calc($in-row - 1)) /
             ($in-row * $golden-ratio-n-2)
@@ -102,7 +14,8 @@ $golden-ratio-n-2: f.golden-size-n(2);
 
     display: flex;
     flex-wrap: wrap;
-    width: calc(100vw - ($ratio * $in-row));
+    justify-content: center;
+    width: 100%;
     margin-top: $spc;
     padding-bottom: $spc;
 
@@ -120,6 +33,7 @@ $golden-ratio-n-2: f.golden-size-n(2);
         transition: v.$major-time;
 
         border-radius: v.$minor-rem;
+        margin: 0.3rem;
 
         .result-image {
             width: $h;
@@ -200,6 +114,20 @@ $golden-ratio-n-2: f.golden-size-n(2);
     }
 }
 
+/*
+    Result found and defined by your query
+    inside search bar.
+
+    result-container
+        result-image
+        result-label
+            result-description
+            result-button
+*/
+.result-box {
+    @include result-box-styles(3);
+}
+
 #adder {
     padding: 2em 0;
 
@@ -209,6 +137,24 @@ $golden-ratio-n-2: f.golden-size-n(2);
         p {
             margin: 0 !important;
         }
+    }
+}
+
+@include m.respond(desktop) {
+    .result-box {
+        @include result-box-styles(2);
+    }
+}
+
+@include m.respond(desktop, hd) {
+    .result-box {
+        @include result-box-styles(2)
+    }
+}
+
+@include m.respond(desktop, full-hd) {
+    .result-box {
+        @include result-box-styles(3);
     }
 }
 
@@ -281,6 +227,10 @@ $golden-ratio-n-2: f.golden-size-n(2);
                     aspect-ratio: 1 / v.$phi-major-frac;
                 }
             }
+        }
+
+        .result-container + .result-container {
+            margin-top: v.$minor-rem;
         }
     }
 }
