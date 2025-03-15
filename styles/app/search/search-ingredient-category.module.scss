@@ -84,3 +84,15 @@
         }
     }
 }
+
+@include m.respond(desktop, hd) {
+    .search-ingredient-category {
+        width: 49.5% !important;
+    }
+}
+
+@include m.respond(desktop) {
+    .search-ingredient-category {
+        width: 49.5% !important;
+    }
+}
