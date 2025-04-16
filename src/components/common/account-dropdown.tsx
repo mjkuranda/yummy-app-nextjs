@@ -13,7 +13,7 @@ import { useHeaderLinks } from '@/src/hooks/use-header-links';
 import { useUser } from '@/src/hooks/use-user';
 import { useRouter } from 'next/navigation';
 
-export default function AccountDropdown() {
+export function AccountDropdown() {
     const router = useRouter();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

@@ -1,6 +1,6 @@
 import styles from '@/styles/components/common/header/header.module.scss';
 import { PageLink } from '@/src/components/common/links/page-link';
-import AccountDropdown from '@/src/components/common/account-dropdown';
+import { AccountDropdown } from '@/src/components/common/account-dropdown';
 import { useUser } from '@/src/hooks/use-user';
 import { Button } from '@/src/components/common/buttons/button';
 
