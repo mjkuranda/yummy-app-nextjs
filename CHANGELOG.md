@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Depending on used device, header renders sidebar or nav component.
 
+### Removed
+- [Marek Kurańda](https://github.com/mjkuranda): `User` component.
+
 ## [2.3.0] - 2025-03-15
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Mixin for different type of devices: `mobile`,`tablet` and `desktop`.
