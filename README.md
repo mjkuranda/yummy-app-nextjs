@@ -25,6 +25,7 @@ npm run dev
 To release a new version, create your feature, changes or fix branch naming e.g. `feature/your-feature-name`.
 Next, change a version in `package.json` file and add a new record to `CHANGELOG.md` file
 including information what relevant was added, changed, fixed or removed.
+Finally, change version number at 22nd line in `sidebar-content-footer.tsx`.
 
 ## Environmental variables
 
