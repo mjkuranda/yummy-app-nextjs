@@ -1,12 +1,19 @@
-import styles from '@/styles/components/common/header.module.scss';
-import { User } from '@/src/components/common/user';
-import { PageLink } from '@/src/components/common/links/page-link';
+'use client';
+
+import styles from '@/styles/components/common/header/header.module.scss';
+import { useAppView } from '@/src/hooks/use-app-view';
+import dynamic from 'next/dynamic';
+
+const Sidebar = dynamic(() => import('@/src/components/common/sidebar/sidebar'), { ssr: false });
+const Nav = dynamic(() => import('@/src/components/common/header/nav'), { ssr: false });
 
 interface HeaderProps {
     isTransparent?: boolean;
 }
 
 export function Header({ isTransparent }: HeaderProps) {
+    const { isMobile } = useAppView();
+
     return (
         <header className={styles['header-container']} data-background-transparent={isTransparent}>
             <div className={styles['brand-container']}>
@@ -20,13 +27,7 @@ export function Header({ isTransparent }: HeaderProps) {
                 </div>
                 <h1>DishMatcher</h1>
             </div>
-            <div className={styles['link-container']}>
-                <PageLink href={'/'} label={'Strona główna'} />
-                <PageLink href={'/#description'} label={'O stronie'} />
-            </div>
-            <div className={styles['user-container']}>
-                <User />
-            </div>
+            {isMobile ? <Sidebar /> : <Nav />}
         </header>
     );
 }

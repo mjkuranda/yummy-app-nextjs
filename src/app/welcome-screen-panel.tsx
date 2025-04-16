@@ -2,7 +2,7 @@
 
 import styles from '@/styles/app/welcome-screen.module.scss';
 import { Button } from '@/src/components/common/buttons/button';
-import { TopHeader } from '@/src/components/common/top-header';
+import { TopHeader } from '@/src/components/common/header/top-header';
 import { useUserContext } from '@/src/contexts/user.context';
 
 export function WelcomeScreenPanel() {

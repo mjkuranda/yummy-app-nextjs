@@ -1,0 +1,78 @@
+// NOTE: @Mobile-First Approach styles
+
+@use '@/styles/variables' as v;
+
+.sidebar-content {
+    position: absolute;
+    left: -80vw;
+    top:  0;
+    width: 80vw;
+    height: 100vh;
+    height: 100dvh;
+    transition: all 230ms linear;
+    z-index: 999999;
+    padding: v.$major-rem;
+    background-color: v.$white;
+
+    &[data-is-open=true] {
+        left: 0;
+    }
+
+    .sidebar-content__container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .sidebar-content__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .sidebar-content__header-app-version {
+                font-size: v.$minor-rem;
+            }
+        }
+
+        .link-list {
+            margin-top: v.$major-rem;
+        }
+
+        .sidebar-content-list-element {
+            list-style: none;
+
+            svg {
+                margin-right: v.$minor-rem;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                color: black;
+                text-decoration: none;
+            }
+
+            p {
+                margin-top: 1px;
+            }
+        }
+
+        .sidebar-content-list-element + .sidebar-content-list-element {
+            padding-top: v.$minor-rem;
+            margin-top: v.$minor-rem;
+            //border-top: 1px solid #ddd;
+        }
+    }
+}
+
+.sidebar-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: gray;
+    opacity: 0.4;
+}

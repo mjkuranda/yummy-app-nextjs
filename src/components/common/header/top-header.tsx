@@ -1,4 +1,4 @@
-import { Header } from '@/src/components/common/header';
+import { Header } from '@/src/components/common/header/header';
 
 export function TopHeader() {
     return (
