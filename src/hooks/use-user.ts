@@ -16,7 +16,7 @@ export function useUser() {
     }, []);
 
     const hasCapability = useCallback(() => {
-        const parsedUser = JSON.parse(localStorage.getItem('user') ?? '');
+        const parsedUser = JSON.parse(localStorage.getItem('user') ?? '{}');
         let _user = { ...user };
 
         if (parsedUser?.user?.login !== user.login) {

@@ -29,6 +29,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            .sidebar-content__header-app-version {
+                font-size: v.$minor-rem;
+            }
         }
 
         .link-list {

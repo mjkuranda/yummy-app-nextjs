@@ -19,6 +19,7 @@ export function SidebarContentFooter() {
                         ? <SidebarContentListElement Icon={LogoutIcon} label={'Wyloguj'} link={''} onClick={onLogout} />
                         : <SidebarContentListElement Icon={LoginIcon} label={'Zaloguj'} link={'/users/login'} />
                 )}
+                <p className={styles['sidebar-content__header-app-version']}><i>Wersja - v.2.4.0</i></p>
             </div>
         </>
     );
