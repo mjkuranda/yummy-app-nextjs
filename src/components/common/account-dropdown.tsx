@@ -49,7 +49,7 @@ export function AccountDropdown() {
                         <Avatar sx={{ width: 32, height: 32 }}>{user.login.substring(0, 1).toUpperCase()}</Avatar>
                     </IconButton>
                 </Tooltip>
-                <Typography>{user.login}</Typography>
+                <Typography style={{ marginLeft: '0.3rem' }}>{user.login}</Typography>
             </Box>
             <Menu
                 anchorEl={anchorEl}
