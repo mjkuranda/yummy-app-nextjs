@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/components/common/header/header.module.scss';
 import { useAppView } from '@/src/hooks/use-app-view';
 import dynamic from 'next/dynamic';

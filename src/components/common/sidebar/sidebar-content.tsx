@@ -1,36 +1,29 @@
 import styles from '@/styles/components/common/header/sidebar.module.scss';
-import CloseIcon from '@mui/icons-material/Close';
-import { useSidebarActions, useSidebarState } from '@/src/contexts/sidebar.context';
-
-interface LinkData {
-    link: string;
-    label: string;
-}
-
-const data: LinkData[] = [
-    { link: '/', label: 'Strona główna' },
-    { link: '/#description', label: 'O stronie' }
-];
+import { useSidebarState } from '@/src/contexts/sidebar.context';
+import { SidebarContentFooter } from '@/src/components/common/sidebar/sidebar-content-footer';
+import { SidebarContentHeader } from '@/src/components/common/sidebar/sidebar-content-header';
+import { SidebarContentListElement } from '@/src/components/common/sidebar/sidebar-content-list-element';
+import { useHeaderLinks } from '@/src/hooks/use-header-links';
 
 export function SidebarContent() {
     const isOpen = useSidebarState();
-    const { onClose } = useSidebarActions();
+    const links = useHeaderLinks();
 
     return (
         <div className={styles['sidebar-content']} data-is-open={isOpen}>
-            <div className="d-flex justify-content-between">
-                <div>Menu</div>
-                <div onClick={onClose}>
-                    <CloseIcon />
+            <div className={styles['sidebar-content__container']}>
+                <div>
+                    <SidebarContentHeader />
+                    <ul className={styles['link-list']}>
+                        {links.map(element => (
+                            <SidebarContentListElement key={element.link} {...element} />
+                        ))}
+                    </ul>
+                </div>
+                <div>
+                    <SidebarContentFooter />
                 </div>
             </div>
-            <ul className={styles['link-list']}>
-                {data.map(element => (
-                    <li key={element.link}>
-                        <a href={element.link} onClick={onClose}>{element.label}</a>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 }
