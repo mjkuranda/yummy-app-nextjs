@@ -1,6 +1,6 @@
 import styles from '@/styles/components/common/layouts/wrapped-screen-content-layout.module.scss';
 import { ReactNode } from 'react';
-import { Header } from '@/src/components/common/header';
+import { Header } from '@/src/components/common/header/header';
 import { Footer } from '@/src/components/common/footer';
 
 interface WrappedScreenContentLayoutProps {

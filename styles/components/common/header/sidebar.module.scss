@@ -1,0 +1,46 @@
+// NOTE: @Mobile-First Approach styles
+
+@use '@/styles/variables' as v;
+
+.sidebar-content {
+    position: absolute;
+    left: -80vw;
+    top:  0;
+    width: 80vw;
+    height: 100vh;
+    height: 100dvh;
+    transition: all 230ms linear;
+    z-index: 999999;
+    padding: v.$major-rem;
+    background-color: v.$white;
+
+    &[data-is-open=true] {
+        left: 0;
+    }
+
+    .link-list {
+        margin-top: v.$major-rem;
+
+        li {
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+        li + li {
+            margin-top: v.$minor-rem;
+        }
+    }
+}
+
+.sidebar-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: gray;
+    opacity: 0.4;
+}
