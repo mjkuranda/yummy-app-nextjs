@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): `useAppView` hook for detecting which device is used.
 - [Marek Kurańda](https://github.com/mjkuranda): `useUser` hook for managing a user account.
 - [Marek Kurańda](https://github.com/mjkuranda): `useHeaderLinks` hook for getting all links needed to be within the sidebar.
+- [Marek Kurańda](https://github.com/mjkuranda): `Nav` and `AccountDropdown` components.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Depending on used device, header renders sidebar or nav component.
