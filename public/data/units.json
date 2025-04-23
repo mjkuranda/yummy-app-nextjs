@@ -1,0 +1,11 @@
+{
+    "g": { "en": "g", "pl": "g" },
+    "kg": { "en": "kg", "pl": "kg" },
+    "ml": { "en": "ml", "pl": "ml" },
+    "l": { "en": "l", "pl": "l" },
+    "tbsp": { "en": "tbsp", "pl": "łyżka" },
+    "tsp": { "en": "tsp", "pl": "łyżeczka" },
+    "cup": { "en": "cup", "pl": "szklanka" },
+    "piece": { "en": "piece", "pl": "sztuka" },
+    "pieces": { "en": "pieces", "pl": "sztuki" }
+}

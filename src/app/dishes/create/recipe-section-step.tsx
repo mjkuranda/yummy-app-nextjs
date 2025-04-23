@@ -7,6 +7,7 @@ import { useRecipeFormContext } from '@/src/contexts/recipe-form.context';
 import { removeSectionStep, updateSectionStep } from '@/src/helpers/recipe-form.helper';
 import styles from '@/styles/app/dishes/create/recipe-form.module.scss';
 import { RemoveButton } from '@/src/components/common/buttons/remove-button';
+import { parseStep } from '@/src/utils/recipe.utils';
 
 interface RecipeSectionStepProps {
     section: DishRecipeSectionWithId;
@@ -14,7 +15,7 @@ interface RecipeSectionStepProps {
 }
 
 export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
-    const { sections, onChangeSections } = useRecipeFormContext();
+    const { translations, sections, onChangeSections } = useRecipeFormContext();
     const [instructionStep, setInstructionStep] = useState<string>(step.text ?? '');
 
     const onChangeStep = (newValue: string): void => {
@@ -23,6 +24,15 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
             text: newValue
         };
         const modifiedSections = updateSectionStep(section.id, newStep, sections);
+
+        const parsedStepResult = parseStep(newValue, translations);
+
+        console.log(parsedStepResult);
+
+        // const stepText = 'Dodaj 100 g masła i 1 łyżeczka cukru, potem gotuj przez 5 minut. Dodaj cebulę i marchewkę.';
+        // const stepText = 'Dodaj marchew i pietruszkę, duś przez 10 minut, przypraw. Wlej szklankę cukru, gotuj jeszcze kwadrans. Dodaj jabłko, duś jeszcze 10 minut.';
+        // const result = parseStep(stepText, ingredientsJson);
+        // console.log(JSON.stringify(result));
 
         setInstructionStep(newValue);
         onChangeSections(modifiedSections);

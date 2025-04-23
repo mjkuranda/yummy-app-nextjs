@@ -1,0 +1,13 @@
+{
+    "add": { "en": "add", "pl": "dodaj" },
+    "cook": { "en": "cook", "pl": "gotuj" },
+    "chop": { "en": "chop", "pl": "pokrój" },
+    "mix": { "en": "mix", "pl": "wymieszaj" },
+    "fry": { "en": "fry", "pl": "smaż" },
+    "bake": { "en": "bake", "pl": "piecz" },
+    "blend": { "en": "blend", "pl": "zmiksuj" },
+    "salt": { "en": "salt", "pl": "posól" },
+    "sprinkle": { "en": "sprinkle", "pl": "posyp" },
+    "simmer": { "en": "simmer", "pl": "duś" },
+    "season": { "en": "season", "pl": "przypraw" }
+}
