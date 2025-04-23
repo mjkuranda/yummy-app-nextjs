@@ -27,7 +27,7 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
 
         const parsedStepResult = parseStep(newValue, translations);
 
-        console.log(parsedStepResult);
+        console.log(JSON.stringify(parsedStepResult));
 
         // const stepText = 'Dodaj 100 g masła i 1 łyżeczka cukru, potem gotuj przez 5 minut. Dodaj cebulę i marchewkę.';
         // const stepText = 'Dodaj marchew i pietruszkę, duś przez 10 minut, przypraw. Wlej szklankę cukru, gotuj jeszcze kwadrans. Dodaj jabłko, duś jeszcze 10 minut.';

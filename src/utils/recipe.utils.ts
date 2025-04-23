@@ -20,17 +20,21 @@ export function parseStep(text: string, translations: Translations): ParsedStepR
     for (const [action, enAction] of Object.entries(actions)) {
         if (normalized.includes(action)) {
             result.action = enAction;
+
+            break;
         }
     }
 
-    const fuse = new Fuse(Object.values(ingredients), {
+    // NOTE: Fuze
+    const fuse = new Fuse(ingredients, {
         keys: ['pl'],
-        threshold: 0.4
+        threshold: 0.05
     });
 
     // NOTE: Match ingredients with amount and unit
-    const ingredientRegex = /(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|łyżka|łyżeczka|szklanka|sztuk(?:a|i)?)\s+(\w+)/gi;
+    const ingredientRegex = /(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|łyżka|łyżeczka|szklanka|sztuk(?:a|i)?)\s+(\w+)/giu;
     let match: RegExpExecArray | null;
+
     while ((match = ingredientRegex.exec(normalized)) !== null) {
         const [, amountStr, unit, ingredientCandidate] = match;
         const amount = parseFloat(amountStr.replace(',', '.'));
@@ -47,24 +51,33 @@ export function parseStep(text: string, translations: Translations): ParsedStepR
     // NOTE: Extract time
     const timeRegex = /(gotuj|piecz|smaż|duś)\s+przez?\s*(\d+)\s*(minut|godzin|sekund)/i;
     const timeMatch = normalized.match(timeRegex);
+
     if (timeMatch) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [, action, timeAmountStr, timeUnit] = timeMatch;
+        const [, , timeAmountStr, timeUnit] = timeMatch;
         const timeAmount = parseInt(timeAmountStr, 10);
-        const unit = timeUnit === 'godzin' || timeUnit === 'godzinie' ? 'hours' : timeUnit === 'minut' ? 'minutes' : 'seconds';
+        const unit =
+            timeUnit.startsWith('godzin') ? 'hours' :
+                timeUnit.startsWith('minut') ? 'minutes' :
+                    'seconds';
         result.time = { amount: timeAmount, unit };
     }
 
     // NOTE: Match ingredients with no provided amount
-    const ingredientWithoutQuantityRegex = /\b(marchewka|pietruszka|czosnek|jajka|mleko|cukier|sól|bulion|przecier)\b/gi;
-    let ingredientMatchWithoutQuantity: RegExpExecArray | null;
-    while ((ingredientMatchWithoutQuantity = ingredientWithoutQuantityRegex.exec(normalized)) !== null) {
-        const ingredientCandidate = ingredientMatchWithoutQuantity[1];
-        const fuseResult = fuse.search(ingredientCandidate)[0];
+    const likelyIngredientFragments = normalized.match(/\b(?:dodaj|wrzuć|posyp|pokrój|wymieszaj|zblenduj)\b([^.]+)/gi);
 
-        if (fuseResult) {
-            const enName = fuseResult.item.en.toLowerCase();
-            result.ingredients[enName] = { amount: 1, unit: 'piece' };
+    if (likelyIngredientFragments) {
+        for (const fragment of likelyIngredientFragments) {
+            const words = fragment.split(/\W+/).filter(w => w.length > 2);
+            for (const word of words) {
+                const match = fuse.search(word)[0];
+                if (match) {
+                    const enName = match.item.en.toLowerCase();
+
+                    if (!result.ingredients[enName]) {
+                        result.ingredients[enName] = { amount: 1, unit: 'piece' };
+                    }
+                }
+            }
         }
     }
 
