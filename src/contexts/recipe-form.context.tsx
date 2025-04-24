@@ -23,6 +23,7 @@ const defaultValue: RecipeFormContextValues = {
     translations: {
         actions: {},
         ingredients: [],
+        ingredientJson: {},
         units: {}
     },
     sections: [],
@@ -40,7 +41,7 @@ export function RecipeFormProvider({ children, sections, onChangeSections, error
         const ingredients = sanitizeTranslations(ingredientJson);
         const units = invertTranslations(unitJson, 'pl');
 
-        return { actions, ingredients, units };
+        return { actions, ingredients, ingredientJson, units };
     }, []);
 
     const contextValue: RecipeFormContextValues = { translations, sections, onChangeSections, error };

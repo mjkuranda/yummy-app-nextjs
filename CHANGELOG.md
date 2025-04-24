@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `actions`, `units` and moved `ingredients`.
 - [Marek Kurańda](https://github.com/mjkuranda): Utils and types for recipe part.
+- [Marek Kurańda](https://github.com/mjkuranda): `react-debounce-input` library and `DebounceInputString` component.
 
 ## [2.4.2] - 2025-04-16
 ### Changed

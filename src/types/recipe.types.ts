@@ -7,10 +7,11 @@ export type SanitizedTranslation = Record<Exclude<Language, 'en-US'>, string>;
 export interface Translations {
     actions: InvertedTranslation;
     ingredients: SanitizedTranslation[];
+    ingredientJson: Partial<JsonData>;
     units: InvertedTranslation;
 }
 
-interface ParsedIngredient {
+export interface ParsedIngredient {
     amount: number;
     unit: string;
 }
@@ -30,3 +31,14 @@ export type ParsedStepResult = {
 
 export type LanguageKey = Exclude<Language, 'en-US'>;
 export type JsonData = Record<string, Record<LanguageKey, string>>;
+
+export interface IngredientNgram {
+    text: string;
+    idx: number;
+}
+
+export interface IngredientCandidate {
+    text: string;
+    result: string;
+    wordIdx: number;
+}

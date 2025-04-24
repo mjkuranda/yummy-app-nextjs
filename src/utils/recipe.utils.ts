@@ -1,8 +1,11 @@
 import Fuse from 'fuse.js';
 import {
+    IngredientCandidate,
+    IngredientNgram,
+    InvertedTranslation,
     JsonData,
-    LanguageKey,
-    ParsedStepResult,
+    LanguageKey, ParsedIngredient, ParsedIngredientResult,
+    ParsedStepResult, ParsedTimeResult,
     SanitizedTranslation,
     Translations
 } from '@/src/types/recipe.types';
@@ -14,9 +17,9 @@ export function parseStep(text: string, translations: Translations): ParsedStepR
         ingredients: {}
     };
 
-    const { actions, ingredients, units } = translations;
+    const { actions, ingredients, ingredientJson, units } = translations;
 
-    result.ingredients = extractIngredients(normalized, ingredients, units);
+    result.ingredients = extractIngredients(normalized, ingredients, ingredientJson, units);
     result.action = extractAction(normalized, actions);
     result.time = extractTime(normalized);
 
@@ -38,12 +41,14 @@ export function sanitizeTranslations(data: JsonData): SanitizedTranslation[] {
     return Object.values(data);
 }
 
-function extractIngredients(normalizedText: string, ingredients: SanitizedTranslation[], units: InvertedTranslation): ParsedIngredientResult {
+function extractIngredients(normalizedText: string, ingredients: SanitizedTranslation[], ingredientJson: Partial<JsonData>, units: InvertedTranslation): ParsedIngredientResult {
     const resultIngredients: ParsedIngredientResult = {};
 
-    // NOTE: Fuze
+    const resultThreshold: number = 0.25;
+    const language: LanguageKey = 'pl';
+
     const fuse = new Fuse(ingredients, {
-        keys: ['pl'],
+        keys: [language],
         threshold: 0,
         includeScore: true,
         ignoreLocation: true,
@@ -51,53 +56,95 @@ function extractIngredients(normalizedText: string, ingredients: SanitizedTransl
         shouldSort: true
     });
 
-    // NOTE: Match ingredients with amount and unit
-    const ingredientRegex = /(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|łyżka|łyżkę|łyżki|łyżeczka|szklanka|sztuk(?:a|i)?)\s+(\w+)/giu;
-    // const ingredientRegex = /(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|łyżka|łyżeczka|szklanka|sztuk(?:a|i)?)\s+([\p{L}\s-]{3,})/giu;
-    let match: RegExpExecArray | null;
+    const unigrams: IngredientNgram[] = normalizedText.split(' ').filter(w => w.length > 2 && !Number.isInteger(Number(w))).map(((w, idx) => ({ text: w, idx })));
+    const bigrams = generateNgrams(normalizedText, 2);
+    const trigrams = generateNgrams(normalizedText, 3);
+    const allNgrams = [...unigrams, ...bigrams, ...trigrams];
 
-    console.log(normalizedText);
+    const ingredientCandidates: Record<number, IngredientCandidate[]> = {};
 
-    while ((match = ingredientRegex.exec(normalizedText)) !== null) {
-        const [, amountStr, unit, ingredientCandidate] = match;
-        const amount = parseFloat(amountStr.replace(',', '.'));
-        const unitEn = units[unit] || unit;
-
-        const fuseResult = fuse.search(ingredientCandidate)[0];
-        const fuseResult = fuse.search(ingredientCandidate).filter(r => (r.score ?? 0) < 0.005)[0];
-
-        // console.log('SSSSSS', ingredientCandidate, fuse.search(ingredientCandidate));
-
-        // console.log('results', fuseResult);
+    for (const { text, idx } of allNgrams) {
+        const fuseResult = fuse.search(text).filter(r => (r.score ?? 0) < resultThreshold)[0];
 
         if (fuseResult) {
-            const enName = fuseResult.item.en.toLowerCase();
-            resultIngredients[enName] = { amount, unit: unitEn };
+            const newCandidate = {
+                text,
+                result: fuseResult.item.en.toLowerCase(),
+                wordIdx: idx
+            };
+
+            ingredientCandidates[idx]
+                ? ingredientCandidates[idx].push(newCandidate)
+                : ingredientCandidates[idx] = [newCandidate];
         }
     }
 
-    // NOTE: Match ingredients with no provided amount
-    const likelyIngredientFragments = normalizedText.match(/\b(?:dodaj|wrzuć|posyp|pokrój|wymieszaj|zblenduj)\b([^.]+)/gi);
-
-    if (likelyIngredientFragments) {
-        for (const fragment of likelyIngredientFragments) {
-            const words = fragment.split(/\W+/).filter(w => w.length > 2 && !Number.isInteger(Number(w)) && !isExcludedWord(w));
-
-            for (const word of words) {
-                console.log('wwwwww', word, fuse.search(word).filter(r => (r.score ?? 0) < 0.005));
-                const match = fuse.search(word).filter(r => (r.score ?? 0) < 0.005)[0];
-                if (match) {
-                    const enName = match.item.en.toLowerCase();
-
-                    if (!resultIngredients[enName]) {
-                        resultIngredients[enName] = { amount: 1, unit: 'piece' };
-                    }
-                }
-            }
+    for (const candidates of Object.values(ingredientCandidates)) {
+        if (candidates.length === 0) {
+            continue;
         }
+
+        if (candidates.length === 1) {
+            const [candidate] = candidates;
+            const ingredient = ingredientJson[candidate.result];
+
+            if (ingredient && ingredient[language] === candidate.text) {
+                const extractedIngredient = extractIngredient(normalizedText, candidate, units);
+
+                resultIngredients[ingredient.en] = { ...extractedIngredient };
+
+                continue;
+            }
+
+            continue;
+        }
+
+        const sortedIngredients = candidates.sort((a, b) => b.text.length - a.text.length);
+        const [ingredient] = sortedIngredients;
+        const extractedIngredient = extractIngredient(normalizedText, ingredient, units);
+
+        resultIngredients[ingredient.result] = { ...extractedIngredient };
     }
 
     return resultIngredients;
+}
+
+function generateNgrams(text: string, n: number): IngredientNgram[] {
+    const words = text.split(/\s+/);
+    const ngrams = [];
+
+    for (let i = 0; i <= words.length - n; i++) {
+        ngrams.push({
+            text: words.slice(i, i + n).join(' '),
+            idx: Math.floor(i / 2)
+        });
+    }
+
+    return ngrams;
+}
+
+function extractIngredient(normalizedText: string, ingredientCandidate: IngredientCandidate, units: InvertedTranslation): ParsedIngredient {
+    const parsedIngredient: ParsedIngredient = {
+        amount: 1,
+        unit: 'piece'
+    };
+
+    const endIndex = normalizedText.indexOf(ingredientCandidate.text);
+    const stringToProcess = normalizedText.substring(0, endIndex).trim();
+    const words = stringToProcess.split(' ');
+
+    const lastWord = words.at(-1);
+    const lastButOneWord = words.at(-2);
+
+    if (lastWord && units[lastWord]) {
+        parsedIngredient.unit = units[lastWord];
+    }
+
+    if (lastButOneWord && Number.isInteger(Number(lastButOneWord))) {
+        parsedIngredient.amount = Number(lastButOneWord);
+    }
+
+    return parsedIngredient;
 }
 
 function extractAction(normalizedText: string, actions: InvertedTranslation): string {
@@ -124,16 +171,6 @@ function extractTime(normalized: string): ParsedTimeResult | undefined {
 
         return { amount: timeAmount, unit };
     }
-}
-
-function isExcludedWord(word: string): boolean {
-    const excludedWords = [
-        'godzin', 'minut', 'sekund',
-        'przez', 'potem',
-        'dodaj', 'gotuj', 'wymieszaj'
-    ];
-
-    return excludedWords.includes(word);
 }
 
 function normalize(text: string): string {
