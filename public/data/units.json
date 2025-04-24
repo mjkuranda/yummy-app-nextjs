@@ -4,8 +4,11 @@
     "ml": { "en": "ml", "pl": "ml" },
     "l": { "en": "l", "pl": "l" },
     "tbsp": { "en": "tbsp", "pl": "łyżka" },
+    "tbsps": { "en": "tbsps", "pl": "łyżki" },
     "tsp": { "en": "tsp", "pl": "łyżeczka" },
+    "tsps": { "en": "tsps", "pl": "łyżeczki" },
     "cup": { "en": "cup", "pl": "szklanka" },
+    "cups": { "en": "cups", "pl": "szklanki" },
     "piece": { "en": "piece", "pl": "sztuka" },
     "pieces": { "en": "pieces", "pl": "sztuki" }
 }

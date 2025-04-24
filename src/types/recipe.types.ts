@@ -10,18 +10,22 @@ export interface Translations {
     units: InvertedTranslation;
 }
 
-type ParsedIngredient = {
+interface ParsedIngredient {
     amount: number;
     unit: string;
-};
+}
+
+export type ParsedIngredientResult = Record<string, ParsedIngredient>;
+
+export interface ParsedTimeResult {
+    amount: number;
+    unit: string
+}
 
 export type ParsedStepResult = {
     action: string;
-    ingredients: Record<string, ParsedIngredient>;
-    time?: {
-        amount: number;
-        unit: string
-    };
+    ingredients: ParsedIngredientResult;
+    time?: ParsedTimeResult;
 };
 
 export type LanguageKey = Exclude<Language, 'en-US'>;

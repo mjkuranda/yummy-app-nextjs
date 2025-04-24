@@ -27,12 +27,21 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
 
         const parsedStepResult = parseStep(newValue, translations);
 
-        console.log(JSON.stringify(parsedStepResult));
+        // console.log(JSON.stringify(parsedStepResult));
 
         // const stepText = 'Dodaj 100 g masła i 1 łyżeczka cukru, potem gotuj przez 5 minut. Dodaj cebulę i marchewkę.';
         // const stepText = 'Dodaj marchew i pietruszkę, duś przez 10 minut, przypraw. Wlej szklankę cukru, gotuj jeszcze kwadrans. Dodaj jabłko, duś jeszcze 10 minut.';
-        // const result = parseStep(stepText, ingredientsJson);
-        // console.log(JSON.stringify(result));
+        // const result = parseFullStep(stepText, translations);
+
+        for (const stepText of [
+            'Dodaj 100 g masła i 2 łyżki cukru pudru do miski',
+            'Wymieszaj wszystko dokładnie przez 2 minuty.'
+        ]) {
+            const result = parseStep(stepText, translations);
+            console.log(stepText, JSON.stringify(result));
+        }
+
+        // console.log(parseIngredients(stepText));
 
         setInstructionStep(newValue);
         onChangeSections(modifiedSections);
