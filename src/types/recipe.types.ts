@@ -39,6 +39,7 @@ export interface IngredientNgram {
 
 export interface IngredientCandidate {
     text: string;
+    lemmatizedText: string;
     result: string;
     wordIdx: number;
 }

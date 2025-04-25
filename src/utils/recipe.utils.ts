@@ -56,26 +56,48 @@ function extractIngredients(normalizedText: string, ingredients: SanitizedTransl
         shouldSort: true
     });
 
-    const unigrams: IngredientNgram[] = normalizedText.split(' ').filter(w => w.length > 2 && !Number.isInteger(Number(w))).map(((w, idx) => ({ text: w, idx })));
+    const unigrams = generateNgrams(normalizedText, 1);
     const bigrams = generateNgrams(normalizedText, 2);
     const trigrams = generateNgrams(normalizedText, 3);
-    const allNgrams = [...unigrams, ...bigrams, ...trigrams];
+    const allNgrams = [...trigrams, ...bigrams, ...unigrams];
 
     const ingredientCandidates: Record<number, IngredientCandidate[]> = {};
 
     for (const { text, idx } of allNgrams) {
-        const fuseResult = fuse.search(text).filter(r => (r.score ?? 0) < resultThreshold)[0];
+        const lemmatizedText = lemmatizePolishNouns(text);
 
-        if (fuseResult) {
+        if (isExcludedWordForCandidate(text) || isExcludedWordForCandidate(lemmatizedText)) {
+            continue;
+        }
+
+        const fusePreciseResult = fuse.search(text).filter(r => (r.score ?? 0) < 0.005)[0];
+
+        if (fusePreciseResult) {
             const newCandidate = {
                 text,
-                result: fuseResult.item.en.toLowerCase(),
+                lemmatizedText,
+                result: fusePreciseResult.item.en.toLowerCase(),
                 wordIdx: idx
             };
 
             ingredientCandidates[idx]
                 ? ingredientCandidates[idx].push(newCandidate)
                 : ingredientCandidates[idx] = [newCandidate];
+        } else {
+            const fuseResult = fuse.search(lemmatizedText).filter(r => (r.score ?? 0) < resultThreshold)[0];
+
+            if (fuseResult) {
+                const newCandidate = {
+                    text,
+                    lemmatizedText,
+                    result: fuseResult.item.en.toLowerCase(),
+                    wordIdx: idx
+                };
+
+                ingredientCandidates[idx]
+                    ? ingredientCandidates[idx].push(newCandidate)
+                    : ingredientCandidates[idx] = [newCandidate];
+            }
         }
     }
 
@@ -88,7 +110,11 @@ function extractIngredients(normalizedText: string, ingredients: SanitizedTransl
             const [candidate] = candidates;
             const ingredient = ingredientJson[candidate.result];
 
-            if (ingredient && ingredient[language] === candidate.text) {
+            if (!ingredient) {
+                continue;
+            }
+
+            if (ingredient[language] === candidate.lemmatizedText || ingredient[language] === candidate.text) {
                 const extractedIngredient = extractIngredient(normalizedText, candidate, units);
 
                 resultIngredients[ingredient.en] = { ...extractedIngredient };
@@ -99,24 +125,41 @@ function extractIngredients(normalizedText: string, ingredients: SanitizedTransl
             continue;
         }
 
-        const sortedIngredients = candidates.sort((a, b) => b.text.length - a.text.length);
-        const [ingredient] = sortedIngredients;
-        const extractedIngredient = extractIngredient(normalizedText, ingredient, units);
+        const sortedIngredientCandidates = candidates.sort((a, b) => b.text.length - a.text.length);
+        const [ingredientCandidate] = sortedIngredientCandidates.filter(ingredientCandidate => ingredientCandidate.lemmatizedText === ingredientJson[ingredientCandidate.result]?.[language]);
 
-        resultIngredients[ingredient.result] = { ...extractedIngredient };
+        if (!ingredientCandidate) {
+            continue;
+        }
+
+        const extractedIngredient = extractIngredient(normalizedText, ingredientCandidate, units);
+
+        resultIngredients[ingredientCandidate.result] = { ...extractedIngredient };
     }
 
     return resultIngredients;
 }
 
 function generateNgrams(text: string, n: number): IngredientNgram[] {
+    if (n === 1) {
+        return text
+            .split(/\s+/)
+            .filter(w => w.length > 3 && !Number.isInteger(Number(w)))
+            .map(w => ({
+                text: w,
+                idx: text.indexOf(w)
+            }));
+    }
+
     const words = text.split(/\s+/);
     const ngrams = [];
 
     for (let i = 0; i <= words.length - n; i++) {
+        const slicedWords = words.slice(i, i + n).join(' ');
+
         ngrams.push({
-            text: words.slice(i, i + n).join(' '),
-            idx: Math.floor(i / 2)
+            text: slicedWords,
+            idx: text.indexOf(slicedWords)
         });
     }
 
@@ -136,8 +179,12 @@ function extractIngredient(normalizedText: string, ingredientCandidate: Ingredie
     const lastWord = words.at(-1);
     const lastButOneWord = words.at(-2);
 
-    if (lastWord && units[lastWord]) {
-        parsedIngredient.unit = units[lastWord];
+    if (lastWord) {
+        const lemmantizedWord = lemmatizePolishNoun(lastWord);
+
+        if (units[lemmantizedWord]) {
+            parsedIngredient.unit = units[lemmatizePolishNoun(lastWord)];
+        }
     }
 
     if (lastButOneWord && Number.isInteger(Number(lastButOneWord))) {
@@ -158,11 +205,12 @@ function extractAction(normalizedText: string, actions: InvertedTranslation): st
 }
 
 function extractTime(normalized: string): ParsedTimeResult | undefined {
-    const timeRegex = /(gotuj|piecz|smaż|duś)\s+przez?\s*(\d+)\s*(minut|godzin|sekund)/i;
+    // const timeRegex = /(?:gotuj|piecz|smaż|duś)\s+przez?\s*(\d+)\s*(minut|godzin|sekund)/i;
+    const timeRegex = /przez\s*(\d+)\s*(minut|godzin|sekund)/i;
     const timeMatch = normalized.match(timeRegex);
 
     if (timeMatch) {
-        const [, , timeAmountStr, timeUnit] = timeMatch;
+        const [, timeAmountStr, timeUnit] = timeMatch;
         const timeAmount = parseInt(timeAmountStr, 10);
         const unit =
             timeUnit.startsWith('godzin') ? 'hours' :
@@ -176,5 +224,88 @@ function extractTime(normalized: string): ParsedTimeResult | undefined {
 function normalize(text: string): string {
     return text
         .toLowerCase()
+        .replace(/[.,!?;:()"\[\]]/g, '')
         .trim();
+}
+
+function lemmatizePolishNouns(words: string): string {
+    const wordList = words.split(' ');
+    const lemmatizedWords = wordList.map(word => lemmatizePolishNoun(word));
+
+    return lemmatizedWords.join(' ');
+}
+
+function lemmatizePolishNoun(word: string): string {
+    const lower = word.toLowerCase();
+
+    // NOTE: Exceptions
+    const exceptions: Record<string, string> = {
+        'cukru': 'cukier',
+        'pudru': 'puder',
+        'czosnku': 'czosnek',
+        'mleka': 'mleko',
+        'wody': 'woda',
+        'mąki': 'mąka',
+        'jajek': 'jajko',
+        'ziemniaków': 'ziemniak',
+        'pomidorów': 'pomidor',
+        'bananów': 'banan',
+        'cebuli': 'cebula',
+        'marchewki': 'marchewka',
+        'śliwek': 'śliwka',
+        'truskawek': 'truskawka',
+        'solą': 'sól',
+        'pieprzem': 'pieprz',
+        'masła': 'masło'
+    };
+
+    if (exceptions[lower]) {
+        return exceptions[lower];
+    }
+
+    // NOTE: Rules for genitive and accusative
+    const rules: [RegExp, string][] = [
+        // NOTE: Adjectives and plural
+        [/(ego|emu)$/, 'y'],     // dobrego → dobry, nowemu → nowy
+        [/ej$/, 'a'],            // świeżej → świeża
+        [/ych$/, 'e'],           // białych → białe
+
+        // NOTE: Accusative/Genitive - feminine
+        [/ki$/, 'ka'],           // marchewki → marchewka
+        [/gi$/, 'ga'],           // drożdży → drożdża
+        [/zi$/, 'za'],           // różnicy → różnica
+        [/ni$/, 'na'],           // dyni → dynia
+        [/li$/, 'la'],           // cebuli → cebula
+        [/ów$/, ''],             // pomidorów → pomidor
+        [/ek$/, 'ka'],           // jajek → jajko
+        [/ów$/, ''],             // bananów → banan
+        [/nku$/, 'nek'],              // czosnku → czosnek
+        [/y$/, 'a'],             // wody → woda
+        [/i$/, 'a'],             // cebuli → cebula
+        [/a$/, ''],              // pomidora → pomidor
+        [/e$/, 'o'],             // mleko → mleko (ultimately don't change)
+        [/ę$/, 'a'],             // kawę → kawa
+        [/ą$/, 'a'],             // marchewką → marchewka
+        [/ach$/, 'a'],           // gruszkach → gruszka
+        [/ami$/, 'a'],           // ziołami → zioła
+    ];
+
+    for (const [pattern, replacement] of rules) {
+        if (pattern.test(lower) && lower.length > replacement.length + 2) {
+            return lower.replace(pattern, replacement);
+        }
+    }
+
+    return lower;
+}
+
+function isExcludedWordForCandidate(word: string) {
+    return [
+        'przypraw',
+        'gotuj',
+        'wlej',
+        'duś',
+        'piecz',
+        'minut'
+    ].includes(word);
 }

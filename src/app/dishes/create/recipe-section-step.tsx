@@ -29,14 +29,35 @@ export function RecipeSectionStep({ section, step }: RecipeSectionStepProps) {
 
         // TODO: The problem is that `cukru pudru` does not exist. The algorithm compares the actual text to its language occurrence...
         for (const stepText of [
-            'Dodaj 100 g masło i 2 łyżki cukru pudru do miski',
-            'Wymieszaj wszystko dokładnie przez 2 minuty.',
-            'Dodaj marchew i pietruszkę, duś przez 10 minut, przypraw. Wlej szklankę cukru, gotuj jeszcze kwadrans. Dodaj jabłko, duś jeszcze 10 minut.'
+            'Dodaj 100 g masła i 2 łyżki cukru pudru do miski',
+            // 'Wymieszaj wszystko dokładnie przez 2 minuty.',
+            // 'Dodaj marchewkę i pietruszkę, duś przez 10 minut, przypraw. Wlej szklankę cukru, gotuj jeszcze kwadrans. Dodaj jabłko, duś jeszcze 10 minut.',
+            // 'Do miski wsyp mąkę, cukier puder i proszek do pieczenia.',
+            // 'Dodaj masło i posiekaj składniki nożem aż do uzyskania konsystencji kruszonki.',
+            // 'Wbij jajko i zagnieć ciasto.',
+            // 'Uformuj kulę, zawiń w folię spożywczą i włóż do lodówki na 30 minut.',
+            // 'Rozwałkuj ciasto na oprószonym mąką blacie.',
+            // 'Wylep ciastem formę do tarty i ponakłuwaj spód widelcem.',
+            // 'Piecz w piekarniku nagrzanym do 180°C przez 20 minut.',
+            // 'W międzyczasie przygotuj krem: utrzyj mascarpone z cukrem pudrem i dodaj śmietankę.',
+            // 'Na ostudzony spód wyłóż krem i udekoruj świeżymi owocami.',
+            // 'Wstaw tartę do lodówki na minimum godzinę przed podaniem.',
+            // 'Na patelni rozgrzej oliwę z oliwek i podsmaż cebulę oraz czosnek.',
+            // 'Dodaj pokrojoną w kostkę paprykę, cukinię oraz bakłażana. Smaż przez 10 minut.',
+            // 'Wsyp przyprawy: kumin, kolendrę, słodką paprykę i szczyptę chili.',
+            // 'Dodaj puszkę ciecierzycy oraz passatę pomidorową. Gotuj na małym ogniu przez 15 minut.',
+            // 'Dopraw do smaku solą, pieprzem i odrobiną cukru trzcinowego.',
+            // 'Pod koniec gotowania dodaj garść świeżej bazylii i natki pietruszki.',
+            // 'Ugotuj kaszę bulgur zgodnie z instrukcją na opakowaniu.',
+            // 'Na talerz wyłóż porcję kaszy, a na nią warzywa z sosem.',
+            // 'Na wierzch połóż łyżkę jogurtu greckiego i posyp prażonymi pestkami dyni.',
+            // 'Podawaj udekorowane świeżą miętą i skropione sokiem z cytryny.'
         ]) {
-            console.time(stepText);
+            // console.time(stepText);
             const result = parseStep(stepText, translations);
             console.log(stepText, JSON.stringify(result));
-            console.timeEnd(stepText);
+            // console.log(stepText, result);
+            // console.timeEnd(stepText);
         }
 
         setInstructionStep(newValue);
