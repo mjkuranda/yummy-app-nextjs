@@ -1,7 +1,7 @@
 import { HttpMethod } from '@/src/types/api.types';
 
 export function apiCall(method: HttpMethod, endpointUrl: string, init?: { headers?: HeadersInit, body?: BodyInit }): Promise<Response> {
-    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v2/${endpointUrl}`, {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v${process.env.NEXT_PUBLIC_API_VERSION ?? 3}/${endpointUrl}`, {
         mode: 'cors',
         method,
         headers: {

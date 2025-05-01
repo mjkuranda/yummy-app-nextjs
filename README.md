@@ -33,6 +33,7 @@ To make the application work correctly, the following environmental variables ne
 * `.env.local` file:
   * `NEXT_PUBLIC_APP_URL` - URL of application
   * `NEXT_PUBLIC_API_URL` - URL of API
+  * `NEXT_PUBLIC_API_VERSION` - API version, e.g. `2`. API version by default is `3`.
 
 ## That's all
 Good luck, have fun!

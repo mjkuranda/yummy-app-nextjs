@@ -1,22 +1,23 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import {
-    DetailedDishWithTranslations, DishDocument,
+    DetailedDish,
+    DishDocument,
     DishProposal,
-    DishResult,
+    DishResult, Language,
     NotActivatedUser
 } from '@/src/types/api.types';
 import {
     getDish, getDishComments,
     getDishProposals,
-    getDishes, getNotActivatedUsers, getSoftAddedDishes, getSoftEditedDishes, getSoftDeletedDishes,
+    getDishes, getNotActivatedUsers, getSoftAddedDishes, getSoftEditedDishes, getSoftDeletedDishes, getDishRecipe,
 } from '@/src/api/api';
-import { DAY, HOUR, MINUTE } from '@/src/constants/numbers';
-import { DishComment } from '@/src/types/dish.types';
+import { DAY, HOUR, MINUTE } from '@/src/constants/numbers.constants';
+import { DishComment, TranslatedDishRecipe } from '@/src/types/dish.types';
 
-export function useGetDishById(id: string): UseQueryResult<DetailedDishWithTranslations> {
+export function useGetDishById(id: string, language: Language = 'pl'): UseQueryResult<DetailedDish> {
     return useQuery({
-        queryFn: async (): Promise<DetailedDishWithTranslations> => await getDish(id),
-        queryKey: ['dishes', id],
+        queryFn: async (): Promise<DetailedDish> => await getDish(id, language),
+        queryKey: ['dishes', id, language],
         staleTime: HOUR
     });
 }
@@ -107,5 +108,12 @@ export function useGetDishComments(dishId: string): UseQueryResult<DishComment[]
         queryKey: ['dishes', 'comments', dishId],
         staleTime: 5 * MINUTE,
         refetchInterval: MINUTE
+    });
+}
+
+export function useGetDishRecipe(dishId: string, lang: Language): UseQueryResult<TranslatedDishRecipe> {
+    return useQuery({
+        queryFn: async (): Promise<TranslatedDishRecipe> => await getDishRecipe(dishId, lang),
+        queryKey: ['dishes', dishId, 'recipe', lang]
     });
 }

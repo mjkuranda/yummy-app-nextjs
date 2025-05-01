@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { CurrentUser } from '@/src/types/user.types';
 import { UserPermissions } from '@/src/types/api.types';
-import { MINUTE } from '@/src/constants/numbers';
+import { MINUTE } from '@/src/constants/numbers.constants';
 import { refreshUserTokens } from '@/src/api/api';
 import { ApiError, handleApiError } from '@/src/api/api-errors';
 import { useRouter } from 'next/navigation';

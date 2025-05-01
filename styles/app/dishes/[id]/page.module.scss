@@ -18,13 +18,20 @@
         }
 
         .result-details {
-            padding: 2rem;
+            padding: 0 0 2rem v.$minor-rem;
+
+            > ul, > .dish-details-sections {
+                padding: 0 v.$minor-rem;
+            }
 
             > ul {
                 list-style: none;
+                background-color: #FEF8F6;
+                border-bottom-left-radius: v.$minor-rem;
+                border-bottom-right-radius: v.$minor-rem;
 
                 > li:first-child {
-                    margin-bottom: 1em;
+                    padding-top: 1rem;
                     text-shadow: 1px 1px 2px;
 
                     .result-dish-title {
@@ -58,7 +65,7 @@
                 }
 
                 .dish-description {
-                    margin-top: 1em;
+                    padding-top: 1rem;
 
                     > p {
                         overflow-y: scroll;
@@ -121,6 +128,13 @@
             }
 
             .result-details {
+                padding: 0;
+                margin-top: v.$minor-rem;
+
+                > ul {
+                    background-color: unset;
+                }
+
                 .dish-details-sections {
                     .dish-description {
                         > p {

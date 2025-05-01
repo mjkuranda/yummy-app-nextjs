@@ -1,13 +1,30 @@
 import styles from '@/styles/app/dishes/[id]/page.module.scss';
-import { DetailedDish, DishRecipeSection } from '@/src/types/api.types';
+import { DetailedDish } from '@/src/types/api.types';
+import { useGetDishRecipe } from '@/src/api/endpoints';
+import { Loader } from '@/src/components/common/loader';
+import { useDishDetailsContext } from '@/src/contexts/dish-details.context';
 
 interface DishRecipeProps {
     dish: DetailedDish;
-    recipe?: DishRecipeSection[];
 }
 
-export function DishRecipe({ recipe }: DishRecipeProps) {
-    if (!recipe || recipe.length === 0) {
+export function DishRecipe({ dish }: DishRecipeProps) {
+    const { language } = useDishDetailsContext();
+    const { data: recipe, isLoading, isError } = useGetDishRecipe(dish.id, language);
+
+    if (isError) {
+        return <div>Wystąpił błąd w uzyskaniu przepisu. Spróbuj ponownie później.</div>;
+    }
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    if (!recipe) {
+        return <Loader />;
+    }
+
+    if (recipe.sections.length === 0) {
         return (
             <div className={styles['instruction-section']}>
                 <h5>Przepis:</h5>
@@ -18,7 +35,7 @@ export function DishRecipe({ recipe }: DishRecipeProps) {
 
     return (
         <div>
-            {recipe && recipe.map(section => {
+            {recipe && recipe.sections.map(section => {
                 return (
                     <div key={section.name ?? 'x'} className={styles['instruction-section']}>
                         <h5>{section.name ? section.name : 'Przepis'}:</h5>

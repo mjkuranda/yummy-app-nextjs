@@ -7,12 +7,12 @@ import {
     NotActivatedUser,
     UserPermissions,
     UserObject,
-    DetailedDishWithTranslations,
+    DetailedDish,
     NewDishDto,
     DishDocument,
     CapabilityType,
     NewPasswordDto,
-    UserProfile
+    UserProfile, Language
 } from '@/src/types/api.types';
 import { encodeIngredients } from '@/src/helpers/query.helper';
 import { UserData } from '@/src/types/register.types';
@@ -22,13 +22,14 @@ import {
     DishDifferenceDto,
     DishRating,
     NewDishCommentDto,
-    NewDishRatingDto
+    NewDishRatingDto,
+    TranslatedDishRecipe
 } from '@/src/types/dish.types';
 
-export async function getDish(id: string): Promise<DetailedDishWithTranslations | never> {
+export async function getDish(id: string, language: Language = 'pl'): Promise<DetailedDish | never> {
     // eslint-disable-next-line no-useless-catch
     try {
-        return apiGet<DetailedDishWithTranslations>(`dishes/${id}/details`);
+        return apiGet<DetailedDish>(`dishes/${id}/details`, { acceptLanguage: language });
     } catch (err) {
         throw err;
     }
@@ -374,6 +375,15 @@ export async function getUserProfile(login: string): Promise<UserProfile> {
     // eslint-disable-next-line no-useless-catch
     try {
         return await apiGet<UserProfile>(`users/${login}/profile`);
+    } catch (err: unknown) {
+        throw err;
+    }
+}
+
+export async function getDishRecipe(dishId: string, lang: Language): Promise<TranslatedDishRecipe> {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        return await apiGet<TranslatedDishRecipe>(`recipes/${dishId}`, { acceptLanguage: lang });
     } catch (err: unknown) {
         throw err;
     }

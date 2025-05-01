@@ -1,28 +1,27 @@
 'use client';
 
-import { DetailedDish, TranslatedIngredient } from '@/src/types/api.types';
+import { Ingredient, TranslatedIngredient } from '@/src/types/api.types';
 import { DishIngredientElement } from '@/src/app/dishes/[id]/dish-ingredient-element';
 import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import { useSearchParams } from 'next/navigation';
 import { useComparedIngredients } from '@/src/hooks/use-compared-ingredients';
 
 interface DishIngredientsProps {
-    dish: DetailedDish;
-    ingredients?: TranslatedIngredient[];
+    original: Ingredient[];
+    translated: TranslatedIngredient[];
 }
 
-export function DishIngredients({ dish, ingredients }: DishIngredientsProps) {
+export function DishIngredients({ original, translated }: DishIngredientsProps) {
     const searchParams = useSearchParams();
-    const comparedIngredients = useComparedIngredients(searchParams, dish);
+    const comparedIngredients = useComparedIngredients(searchParams, original);
 
     return (
         <div className={styles['dish-ingredients']}>
             <h5>Składniki:</h5>
             <ul>
                 {/* Index for ingredients is okay, because I do nothing with them except from rendering */}
-                {ingredients && ingredients.length > 0 ?
-                    ingredients.map((ingredient, idx) => <DishIngredientElement key={idx} text={ingredient.text} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />) :
-                    dish.ingredients.map((ingredient, idx) => <DishIngredientElement key={idx} text={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />)
+                {translated?.length > 0 &&
+                    translated.map((ingredient, idx) => <DishIngredientElement key={idx} text={ingredient.text} imageUrl={ingredient.imageUrl} contains={comparedIngredients && comparedIngredients[idx]} />)
                 }
             </ul>
         </div>

@@ -1,5 +1,5 @@
 import { IngredientWithId } from '@/src/types/ingredient.types';
-import { IngredientWithoutImage, DishRecipeSection } from '@/src/types/api.types';
+import { IngredientWithoutImage, DishRecipeSection, Language } from '@/src/types/api.types';
 
 export interface DishFormData {
     title: string;
@@ -166,3 +166,11 @@ export interface DishDifferenceDto {
     recipeSections?: DishRecipeSection[];
     imageUrl?: string;
 }
+
+export interface DishRecipe {
+    language: Language;
+    dishId: string;
+    sections: DishRecipeSection[];
+}
+
+export type TranslatedDishRecipe = DishRecipe;

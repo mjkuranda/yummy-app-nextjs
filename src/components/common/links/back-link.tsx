@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '@/styles/components/common/links/back-link.module.scss';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import { PagePathname } from '@/src/constants/strings';
+import { PagePathname } from '@/src/constants/strings.constants';
 
 interface BackLinkProps {
     link: PagePathname;
