@@ -1,4 +1,5 @@
 import { DishType, MealType } from '@/src/types/dish.types';
+import { supportedLanguages } from '@/src/constants/common.constants';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'Patch' | 'DELETE';
 
@@ -20,8 +21,14 @@ export interface DishResult {
 export type DetailedDish = {
     id: string,
     imgUrl?: string,
-    ingredients: Ingredient[],
-    language: Language,
+    ingredients: {
+        original: Ingredient[];
+        translated: TranslatedIngredient[];
+    },
+    language: {
+        original: Language,
+        translated: Language
+    },
     title: string,
     description: string,
     readyInMinutes: number,
@@ -34,7 +41,6 @@ export type DetailedDish = {
         dairyFree?: boolean,
         veryHealthy?: boolean
     },
-    recipeSections: DishRecipeSection[],
     type: DishType
     mealType: MealType,
 };
@@ -50,13 +56,6 @@ export type DishRecipeSection = {
     name?: string,
     steps: DishRecipeStep[]
 };
-
-export interface DetailedDishWithTranslations {
-    dish: DetailedDish;
-    description?: string;
-    ingredients?: TranslatedIngredient[];
-    recipe?: DishRecipeSection[];
-}
 
 export interface Ingredient {
     amount: number;
@@ -120,7 +119,7 @@ export interface NotActivatedUser {
 /**
  * Language type
  */
-export type Language = 'en' | 'en-US' | 'pl';
+export type Language = typeof supportedLanguages[number];
 
 export interface NewPasswordDto {
     newPassword: string;

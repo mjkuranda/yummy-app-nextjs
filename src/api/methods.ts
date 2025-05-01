@@ -1,10 +1,10 @@
 import { ApiErrorResponse, throwApiError } from '@/src/api/api-errors';
 import { apiCall } from '@/src/helpers/api.helper';
 
-export async function apiGet<T>(endpointUrl: string): Promise<T> {
+export async function apiGet<T>(endpointUrl: string, headers?: { acceptLanguage: string }): Promise<T> {
     const res = await apiCall('GET', endpointUrl, {
         headers: {
-            'Accept-Language': 'pl', // TODO: from i18n
+            'Accept-Language': (headers?.acceptLanguage ?? 'pl'), // TODO: from i18n
             'Content-Type': 'application/json'
         }
     });

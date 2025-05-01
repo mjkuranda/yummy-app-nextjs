@@ -1,10 +1,10 @@
 'use client';
 
 import { ReadonlyURLSearchParams } from 'next/navigation';
-import { DetailedDish } from '@/src/types/api.types';
+import { Ingredient } from '@/src/types/api.types';
 import pantryIngredients from '@/public/data/ingredients/pantry.json';
 
-export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, dish: DetailedDish): boolean[] | null {
+export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, ingredients: Ingredient[]): boolean[] | null {
     const sourceUrl = searchParams.get('sourceUrl');
 
     if (!sourceUrl) {
@@ -12,7 +12,7 @@ export function useComparedIngredients(searchParams: ReadonlyURLSearchParams, di
     }
 
     const [,, ...ings] = sourceUrl.split(',');
-    const ingredients = [...ings, ...pantryIngredients];
+    const mergedIngredients = [...ings, ...pantryIngredients];
 
-    return dish.ingredients.map(ingredient => ingredients.includes(ingredient.name));
+    return ingredients.map(ingredient => mergedIngredients.includes(ingredient.name));
 }

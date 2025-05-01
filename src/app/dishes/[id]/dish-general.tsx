@@ -1,6 +1,6 @@
 import styles from '@/styles/app/dishes/[id]/page.module.scss';
 import { DishRecipe } from '@/src/app/dishes/[id]/dish-recipe';
-import { DetailedDish, DishRecipeSection, TranslatedIngredient } from '@/src/types/api.types';
+import { DetailedDish } from '@/src/types/api.types';
 import { DishRating } from '@/src/app/dishes/[id]/dish-rating';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { DishTypeText } from '@/src/types/dish.types';
@@ -13,18 +13,18 @@ import { DishEdition } from '@/src/app/dishes/[id]/dish-edition';
 import { FlagIcon } from '@/src/components/common/flag-icon';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import { Loader } from '@/src/components/common/loader';
+import LanguageTabs from '@/src/components/language-tabs';
 
 interface DishGeneralProps {
     dish: DetailedDish;
-    description?: string;
-    ingredients?: TranslatedIngredient[];
-    recipe?: DishRecipeSection[];
     sourceUrl: string | null;
 }
 
-export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl }: DishGeneralProps) {
+export function DishGeneral({ dish, sourceUrl }: DishGeneralProps) {
     return (
         <div className={styles['result-details']}>
+            <LanguageTabs dish={dish} />
             <ul>
                 <li>
                     <div className={styles['result-dish-title']}>
@@ -52,7 +52,7 @@ export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl 
                         </span>
                     </div>
                     <div className={styles['information-container']}>
-                        <span>Oryginalny język: <FlagIcon language={dish.language} size={32} /></span>
+                        <span>Oryginalny język: <FlagIcon language={dish.language.original} size={32} /></span>
 
                     </div>
                 </li>
@@ -65,9 +65,11 @@ export function DishGeneral({ dish, description, ingredients, recipe, sourceUrl 
                 </li>
             </ul>
             <div className={styles['dish-details-sections']}>
-                <DishDescription description={description} dish={dish} />
-                <Suspense><DishIngredients ingredients={ingredients} dish={dish} /></Suspense>
-                <DishRecipe recipe={recipe?.length ? recipe : dish.recipeSections} dish={dish} />
+                <DishDescription description={dish.description} />
+                <Suspense fallback={<Loader />}>
+                    <DishIngredients {...dish.ingredients} />
+                </Suspense>
+                <DishRecipe dish={dish} />
             </div>
         </div>
     );

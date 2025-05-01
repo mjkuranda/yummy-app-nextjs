@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2025-05-01
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Language tabs to display the dish in different languages - the original and client one.
+- [Marek Kurańda](https://github.com/mjkuranda): Dish recipe is separately received from the server.
+- [Marek Kurańda](https://github.com/mjkuranda): `DishDetailsContext` to keep information about language and handle action of changing language.
+- [Marek Kurańda](https://github.com/mjkuranda): List of supported languages.
+- [Marek Kurańda](https://github.com/mjkuranda): `useGetBrowserLanguage` hook to detect what language is used by the user in the browser.
+
 ## [2.4.2] - 2025-04-16
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Cut too long user login adding three dots at the end.

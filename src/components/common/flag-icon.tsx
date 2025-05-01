@@ -32,6 +32,7 @@ export function FlagIcon({ language, size = 48, hasTranslationInfo }: FlagIconPr
             width={size}
             title={hasTranslationInfo ? 'Danie zostało przetłumaczone. Może zawierać błędy w tłumaczeniu.' : 'Flaga kraju, gdzie język występuje jako urzędowy'}
             data-author={flag.author}
+            aria-label={language}
         />
     );
 }
